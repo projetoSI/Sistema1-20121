@@ -1,4 +1,4 @@
-package projeto;
+package sistema;
 
 public class Carona {
 

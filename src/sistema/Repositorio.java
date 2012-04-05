@@ -1,7 +1,14 @@
-package projeto;
+package sistema;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import excecoes.AdressErrorException;
+import excecoes.EmailErrorException;
+import excecoes.LoginErrorException;
+import excecoes.NameErrorException;
+import excecoes.PasswordErrorException;
+import excecoes.PhoneErrorException;
 
 public class Repositorio {
 
@@ -16,7 +23,7 @@ public class Repositorio {
 		usersCadastrados.add(newUser);
 	}
 
-	public static boolean verificaExistencia(String login, String email) {//VERIFICAR A EXISTENCIA DE UM USUARIO COM O LOGIN/EMAIL PASSADO.
+	public static boolean verificaExistencia(String login, String email) throws Exception{//VERIFICAR A EXISTENCIA DE UM USUARIO COM O LOGIN/EMAIL PASSADO.
 		User auxUser = new User(login, "default", "default", "default", email, "default");
 
 		for (User user : usersCadastrados) {
