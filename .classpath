@@ -4,7 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="D:/Users/Fontenele/Downloads/easyaccept.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Juliana/Documents/easyaccept.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juliana/git/Sistema1-20121/easyaccept.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

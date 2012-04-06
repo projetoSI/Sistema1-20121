@@ -50,7 +50,6 @@ public class TestaClasseCarona {
 	@Test
 	public void testaGetDestino() throws LocalErrorException{
 		assertEquals("Campina Grande", carona1.getDestino());
-		carona1.setOrigem("Cajá");
-		assertEquals("Cajá", carona1.getDestino());
+		assertFalse("eh pra dar erro", carona1.getOrigem().equals("Cajá"));
 	}
 }
