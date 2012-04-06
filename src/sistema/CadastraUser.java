@@ -16,10 +16,10 @@ public class CadastraUser {
 
 	}
 
-	public void addNovoUser(String login, String senha, String nome,String endereco, String email, String telefone) throws Exception {
+	public void addNovoUser(String login, String senha, String nome,String endereco, String email) throws Exception {
 		if (verificaLogin(login) && verificaNome(nome) && verificaEmail(email)
-				&& verificaTelefone(telefone)) {
-				newUser = new User(login, senha, nome, endereco, email, telefone);
+				&& verificaTelefone("1")) {
+				newUser = new User(login, senha, nome, endereco, email, "1");
 			Repositorio.addUser(newUser);
 		}
 	}
@@ -40,8 +40,7 @@ public class CadastraUser {
 	}
 
 	private boolean verificaEmail(String email) throws Exception {
-		if (!(email.replaceAll(" ", "").equals(""))
-				&& !(Repositorio.verificaExistencia(email, "email"))) {
+		if (!(email.replaceAll(" ", "").equals("")) && !(Repositorio.verificaExistencia(email, "email"))) {
 			return true;
 		}
 		return false;
@@ -56,7 +55,7 @@ public class CadastraUser {
 	
 	
 	public static void main(String[] args) {
-		String s = "aasa@email.com";
+		String s = "mark@facebook.com";
 	if (s.matches("[\\w_.-]+@\\w+[.-.](com|com[.-.]br)")) {
 		System.out.println("passou");
 	}

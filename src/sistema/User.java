@@ -12,7 +12,7 @@ public class User {
 	protected String senha;
 
 	public User(String login,String senha,String nome,String endereco,String email,String telefone) throws AdressErrorException, EmailErrorException, PasswordErrorException, NameErrorException, PhoneErrorException, LoginErrorException{
-		if (login.isEmpty() || login.length() < 5) throw new LoginErrorException("Login Invalido");
+		if ((login == null||login.isEmpty() || login.length() < 3)) throw new LoginErrorException("Login inválido");
 		else this.login = login;
 		setSenha(senha); 
 		setNome(nome);
@@ -35,8 +35,11 @@ public class User {
 	}
 
 	public void setEmail(String email) throws EmailErrorException{
-		if (email.matches("[\\w_.]+@\\w+[..](com|com[.-.]br)")) this.email = email;
-		else throw new EmailErrorException("Email Invalido");
+		if (email.matches("[\\w_.]+@\\w+[..](com|com[.-.]br)")) {
+			this.email = email;
+		}	else{
+			throw new EmailErrorException("Email Invalido");
+		}
 	}
 
 	public String getTelefone() {
@@ -53,7 +56,7 @@ public class User {
 	}
 
 	public void setNome(String nome) throws NameErrorException{
-		if (nome.matches("[A-Za-z\\s]*+") && nome.length() >= 3)this.nome = nome;
+		if (!(nome == null)||(nome.matches("[A-Za-z\\s]*+") && nome.length() >= 3))this.nome = nome;
 		else throw new NameErrorException("Nome Invalido");
 	}
 
@@ -62,7 +65,7 @@ public class User {
 	}
 
 	public void setSenha(String senha) throws PasswordErrorException{
-		if (senha.isEmpty() || senha.length() < 6) throw new PasswordErrorException("Senha Invalida");
+		if (senha.isEmpty() || senha.length() < 4) throw new PasswordErrorException("Senha Invalida");
 		else this.senha = senha;
 	}
 
