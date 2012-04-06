@@ -46,4 +46,11 @@ public class TestaClasseCarona {
 			fail("Origem Inválida");
 		}catch (LocalErrorException e){}
 	}
+	
+	@Test
+	public void testaGetDestino() throws LocalErrorException{
+		assertEquals("Campina Grande", carona1.getDestino());
+		carona1.setOrigem("Cajá");
+		assertEquals("Cajá", carona1.getDestino());
+	}
 }

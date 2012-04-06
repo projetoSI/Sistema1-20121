@@ -5,5 +5,6 @@
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="D:/Users/Fontenele/Downloads/easyaccept.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Juliana/Documents/easyaccept.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
