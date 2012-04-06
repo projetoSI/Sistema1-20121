@@ -30,7 +30,7 @@ public class Hora implements DataHora {
 		return Integer.parseInt(this.getMinutos()) - Integer.parseInt(hor.getMinutos());
 	}
 	
-//	@Override
+
 	public int compareTo(DataHora o) {
 		Hora hora = (Hora) o;
 		if (this.comparaHora(hora) != 0) {

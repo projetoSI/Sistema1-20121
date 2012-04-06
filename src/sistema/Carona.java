@@ -1,19 +1,21 @@
 package sistema;
+import excecoes.*;
 
 public class Carona {
 
 	private String origem;
 	private String destino;
-	private DataHora hora, data;
-	private int qntVagas;
+	private String data;
+	private String hora;
+	private String qntVagas;
 	private User motorista;
 
-	public Carona(String origem, String destino, DataHora hora, DataHora data,int qntVagas, User motorista) {
-		this.origem = origem;
-		this.destino = destino;
-		this.hora = hora;
-		this.data = data;
-		this.qntVagas = qntVagas;
+	public Carona(String origem, String destino, String hora, String data, String qntVagas, User motorista) throws LocalErrorException, QuantityVacancyErrorException {
+		setOrigem(origem);
+		setDestino(destino);
+		setHora(hora);
+		setData(data);
+		setQntVagas(qntVagas);
 		this.motorista = motorista;
 	}
 
@@ -21,43 +23,46 @@ public class Carona {
 		return origem;
 	}
 
-	public void setOrigem(String origem) {
-		this.origem = origem;
+	public void setOrigem(String origem) throws LocalErrorException {
+		if (!(origem == null) && (origem.matches("[A-Za-zÇ-ú\\s]*+")) && (!(origem.isEmpty()))) this.origem = origem;
+		else throw new LocalErrorException("Origem inválida");
 	}
 
 	public String getDestino() {
 		return destino;
 	}
 
-	public void setDestino(String destino) {
-		this.destino = destino;
+	public void setDestino(String destino) throws LocalErrorException {
+		if (!(destino == null) && (destino.matches("[A-Za-z\\s]*+")) && (!(destino.isEmpty()))) this.destino = destino;
+		else throw new LocalErrorException("Destino inválido");
 	}
 
-	public DataHora getHora() {
+	public String getHora() {
 		return hora;
 	}
 
-	public void setHora(DataHora hora) {
+	public void setHora(String hora) {
 		this.hora = hora;
 	}
 
-	public DataHora getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(DataHora data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
-	public int getQntVagas() {
+	public String getQntVagas() {
 		return qntVagas;
 	}
 
-	public void setQntVagas(int qntVagas) {
-		this.qntVagas = qntVagas;
+	public void setQntVagas(String qntVagas) throws QuantityVacancyErrorException {
+		if (!(qntVagas == null) && (qntVagas.matches("[0-9]*") && (Integer.parseInt(qntVagas) > 0))) this.qntVagas = qntVagas;
+		else throw new QuantityVacancyErrorException("Vaga inválida");
 	}
 
-	public User motorista() {
+	public User getMotorista() {
 		return this.motorista;
 	}
 	
@@ -71,6 +76,6 @@ public class Carona {
 				&& this.getDestino().equals(carona1.getDestino())
 				&& this.getData().equals(carona1.getData())
 				&& this.getHora().equals(carona1.getHora())
-				&& this.motorista().equals(carona1.motorista());
+				&& this.getMotorista().equals(carona1.getMotorista());
 	}
 }

@@ -43,7 +43,7 @@ public class Repositorio {
 		List<Carona> caronasUser = new ArrayList<Carona>();
 
 		for (Carona carona : caronasCadastradas) {
-			if (carona.motorista().getLogin().equals(usuario.getLogin())) {
+			if (carona.getMotorista().getLogin().equals(usuario.getLogin())) {
 				caronasUser.add(carona);
 			}
 		}

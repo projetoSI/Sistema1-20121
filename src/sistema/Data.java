@@ -53,7 +53,6 @@ public class Data implements DataHora {
 		return  Integer.parseInt(this.getDia()) - Integer.parseInt(data.getDia());
 	}
 	
-//	@Override
 	public int compareTo(DataHora o) {
 		Data data = (Data) o;
 		
