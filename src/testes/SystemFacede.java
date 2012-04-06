@@ -1,4 +1,4 @@
-package facedes;
+package testes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import excecoes.PasswordErrorException;
 import excecoes.PhoneErrorException;
 import sistema.User;
 
-public class UserFacede {
+public class SystemFacede {
 	
 	private User user;
 	private static List<User> usuarios = new ArrayList<User>();

@@ -35,7 +35,7 @@ carona4ID=cadastrarCarona idSessao=${sessaoMark} origem="João Pessoa" destino="
 expect "João Pessoa para Lagoa Seca, no dia 25/11/2016, as 05:00" getCarona idCarona=${carona4ID}
 
 carona5ID=cadastrarCarona idSessao=${sessaoMark} origem="João Pessoa" destino="Lagoa Seca" data="25/11/2006" hora="05:00" vagas=4
-expect "João Pessoa para Lagoa Seca, no dia 25/11/2006, as 05:00" getCarona idCarona=${carona5ID}
+expect "João Pessoa para Lagoa Seca, no dia 25/11/2016, as 05:00" getCarona idCarona=${carona5ID}
 
 #Localizar carona.
 expect {} localizarCarona idSessao=${sessaoMark} origem="São Francisco" destino="Palo Alto"

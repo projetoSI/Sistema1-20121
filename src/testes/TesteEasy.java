@@ -7,7 +7,6 @@ import sistema.CadastraUser;
 import sistema.User;
 
 import easyaccept.EasyAcceptFacade;
-import facedes.UserFacede;
 
 public class TesteEasy {
 
@@ -21,7 +20,7 @@ public class TesteEasy {
 //		files.add("US04.txt");
 //		files.add("US05.txt");
 
-		UserFacede usuario = new UserFacede();
+		SystemFacede usuario = new SystemFacede();
 		
 		EasyAcceptFacade eaFacade = new EasyAcceptFacade(usuario,files);
 		
