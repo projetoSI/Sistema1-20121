@@ -107,6 +107,11 @@ public class TestaClasseData {
 		assertFalse(data.dataValida("!@#$%", "!@#$%", "2012"));
 		assertFalse(data.dataValida("!@#$%", "05", "!@#$%"));
 		assertFalse(data.dataValida("05", "!@#$%", "!@#$%"));
+		assertFalse(data.dataValida("-23","-05" , "-2012"));
+		assertFalse(data.dataValida("23.0","05.0" , "2013.0"));
+		assertFalse(data.dataValida("23,0","05,0" , "2013,0"));
+		assertFalse(data.dataValida("23","05","13"));
+		
 		
 		//Testa algumas datas validas
 		
@@ -134,6 +139,7 @@ public class TestaClasseData {
 		assertTrue(data.dataValida("29", "11", "2013"));
 		assertTrue(data.dataValida("01", "12", "2013"));
 		assertTrue(data.dataValida("30", "12", "2013"));
+		assertTrue(data.dataValida("3", "3", "2013"));
 	}
 	
 }
