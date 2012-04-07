@@ -24,8 +24,8 @@ public class Carona {
 	}
 
 	public void setOrigem(String origem) throws LocalErrorException {
-		if (!(origem == null) && (origem.matches("[A-Za-z«-˙\\s]*+")) && (!(origem.isEmpty()))) this.origem = origem;
-		else throw new LocalErrorException("Origem inv·lida");
+		if (!(origem == null) && (origem.matches("[A-Za-z√á-√∫\\s]*+")) && (!(origem.isEmpty()))) this.origem = origem;
+		else throw new LocalErrorException("Origem invÔøΩlida");
 	}
 
 	public String getDestino() {
@@ -34,7 +34,7 @@ public class Carona {
 
 	public void setDestino(String destino) throws LocalErrorException {
 		if (!(destino == null) && (destino.matches("[A-Za-z\\s]*+")) && (!(destino.isEmpty()))) this.destino = destino;
-		else throw new LocalErrorException("Destino inv·lido");
+		else throw new LocalErrorException("Destino invÔøΩlido");
 	}
 
 	public String getHora() {
@@ -59,7 +59,7 @@ public class Carona {
 
 	public void setQntVagas(String qntVagas) throws QuantityVacancyErrorException {
 		if (!(qntVagas == null) && (qntVagas.matches("[0-9]*") && (Integer.parseInt(qntVagas) > 0))) this.qntVagas = qntVagas;
-		else throw new QuantityVacancyErrorException("Vaga inv·lida");
+		else throw new QuantityVacancyErrorException("Vaga inv√°lida");
 	}
 
 	public User getMotorista() {

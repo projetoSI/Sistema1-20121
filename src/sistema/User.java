@@ -26,7 +26,7 @@ public class User {
 	}
 
 	public void setEndereco(String endereco) throws AdressErrorException{
-		if (endereco.isEmpty() || endereco.matches("[0-9]*")) throw new AdressErrorException("Endereço inválido");
+		if (endereco.isEmpty() || endereco.matches("[0-9]*")) throw new AdressErrorException("EndereÃ§o invÃ¡lido");
 		else this.endereco = endereco;
 	}
 
@@ -38,7 +38,7 @@ public class User {
 		if (email.matches("[\\w_.]+@\\w+[..](com|com[.-.]br)")) {
 			this.email = email;
 		}	else{
-			throw new EmailErrorException("Email inválido");
+			throw new EmailErrorException("Email invÃ¡lido");
 		}
 	}
 
@@ -47,7 +47,7 @@ public class User {
 	}
 
 	public void setTelefone(String telefone) throws PhoneErrorException{
-		if (!(telefone.matches("[0-9]*")) || telefone.isEmpty() || (telefone.length() != 10 && telefone.length() != 8)) throw new PhoneErrorException("Fone Invalido");
+		if (!(telefone.matches("[0-9]*")) || telefone.isEmpty()) throw new PhoneErrorException("Fone Invalido");
 		else this.telefone = telefone;
 	}
 
@@ -57,7 +57,7 @@ public class User {
 
 	public void setNome(String nome) throws NameErrorException{
 		if (!(nome == null) && (nome.matches("[A-Za-z\\s]*+") && nome.length() >= 3) && (!(nome.isEmpty()))) this.nome = nome;
-		else throw new NameErrorException("Nome inválido");
+		else throw new NameErrorException("Nome invÃ¡lido");
 	}
 
 	public String getSenha() {
@@ -65,7 +65,7 @@ public class User {
 	}
 
 	public void setSenha(String senha) throws PasswordErrorException{
-		if (senha.isEmpty() || senha.length() < 4) throw new PasswordErrorException("Senha inválida");
+		if (senha.isEmpty() || senha.length() < 4) throw new PasswordErrorException("Senha invÃ¡lida");
 		else this.senha = senha;
 	}
 
