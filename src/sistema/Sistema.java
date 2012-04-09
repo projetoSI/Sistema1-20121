@@ -21,13 +21,14 @@ public class Sistema {
 		return Repositorio.getUsuarios();
 	}
 	
-	public User getUser(String atributo) throws Exception{
-		return Repositorio.getUsuarioLogin(atributo);
+	public User getUser(String login) throws Exception{
+		return Repositorio.getUsuarioLogin(login);
 		
 	}
 	//ISSO TAH CERTO?
 	public User acessarConta(String login,String senha) throws Exception {
-		User usuario =null;
+		User usuario = null;
+		
 		if (senha == null ||senha.isEmpty()) {//Tah correto,aki?!
 			throw new PasswordErrorException("Senha inválida");
 		}
@@ -43,7 +44,7 @@ public class Sistema {
 		
 	}
 	
-	//localizarCaronas
+	//localizarCaronas -> FEITO!
 	//solicitarVaga
 	//sugerirPontodeEncontro
 	

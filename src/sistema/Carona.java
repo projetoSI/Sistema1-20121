@@ -25,7 +25,7 @@ public class Carona {
 
 	public void setOrigem(String origem) throws LocalErrorException {
 		if (!(origem == null) && (origem.matches("[A-Za-zÇ-ú\\s]*+")) && (!(origem.isEmpty()))) this.origem = origem;
-		else throw new LocalErrorException("Origem inv�lida");
+		else throw new LocalErrorException("Origem inválida");
 	}
 
 	public String getDestino() {
@@ -34,7 +34,7 @@ public class Carona {
 
 	public void setDestino(String destino) throws LocalErrorException {
 		if (!(destino == null) && (destino.matches("[A-Za-z\\s]*+")) && (!(destino.isEmpty()))) this.destino = destino;
-		else throw new LocalErrorException("Destino inv�lido");
+		else throw new LocalErrorException("Destino inválido");
 	}
 
 	public String getHora() {

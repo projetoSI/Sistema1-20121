@@ -20,22 +20,22 @@ public class Repositorio {
 	private static User newUser;
 	
 
-	//pelo padr�o Creator
+	//pelo padrão Creator
 	public static void addCarona(String origem,String destino,String hora,String data,String qntVagas,User motorista) throws LocalErrorException, QuantityVacancyErrorException {
 		novaCarona = new Carona(origem, destino, hora, data, qntVagas, motorista);
 		caronasCadastradas.add(novaCarona);
 	}
-	//pelo padr�o Creator
+	//pelo padrão Creator
 	public static void addUser(String login, String senha, String nome,	String endereco,String email, String telefone) throws AdressErrorException, EmailErrorException, PasswordErrorException, NameErrorException, PhoneErrorException, LoginErrorException {
 		newUser = new User(login,senha,nome,endereco,email,telefone); 
 		usersCadastrados.add(newUser);
 	}
-	//padrao EXPERT
+	//padrão EXPERT
 	public static List<User> getUsuarios() {
 		return usersCadastrados;
 		 
 	}
-	//padrao EXPERT
+	//padrão EXPERT
 	public static User getUsuarioEmail(String email) throws Exception{
 		User usuario = null;
 		if(email == null || email.isEmpty()){
@@ -54,7 +54,7 @@ public class Repositorio {
 		return usuario;
 				
 	}
-	//padrao EXPERT	
+	//padrão EXPERT	
 	public static User getUsuarioLogin(String login) throws Exception{
 		User usuario = null;
 		
@@ -74,11 +74,11 @@ public class Repositorio {
 		return usuario;
 		
 	}
-	//padrao EXPERT
+	//padrão EXPERT
 	public static List<Carona> getCaronasCadastradas() {//CASO1: TODAS AS CARONAS CADASTRADAS
 		return caronasCadastradas;
 	}
-	//padrao EXPERT
+	//padrão EXPERT
 	public static List<Carona> recuperaCaronaUser(User usuario) {//CASO2 : AS CARONAS DO USER
 		List<Carona> caronasUser = new ArrayList<Carona>();
 
@@ -90,7 +90,7 @@ public class Repositorio {
 
 		return caronasUser;
 	}
-	//padrao EXPERT
+	//padrão EXPERT
 	public static List<Carona> getCaronas(String origem, String destino, Data partida, Data chegada){//CASO 3: BUSCAR CARONAS POR ORIGEM E DESTINO,
 																									   //E RETORNAR APENAS AS QUE IRÃO OCORRER
 		List<Carona> auxCaronas = new ArrayList<Carona>();
