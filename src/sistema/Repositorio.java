@@ -91,9 +91,20 @@ public class Repositorio {
 		return caronasUser;
 	}
 	//padrão EXPERT
-	public static List<Carona> getCaronas(String origem, String destino, Data partida, Data chegada){//CASO 3: BUSCAR CARONAS POR ORIGEM E DESTINO,
+	public static List<Carona> getCaronas(String origem, String destino, Data partida, Data chegada) throws Exception{//CASO 3: BUSCAR CARONAS POR ORIGEM E DESTINO,
 																									   //E RETORNAR APENAS AS QUE IRÃO OCORRER
 		List<Carona> auxCaronas = new ArrayList<Carona>();
+		
+		if (origem == null){
+			throw new Exception("Origem Inválida!");
+		}
+		if (destino == null){
+			throw new Exception("Destino Inválido!");
+		}
+		
+		if (destino.isEmpty() && origem.isEmpty()){
+			return getCaronasCadastradas();
+		}
 		
 		for (Carona carona : caronasCadastradas) {
 			//if (carona.getData().compareTo(data) >= 0 || carona.getData().compareTo(hora) >= 0){//COMPARAR A DATA/HORA ATUAL DO SISTEMA 

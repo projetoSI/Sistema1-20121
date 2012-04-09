@@ -70,7 +70,7 @@ public class SistemaFacede {
 	//ate aki, US01.
 	
 	
-	public List<Carona> localizarCarona(int idsessao,String origem,String destino) throws DateErrorException {
+	public List<Carona> localizarCarona(int idsessao,String origem,String destino) throws Exception {
 		return LocalizarCarona.getCaronas(origem,destino);
 	}
 	
