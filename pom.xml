@@ -3,4 +3,12 @@
   <groupId>Sistema1-20121</groupId>
   <artifactId>Sistema1-20121</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.0</version>
+  		<scope>test</scope>
+  	</dependency>
+  </dependencies>
 </project>
