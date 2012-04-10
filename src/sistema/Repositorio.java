@@ -37,32 +37,22 @@ public class Repositorio {
 	}
 	//padrão EXPERT
 	public static User getUsuarioEmail(String email) throws Exception{
-		User usuario = null;
-		if(email == null || email.isEmpty()){
-			throw new Exception("Email inválido");
-		}
-		for (User user : usersCadastrados) {
-			if (user.getLogin().equals(email)) {
-				usuario = user;
-			}
-		}
-		
-		if (usuario == null) {
-			throw new Exception("Usuario inexistente");
-		}
-		
-		return usuario;
-				
+		return getUsusarioAux(email, "Email inválido");				
 	}
+	
 	//padrão EXPERT	
 	public static User getUsuarioLogin(String login) throws Exception{
+		return getUsusarioAux(login, "Login inválido");		
+	}
+	
+	private static User getUsusarioAux(String argumento, String mensagem) throws Exception{
 		User usuario = null;
 		
-		if(login == null || login.isEmpty()){
-			throw new Exception("Login inválido");
+		if(argumento == null || argumento.isEmpty()){
+			throw new Exception(mensagem);
 		}
 		for (User user : usersCadastrados) {
-			if (user.getLogin().equals(login)) {
+			if (user.getLogin().equals(argumento)) {
 				usuario = user;
 			}
 		}
@@ -72,12 +62,14 @@ public class Repositorio {
 		}
 		
 		return usuario;
-		
 	}
+	
+	
 	//padrão EXPERT
 	public static List<Carona> getCaronasCadastradas() {//CASO1: TODAS AS CARONAS CADASTRADAS
 		return caronasCadastradas;
 	}
+	
 	//padrão EXPERT
 	public static List<Carona> recuperaCaronaUser(User usuario) {//CASO2 : AS CARONAS DO USER
 		List<Carona> caronasUser = new ArrayList<Carona>();
