@@ -13,7 +13,7 @@ public class Sistema {
 		Repositorio.addUser(login, senha, nome,endereco,email,telefone);
 	}
 	
-	public void addCarona(String origem,String destino,String hora,String data,String qntVagas,User motorista) throws LocalErrorException, QuantityVacancyErrorException {
+	public void addCarona(String origem,String destino,String hora,String data,String qntVagas,User motorista) throws Exception {
 		Repositorio.addCarona(origem, destino, hora, data, qntVagas, motorista);
 	}
 	

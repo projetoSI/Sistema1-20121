@@ -15,9 +15,10 @@ public class TestaClasseCarona {
 	private User motorista2;
 	
 	@Before
-	public void setup() throws LocalErrorException, QuantityVacancyErrorException, AdressErrorException, EmailErrorException, PasswordErrorException, NameErrorException, PhoneErrorException, LoginErrorException{
+	public void setup() throws Exception{
 		motorista1 = new User("pherivelton", "1234567", "Pablo", "Rua Lalaa", "lol@lol.com","88888888");
 		carona1 = new Carona("Joao Pessoa", "Campina Grande", "19:00", "01/05/2012", "02", motorista1);
+		carona2 = new Carona("Joao Pessoa", "Campina Grande", "13:00", "02/05/2012", "02", motorista1);
 	}
 	
 	@Test
@@ -33,23 +34,23 @@ public class TestaClasseCarona {
 		assertEquals("Campina Grande", carona1.getOrigem());
 		try{
 			carona1.setOrigem("");
-			fail("Origem Inválida");
+			fail("Origem Invï¿½lida");
 		}catch (LocalErrorException e){}
 		
 		try{
 			carona1.setOrigem("1234");
-			fail("Origem Inválida");
+			fail("Origem Invï¿½lida");
 		}catch (LocalErrorException e){}
 		
 		try{
-			carona1.setOrigem("João Pessoa123");
-			fail("Origem Inválida");
+			carona1.setOrigem("Joï¿½o Pessoa123");
+			fail("Origem Invï¿½lida");
 		}catch (LocalErrorException e){}
 	}
 	
 	@Test
 	public void testaGetDestino() throws LocalErrorException{
 		assertEquals("Campina Grande", carona1.getDestino());
-		assertFalse("eh pra dar erro", carona1.getOrigem().equals("Cajá"));
+		assertFalse("eh pra dar erro", carona1.getOrigem().equals("Cajï¿½"));
 	}
 }

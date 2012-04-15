@@ -21,7 +21,7 @@ public class Repositorio {
 	
 
 	//pelo padrão Creator
-	public static void addCarona(String origem,String destino,String hora,String data,String qntVagas,User motorista) throws LocalErrorException, QuantityVacancyErrorException {
+	public static void addCarona(String origem,String destino,String hora,String data,String qntVagas,User motorista) throws Exception {
 		novaCarona = new Carona(origem, destino, hora, data, qntVagas, motorista);
 		caronasCadastradas.add(novaCarona);
 	}

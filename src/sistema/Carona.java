@@ -3,6 +3,7 @@ import excecoes.*;
 
 public class Carona {
 
+	private IdentificadorCarona ID;
 	private String origem;
 	private String destino;
 	private String data;
@@ -10,17 +11,23 @@ public class Carona {
 	private String qntVagas;
 	private User motorista;
 
-	public Carona(String origem, String destino, String hora, String data, String qntVagas, User motorista) throws LocalErrorException, QuantityVacancyErrorException {
+	public Carona(String origem, String destino, String hora, String data, String qntVagas, User motorista) throws Exception{
 		setOrigem(origem);
 		setDestino(destino);
 		setHora(hora);
 		setData(data);
 		setQntVagas(qntVagas);
 		this.motorista = motorista;
+		//this.ID = new IdentificadorCarona(motorista.getLogin(), data, hora);  //TEM Q RECEBER UMA Data e uma Hora
+		
 	}
-
+	
 	public String getOrigem() {
 		return origem;
+	}
+
+	public IdentificadorCarona getID() {
+		return ID;
 	}
 
 	public void setOrigem(String origem) throws LocalErrorException {
