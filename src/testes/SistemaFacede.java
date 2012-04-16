@@ -11,7 +11,7 @@ import excecoes.NameErrorException;
 import excecoes.PasswordErrorException;
 import excecoes.PhoneErrorException;
 import sistema.Carona;
-import sistema.LocalizarCarona;
+import sistema.RepositorioCaronas;
 import sistema.Sistema;
 import sistema.User;
 
@@ -40,21 +40,24 @@ public class SistemaFacede {
 	
 	public String getAtributoUsuario(String login, String atributo)
 			throws Exception {
+		String result = "";
 
 		user = sistema.getUser(login);
 		if(atributo == null || atributo.isEmpty()){
 			throw new Exception("Atributo inválido");
 		}else if (atributo.equals("nome")) {
-			return user.getNome();
+			result = user.getNome();
 		} else if (atributo.equals("endereco")) {
-			return user.getEndereco();
+			result = user.getEndereco();
 		} else if (atributo.equals("email")) {
-			return user.getEmail();
+			result  = user.getEmail();
 		} else if (atributo.equals("login")) {
-			return user.getLogin();
+			result = user.getLogin();
 		} else {
 			throw new Exception("Atributo inexistente");
 		}
+		
+		return result;
 
 	}
 	
@@ -68,10 +71,5 @@ public class SistemaFacede {
 	}
 	
 	//ate aki, US01.
-	
-	
-	public List<Carona> localizarCarona(int idsessao,String origem,String destino) throws Exception {
-		return LocalizarCarona.getCaronas(origem,destino);
-	}
 	
 }

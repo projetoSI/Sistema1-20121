@@ -10,19 +10,19 @@ public class Sistema {
 	
 	
 	public void addUsuario(String login,String senha,String nome,String endereco,String email,String telefone) throws Exception{
-		Repositorio.addUser(login, senha, nome,endereco,email,telefone);
+		AcessaDados.addUsuario(login, senha, nome,endereco,email,telefone);
 	}
 	
 	public void addCarona(String origem,String destino,String hora,String data,String qntVagas,User motorista) throws Exception {
-		Repositorio.addCarona(origem, destino, hora, data, qntVagas, motorista);
+		AcessaDados.addCarona(origem, destino, hora, data, qntVagas, motorista);
 	}
 	
 	public List<User> getUsuariosCadastrados() {
-		return Repositorio.getUsuarios();
+		return AcessaDados.getUsuariosCadastrados();
 	}
 	
 	public User getUser(String login) throws Exception{
-		return Repositorio.getUsuarioLogin(login);
+		return AcessaDados.getUser(login);
 		
 	}
 	//ISSO TAH CERTO?
@@ -33,8 +33,8 @@ public class Sistema {
 			throw new PasswordErrorException("Senha inválida");
 		}
 		;
-		if(Repositorio.getUsuarioLogin(login).getSenha().equals(senha)){
-			usuario = Repositorio.getUsuarioLogin(login);
+		if(AcessaDados.getUser(login).getSenha().equals(senha)){
+			usuario = AcessaDados.getUser(login);
 		}else{
 			throw new LoginErrorException("Login inválido");
 		}
