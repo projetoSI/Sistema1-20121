@@ -47,11 +47,8 @@ public class RepositorioUsuario {
 		if(argumento == null || argumento.isEmpty()){
 			throw new Exception(mensagem);
 		}
-		for (User user : usersCadastrados) {
-			if (user.getLogin().equals(argumento)) {// PODE RECEBER EMAIL OU LOGIN, E SO VERIFICA LOGIN?!
-				usuario = user;
-			}
-		}
+		
+		usuario = foundUser(argumento);
 		
 		if (usuario == null) {
 			throw new Exception("Usuário inexistente");
@@ -59,4 +56,18 @@ public class RepositorioUsuario {
 		
 		return usuario;
 	}
+	
+	private static User foundUser(String argumento) {
+		User usuario = null;
+		
+		for (User user : usersCadastrados) {
+			if (user.getLogin().equals(argumento) || user.getEmail().equals(argumento)) {// VERIFICA OS DOIS ARGUMENTOS, SE ALGUM BATER ELE JÁ IDENTIFICOU O USER
+				usuario = user;
+				break;
+			}
+		}
+		
+		return usuario;
+	}
+	
 }
