@@ -1,33 +1,36 @@
 package sistema;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import excecoes.*;
 
 public class Carona {
 
-	private IdentificadorCarona ID;
+	
 	private String origem;
 	private String destino;
 	private String data;
 	private String hora;
 	private String qntVagas;
 	private User motorista;
+	protected enum Avaliacao {SIM,NAO,A_DEFINIR,MUDANCA_DE_LOCAL}//ENUM COM AS AVALIACOES(OBS : OLHAR MELHOR)
+	private Map<User,String> sugestoes = new HashMap<User, String>(); //Mapa para quardar os usuarios e as sugestões de ponto de encontro
+	private Map<User,Avaliacao> situacao = new HashMap<User, Avaliacao>(); //Mapa para quardar os usuarios e as avaliacoes de ponto de encontro(OBS : SO PRA TOMAR COMO BASE)
+	private List<User> usuariosAprovados = new ArrayList<User>();//LISTA COM OS USUARIOS APROVADOS (TEMPORARIA)
 
-	public Carona(String origem, String destino, String hora, String data, String qntVagas, User motorista) throws Exception{
+	public Carona(String origem, String destino, String hora, String data, String qntVagas, User motorista) throws LocalErrorException, QuantityVacancyErrorException {
 		setOrigem(origem);
 		setDestino(destino);
 		setHora(hora);
 		setData(data);
 		setQntVagas(qntVagas);
 		this.motorista = motorista;
-		//this.ID = new IdentificadorCarona(motorista.getLogin(), data, hora);  //TEM Q RECEBER UMA Data e uma Hora
-		
-	}
-	
-	public String getOrigem() {
-		return origem;
 	}
 
-	public IdentificadorCarona getID() {
-		return ID;
+	public String getOrigem() {
+		return origem;
 	}
 
 	public void setOrigem(String origem) throws LocalErrorException {
@@ -72,6 +75,34 @@ public class Carona {
 	public User getMotorista() {
 		return this.motorista;
 	}
+	
+	//INDICA UM PONTO DE ENCONTRO 
+	public void setPontoDeEncontro(User caroneiro,String local,Avaliacao avaliacao){
+		if (local.isEmpty()) {
+			sugestoes.put(caroneiro, sugestoes.get(caroneiro));
+		}else{
+			sugestoes.put(caroneiro, local);
+		}
+		
+		situacao.put(caroneiro, avaliacao);
+	}
+	
+	//Verifica se a carona ainda tem vaga
+	public boolean temVaga(){
+		return Integer.parseInt(getQntVagas()) > 0;
+	}
+	
+	//Adiciona usuarios que foram aprovados 
+	public void addCaroneiro(User caroneiro){
+		usuariosAprovados.add(caroneiro);
+		qntVagas = (Integer.parseInt(qntVagas) - 1 ) + "";	
+	}
+	
+	//RETORNA A SITUACAO DO USUARIO EM RELACAO A CARONA
+	public Avaliacao getSituacao(User caroneiro){
+		return situacao.get(caroneiro);
+	}
+	
 	
 	@Override
 	public boolean equals(Object obj) {
