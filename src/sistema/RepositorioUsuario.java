@@ -33,38 +33,30 @@ public class RepositorioUsuario {
 	}
 	//padrão EXPERT
 	public static User getUsuarioEmail(String email) throws Exception{
-		return getUsusarioAux(email, "Email inválido");				
+		return foundUser(email, "Email inválido");				
 	}
 	
 	//padrão EXPERT	
 	public static User getUsuarioLogin(String login) throws Exception{
-		return getUsusarioAux(login, "Login inválido");		
+		return foundUser(login, "Login inválido");		
 	}
 	
-	private static User getUsusarioAux(String argumento, String mensagem) throws Exception{
+	private static User foundUser(String argumento, String mensagem) throws Exception{
 		User usuario = null;
 		
 		if(argumento == null || argumento.isEmpty()){
 			throw new Exception(mensagem);
 		}
 		
-		usuario = foundUser(argumento);
-		
-		if (usuario == null) {
-			throw new Exception("Usuário inexistente");
-		}
-		
-		return usuario;
-	}
-	
-	private static User foundUser(String argumento) {
-		User usuario = null;
-		
 		for (User user : usersCadastrados) {
-			if (user.getLogin().equals(argumento) || user.getEmail().equals(argumento)) {// VERIFICA OS DOIS ARGUMENTOS, SE ALGUM BATER ELE JÁ IDENTIFICOU O USER
+			if (user.getLogin().equals(argumento) || user.getEmail().equals(argumento)) {
 				usuario = user;
 				break;
 			}
+		}
+		
+		if (usuario == null) {
+			throw new Exception("Usuário inexistente");
 		}
 		
 		return usuario;
