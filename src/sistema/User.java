@@ -13,8 +13,19 @@ public class User {
 	protected String senha;
 
 	public User(String login,String senha,String nome,String endereco,String email,String telefone) throws AdressErrorException, EmailErrorException, PasswordErrorException, NameErrorException, PhoneErrorException, LoginErrorException{
-		if ((login == null||login.isEmpty() || login.length() < 3)) throw new LoginErrorException("Login inválido");
-		else this.login = login;
+		if (email == null || email.isEmpty()){
+			throw new EmailErrorException("Email inválido");
+		}
+		
+		if (nome == null || nome.isEmpty()){
+			throw new NameErrorException("Nome inválido");
+		}
+		
+		if (login == null || senha == null || senha.isEmpty() || login.isEmpty() || login.length() < 3){
+			throw new LoginErrorException("Login inválido");
+		}
+
+		this.login = login;
 		setSenha(senha); 
 		setNome(nome);
 		setEndereco(endereco);
