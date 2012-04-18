@@ -49,7 +49,7 @@ public class Carona {
 	}
 
 	public void setDestino(String destino) throws LocalErrorException {
-		if (!(destino == null) && (destino.matches("[A-Za-z\\s]*+")) && (!(destino.isEmpty()))) this.destino = destino;
+		if (!(destino == null) && (destino.matches("[A-Za-zÇ-ú\\s]*+")) && (!(destino.isEmpty()))) this.destino = destino;
 		else throw new LocalErrorException("Destino inválido");
 	}
 

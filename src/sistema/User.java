@@ -68,7 +68,7 @@ public class User {
 	}
 
 	public void setNome(String nome) throws NameErrorException{
-		if (!(nome == null) && (nome.matches("[A-Za-z\\s]*+") && nome.length() >= 3) && (!(nome.isEmpty()))) this.nome = nome;
+		if (!(nome == null) && (nome.matches("[A-Za-zÇ-ú\\s]*+") && nome.length() >= 3) && (!(nome.isEmpty()))) this.nome = nome;
 		else throw new NameErrorException("Nome inválido");
 	}
 

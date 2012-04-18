@@ -2,8 +2,7 @@ package testes;
 
 import java.util.List;
 
-import sistema.Sistema;
-import sistema.User;
+import sistema.*;
 
 public class SistemaFacede {
 
@@ -12,7 +11,9 @@ public class SistemaFacede {
 	private Sistema sistema;
 	private static List<User> usuarios;
 	private User user;
+	private Carona carona;
 	private int idSessao;
+	private int idCarona;
 
 	public SistemaFacede() {
 		sistema = new Sistema();
@@ -94,29 +95,44 @@ public class SistemaFacede {
 		return result;
 	}
 	
-	public void cadastrarCarona(int sessao, String origem, String destino, String data, String hora, String vagas) throws Exception{
-//		sistema.addCarona(origem, destino, hora, data, vagas, null);
+	public void cadastrarCarona(String sessao, String origem, String destino, String data, String hora, String vagas) throws Exception{
+		if (hora.length() == 5 && (data.length() == 10 || data.length() == 8) && vagas.matches("[0-9]*")){
+			Hora horaAux = new Hora(hora.substring(0, 2), hora.substring(3));
+			Data dataAux = new Data(data.substring(0, 2), data.substring(3, 5), data.substring(6));
+			sistema.addCarona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), null);
+			idCarona = Integer.parseInt(sessao);
+			
+		}else{
+//			TODO
+		}
 	}
 	
 	public String getAtributoCarona(int sessao, String atributo){
 		return null;
 	}
 	
-	public String getTrajeto(){
+	public String getTrajeto(String idCarona){
 		return null;
 	}
 	
 //	ate aqui US02 + 01
 	public static void main(String[] args) {
 
-		SistemaFacede n = new SistemaFacede();
-		try {
-			n.localizarCarona(0,"Jp", "Cg");
-			n.criarUsuario(null, null, null, null, null);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		SistemaFacede n = new SistemaFacede();
+//		try {
+//			n.localizarCarona(0,"Jp", "Cg");
+//			n.criarUsuario(null, null, null, null, null);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
+		String hora = "12:34";
+		System.out.println(hora.substring(0, 2));
+		System.out.println(hora.substring(3));
+		String data = "12/12/2012";
+		System.out.println(data.substring(0, 2));
+		System.out.println(data.substring(3, 5));
+		System.out.println(data.substring(6));
 	}
 }
