@@ -95,16 +95,18 @@ public class SistemaFacede {
 		return result;
 	}
 	
-	public void cadastrarCarona(String sessao, String origem, String destino, String data, String hora, String vagas) throws Exception{
-		if (hora.length() == 5 && (data.length() == 10 || data.length() == 8) && vagas.matches("[0-9]*")){
+	public int cadastrarCarona(int sessao, String origem, String destino, String data, String hora, int vagas) throws Exception{
+		int result = sessao;
+		if (hora.length() == 5 && (data.length() == 10 || data.length() == 8) /*&& vagas.matches("[0-9]*")*/){
 			Hora horaAux = new Hora(hora.substring(0, 2), hora.substring(3));
 			Data dataAux = new Data(data.substring(0, 2), data.substring(3, 5), data.substring(6));
-			sistema.addCarona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), null);
-			idCarona = Integer.parseInt(sessao);
-			
+			sistema.addCarona(origem, destino, horaAux, dataAux, vagas, null);
+			idCarona = sessao;
+			carona = new Carona(origem, destino, horaAux, dataAux, vagas, null);
 		}else{
 //			TODO
 		}
+		return result;
 	}
 	
 	public String getAtributoCarona(int sessao, String atributo){
