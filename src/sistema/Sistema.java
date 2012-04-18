@@ -43,6 +43,10 @@ public class Sistema {
 		return usuario;
 		
 	}
+
+	public List<Carona> getCaronas(String origem, String destino) throws Exception {
+		return AcessaDados.localizarCarona(origem, destino);
+	}
 	
 	//localizarCaronas -> FEITO!
 	//solicitarVaga

@@ -12,8 +12,8 @@ public class TesteEasy {
 		List<String> files = new ArrayList<String>();
 		//US01,duvidas em 8 testes.Rever esses testes com o professor ou monitor.
 		//US02,
-		files.add("US01.txt");
-//		files.add("US02.txt");
+//		files.add("US01.txt");
+		files.add("US02.txt");
 //		files.add("US03.txt");
 //		files.add("US04.txt");
 //		files.add("US05.txt");

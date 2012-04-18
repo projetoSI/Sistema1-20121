@@ -10,7 +10,7 @@ public class User {
 	private String email;
 	private String telefone;
 	private String nome;
-	protected String senha;
+	private String senha;
 
 	public User(String login,String senha,String nome,String endereco,String email,String telefone) throws AdressErrorException, EmailErrorException, PasswordErrorException, NameErrorException, PhoneErrorException, LoginErrorException{
 		if (email == null || email.isEmpty()){

@@ -1,7 +1,5 @@
 package sistema;
 
-import java.util.Random;
-
 public class IdentificadorCarona {
 	
 	private String loginMotorista;

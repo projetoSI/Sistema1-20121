@@ -1,17 +1,7 @@
 package testes;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import excecoes.AdressErrorException;
-import excecoes.DateErrorException;
-import excecoes.EmailErrorException;
-import excecoes.LoginErrorException;
-import excecoes.NameErrorException;
-import excecoes.PasswordErrorException;
-import excecoes.PhoneErrorException;
-import sistema.Carona;
-import sistema.RepositorioCaronas;
 import sistema.Sistema;
 import sistema.User;
 
@@ -90,10 +80,38 @@ public class SistemaFacede {
 	}
 
 	// ate aki, US01.
+	
+	
+	public String localizarCarona(int sessão, String origem, String destino) throws Exception{
+		String result = "";
+		
+		if (sistema.getCaronas(origem, destino).size() == 0){
+			result = "{}";
+		} else{
+			result = sistema.getCaronas(origem, destino).toString();
+		}
+		
+		return result;
+	}
+	
+	public void cadastrarCarona(int sessao, String origem, String destino, String data, String hora, String vagas) throws Exception{
+		sistema.addCarona(origem, destino, hora, data, vagas, null);
+	}
+	
+	public String getAtributoCarona(int sessao, String atributo){
+		return null;
+	}
+	
+	public String getTrajeto(){
+		return null;
+	}
+	
+//	ate aqui US02 + 01
 	public static void main(String[] args) {
 
 		SistemaFacede n = new SistemaFacede();
 		try {
+			n.localizarCarona(0,"Jp", "Cg");
 			n.criarUsuario(null, null, null, null, null);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
