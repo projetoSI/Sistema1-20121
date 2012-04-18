@@ -11,7 +11,7 @@ public class RepositorioCaronas {
 	private static Carona novaCarona;
 	
 	//pelo padrão Creator
-	public static void addCarona(String origem,String destino,String hora,String data,String qntVagas,User motorista) throws Exception {
+	public static void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
 		novaCarona = new Carona(origem, destino, hora, data, qntVagas, motorista);
 		caronasCadastradas.add(novaCarona);
 	}

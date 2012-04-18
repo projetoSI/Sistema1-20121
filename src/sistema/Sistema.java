@@ -13,7 +13,7 @@ public class Sistema {
 		AcessaDados.addUsuario(login, senha, nome,endereco,email,telefone);
 	}
 	
-	public void addCarona(String origem,String destino,String hora,String data,String qntVagas,User motorista) throws Exception {
+	public void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
 		AcessaDados.addCarona(origem, destino, hora, data, qntVagas, motorista);
 	}
 	

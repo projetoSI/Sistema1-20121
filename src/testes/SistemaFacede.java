@@ -95,7 +95,7 @@ public class SistemaFacede {
 	}
 	
 	public void cadastrarCarona(int sessao, String origem, String destino, String data, String hora, String vagas) throws Exception{
-		sistema.addCarona(origem, destino, hora, data, vagas, null);
+//		sistema.addCarona(origem, destino, hora, data, vagas, null);
 	}
 	
 	public String getAtributoCarona(int sessao, String atributo){

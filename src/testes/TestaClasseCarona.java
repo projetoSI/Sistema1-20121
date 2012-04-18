@@ -2,6 +2,8 @@ package testes;
 
 import static org.junit.Assert.*;
 import sistema.Carona;
+import sistema.Data;
+import sistema.Hora;
 import sistema.User;
 import org.junit.*;
 
@@ -17,8 +19,8 @@ public class TestaClasseCarona {
 	@Before
 	public void setup() throws Exception{
 		motorista1 = new User("pherivelton", "1234567", "Pablo", "Rua Lalaa", "lol@lol.com","88888888");
-		carona1 = new Carona("Joao Pessoa", "Campina Grande", "19:00", "01/05/2012", "02", motorista1);
-		carona2 = new Carona("Joao Pessoa", "Campina Grande", "13:00", "02/05/2012", "02", motorista1);
+		carona1 = new Carona("Joao Pessoa", "Campina Grande", new Hora("19", "00"), new Data("01","05","2012"), 2, motorista1);
+		carona2 = new Carona("Joao Pessoa", "Campina Grande", new Hora("13", "00"), new Data("02","05","2012"), 2, motorista1);
 	}
 	
 	@Test

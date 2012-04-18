@@ -11,7 +11,7 @@ public class AcessaDados {
 		RepositorioUsuario.addUser(login, senha, nome,endereco,email,telefone);
 	}
 	
-	public static void addCarona(String origem,String destino,String hora,String data,String qntVagas,User motorista) throws Exception {
+	public static void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
 		RepositorioCaronas.addCarona(origem, destino, hora, data, qntVagas, motorista);
 	}
 	
