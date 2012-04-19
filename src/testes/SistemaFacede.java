@@ -1,5 +1,6 @@
 package testes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import sistema.*;
@@ -100,21 +101,55 @@ public class SistemaFacede {
 		if (hora.length() == 5 && (data.length() == 10 || data.length() == 8) /*&& vagas.matches("[0-9]*")*/){
 			Hora horaAux = new Hora(hora.substring(0, 2), hora.substring(3));
 			Data dataAux = new Data(data.substring(0, 2), data.substring(3, 5), data.substring(6));
-			sistema.addCarona(origem, destino, horaAux, dataAux, vagas, null);
+			sistema.addCarona(origem, destino, horaAux, dataAux, vagas, user);
 			idCarona = sessao;
-			carona = new Carona(origem, destino, horaAux, dataAux, vagas, null);
+			carona = new Carona(origem, destino, horaAux, dataAux, vagas, user);
 		}else{
-//			TODO
+			throw new Exception();
 		}
 		return result;
 	}
 	
 	public String getAtributoCarona(int sessao, String atributo){
-		return null;
+		String result = null;
+		ArrayList<String> atributos = new ArrayList<String>();
+		atributos.add("origem");
+		atributos.add("destino");
+		atributos.add("hora");
+		atributos.add("data");
+		atributos.add("vagas");
+		
+		if (atributos.contains(atributo.toLowerCase())){
+			switch (atributos.indexOf(atributo.toLowerCase())) {
+			case 0:
+				result = carona.getOrigem();
+				break;
+			case 1:
+				result = carona.getDestino();
+				break;
+			case 2:
+				result = carona.getHora().getHoras();
+				break;
+			case 3:
+				result = carona.getData().getData();
+				break;
+			case 4:
+				result = "" + carona.getQntVagas();
+				break;
+			default:
+				break;
+			}
+		}
+		
+		return result;
 	}
 	
 	public String getTrajeto(String idCarona){
-		return null;
+		return carona.getOrigem() + " - " + carona.getDestino();
+	}
+	
+	public String getCarona(int id) {
+		return carona.toString();
 	}
 	
 //	ate aqui US02 + 01

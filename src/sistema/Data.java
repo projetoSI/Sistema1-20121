@@ -17,7 +17,7 @@ public class Data{
 			this.dia = dia;
 			this.mes = mes;
 			this.ano = ano;
-		}else throw new DateErrorException("Data inv·lida");
+		}else throw new DateErrorException("Data inv√°lida");
 	
 	}
 	

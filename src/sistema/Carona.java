@@ -8,7 +8,6 @@ import excecoes.*;
 
 public class Carona {
 
-	
 	private String origem;
 	private String destino;
 	private Data data;
@@ -121,5 +120,10 @@ public class Carona {
 				&& this.getData().equals(carona1.getData())
 				&& this.getHora().equals(carona1.getHora())
 				&& this.getMotorista().equals(carona1.getMotorista());
+	}
+
+	@Override
+	public String toString() {
+		return getOrigem() + " para " + getDestino() + ", no dia " + getData().getData() + ", as " + getHora().getHoras();
 	}
 }
