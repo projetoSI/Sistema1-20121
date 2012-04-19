@@ -90,19 +90,29 @@ public class SistemaFacede {
 		if (sistema.getCaronas(origem, destino).size() == 0){
 			result = "{}";
 		} else{
+			result = "{";
+			for (Carona element : sistema.getCaronas(origem, destino)) {
+				result += idCarona + ",";
+			}
+			
 			result = sistema.getCaronas(origem, destino).toString();
 		}
 		
 		return result;
 	}
 	
-	public int cadastrarCarona(int sessao, String origem, String destino, String data, String hora, int vagas) throws Exception{
-		int result = sessao;
+	public int cadastrarCarona(String sessao, String origem, String destino, String data, String hora, int vagas) throws Exception{
+		int result = 0;
+		
+		if (sessao == null || sessao.isEmpty()){
+			throw new Exception("Sessão inválida");
+		}
+		
 		if (hora.length() == 5 && (data.length() == 10 || data.length() == 8) /*&& vagas.matches("[0-9]*")*/){
 			Hora horaAux = new Hora(hora.substring(0, 2), hora.substring(3));
 			Data dataAux = new Data(data.substring(0, 2), data.substring(3, 5), data.substring(6));
 			sistema.addCarona(origem, destino, horaAux, dataAux, vagas, user);
-			idCarona = sessao;
+			idCarona = Integer.parseInt(sessao);
 			carona = new Carona(origem, destino, horaAux, dataAux, vagas, user);
 		}else{
 			throw new Exception();
