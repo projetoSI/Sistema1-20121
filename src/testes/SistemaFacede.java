@@ -20,6 +20,7 @@ public class SistemaFacede {
 		sistema = new Sistema();
 		usuarios = sistema.getUsuariosCadastrados();
 		idSessao = 0;
+		idCarona = idSessao;
 	}
 
 	public void criarUsuario(String login, String senha, String nome, String endereco, String email) throws Exception {
@@ -27,13 +28,14 @@ public class SistemaFacede {
 	}
 	
 	public void criarUsuario(String login, String nome, String endereco, String email) throws Exception {
-		sistema.addUsuario(login, null, nome, endereco, email, "112121212");
+		sistema.addUsuario(login, "123", nome, endereco, email, "112121212");
 	}
 
 	public void zerarSistema() {
 		sistema = new Sistema();
 		usuarios = sistema.getUsuariosCadastrados();
 		idSessao = 0;
+		idCarona = idSessao;
 
 		// ACREDITO QUE ISSO É O QUE DEVE SER FEITO, AFINAL É PRECISO
 		// "REINICIAR" O SISTEMA -> Jonh...
@@ -70,8 +72,9 @@ public class SistemaFacede {
 	}
 
 	public int abrirSessao(String login, String senha) throws Exception {
+		int result = idSessao;
 		user = sistema.acessarConta(login, senha);
-		return idSessao++;
+		return result;
 	}
 
 	public void encerrarSistema() {
@@ -91,11 +94,15 @@ public class SistemaFacede {
 			result = "{}";
 		} else{
 			result = "{";
-			for (Carona element : sistema.getCaronas(origem, destino)) {
-				result += idCarona + ",";
-			}
 			
-			result = sistema.getCaronas(origem, destino).toString();
+			for (int i = 0; i < sistema.getCaronas(origem, destino).size(); i++) {
+				if (result.equals("{")){
+					result += idCarona;
+				}else{
+					result += "," + idCarona;					
+				}
+			}
+			result += "}";			
 		}
 		
 		return result;

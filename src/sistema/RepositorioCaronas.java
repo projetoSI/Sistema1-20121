@@ -3,8 +3,6 @@ package sistema;
 import java.util.ArrayList;
 import java.util.List;
 
-import excecoes.DateErrorException;
-
 public class RepositorioCaronas {
 
 	private static List<Carona> caronasCadastradas = new ArrayList<Carona>();
@@ -50,15 +48,19 @@ public class RepositorioCaronas {
 		}
 		
 		for (Carona carona : caronasCadastradas) {
-			
+			if (origem.equals(carona.getOrigem()) && destino.equals(carona.getDestino())){
+				auxCaronas.add(carona);
+			} else if (origem.equals(carona.getOrigem()) || destino.equals(carona.getDestino())){
+				auxCaronas.add(carona);
+			}
 			
 			//if (carona.getData().compareTo(data) >= 0 || carona.getData().compareTo(hora) >= 0){//COMPARAR COM A DATA/HORA ATUAL DO SISTEMA 
 				
-			if ((carona.getDestino().equals(destino) && carona.getOrigem().equals(origem))){//TODAS AS CARONAS QUE TENHAM COMO DESTINO E ORIGEM, O QUE FOI PASSADO
-				auxCaronas.add(carona);																
-			}else if((carona.getDestino().equals(destino) || carona.getOrigem().equals(origem))){
-				auxCaronas.add(carona);																			
-			}
+//			if ((carona.getDestino().equals(destino) && carona.getOrigem().equals(origem))){//TODAS AS CARONAS QUE TENHAM COMO DESTINO E ORIGEM, O QUE FOI PASSADO
+//				auxCaronas.add(carona);																
+//			}else if((carona.getDestino().equals(destino) || carona.getOrigem().equals(origem))){
+//				auxCaronas.add(carona);																			
+//			}
 		
 		}
 
