@@ -31,6 +31,7 @@ public class RepositorioCaronas {
 
 		return caronasUser;
 	}
+	
 	//padrão EXPERT
 	public static List<Carona> getCaronas(String origem, String destino) throws Exception{//CASO 3: BUSCAR CARONAS POR ORIGEM E DESTINO,
 																									   //E RETORNAR APENAS AS QUE IRÃO OCORRER
@@ -47,22 +48,29 @@ public class RepositorioCaronas {
 			return getCaronasCadastradas();
 		}
 		
-		for (Carona carona : caronasCadastradas) {
-			if (origem.equals(carona.getOrigem()) && destino.equals(carona.getDestino())){
-				auxCaronas.add(carona);
-			} else if (origem.equals(carona.getOrigem()) || destino.equals(carona.getDestino())){
-				auxCaronas.add(carona);
-			}
-			
-			//if (carona.getData().compareTo(data) >= 0 || carona.getData().compareTo(hora) >= 0){//COMPARAR COM A DATA/HORA ATUAL DO SISTEMA 
-				
-//			if ((carona.getDestino().equals(destino) && carona.getOrigem().equals(origem))){//TODAS AS CARONAS QUE TENHAM COMO DESTINO E ORIGEM, O QUE FOI PASSADO
-//				auxCaronas.add(carona);																
-//			}else if((carona.getDestino().equals(destino) || carona.getOrigem().equals(origem))){
-//				auxCaronas.add(carona);																			
-//			}
-		
+		if(destino.isEmpty() && !origem.isEmpty()){//apenas destino
+			for (Carona carona : caronasCadastradas) {// todas as caronas com origem igual
+				if (origem.equals(carona.getOrigem())) {
+					auxCaronas.add(carona);
+				}
+			}			
 		}
+		
+		if(!destino.isEmpty() && origem.isEmpty()){//apenas origem
+			for (Carona carona : caronasCadastradas) {// todas as caronas com destino igual
+				if (destino.equals(carona.getDestino())) {
+					auxCaronas.add(carona);
+				}
+			}						
+		}
+		
+		if (!destino.isEmpty() && !origem.isEmpty()) {
+			for (Carona carona : caronasCadastradas) {// todas as caronas com destino e origem igual
+				if (origem.equals(carona.getOrigem()) && destino.equals(carona.getDestino())) {
+					auxCaronas.add(carona);
+				}
+			}
+		}		
 
 		return auxCaronas;
 
