@@ -1,6 +1,5 @@
 package sistema;
 
-import sistema.Carona.Avaliacao;
 import excecoes.*;
 
 public class User {
@@ -85,38 +84,38 @@ public class User {
 		return login;
 	}
 
-	//SOLICITA UMA VAGA EM UMA DETERMINADA CARONA RECEBENDO O PONTO DE ENCONTRO (OBS: FAZER MUDANÇAS AQUI)
-	public void pedirCarona(Carona carona,String pontoDeEncontro){
-		if (carona.temVaga()) {
-			carona.setPontoDeEncontro(this,pontoDeEncontro,Avaliacao.A_DEFINIR);
-		}
-	}
-
-	//METODO ONDE O MOTORISTA VAI ACEITAR OU NÃO A VAGA DE DETERMINADO CARONEIRO
-	public void aprovarCarona(Carona carona,User caroneiro,boolean aprovacao,String pontoDeEncontro) throws QuantityVacancyErrorException{
-		
-		if (RepositorioCaronas.recuperaCaronaUser(this).contains(carona)) {
-			
-			if (!pontoDeEncontro.isEmpty() && aprovacao) {
-				carona.setPontoDeEncontro(caroneiro, pontoDeEncontro,Avaliacao.MUDANCA_DE_LOCAL);
-				
-			}else if (pontoDeEncontro.isEmpty() && aprovacao){
-				carona.setPontoDeEncontro(caroneiro, pontoDeEncontro,Avaliacao.SIM);
-				carona.addCaroneiro(caroneiro);
-				
-			}else{
-				carona.setPontoDeEncontro(caroneiro, pontoDeEncontro,Avaliacao.NAO);
-			}
-		}
-		
-	}
-	
-	//O caroneiro aprovar ou não o ponto de encontro sugerido pelo motorista
-	public void aprovarNovoPontoDeEcontro(Carona carona,boolean aprovacao){
-		if (aprovacao) {
-			carona.addCaroneiro(this);
-		}
-	}
+//	//SOLICITA UMA VAGA EM UMA DETERMINADA CARONA RECEBENDO O PONTO DE ENCONTRO (OBS: FAZER MUDANÇAS AQUI)
+//	public void pedirCarona(Carona carona,String pontoDeEncontro){
+//		if (carona.temVaga()) {
+//			carona.setPontoDeEncontro(this,pontoDeEncontro,Avaliacao.A_DEFINIR);
+//		}
+//	}
+//
+//	//METODO ONDE O MOTORISTA VAI ACEITAR OU NÃO A VAGA DE DETERMINADO CARONEIRO
+//	public void aprovarCarona(Carona carona,User caroneiro,boolean aprovacao,String pontoDeEncontro) throws QuantityVacancyErrorException{
+//		
+//		if (RepositorioCaronas.recuperaCaronaUser(this).contains(carona)) {
+//			
+//			if (!pontoDeEncontro.isEmpty() && aprovacao) {
+//				carona.setPontoDeEncontro(caroneiro, pontoDeEncontro,Avaliacao.MUDANCA_DE_LOCAL);
+//				
+//			}else if (pontoDeEncontro.isEmpty() && aprovacao){
+//				carona.setPontoDeEncontro(caroneiro, pontoDeEncontro,Avaliacao.SIM);
+//				carona.addCaroneiro(caroneiro);
+//				
+//			}else{
+//				carona.setPontoDeEncontro(caroneiro, pontoDeEncontro,Avaliacao.NAO);
+//			}
+//		}
+//		
+//	}
+//	
+//	//O caroneiro aprovar ou não o ponto de encontro sugerido pelo motorista
+//	public void aprovarNovoPontoDeEcontro(Carona carona,boolean aprovacao){
+//		if (aprovacao) {
+//			carona.addCaroneiro(this);
+//		}
+//	}
 	
 	@Override
 	public boolean equals(Object obj) {

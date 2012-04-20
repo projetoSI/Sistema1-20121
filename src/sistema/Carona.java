@@ -1,6 +1,7 @@
 package sistema;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -15,10 +16,12 @@ public class Carona {
 	private int qntVagas;
 	private User motorista;
 	private IdentificadorCarona ID;
-	protected enum Avaliacao {SIM,NAO,A_DEFINIR,MUDANCA_DE_LOCAL}//ENUM COM AS AVALIACOES(OBS : OLHAR MELHOR)
-	private Map<User,String> sugestoes = new HashMap<User, String>(); //Mapa para quardar os usuarios e as sugestões de ponto de encontro
-	private Map<User,Avaliacao> situacao = new HashMap<User, Avaliacao>(); //Mapa para quardar os usuarios e as avaliacoes de ponto de encontro(OBS : SO PRA TOMAR COMO BASE)
-	private List<User> usuariosAprovados = new ArrayList<User>();//LISTA COM OS USUARIOS APROVADOS (TEMPORARIA)
+	private List<User> caroneiros,candidatosACarona;
+
+//	protected enum Avaliacao {SIM,NAO,A_DEFINIR,MUDANCA_DE_LOCAL}//ENUM COM AS AVALIACOES(OBS : OLHAR MELHOR)
+//	private Map<User,String> sugestoes = new HashMap<User, String>(); //Mapa para quardar os usuarios e as sugestões de ponto de encontro
+//	private Map<User,Avaliacao> situacao = new HashMap<User, Avaliacao>(); //Mapa para quardar os usuarios e as avaliacoes de ponto de encontro(OBS : SO PRA TOMAR COMO BASE)
+//	private List<User> usuariosAprovados = new ArrayList<User>();//LISTA COM OS USUARIOS APROVADOS (TEMPORARIA)
 
 	public Carona(String origem, String destino, Hora hora, Data data, int qntVagas, User motorista) throws LocalErrorException, QuantityVacancyErrorException {
 		setOrigem(origem);
@@ -28,6 +31,8 @@ public class Carona {
 		setQntVagas(qntVagas);
 		this.motorista = motorista;
 		this.ID = new IdentificadorCarona(motorista.getLogin(), data, hora);
+		caroneiros = new ArrayList<User>();
+		candidatosACarona = new ArrayList<User>();
 	}
 
 	public IdentificadorCarona getID(){
@@ -82,32 +87,32 @@ public class Carona {
 	}
 	
 	//INDICA UM PONTO DE ENCONTRO 
-	public void setPontoDeEncontro(User caroneiro,String local,Avaliacao avaliacao){
-		if (local.isEmpty()) {
-			sugestoes.put(caroneiro, sugestoes.get(caroneiro));
-		}else{
-			sugestoes.put(caroneiro, local);
-		}
-		
-		situacao.put(caroneiro, avaliacao);
-	}
-	
-	//Verifica se a carona ainda tem vaga
-	public boolean temVaga(){
-		return getQntVagas() > 0;
-	}
-	
-	//Adiciona usuarios que foram aprovados 
-	public void addCaroneiro(User caroneiro){
-		usuariosAprovados.add(caroneiro);
-		qntVagas = qntVagas - 1 ;	
-	}
-	
-	//RETORNA A SITUACAO DO USUARIO EM RELACAO A CARONA
-	public Avaliacao getSituacao(User caroneiro){
-		return situacao.get(caroneiro);
-	}
-	
+//	public void setPontoDeEncontro(User caroneiro,String local,Avaliacao avaliacao){
+//		if (local.isEmpty()) {
+//			sugestoes.put(caroneiro, sugestoes.get(caroneiro));
+//		}else{
+//			sugestoes.put(caroneiro, local);
+//		}
+//		
+//		situacao.put(caroneiro, avaliacao);
+//	}
+//	
+//	//Verifica se a carona ainda tem vaga
+//	public boolean temVaga(){
+//		return getQntVagas() > 0;
+//	}
+//	
+//	//Adiciona usuarios que foram aprovados 
+//	public void addCaroneiro(User caroneiro){
+//		usuariosAprovados.add(caroneiro);
+//		qntVagas = qntVagas - 1 ;	
+//	}
+//	
+//	//RETORNA A SITUACAO DO USUARIO EM RELACAO A CARONA
+//	public Avaliacao getSituacao(User caroneiro){
+//		return situacao.get(caroneiro);
+//	}
+//	
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -126,4 +131,65 @@ public class Carona {
 	public String toString() {
 		return getOrigem() + " para " + getDestino() + ", no dia " + getData().getData() + ", as " + getHora().getHoras();
 	}
+	
+	//Verifica se ainda existe vaga na carona
+	public boolean temVaga() {
+		return qntVagas > 0;
+	}
+	
+	//Adiciona um caroneiro como candidato a uma vaga na carona
+	public void addCandidato(User user){
+		candidatosACarona.add(user);
+	}
+	
+	//Adiciona um caroneiro logo apos o mesmo ser aprovado pelo motorista
+	public void addCaroneiro(User user)throws Exception{
+		if (qntVagas <= 0) {
+			throw new Exception("Numero de vagas esgotado");
+		}else{
+			qntVagas = (qntVagas -1 );
+			caroneiros.add(user);
+			candidatosACarona.remove(user);
+		}
+	}
+	
+	//remove um candidado a vaga na carona
+	public void removeCandidato(User user)throws Exception{
+		if (!candidatosACarona.contains(user)) {
+			throw new Exception("O usuario nao esta candidatado a vaga");
+		}else{
+			candidatosACarona.remove(user);
+		}
+	}
+	
+	//remove um caroneiro da carona
+	public void removeCaroneiro(User user)throws Exception{
+		if (!candidatosACarona.contains(user)) {
+			throw new Exception("O usuario nao esta incluso na carona");
+		}else{
+			caroneiros.remove(user);
+	
+		}
+	}
+	
+	//verifica se determinado caroneiro È candidato a uma vaga na carona
+	public boolean verificaCandidato(User user){
+		return candidatosACarona.contains(user);
+	}
+	
+	//verifica se o caroneiro foi adionado a carona
+	public boolean verificaCaroneiro(User user){
+		return caroneiros.contains(user);
+	}
+	
+	//Retorna uma String de todos os caroneiros aprovados
+	public String getCaroneiros(){
+		String CaroneirosAprovados = "";
+		Iterator<User> it = caroneiros.iterator();
+		if (it.hasNext()) {
+			CaroneirosAprovados += it.next().getNome() + ", ";
+		}
+		return CaroneirosAprovados;
+	}
+
 }
