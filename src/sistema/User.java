@@ -1,8 +1,11 @@
 package sistema;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import excecoes.*;
 
-public class User {
+public class User implements Perfil {
 	 
 	private String login;
 	private String endereco;
@@ -10,6 +13,7 @@ public class User {
 	private String telefone;
 	private String nome;
 	private String senha;
+	private List<User> listaDeAmigos = new ArrayList<User>();
 
 	public User(String login,String senha,String nome,String endereco,String email,String telefone) throws AdressErrorException, EmailErrorException, PasswordErrorException, NameErrorException, PhoneErrorException, LoginErrorException{
 		if (email == null || email.isEmpty()){
@@ -126,6 +130,51 @@ public class User {
 		return (this.getLogin().equals(user1.getLogin()) || this.getEmail().equals(user1.getEmail()));
 	}	
 
+	public String exibeCadastro(User usuario) {
+		return  usuario.getNome() + " " + usuario.getLogin() + " " 
+									 	+ usuario.getEmail() + " " 
+									 	+ usuario.getEndereco() +  " " 
+									 	+ usuario.getTelefone();
+	}
+
+	public List<User> exibeListaDeAmigos(User usuario) {
+		return listaDeAmigos;
+	}
+
+	public List<Carona> exibeHistoricoDeCaronas(User usuario) {
+		RepositorioCaronas listaDeCaronas = null;
+		return listaDeCaronas.recuperaCaronaUser(usuario);
+	}
+
+	public List<Carona> exibeHitoricoDeVagas(User usuario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String exibePerfil(User usuario) {
+		
+		String result;
+		
+		if (ehAmigo(usuario)){
+			 result = usuario.exibeCadastro(usuario) + usuario.exibeListaDeAmigos(usuario) + usuario.exibeHistoricoDeCaronas(usuario) + usuario.exibeHitoricoDeVagas(usuario);
+		}else{
+			result = "Impossivel visualizar perfil";
+		}
+		return result;
+	}
 	
+	public boolean ehAmigo(User usuario){
+		return (listaDeAmigos.contains(usuario));
+	}
+
+	public void addAmigo(User usuario){
+		listaDeAmigos.add(usuario);
+	}
 
 }
+
+	
+	
+	
+
+
