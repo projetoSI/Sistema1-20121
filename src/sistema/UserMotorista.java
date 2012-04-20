@@ -1,16 +1,8 @@
 package sistema;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import excecoes.AdressErrorException;
-import excecoes.EmailErrorException;
-import excecoes.LoginErrorException;
-import excecoes.NameErrorException;
-import excecoes.PasswordErrorException;
-import excecoes.PhoneErrorException;
+import excecoes.*;
 
 public class UserMotorista extends User {
 
@@ -64,7 +56,7 @@ public class UserMotorista extends User {
 			return "Data: " + carona.getData() + "\nOrigem: " + carona.getOrigem() + "\nDestino: " + carona.getDestino() + "\nHora: " + carona.getHora() + "\nNumero de Vagas Restantes:  " + carona.getQntVagas() + "\nMotorista: " + carona.getMotorista().getNome() + "\nCaroneiros:  " + carona.getCaroneiros();
 			
 		}else{
-			return "Esse usuario n„o possui a carona informada";
+			return "Esse usuario n√£o possui a carona informada";
 		}
 	}
 	

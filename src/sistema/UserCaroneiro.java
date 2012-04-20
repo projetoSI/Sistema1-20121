@@ -20,7 +20,7 @@ public class UserCaroneiro extends User {
 		super(login, senha, nome, endereco, email, telefone);
 	}
 	
-	//Solicita uma carona a um determinado motorista passando um ponto de econtro ou n„o
+	//Solicita uma carona a um determinado motorista passando um ponto de econtro ou n√£o
 	public void pedirCarona(UserMotorista motorista,Carona carona,String pontoDeEncontro){
 		
 		if (motorista.verificaCarona(carona) && carona.temVaga()) {
@@ -33,7 +33,7 @@ public class UserCaroneiro extends User {
 	public boolean containsCarona(Carona c){
 		return pontosDeEncontro.containsKey(c);
 	}
-	//Retorna o ponto de encontro de uma carona que o caroneiro È candidato
+	//Retorna o ponto de encontro de uma carona que o caroneiro √© candidato
 	public String getPontoDeEcontro(Carona carona){
 		return pontosDeEncontro.get(carona);
 	}
@@ -58,13 +58,13 @@ public class UserCaroneiro extends User {
 		
 		
 	}
-	//Retorna as informaÁıes da carona
+	//Retorna as informa√ß√µes da carona
 	public String detalharCarona(Carona carona){
 		if (carona.verificaCaroneiro(this)) {
 			return "Data: " + carona.getData() + "\nOrigem: " + carona.getOrigem() + "\nDestino: " + carona.getDestino() + "\nHora: " + carona.getHora() + "\nNumero de Vagas Restantes:  " + carona.getQntVagas() + "\nMotorista: " + carona.getMotorista().getNome() + "\nCaroneiros:  " + carona.getCaroneiros();
 			
 		}else{
-			return "Esse usuario n„o possui a carona informada";
+			return "Esse usuario n√£o possui a carona informada";
 		}
 	}
 	
