@@ -81,7 +81,7 @@ public class Data {
 
 	public boolean verificaMeses30(String dia, String mes) {
 		int diaAux = Integer.parseInt(dia);
-		if (((mes.equals("04")) || (mes.endsWith("06")) || (mes.equals("09")) || (mes
+		if (((mes.equals("04")) || (mes.equals("06")) || (mes.equals("09")) || (mes
 				.equals("11"))) && ((diaAux > 30) || (diaAux <= 0)))
 			return false;
 		return true;
