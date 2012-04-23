@@ -9,6 +9,7 @@ public class SistemaFacede {
 
 	// Redistribuir alguns metodos em classes controllers
 
+	private static SistemaFacede facede = new SistemaFacede();
 	private Sistema sistema;
 	private static List<User> usuarios;
 	private User user;
@@ -16,7 +17,11 @@ public class SistemaFacede {
 	private int idSessao;
 	private int idCarona;
 
-	public SistemaFacede() {
+	public static SistemaFacede getInstanceFacede() {
+		return facede;
+	}
+	
+	private SistemaFacede() {
 		sistema = new Sistema();
 		usuarios = sistema.getUsuariosCadastrados();
 		idSessao = 0;

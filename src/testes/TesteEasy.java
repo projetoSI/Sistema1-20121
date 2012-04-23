@@ -16,9 +16,8 @@ public class TesteEasy {
 //		files.add("US04.txt");
 //		files.add("US05.txt");
 
-		SistemaFacede facede = new SistemaFacede();
 		
-		EasyAcceptFacade eaFacade = new EasyAcceptFacade(facede,files);
+		EasyAcceptFacade eaFacade = new EasyAcceptFacade(SistemaFacede.getInstanceFacede(),files);
 		
 		eaFacade.executeTests();
 		
