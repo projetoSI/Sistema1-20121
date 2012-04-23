@@ -8,35 +8,37 @@ import excecoes.HourErrorException;
 
 public class Hora{
 	
-	private String minutos,hora;
+	private String Hora;
 	
-	public Hora(String hora,String minutos) throws HourErrorException, NumberFormatException{
-		if (horaValida(hora, minutos)){
-			this.hora = hora;
-			this.minutos = minutos;
+	public Hora(String hora) throws HourErrorException, NumberFormatException{
+		if (horaValida(hora)){
+			this.Hora = hora;
 		}
-		else throw new HourErrorException("Hora inv·lida");
+		else throw new HourErrorException("Hora inv√°lida");
 	}
 		
 	public String getHoras(){
-		return hora + ":" + minutos;
+		return Hora;
 	}
 	
 	
 	public String getMinutos() {
-		return minutos;
+		return Hora.substring(3,5);
 	}
 	
 	public String getHora() {
-		return hora;
+		return Hora.substring(0, 2);
 	}
 	
-	public boolean horaValida(String hora, String minutos){
+	public boolean horaValida(String Hora){
+		String hora, minutos;
 		try{
-			if ((verificaHora(hora)) && (verificaMinutos(minutos))) return true;
-		}catch (NumberFormatException e){
-			return false;
-		}
+		    hora = Hora.substring(0, 2);
+			minutos = Hora.substring(3, 5);
+		}catch (NumberFormatException a){return false;}
+		 catch (IndexOutOfBoundsException b){ return false;}
+		 catch (NullPointerException c){return false;}
+		if ((verificaHora(hora)) && (verificaMinutos(minutos)) && (Hora.length() == 5)) return true;
 		return false;
 	}
 	

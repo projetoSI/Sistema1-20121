@@ -9,38 +9,43 @@ import excecoes.DateErrorException;
 
 public class Data{
 
-	String dia,mes,ano;
+	private String data;
 	
-	
-	public Data(String dia,String mes,String ano) throws DateErrorException{
-		if (dataValida(dia, mes, ano)){
-			this.dia = dia;
-			this.mes = mes;
-			this.ano = ano;
+	public Data(String data) throws DateErrorException{
+		if (dataValida(data)){
+			this.data = data;
 		}else throw new DateErrorException("Data inválida");
 	
 	}
 	
 	public String getData(){
-		return dia + "/" + mes + "/" + ano;
+		return data;
 	}
 		
 	public String getDia() {
-		return dia;
+		return data.substring(0, 2);
 	}
 
 	public String getMes() {
-		return mes;
+		return data.substring(3, 5);
 	}
 
 
 	public String getAno() {
-		return ano;
+		return data.substring(6, 10);
 	}
 	
-	public boolean dataValida (String dia, String mes, String ano){
+	public boolean dataValida (String data){
 		String dataAtual = getDataAtual();
-		String dataEntrada = dia + "/" + mes + "/" + ano;
+		String dataEntrada = data;
+		String dia, mes, ano;
+		try{
+		    dia = data.substring(0, 2);
+			mes = data.substring(3, 5);
+			ano = data.substring(6, 10);
+		}catch (IndexOutOfBoundsException b){ return false;}
+		 catch (NullPointerException c){return false;}
+		
 		try{
 			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 			Date dataEntradaFormatada = format.parse(dataEntrada);
@@ -49,23 +54,23 @@ public class Data{
 		}catch (ParseException e){
 			return false;
 		}
-		if (!(verificaMeses31(dia, mes)) || !(verificaMeses30(dia, mes)) || !(verificaFevereiro(dia, mes, ano)) ||
+		if (data.isEmpty() || data == null) return false;
+		else if (!(verificaMeses31(dia, mes)) || !(verificaMeses30(dia, mes)) || !(verificaFevereiro(dia, mes, ano)) ||
 			(Integer.parseInt(mes) <= 0) || (Integer.parseInt(mes) > 12)) return false;
-		else if ((dia.isEmpty()) || (mes.isEmpty()) || (ano.isEmpty())) return false;
-		else if ((dia == null) || (mes == null) || (ano == null)) return false;
 		return true;
 		
 	}
 	
 	public boolean verificaMeses31(String dia, String mes){
 		if (((mes == "01") || (mes == "03") || (mes == "05") || (mes == "07") ||
-			(mes == "08") || (mes == "10") || (mes == "12")) && ((Integer.parseInt(dia) > 31) || Integer.parseInt(dia) <= 0)) return false;
+			(mes == "08") || (mes == "10") || (mes == "12")) && ((Integer.parseInt(dia) > 31) 
+			|| Integer.parseInt(dia) <= 0)) return false;
 		return true;
 	}
 	
 	public boolean verificaMeses30(String dia, String mes){
 		if (((mes == "04") || (mes == "06") || (mes == "09") || (mes == "11")) &&
-			((Integer.parseInt(dia) > 30) || Integer.parseInt(dia) <= 0)) return false;
+			((Integer.parseInt(dia) > 30) || (Integer.parseInt(dia) <= 0))) return false;
 		return true;
 	}
 	
