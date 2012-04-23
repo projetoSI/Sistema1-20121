@@ -46,8 +46,8 @@ public class TestaClasseData {
 	@Test
 	public void testaDataValida(){
 		//Testa a aceitacao do dia
-//		assertFalse(data.dataValida("00/05/2012"));
-//		assertFalse(data.dataValida("32/05/2012"));
+		assertFalse(data.dataValida("00/05/2012"));
+		assertFalse(data.dataValida("32/05/2012"));
 		assertFalse(data.dataValida("Pablo/05/2012"));
 		assertFalse(data.dataValida("!@#$/05/2012"));
 		
