@@ -19,10 +19,6 @@ public class UserMotorista extends User {
 		caronas.add(carona);
 	}
 	
-	//Verifica se o motorista possui determinada carona
-	public boolean verificaCarona(Carona carona){
-		return caronas.contains(carona);
-	}
 	/*
 	 * Analisa determinado ponto de encontro passado pelo caroneiro.
 	 * avaliacao = true => a carona foi aprovada
@@ -58,6 +54,14 @@ public class UserMotorista extends User {
 		}else{
 			return "Esse usuario não possui a carona informada";
 		}
+	}
+	
+	public void aceitarSolicitacao(User caroneiro,Carona carona) {
+		carona.addCandidato(caroneiro);
+	}
+	
+	public void rejeitarSolicitacao(User caroneiro,Carona carona) throws Exception{
+		carona.rejeitaCandidato(caroneiro);
 	}
 	
 	

@@ -96,23 +96,7 @@ public class Carona {
 //		
 //		situacao.put(caroneiro, avaliacao);
 //	}
-//	
-//	//Verifica se a carona ainda tem vaga
-//	public boolean temVaga(){
-//		return getQntVagas() > 0;
-//	}
-//	
-//	//Adiciona usuarios que foram aprovados 
-//	public void addCaroneiro(User caroneiro){
-//		usuariosAprovados.add(caroneiro);
-//		qntVagas = qntVagas - 1 ;	
-//	}
-//	
-//	//RETORNA A SITUACAO DO USUARIO EM RELACAO A CARONA
-//	public Avaliacao getSituacao(User caroneiro){
-//		return situacao.get(caroneiro);
-//	}
-//	
+
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -144,7 +128,7 @@ public class Carona {
 	
 	//Adiciona um caroneiro logo apos o mesmo ser aprovado pelo motorista
 	public void addCaroneiro(User user)throws Exception{
-		if (qntVagas <= 0) {
+		if (!this.temVaga()) {
 			throw new Exception("Numero de vagas esgotado");
 		}else{
 			qntVagas = (qntVagas -1 );
@@ -154,7 +138,7 @@ public class Carona {
 	}
 	
 	//remove um candidado a vaga na carona
-	public void removeCandidato(User user)throws Exception{
+	public void rejeitaCandidato(User user)throws Exception{
 		if (!candidatosACarona.contains(user)) {
 			throw new Exception("O usuario nao esta candidatado a vaga");
 		}else{

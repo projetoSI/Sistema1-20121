@@ -21,9 +21,9 @@ public class UserCaroneiro extends User {
 	}
 	
 	//Solicita uma carona a um determinado motorista passando um ponto de econtro ou não
-	public void pedirCarona(UserMotorista motorista,Carona carona,String pontoDeEncontro){
+	public void solicitaCarona(Carona carona,String pontoDeEncontro){
 		
-		if (motorista.verificaCarona(carona) && carona.temVaga()) {
+		if (carona.temVaga()) {
 			pontosDeEncontro.put(carona, pontoDeEncontro);
 			carona.addCandidato(this);
 		}
@@ -52,7 +52,7 @@ public class UserCaroneiro extends User {
 			if (avaliacao) {
 				carona.addCaroneiro(this);
 			}else{
-				carona.removeCandidato(this);
+				carona.rejeitaCandidato(this);
 			}
 		}
 		
@@ -67,14 +67,6 @@ public class UserCaroneiro extends User {
 			return "Esse usuario não possui a carona informada";
 		}
 	}
-	
-	
-	public void solicitarVaga(Carona carona) {
-		if (carona.getQntVagas() > 0) {
-			
-		}
-	}
-	
 	
 	
 }
