@@ -116,8 +116,8 @@ public class SistemaFacede {
 		}
 		
 		if (hora.length() == 5 && (data.length() == 10 || data.length() == 8) /*&& vagas.matches("[0-9]*")*/){
-			Hora horaAux = new Hora(hora.substring(0, 2), hora.substring(3));
-			Data dataAux = new Data(data.substring(0, 2), data.substring(3, 5), data.substring(6));
+			Hora horaAux = new Hora(hora);
+			Data dataAux = new Data(data);
 			sistema.addCarona(origem, destino, horaAux, dataAux, vagas, user);
 			idCarona = Integer.parseInt(sessao);
 			carona = new Carona(origem, destino, horaAux, dataAux, vagas, user);

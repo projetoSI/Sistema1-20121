@@ -232,8 +232,8 @@ public class TestaClasseUser {
 	public void testExibeHistoricoCaronas() throws NumberFormatException, LocalErrorException, QuantityVacancyErrorException, HourErrorException, DateErrorException, AdressErrorException, EmailErrorException, PasswordErrorException, NameErrorException, PhoneErrorException, LoginErrorException{
 		
 		User motorista1 = new User("pherivelton", "1234567", "Pablo", "Rua Lalaa", "lol@lol.com","88888888");
-		carona1 = new Carona("Joao Pessoa", "Campina Grande", new Hora("19", "00"), new Data("01","05","2012"), 2, motorista1);
-		carona2 = new Carona("Joao Pessoa", "Campina Grande", new Hora("13", "00"), new Data("02","05","2012"), 2, motorista1);
+		carona1 = new Carona("Joao Pessoa", "Campina Grande", new Hora("19:00"), new Data("01/05/2012"), 2, motorista1);
+		carona2 = new Carona("Joao Pessoa", "Campina Grande", new Hora("13:00"), new Data("02/05/2012"), 2, motorista1);
 		
 		
 		caronasCadastradas.add(carona1);
