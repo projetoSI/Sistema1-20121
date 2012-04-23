@@ -69,6 +69,12 @@ public class UserCaroneiro extends User {
 	}
 	
 	
+	public void solicitarVaga(Carona carona) {
+		if (carona.getQntVagas() > 0) {
+			
+		}
+	}
+	
 	
 	
 }
