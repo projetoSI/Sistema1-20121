@@ -32,6 +32,20 @@ public class RepositorioCaronas {
 		return caronasUser;
 	}
 	
+	public static List<Carona> recuperaVagaCaronaUser(User usuario){
+		
+		List<Carona> vagaCaronaUser = new ArrayList<Carona>();
+		
+		for (Carona carona : caronasCadastradas) {
+			
+			if( carona.verificaCaroneiro(usuario)){
+				vagaCaronaUser.add(carona);
+			}
+		}
+		
+		return vagaCaronaUser;
+	}
+	
 	//padrão EXPERT
 	public static List<Carona> getCaronas(String origem, String destino) throws Exception{//CASO 3: BUSCAR CARONAS POR ORIGEM E DESTINO,
 																									   //E RETORNAR APENAS AS QUE IRÃO OCORRER

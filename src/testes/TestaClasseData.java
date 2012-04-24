@@ -98,6 +98,7 @@ public class TestaClasseData {
 		
     	//Testa algumas datas validas
 		
+		assertTrue(data.dataValida("23/05/2012"));
 		assertTrue(data.dataValida("01/01/2013"));
 		assertTrue(data.dataValida("30/01/2013"));
 		assertTrue(data.dataValida("01/02/2013"));

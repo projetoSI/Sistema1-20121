@@ -5,7 +5,7 @@ import java.util.List;
 
 import excecoes.*;
 
-public class User implements Perfil {
+public class User{
 	 
 	private String login;
 	private String endereco;
@@ -103,18 +103,16 @@ public class User implements Perfil {
 									 	+ usuario.getTelefone();
 	}
 
-	public List<User> exibeListaDeAmigos(User usuario) {
+	public List<User> exibeListaDeAmigos() {
 		return listaDeAmigos;
 	}
 
 	public List<Carona> exibeHistoricoDeCaronas(User usuario) {
-		RepositorioCaronas listaDeCaronas = null;
-		return listaDeCaronas.recuperaCaronaUser(usuario);
+		return RepositorioCaronas.recuperaCaronaUser(usuario);
 	}
 
 	public List<Carona> exibeHitoricoDeVagas(User usuario) {
-		// TODO Auto-generated method stub
-		return null;
+		return RepositorioCaronas.recuperaVagaCaronaUser(usuario);
 	}
 
 	public String exibePerfil(User usuario) {
@@ -122,7 +120,7 @@ public class User implements Perfil {
 		String result;
 		
 		if (ehAmigo(usuario)){
-			 result = usuario.exibeCadastro(usuario) + usuario.exibeListaDeAmigos(usuario) + usuario.exibeHistoricoDeCaronas(usuario) + usuario.exibeHitoricoDeVagas(usuario);
+			 result = usuario.exibeCadastro(usuario) + usuario.exibeListaDeAmigos() + usuario.exibeHistoricoDeCaronas(usuario) + usuario.exibeHitoricoDeVagas(usuario);
 		}else{
 			result = "Impossivel visualizar perfil";
 		}
