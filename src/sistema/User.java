@@ -62,7 +62,7 @@ public class User{
 	}
 
 	public void setTelefone(String telefone) throws PhoneErrorException{
-		if (!(telefone.matches("[0-9]*")) || telefone.isEmpty()) throw new PhoneErrorException("Fone Invalido");
+		if (!(telefone.matches("[0-9]*")) || telefone.isEmpty() || telefone.length() < 8) throw new PhoneErrorException("Fone Invalido");
 		else this.telefone = telefone;
 	}
 

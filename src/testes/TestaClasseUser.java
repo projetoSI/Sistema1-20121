@@ -229,18 +229,21 @@ public class TestaClasseUser {
 		
 
 		RepositorioCaronas.addCarona("Joao Pessoa","Campina Grande",new Hora("19:00"),new Data("01/01/2013"), 2, user1);
-		//RepositorioCaronas.addCarona("Joao Pessoa","Campina Grande",new Hora("19:00"),new Data("10/05/2012"), 2, user1);
+		RepositorioCaronas.addCarona("Joao Pessoa","Campina Grande",new Hora("19:00"),new Data("10/05/2012"), 2, user1);
 
 		
 	
 
-		System.out.println(RepositorioCaronas.recuperaCaronaUser(user1));
+		//System.out.println(RepositorioCaronas.recuperaCaronaUser(user1));
 		
 		
 	}
 	
 	@Test
-	public void testExibeHistoricoVagasCaronas(){
+	public void testExibeHistoricoVagasEmCaronas() throws NumberFormatException, HourErrorException, DateErrorException, Exception{
+		
+		RepositorioCaronas.addCarona("Joao Pessoa","Campina Grande",new Hora("19:00"),new Data("01/01/2013"), 2, user1);
+		//user2.
 		
 	}
 	

@@ -42,9 +42,8 @@ public class TestaClasseHora {
 	public void testaHoraValida(){
 		
 		//Testa Horas Invalidas
-//		assertFalse(hora.horaValida("-01:00"));
+		assertFalse(hora.horaValida("-01:00"));
 		assertFalse(hora.horaValida("24:00"));
-		assertFalse(hora.horaValida("23:-01"));
 		assertFalse(hora.horaValida("23:60"));
 		assertFalse(hora.horaValida(""));
 		assertFalse(hora.horaValida(null));

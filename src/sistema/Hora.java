@@ -10,11 +10,11 @@ public class Hora{
 	
 	private String Hora;
 	
-	public Hora(String hora) throws HourErrorException, NumberFormatException{
+	public Hora(String hora) throws HourErrorException{
 		if (horaValida(hora)){
 			this.Hora = hora;
 		}
-		else throw new HourErrorException("Hora inválida");
+		else throw new HourErrorException("Hora invÃ¡lida");
 	}
 		
 	public String getHoras(){
@@ -35,9 +35,9 @@ public class Hora{
 		try{
 		    hora = Hora.substring(0, 2);
 			minutos = Hora.substring(3, 5);
-		}catch (NumberFormatException a){return false;}
-		 catch (IndexOutOfBoundsException b){ return false;}
-		 catch (NullPointerException c){return false;}
+		}catch (StringIndexOutOfBoundsException b){return false;}
+		 catch (NullPointerException a){return false;}
+		if (Hora.length() != 5) return false;
 		if ((verificaHora(hora)) && (verificaMinutos(minutos)) && (Hora.length() == 5)) return true;
 		return false;
 	}
@@ -71,3 +71,4 @@ public class Hora{
 			
 	}
 }
+

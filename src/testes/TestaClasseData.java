@@ -64,9 +64,9 @@ public class TestaClasseData {
 		assertFalse(data.dataValida("23/05/0000"));
 		
 		//Testa os meses que terminam em 30
-//		assertFalse(data.dataValida("31/04/2013"));
-//		assertFalse(data.dataValida("31/06/2013"));
-//		assertFalse(data.dataValida("31/09/2013"));
+		assertFalse(data.dataValida("31/04/2013"));
+		assertFalse(data.dataValida("31/06/2013"));
+		assertFalse(data.dataValida("31/09/2013"));
 		assertFalse(data.dataValida("31/11/2013"));
 		assertTrue(data.dataValida("30/04/2013"));
 		assertTrue(data.dataValida("30/06/2013"));
@@ -85,7 +85,7 @@ public class TestaClasseData {
 		//Testa Fevereiro e Bissexto
 		assertTrue(data.dataValida("28/02/2013"));
 		assertTrue(data.dataValida("29/02/2016"));
-//		assertFalse(data.dataValida("29/02/2013"));
+		assertFalse(data.dataValida("29/02/2013"));
 		
 		//Testa outras datas invalidas
 		assertFalse(data.dataValida("-23/-05/-2012"));
@@ -98,7 +98,6 @@ public class TestaClasseData {
 		
     	//Testa algumas datas validas
 		
-		assertTrue(data.dataValida("23/05/2012"));
 		assertTrue(data.dataValida("01/01/2013"));
 		assertTrue(data.dataValida("30/01/2013"));
 		assertTrue(data.dataValida("01/02/2013"));
@@ -123,6 +122,9 @@ public class TestaClasseData {
 		assertTrue(data.dataValida("29/11/2013"));
 		assertTrue(data.dataValida("01/12/2013"));
 		assertTrue(data.dataValida("30/12/2013"));
+		assertTrue(data.dataValida("10/05/2012"));
+		assertTrue(data.dataValida("03/05/2012"));
+		
 	}
 	
 }
