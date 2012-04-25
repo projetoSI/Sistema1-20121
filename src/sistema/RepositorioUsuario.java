@@ -2,6 +2,7 @@ package sistema;
 
 import java.util.ArrayList;
 import java.util.List;
+import excecoes.*;
 
 public class RepositorioUsuario {
 
