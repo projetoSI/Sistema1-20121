@@ -14,7 +14,7 @@ public class Data{
 	public Data(String data) throws DateErrorException{
 		if (dataValida(data)){
 			this.data = data;
-		}else throw new DateErrorException("Data invÃ¡lida");
+		}else throw new DateErrorException("Data inválida");
 	
 	}
 	

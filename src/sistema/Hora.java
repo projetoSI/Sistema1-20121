@@ -14,7 +14,7 @@ public class Hora{
 		if (horaValida(hora)){
 			this.Hora = hora;
 		}
-		else throw new HourErrorException("Hora invÃ¡lida");
+		else throw new HourErrorException("Hora inválida");
 	}
 		
 	public String getHoras(){

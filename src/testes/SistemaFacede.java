@@ -95,19 +95,26 @@ public class SistemaFacede {
 	public String localizarCarona(int sessão, String origem, String destino) throws Exception{
 		String result = "";
 		
-		if (sistema.getCaronas(origem, destino).size() == 0){
-			result = "{}";
-		} else{
-			result = "{";
-			
-			for (int i = 0; i < sistema.getCaronas(origem, destino).size(); i++) {
-				if (result.equals("{")){
-					result += idCarona;
-				}else{
-					result += "," + idCarona;					
+		if (origem.matches("[A-Za-zÇ-ú\\s]*+") && destino.matches("[A-Za-zÇ-ú\\s]*+")) {
+			if (sistema.getCaronas(origem, destino).size() == 0) {
+				result = "{}";
+			} else {
+				result = "{";
+
+				for (int i = 0; i < sistema.getCaronas(origem, destino).size(); i++) {
+					if (result.equals("{")) {
+						result += idCarona;
+					} else {
+						result += "," + idCarona;
+					}
 				}
+				result += "}";
 			}
-			result += "}";			
+		} else {
+			if (!origem.matches("[A-Za-zÇ-ú\\s]*+"))
+				throw new Exception("Origem inválida");
+			if (!destino.matches("[A-Za-zÇ-ú\\s]*+"))
+				throw new Exception("Destino inválido");
 		}
 		
 		return result;
@@ -132,36 +139,23 @@ public class SistemaFacede {
 		return result;
 	}
 	
-	public String getAtributoCarona(int sessao, String atributo){
+	public String getAtributoCarona(int sessao, String atributo) throws Exception{
 		String result = null;
-		ArrayList<String> atributos = new ArrayList<String>();
-		atributos.add("origem");
-		atributos.add("destino");
-		atributos.add("hora");
-		atributos.add("data");
-		atributos.add("vagas");
+
+		if (atributo == null || atributo.isEmpty())
+			throw new Exception("Atributo inválido");
 		
-		if (atributos.contains(atributo.toLowerCase())){
-			switch (atributos.indexOf(atributo.toLowerCase())) {
-			case 0:
+		if (atributo.equals("origem"))
 				result = carona.getOrigem();
-				break;
-			case 1:
+		else if (atributo.equals("destino"))
 				result = carona.getDestino();
-				break;
-			case 2:
+		else if (atributo.equals("hora"))
 				result = carona.getHora().getHoras();
-				break;
-			case 3:
+		else if (atributo.equals("data"))
 				result = carona.getData().getData();
-				break;
-			case 4:
+		else if (atributo.equals("vagas"))
 				result = "" + carona.getQntVagas();
-				break;
-			default:
-				break;
-			}
-		}
+		else throw new Exception("Atributo inexistente");
 		
 		return result;
 	}
@@ -174,7 +168,7 @@ public class SistemaFacede {
 		return carona.toString();
 	}
 	
-//	ate aqui US02 + 01
+//	ate aqui US03 + 02 + 01
 	public static void main(String[] args) {
 
 //		SistemaFacede n = new SistemaFacede();
