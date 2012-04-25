@@ -1,7 +1,8 @@
 package sistema;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+
 
 import excecoes.AdressErrorException;
 import excecoes.EmailErrorException;
@@ -13,59 +14,30 @@ import excecoes.PhoneErrorException;
 public class UserCaroneiro extends User {
 
 	
-	Map<Carona,String> pontosDeEncontro = new HashMap<Carona, String>();
+	List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
+	
 	
 	//Cria um caroneiro
 	public UserCaroneiro(String login, String senha, String nome,String endereco, String email, String telefone)throws AdressErrorException, EmailErrorException,PasswordErrorException, NameErrorException, PhoneErrorException,LoginErrorException {
 		super(login, senha, nome, endereco, email, telefone);
 	}
 	
-	//Solicita uma carona a um determinado motorista passando um ponto de econtro ou não
-	public void solicitaCarona(Carona carona,String pontoDeEncontro){
-		
-		if (carona.temVaga()) {
-			pontosDeEncontro.put(carona, pontoDeEncontro);
-			carona.addCandidato(this);
-		}
+	
+	public void pedirCarona(Carona carona,String pontoDeEncontro,UserMotorista motorista){
+		Solicitacao solicitacao = new Solicitacao(carona,this, pontoDeEncontro);
+		motorista.addSolicitacao(solicitacao);
 	}
 	
-	//Verifica se o caroneiro se candidatou a determinada carona
-	public boolean containsCarona(Carona c){
-		return pontosDeEncontro.containsKey(c);
-	}
-	//Retorna o ponto de encontro de uma carona que o caroneiro é candidato
-	public String getPontoDeEcontro(Carona carona){
-		return pontosDeEncontro.get(carona);
-	}
-	//Muda o ponto de encontro da carona
-	public void setNovoPontoEncontro(Carona carona,String novoPonto){
-		if (pontosDeEncontro.containsKey(carona)) {
-			pontosDeEncontro.put(carona, novoPonto);
-		}
-	}
-	//Caso o motorista mude o ponto de encontro cabe ao caroneiro decidir se quer aceitar ou nao
-	public void avaliarNovoPonto(Carona carona,boolean avaliacao)throws Exception{
-		if (pontosDeEncontro.get(carona).isEmpty()) {
-			throw new Exception("Sua carona foi recusada");
-		}else{
-			
-			if (avaliacao) {
-				carona.addCaroneiro(this);
-			}else{
-				carona.rejeitaCandidato(this);
+	
+	public void avaliarPontoDeEncontro(Solicitacao solicitacao,boolean avaliacao) throws Exception{
+		
+		if (solicitacoes.contains(solicitacao)) {
+			if (solicitacao.isValidadeVaga() && !solicitacao.isValidadePontoDeEncontro() && avaliacao) {
+				solicitacao.setValidadePontoDeEncontro(true);
+				solicitacao.confirmarCarona();
 			}
 		}
 		
-		
-	}
-	//Retorna as informações da carona
-	public String detalharCarona(Carona carona){
-		if (carona.verificaCaroneiro(this)) {
-			return "Data: " + carona.getData() + "\nOrigem: " + carona.getOrigem() + "\nDestino: " + carona.getDestino() + "\nHora: " + carona.getHora() + "\nNumero de Vagas Restantes:  " + carona.getQntVagas() + "\nMotorista: " + carona.getMotorista().getNome() + "\nCaroneiros:  " + carona.getCaroneiros();
-			
-		}else{
-			return "Esse usuario não possui a carona informada";
-		}
 	}
 	
 	

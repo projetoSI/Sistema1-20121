@@ -4,12 +4,22 @@ public class Solicitacao {
 	
 	private String pontoDeEncontro;
 	private Carona caronaDesejada;
+	private UserCaroneiro caroneiro;
 	private boolean validadeVaga = false;
-	private boolean pontoDeEncontroCaroneiroValido = false;
-	private boolean pontoDeEncontroMotoristaValido = false;
-	public Solicitacao(Carona carona,String pontoDeEncontro) {
+	private boolean validadePontoDeEncontro = false;
+	
+	public Solicitacao(Carona carona,UserCaroneiro caroneiro,String pontoDeEncontro) {
 		this.caronaDesejada = carona;
 		this.pontoDeEncontro = pontoDeEncontro;
+		this.caroneiro = caroneiro;
+	}
+
+	public UserCaroneiro getCaroneiro() {
+		return caroneiro;
+	}
+
+	public void setCaroneiro(UserCaroneiro caroneiro) {
+		this.caroneiro = caroneiro;
 	}
 
 	public String getPontoDeEncontro() {
@@ -20,7 +30,7 @@ public class Solicitacao {
 		this.pontoDeEncontro = pontoDeEncontro;
 	}
 
-	public boolean isVagaValida() {
+	public boolean isValidadeVaga() {
 		return validadeVaga;
 	}
 
@@ -28,19 +38,23 @@ public class Solicitacao {
 		this.validadeVaga = validadeVaga;
 	}
 
-	public boolean isPontoDeEncontroValido() {
-		return pontoDeEncontroCaroneiroValido && pontoDeEncontroMotoristaValido;
-	} 
-
-	public void setValidadePontoDeEncontroMotorista(boolean validadePontoDeEncontro) {
-		this.pontoDeEncontroMotoristaValido = validadePontoDeEncontro;
+	public boolean isValidadePontoDeEncontro() {
+		return validadePontoDeEncontro;
 	}
-	
-	public void setValidadePontoDeEncontroCaroneiro(boolean validadePontoDeEncontro) {
-		this.pontoDeEncontroCaroneiroValido = validadePontoDeEncontro;
+
+	public void setValidadePontoDeEncontro(boolean validadePontoDeEncontro) {
+		this.validadePontoDeEncontro = validadePontoDeEncontro;
 	}
 
 	public Carona getCaronaDesejada() {
 		return caronaDesejada;
+	}
+
+	public boolean confirmarCarona() throws Exception {
+		if (caronaDesejada.temVaga()) {
+			caronaDesejada.addCaroneiro(caroneiro);
+			return true;
+		}
+		return false;
 	}
 }

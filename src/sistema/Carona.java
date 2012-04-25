@@ -16,7 +16,7 @@ public class Carona {
 	private int qntVagas;
 	private User motorista;
 	private IdentificadorCarona ID;
-	private List<User> caroneiros,candidatosACarona;
+	private List<User> caroneiros;
 
 //	protected enum Avaliacao {SIM,NAO,A_DEFINIR,MUDANCA_DE_LOCAL}//ENUM COM AS AVALIACOES(OBS : OLHAR MELHOR)
 //	private Map<User,String> sugestoes = new HashMap<User, String>(); //Mapa para quardar os usuarios e as sugestões de ponto de encontro
@@ -32,7 +32,6 @@ public class Carona {
 		this.motorista = motorista;
 		this.ID = new IdentificadorCarona(motorista.getLogin(), data, hora);
 		caroneiros = new ArrayList<User>();
-		candidatosACarona = new ArrayList<User>();
 	}
 
 	public IdentificadorCarona getID(){
@@ -121,11 +120,6 @@ public class Carona {
 		return qntVagas > 0;
 	}
 	
-	//Adiciona um caroneiro como candidato a uma vaga na carona
-	public void addCandidato(User user){
-		candidatosACarona.add(user);
-	}
-	
 	//Adiciona um caroneiro logo apos o mesmo ser aprovado pelo motorista
 	public void addCaroneiro(User user)throws Exception{
 		if (!this.temVaga()) {
@@ -133,34 +127,10 @@ public class Carona {
 		}else{
 			qntVagas = (qntVagas -1 );
 			caroneiros.add(user);
-			candidatosACarona.remove(user);
+		
 		}
 	}
-	
-	//remove um candidado a vaga na carona
-	public void rejeitaCandidato(User user)throws Exception{
-		if (!candidatosACarona.contains(user)) {
-			throw new Exception("O usuario nao esta candidatado a vaga");
-		}else{
-			candidatosACarona.remove(user);
-		}
-	}
-	
-	//remove um caroneiro da carona
-	public void removeCaroneiro(User user)throws Exception{
-		if (!candidatosACarona.contains(user)) {
-			throw new Exception("O usuario nao esta incluso na carona");
-		}else{
-			caroneiros.remove(user);
-	
-		}
-	}
-	
-	//verifica se determinado caroneiro È candidato a uma vaga na carona
-	public boolean verificaCandidato(User user){
-		return candidatosACarona.contains(user);
-	}
-	
+		
 	//verifica se o caroneiro foi adionado a carona
 	public boolean verificaCaroneiro(User user){
 		return caroneiros.contains(user);
