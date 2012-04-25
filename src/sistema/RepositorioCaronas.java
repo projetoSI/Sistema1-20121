@@ -11,6 +11,9 @@ public class RepositorioCaronas {
 	//pelo padrão Creator
 	public static void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
 		novaCarona = new Carona(origem, destino, hora, data, qntVagas, motorista);
+		if (recuperaCaronaUser(motorista).contains(novaCarona)) {
+			throw new Exception("Uma carona já foi cadastrada com essas informações");
+		}
 		caronasCadastradas.add(novaCarona);
 	}
 	
@@ -32,6 +35,7 @@ public class RepositorioCaronas {
 		return caronasUser;
 	}
 	
+	//padrão EXPERT
 	public static List<Carona> recuperaVagaCaronaUser(User usuario){
 		
 		List<Carona> vagaCaronaUser = new ArrayList<Carona>();
@@ -60,32 +64,19 @@ public class RepositorioCaronas {
 		
 		if (destino.isEmpty() && origem.isEmpty()){
 			return getCaronasCadastradas();
-		}
 		
-		if(destino.isEmpty() && !origem.isEmpty()){//apenas destino
-			for (Carona carona : caronasCadastradas) {// todas as caronas com origem igual
-				if (origem.equals(carona.getOrigem())) {
+		}else{
+			for (Carona carona : caronasCadastradas) {
+				if (destino.isEmpty() && origem.equals(carona.getOrigem())) {//todas as caronas com origem igual e destino vazio
+					auxCaronas.add(carona);
+				}else if(origem.isEmpty() && destino.equals(carona.getDestino())){//todas as caronas com destino igual e origem vazia
+					auxCaronas.add(carona);
+				}else if(origem.equals(carona.getOrigem()) && destino.equals(carona.getDestino())){//todas as caronas com destino e origem igual
 					auxCaronas.add(carona);
 				}
 			}			
 		}
 		
-		if(!destino.isEmpty() && origem.isEmpty()){//apenas origem
-			for (Carona carona : caronasCadastradas) {// todas as caronas com destino igual
-				if (destino.equals(carona.getDestino())) {
-					auxCaronas.add(carona);
-				}
-			}						
-		}
-		
-		if (!destino.isEmpty() && !origem.isEmpty()) {
-			for (Carona carona : caronasCadastradas) {// todas as caronas com destino e origem igual
-				if (origem.equals(carona.getOrigem()) && destino.equals(carona.getDestino())) {
-					auxCaronas.add(carona);
-				}
-			}
-		}		
-
 		return auxCaronas;
 
 	}

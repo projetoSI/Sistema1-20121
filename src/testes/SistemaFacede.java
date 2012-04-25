@@ -8,6 +8,8 @@ import sistema.*;
 public class SistemaFacede {
 
 	// Redistribuir alguns metodos em classes controllers
+	//Mais metodos e mais testes
+	
 
 	private static SistemaFacede facede = new SistemaFacede();
 	private Sistema sistema;

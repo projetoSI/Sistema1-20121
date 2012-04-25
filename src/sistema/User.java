@@ -35,6 +35,10 @@ public class User{
 		setEmail(email);
 		setTelefone(telefone);
 	}
+	
+	public String getPerfil() throws AdressErrorException, EmailErrorException, PasswordErrorException, NameErrorException, PhoneErrorException, LoginErrorException{
+		return new Perfil(new User(login, senha, nome, endereco, email, telefone)).exibeMeuPerfil();
+	}
 
 	public String getEndereco() {
 		return endereco;
@@ -96,44 +100,22 @@ public class User{
 		return (this.getLogin().equals(user1.getLogin()) || this.getEmail().equals(user1.getEmail()));
 	}	
 
-	public String exibeCadastro(User usuario) {
-		return  usuario.getNome() + " " + usuario.getLogin() + " " 
-									 	+ usuario.getEmail() + " " 
-									 	+ usuario.getEndereco() +  " " 
-									 	+ usuario.getTelefone();
-	}
 
-	public List<User> exibeListaDeAmigos() {
+	public List<User> getListaAmigos(){
 		return listaDeAmigos;
 	}
-
-	public List<Carona> exibeHistoricoDeCaronas(User usuario) {
-		return RepositorioCaronas.recuperaCaronaUser(usuario);
-	}
-
-	public List<Carona> exibeHitoricoDeVagas(User usuario) {
-		return RepositorioCaronas.recuperaVagaCaronaUser(usuario);
-	}
-
-	public String exibePerfil(User usuario) {
-		
-		String result;
-		
-		if (ehAmigo(usuario)){
-			 result = usuario.exibeCadastro(usuario) + usuario.exibeListaDeAmigos() + usuario.exibeHistoricoDeCaronas(usuario) + usuario.exibeHitoricoDeVagas(usuario);
-		}else{
-			result = "Impossivel visualizar perfil";
-		}
-		return result;
-	}
+	
 	
 	public boolean ehAmigo(User usuario){
 		return (listaDeAmigos.contains(usuario));
 	}
 
 	public void addAmigo(User usuario){
-		listaDeAmigos.add(usuario);
+		if (!(this.equals(usuario))) listaDeAmigos.add(usuario);
 	}
+	
+	
+
 
 }
 

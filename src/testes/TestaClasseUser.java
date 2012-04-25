@@ -2,9 +2,6 @@ package testes;
 
 import static org.junit.Assert.*;
 
-import sistema.Data;
-import sistema.Hora;
-import sistema.RepositorioCaronas;
 import sistema.User;
 import org.junit.*;
 
@@ -15,6 +12,7 @@ public class TestaClasseUser {
 	private User user1;
 	private User user2;
 	private User user3;
+	private User user4;
 
 	
 	@Before
@@ -22,6 +20,7 @@ public class TestaClasseUser {
 		user1 = new User("pherivelton", "123456", "Pablo","Rua lalala", "pherivelton@gmail.com","88888888");
 		user2 = new User("pherivelton", "123456", "Pablo","Rua lalala", "pherivelton@gmail.com","88888888");
 		user3 = new User("pherivelton2", "123456", "PabloHerivelton","Rua dos Olivedos, 182", "pherivelton2@hotmail.com.br","8888888888");
+		user4 = new User("rafael", "panda", "Rafael Ribeiro", "Rua perto da UFCG", "rafael@gmail.com", "12345678");
 		
 	
 	
@@ -181,114 +180,23 @@ public class TestaClasseUser {
 		assertFalse(user1.equals(user3));
 	}
 	
+	@Test
+	public void testaEhAmigo(){
+		user1.addAmigo(user1);
+		assertFalse(user1.ehAmigo(user1));
+		assertTrue(user1.getListaAmigos().isEmpty());
+		user1.addAmigo(user4);
+		assertFalse(user1.getListaAmigos().isEmpty());
+		assertTrue(user1.ehAmigo(user4));
+	}
 	
 	@Test
-	public void testEhAmigo(){
+	public void testaAddAmigo(){
+		assertTrue(user1.getListaAmigos().isEmpty());
 		user1.addAmigo(user2);
-		user2.addAmigo(user1);
-		user2.addAmigo(user3);
-		
-		
-		assertFalse(user1.ehAmigo(user3));
-		assertTrue(user1.ehAmigo(user2));
-		assertTrue(user2.ehAmigo(user1));
-		
+		assertTrue(user1.getListaAmigos().isEmpty());
+		user1.addAmigo(user4);
+		assertFalse(user1.getListaAmigos().isEmpty());
 	}
-	
-	@Test
-	public void testExibeCadastro(){
-		
-		assertEquals("erro de asser", "Pablo pherivelton pherivelton@gmail.com Rua lalala 88888888", user1.exibeCadastro(user1));
-		assertEquals("erro de asser","PabloHerivelton pherivelton2 pherivelton2@hotmail.com.br Rua dos Olivedos, 182 8888888888", user3.exibeCadastro(user3));
-		
-	}
-	
-	@Test
-	public void testExibeListaAmigos(){
-		
-		user1.addAmigo(user2);
-		user2.addAmigo(user1);
-		user2.addAmigo(user3);
-		
-		assertTrue(user1.exibeListaDeAmigos().contains(user2));
-		assertFalse(user1.exibeListaDeAmigos().contains(user3));
-		assertTrue(user2.exibeListaDeAmigos().contains(user1));
-		assertFalse(user3.exibeListaDeAmigos().contains(user2));
-		assertTrue(user2.exibeListaDeAmigos().contains(user3));
-		
-		assertEquals("erro de contagem de lita", 1, user1.exibeListaDeAmigos().size());
-		assertEquals("erro de contagem de lita", 2, user2.exibeListaDeAmigos().size());
-		assertEquals("erro de contagem de lita", 0, user3.exibeListaDeAmigos().size());
-		
-	}
-
-	
-	@Test
-	public void testExibeHistoricoCaronas() throws NumberFormatException, HourErrorException, DateErrorException, Exception {
-		
-		
-
-		RepositorioCaronas.addCarona("Joao Pessoa","Campina Grande",new Hora("19:00"),new Data("01/01/2013"), 2, user1);
-		RepositorioCaronas.addCarona("Joao Pessoa","Campina Grande",new Hora("19:00"),new Data("10/05/2012"), 2, user1);
-
-		
-	
-
-		//System.out.println(RepositorioCaronas.recuperaCaronaUser(user1));
-		
-		
-	}
-	
-	@Test
-	public void testExibeHistoricoVagasEmCaronas() throws NumberFormatException, HourErrorException, DateErrorException, Exception{
-		
-		RepositorioCaronas.addCarona("Joao Pessoa","Campina Grande",new Hora("19:00"),new Data("01/01/2013"), 2, user1);
-		//user2.
-		
-	}
-	
-	@Test
-	public void testExibePerfil(){
-		
-		user1.addAmigo(user2);
-		user2.addAmigo(user1);
-		user2.addAmigo(user3);
-		
-		//o usuario 3 nao pode visualizar o perfil do user2 pq nÃ£o Ã© seu amigo.
-		assertEquals("erro", "Impossivel visualizar perfil", user3.exibePerfil(user2));
-		
-		//o usuario 3 nao pode visualizar o perfil do user1 pq nÃ£o Ã© seu amigo.
-		assertEquals("erro", "Impossivel visualizar perfil", user3.exibePerfil(user1));
-		
-		//o usuario 1 nao pode visualizar o perfil do user3 pq nÃ£o Ã© seu amigo.
-		assertEquals("erro", "Impossivel visualizar perfil", user1.exibePerfil(user3));
-		
-		
-		// O usuario 1 pode visualizar o perfil do usuario2, ja que o usuario 2 consta na sua lista de amigos.
-		assertTrue(user1.exibePerfil(user2).contains(user2.getNome()));
-		assertTrue(user1.exibePerfil(user2).contains(user2.getEmail()));
-		assertTrue(user1.exibePerfil(user2).contains(user2.getLogin()));
-		assertTrue(user1.exibePerfil(user2).contains(user2.getEndereco()));
-		assertTrue(user1.exibePerfil(user2).contains(user2.getTelefone()));
-		assertTrue(user1.exibePerfil(user2).contains(user2.exibeListaDeAmigos().toString()));
-		
-		//o usuario2 pode pode visualizar o perfil do usuario1, ja que o usuario 1 consta na sua lista de amigos.
-		assertTrue(user2.exibePerfil(user1).contains(user1.getNome()));
-		assertTrue(user2.exibePerfil(user1).contains(user1.getEmail()));
-		assertTrue(user2.exibePerfil(user1).contains(user1.getLogin()));
-		assertTrue(user2.exibePerfil(user1).contains(user1.getEndereco()));
-		assertTrue(user2.exibePerfil(user1).contains(user1.getTelefone()));
-		assertTrue(user2.exibePerfil(user1).contains(user1.exibeListaDeAmigos().toString()));
-		
-		// o usuario2 pode pode visualizar o perfil do usuario3, ja que o usuario 13 consta na sua lista de amigos.
-		assertTrue(user2.exibePerfil(user3).contains(user3.getNome()));
-		assertTrue(user2.exibePerfil(user3).contains(user3.getEmail()));
-		assertTrue(user2.exibePerfil(user3).contains(user3.getLogin()));
-		assertTrue(user2.exibePerfil(user3).contains(user3.getEndereco()));
-		assertTrue(user2.exibePerfil(user3).contains(user3.getTelefone()));
-		assertTrue(user2.exibePerfil(user3).contains(user3.exibeListaDeAmigos().toString()));
-		
-	}
-	
 	
 }
