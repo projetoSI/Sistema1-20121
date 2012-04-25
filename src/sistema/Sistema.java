@@ -32,12 +32,13 @@ public class Sistema {
 		if (senha == null ||senha.isEmpty()) {//Tah correto,aki?!
 			throw new PasswordErrorException("Senha inválida");
 		}
-		;
-		if(AcessaDados.getUser(login).getSenha().equals(senha)){
-			usuario = AcessaDados.getUser(login);
-		}else{
+		
+		usuario = AcessaDados.getUser(login);
+		if (usuario == null)
+			throw new UserException("Usuário inexistente");
+		
+		if (!usuario.getSenha().equals(senha))
 			throw new LoginErrorException("Login inválido");
-		}
 		
 		
 		return usuario;

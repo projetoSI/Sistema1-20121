@@ -3,6 +3,8 @@ package testes;
 import java.util.ArrayList;
 import java.util.List;
 
+import excecoes.UserException;
+
 import sistema.*;
 
 public class SistemaFacede {
@@ -55,24 +57,22 @@ public class SistemaFacede {
 		String result = "";
 
 		user = sistema.getUser(login);
-		if (atributo == null || atributo.isEmpty()) {
+		if (atributo == null || atributo.isEmpty())
 			throw new Exception("Atributo inválido");
+		
+		if (user == null)
+			throw new UserException("Usuário inexistente");
 
-		} else if (atributo.equals("nome")) {
+		if (atributo.equals("nome"))
 			result = user.getNome();
-
-		} else if (atributo.equals("endereco")) {
+		else if (atributo.equals("endereco"))
 			result = user.getEndereco();
-
-		} else if (atributo.equals("email")) {
+		else if (atributo.equals("email"))
 			result = user.getEmail();
-
-		} else if (atributo.equals("login")) {
+		else if (atributo.equals("login"))
 			result = user.getLogin();
-
-		} else {
+		else
 			throw new Exception("Atributo inexistente");
-		}
 
 		return result;
 

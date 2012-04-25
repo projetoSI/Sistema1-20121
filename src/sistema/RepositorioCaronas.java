@@ -67,13 +67,12 @@ public class RepositorioCaronas {
 		
 		}else{
 			for (Carona carona : caronasCadastradas) {
-				if (destino.isEmpty() && origem.equals(carona.getOrigem())) {//todas as caronas com origem igual e destino vazio
+				if (destino.isEmpty() && origem.equals(carona.getOrigem())) //todas as caronas com origem igual e destino vazio
 					auxCaronas.add(carona);
-				}else if(origem.isEmpty() && destino.equals(carona.getDestino())){//todas as caronas com destino igual e origem vazia
+				if(origem.isEmpty() && destino.equals(carona.getDestino())) //todas as caronas com destino igual e origem vazia
 					auxCaronas.add(carona);
-				}else if(origem.equals(carona.getOrigem()) && destino.equals(carona.getDestino())){//todas as caronas com destino e origem igual
+				if(origem.equals(carona.getOrigem()) && destino.equals(carona.getDestino())) //todas as caronas com destino e origem igual
 					auxCaronas.add(carona);
-				}
 			}			
 		}
 		

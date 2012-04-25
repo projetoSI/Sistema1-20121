@@ -16,8 +16,11 @@ public class RepositorioUsuario {
 	//pelo padrão Creator
 	public static void addUser(String login, String senha, String nome,	String endereco,String email, String telefone) throws Exception{
 		newUser = new User(login,senha,nome,endereco,email,telefone);
-		usersCadastrados.add(newUser);
 		
+		if (getUsuarioEmail(email) == null && getUsuarioLogin(login) == null)
+			usersCadastrados.add(newUser);
+		else if(getUsuarioEmail(email) != null) throw new UserException("Já existe um usuário com este email");
+		else if(getUsuarioLogin(login) != null) throw new UserException("Já existe um usuário com este login");
 	}
 	//padrão EXPERT
 	public static List<User> getUsuarios() {
@@ -38,7 +41,7 @@ public class RepositorioUsuario {
 		return foundUser(login);		
 	}
 	
-	private static User foundUser(String argumento) throws Exception{
+	private static User foundUser(String argumento){
 		User usuario = null;
 		
 		for (User user : usersCadastrados) {
@@ -47,10 +50,7 @@ public class RepositorioUsuario {
 				break;
 			}
 		}
-		
-		if (usuario == null)
-			throw new Exception("Usuário inexistente");
-		
+				
 		return usuario;
 	}
 }
