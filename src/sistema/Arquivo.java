@@ -3,15 +3,9 @@ package sistema;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.File;
 //import org.jdom.Document;
 //import org.jdom.Element;
 //import org.jdom.*;
-import java.io.FileWriter;
-
-import java.io.IOException;
-
- 
 
 
 public class Arquivo {

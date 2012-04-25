@@ -3,15 +3,6 @@ package sistema;
 import java.util.ArrayList;
 import java.util.List;
 
-import excecoes.AdressErrorException;
-import excecoes.EmailErrorException;
-import excecoes.LocalErrorException;
-import excecoes.LoginErrorException;
-import excecoes.NameErrorException;
-import excecoes.PasswordErrorException;
-import excecoes.PhoneErrorException;
-import excecoes.QuantityVacancyErrorException;
-
 public class RepositorioUsuario {
 
 	private static List<User> usersCadastrados = new ArrayList<User>();
