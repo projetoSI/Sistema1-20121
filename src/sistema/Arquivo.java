@@ -3,10 +3,8 @@ package sistema;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-//import org.jdom.Document;
-//import org.jdom.Element;
-//import org.jdom.*;
 
+import org.jdom2.*;
 
 public class Arquivo {
 	

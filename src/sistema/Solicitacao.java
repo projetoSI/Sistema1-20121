@@ -4,17 +4,17 @@ public class Solicitacao {
 	
 	private String pontoDeEncontro;
 	private Carona caronaDesejada;
-	private UserCaroneiro caroneiro;
+	private User caroneiro;
 	private boolean validadeVaga = false;
 	private boolean validadePontoDeEncontro = false;
 	
-	public Solicitacao(Carona carona,UserCaroneiro caroneiro,String pontoDeEncontro) {
+	public Solicitacao(Carona carona,User caroneiro,String pontoDeEncontro) {
 		this.caronaDesejada = carona;
 		this.pontoDeEncontro = pontoDeEncontro;
 		this.caroneiro = caroneiro;
 	}
 
-	public UserCaroneiro getCaroneiro() {
+	public User getCaroneiro() {
 		return caroneiro;
 	}
 
