@@ -1,8 +1,9 @@
 package sistema;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import excecoes.*;
 
@@ -16,11 +17,6 @@ public class Carona {
 	private User motorista;
 	private IdentificadorCarona ID;
 	private List<User> caroneiros;
-
-//	protected enum Avaliacao {SIM,NAO,A_DEFINIR,MUDANCA_DE_LOCAL}//ENUM COM AS AVALIACOES(OBS : OLHAR MELHOR)
-//	private Map<User,String> sugestoes = new HashMap<User, String>(); //Mapa para quardar os usuarios e as sugestões de ponto de encontro
-//	private Map<User,Avaliacao> situacao = new HashMap<User, Avaliacao>(); //Mapa para quardar os usuarios e as avaliacoes de ponto de encontro(OBS : SO PRA TOMAR COMO BASE)
-//	private List<User> usuariosAprovados = new ArrayList<User>();//LISTA COM OS USUARIOS APROVADOS (TEMPORARIA)
 
 	public Carona(String origem, String destino, Hora hora, Data data, int qntVagas, User motorista) throws LocalErrorException, QuantityVacancyErrorException {
 		setOrigem(origem);
@@ -40,8 +36,9 @@ public class Carona {
 	public String getOrigem() {
 		return origem;
 	}
-
+	
 	public void setOrigem(String origem) throws LocalErrorException {
+	
 		if (!(origem == null) && (origem.matches("[A-Za-zÇ-ú\\s]*+")) && (!(origem.isEmpty()))) this.origem = origem;
 		else throw new LocalErrorException("Origem inválida");
 	}
@@ -84,17 +81,6 @@ public class Carona {
 		return this.motorista;
 	}
 	
-	//INDICA UM PONTO DE ENCONTRO 
-//	public void setPontoDeEncontro(User caroneiro,String local,Avaliacao avaliacao){
-//		if (local.isEmpty()) {
-//			sugestoes.put(caroneiro, sugestoes.get(caroneiro));
-//		}else{
-//			sugestoes.put(caroneiro, local);
-//		}
-//		
-//		situacao.put(caroneiro, avaliacao);
-//	}
-
 	
 	@Override
 	public boolean equals(Object obj) {
