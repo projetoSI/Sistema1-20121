@@ -3,7 +3,11 @@ package ufcg.edu.br.Sistema120121.testes;
 import java.util.List;
 
 import ufcg.edu.br.Sistema120121.excecoes.UserException;
-import ufcg.edu.br.Sistema120121.sistema.*;
+import ufcg.edu.br.Sistema120121.sistema.Carona;
+import ufcg.edu.br.Sistema120121.sistema.Data;
+import ufcg.edu.br.Sistema120121.sistema.Hora;
+import ufcg.edu.br.Sistema120121.sistema.Sistema;
+import ufcg.edu.br.Sistema120121.sistema.User;
 
 public class SistemaFacede {
 

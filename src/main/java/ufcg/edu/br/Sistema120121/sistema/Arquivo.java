@@ -1,9 +1,11 @@
 package ufcg.edu.br.Sistema120121.sistema;
 
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
@@ -23,7 +25,7 @@ public class Arquivo {
 		XStream stream;
 		String dados;
 		BufferedWriter out = null;
-		stream = new XStream(new DomDriver("UTF-8"));
+		stream = new XStream(new DomDriver());
 		try {
 			out = new BufferedWriter(new FileWriter(arquivo));
 			dados = stream.toXML(lista);
@@ -45,22 +47,21 @@ public class Arquivo {
 	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
-	public static List lerArquivo(String arquivo1) throws IOException,
-			ClassNotFoundException {
-		List lista = null;
-		 FileInputStream input = null;
+	public static LinkedList lerArquivo(String arquivo1) throws IOException{
+		LinkedList temp = null;
+		FileReader input = null;
 		XStream xst;
-		xst = new XStream(new DomDriver("UTF-8"));
+		xst = new XStream(new DomDriver());
 		try {
-			input =  new FileInputStream(arquivo1);
-			lista =(List) xst.fromXML(input);  
-			
-		} catch (IOException e) {
-			System.err.println(e.getMessage());
+			input =  new FileReader(arquivo1);
+			temp = (LinkedList) xst.fromXML(input);	
+		} catch (FileNotFoundException e) {
+			return (new LinkedList());
 		} finally {
 			input.close();
 		}
-		return lista; 
+		
+		return temp; 
 	}
 
 	public static List<User> getUsuarios() {

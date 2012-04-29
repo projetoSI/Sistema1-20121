@@ -1,80 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="1" time="0.058" errors="0" skipped="0" tests="1" name="ufcg.edu.br.Sistema120121.testes.TesteEasy">
+<testsuite failures="1" time="0.13" errors="0" skipped="0" tests="1" name="ufcg.edu.br.Sistema120121.testes.TesteEasy">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries"/>
-    <property name="java.vm.version" value="20.6-b01-415"/>
-    <property name="awt.nativeDoubleBuffering" value="true"/>
-    <property name="gopherProxySet" value="false"/>
-    <property name="mrj.build" value="11M3635"/>
-    <property name="java.vm.vendor" value="Apple Inc."/>
-    <property name="java.vendor.url" value="http://www.apple.com/"/>
-    <property name="path.separator" value=":"/>
-    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0\jre\bin"/>
+    <property name="java.vm.version" value="21.0-b17"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) Client VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
     <property name="user.country" value="BR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/jonhnanthan/git/Sistema1-20121"/>
-    <property name="java.runtime.version" value="1.6.0_31-b04-415-11M3635"/>
-    <property name="java.awt.graphicsenv" value="apple.awt.CGraphicsEnvironment"/>
-    <property name="basedir" value="/Users/jonhnanthan/git/Sistema1-20121"/>
-    <property name="java.endorsed.dirs" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/endorsed"/>
-    <property name="os.arch" value="x86_64"/>
-    <property name="surefire.real.class.path" value="/Users/jonhnanthan/git/Sistema1-20121/target/surefire/surefirebooter5436901198155907083.jar"/>
-    <property name="java.io.tmpdir" value="/var/folders/k5/mbyzvtkn4237gwx5v_tdkljh0000gn/T/"/>
+    <property name="user.dir" value="D:\Users\Fontenele\git\Sistema1-20121"/>
+    <property name="java.runtime.version" value="1.7.0-b147"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="basedir" value="D:\Users\Fontenele\git\Sistema1-20121"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.7.0\jre\lib\endorsed"/>
+    <property name="os.arch" value="x86"/>
+    <property name="surefire.real.class.path" value="D:\Users\Fontenele\git\Sistema1-20121\target\surefire\surefirebooter6217786895474501006.jar"/>
+    <property name="java.io.tmpdir" value="D:\Users\FONTEN~1\AppData\Local\Temp\"/>
     <property name="line.separator" value="
 "/>
-    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
-    <property name="os.name" value="Mac OS X"/>
-    <property name="sun.jnu.encoding" value="MacRoman"/>
-    <property name="java.library.path" value=".:/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
-    <property name="surefire.test.class.path" value="/Users/jonhnanthan/git/Sistema1-20121/target/test-classes:/Users/jonhnanthan/git/Sistema1-20121/target/classes:/Users/jonhnanthan/.m2/repository/junit/junit/4.0/junit-4.0.jar:/Users/jonhnanthan/.m2/repository/ufcg/edu/br/easyaccept/1.0.0/easyaccept-1.0.0.jar:/Users/jonhnanthan/.m2/repository/jdom/jdom/1.0/jdom-1.0.jar:"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 7"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jdk1.7.0/bin/../jre/bin/client;C:/Program Files/Java/jdk1.7.0/bin/../jre/bin;C:/Program Files/Java/jdk1.7.0/bin/../jre/lib/i386;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Windows Live\Shared;C:\Program Files\Java\jdk1.7.0\bin;C:\apache-maven-3.0.4\bin;C:\Program Files\Common Files\Nero\Lib\;C:\eclipse;;."/>
+    <property name="surefire.test.class.path" value="D:\Users\Fontenele\git\Sistema1-20121\target\test-classes;D:\Users\Fontenele\git\Sistema1-20121\target\classes;D:\Users\Fontenele\.m2\repository\junit\junit\4.0\junit-4.0.jar;D:\Users\Fontenele\.m2\repository\ufcg\edu\br\easyaccept\1.0.0\easyaccept-1.0.0.jar;D:\Users\Fontenele\.m2\repository\jdom\jdom\1.0\jdom-1.0.jar;D:\Users\Fontenele\.m2\repository\com\thoughtworks\xstream\xstream\1.4.2\xstream-1.4.2.jar;D:\Users\Fontenele\.m2\repository\xmlpull\xmlpull\1.1.3.1\xmlpull-1.1.3.1.jar;D:\Users\Fontenele\.m2\repository\xpp3\xpp3_min\1.1.4c\xpp3_min-1.1.4c.jar;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="java.class.version" value="50.0"/>
-    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="10.7.3"/>
-    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="user.home" value="/Users/jonhnanthan"/>
-    <property name="user.timezone" value="America/Fortaleza"/>
-    <property name="java.awt.printerjob" value="apple.awt.CPrinterJob"/>
-    <property name="java.specification.version" value="1.6"/>
-    <property name="file.encoding" value="MacRoman"/>
-    <property name="user.name" value="jonhnanthan"/>
-    <property name="java.class.path" value="/Users/jonhnanthan/git/Sistema1-20121/target/test-classes:/Users/jonhnanthan/git/Sistema1-20121/target/classes:/Users/jonhnanthan/.m2/repository/junit/junit/4.0/junit-4.0.jar:/Users/jonhnanthan/.m2/repository/ufcg/edu/br/easyaccept/1.0.0/easyaccept-1.0.0.jar:/Users/jonhnanthan/.m2/repository/jdom/jdom/1.0/jdom-1.0.jar:"/>
-    <property name="java.vm.specification.version" value="1.0"/>
-    <property name="sun.arch.data.model" value="64"/>
-    <property name="java.home" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"/>
-    <property name="sun.java.command" value="/Users/jonhnanthan/git/Sistema1-20121/target/surefire/surefirebooter5436901198155907083.jar /Users/jonhnanthan/git/Sistema1-20121/target/surefire/surefire2984076437391577543tmp /Users/jonhnanthan/git/Sistema1-20121/target/surefire/surefire8527670627223101681tmp"/>
-    <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="sun.management.compiler" value="HotSpot Client Compiler"/>
+    <property name="os.version" value="6.1"/>
+    <property name="user.home" value="D:\Users\Fontenele"/>
+    <property name="user.timezone" value="GMT-03:00"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="user.name" value="Fontenele"/>
+    <property name="java.class.path" value="D:\Users\Fontenele\git\Sistema1-20121\target\test-classes;D:\Users\Fontenele\git\Sistema1-20121\target\classes;D:\Users\Fontenele\.m2\repository\junit\junit\4.0\junit-4.0.jar;D:\Users\Fontenele\.m2\repository\ufcg\edu\br\easyaccept\1.0.0\easyaccept-1.0.0.jar;D:\Users\Fontenele\.m2\repository\jdom\jdom\1.0\jdom-1.0.jar;D:\Users\Fontenele\.m2\repository\com\thoughtworks\xstream\xstream\1.4.2\xstream-1.4.2.jar;D:\Users\Fontenele\.m2\repository\xmlpull\xmlpull\1.1.3.1\xmlpull-1.1.3.1.jar;D:\Users\Fontenele\.m2\repository\xpp3\xpp3_min\1.1.4c\xpp3_min-1.1.4c.jar;"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.arch.data.model" value="32"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.7.0\jre"/>
+    <property name="sun.java.command" value="D:\Users\Fontenele\git\Sistema1-20121\target\surefire\surefirebooter6217786895474501006.jar D:\Users\Fontenele\git\Sistema1-20121\target\surefire\surefire8701127995299822539tmp D:\Users\Fontenele\git\Sistema1-20121\target\surefire\surefire4998260696356689819tmp"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="pt"/>
-    <property name="awt.toolkit" value="apple.awt.CToolkit"/>
-    <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.6.0_31"/>
-    <property name="java.ext.dirs" value="/Library/Java/Extensions:/System/Library/Java/Extensions:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext"/>
-    <property name="sun.boot.class.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsfd.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar:/System/Library/Frameworks/JavaVM.framework/Frameworks/JavaRuntimeSupport.framework/Resources/Java/JavaRuntimeSupport.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/ui.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/laf.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/sunrsasign.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsse.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar"/>
-    <property name="java.vendor" value="Apple Inc."/>
-    <property name="localRepository" value="/Users/jonhnanthan/.m2/repository"/>
-    <property name="file.separator" value="/"/>
-    <property name="java.vendor.url.bug" value="http://bugreport.apple.com/"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.version" value="1.7.0"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.7.0\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.7.0\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0\jre\lib\rt.jar;C:\Program Files\Java\jdk1.7.0\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.7.0\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="localRepository" value="D:\Users\Fontenele\.m2\repository"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="mrj.version" value="1070.1.6.0_31-415"/>
-    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase time="0.056" classname="ufcg.edu.br.Sistema120121.testes.TesteEasy" name="testarEasyAcceptScript">
+  <testcase time="0.118" classname="ufcg.edu.br.Sistema120121.testes.TesteEasy" name="testarEasyAcceptScript">
     <failure message="null" type="java.lang.AssertionError">java.lang.AssertionError: null
 	at org.junit.Assert.fail(Assert.java:58)
 	at org.junit.Assert.assertTrue(Assert.java:27)
 	at org.junit.Assert.assertTrue(Assert.java:35)
 	at ufcg.edu.br.Sistema120121.testes.TesteEasy.testarEasyAcceptScript(TesteEasy.java:33)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
-	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
 	at org.junit.internal.runners.TestMethodRunner.executeMethodBody(TestMethodRunner.java:99)
 	at org.junit.internal.runners.TestMethodRunner.runUnprotected(TestMethodRunner.java:81)
 	at org.junit.internal.runners.BeforeAndAfterRunner.runProtected(BeforeAndAfterRunner.java:34)
@@ -89,35 +85,74 @@
 	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:146)
 	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:97)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
-	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
 	at org.apache.maven.surefire.booter.ProviderFactory$ClassLoaderProxy.invoke(ProviderFactory.java:103)
 	at $Proxy0.invoke(Unknown Source)
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:145)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcess(SurefireStarter.java:87)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:69)
 </failure>
-    <system-out>@SLTests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.053 sec
+    <system-out>@SLTests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.069 sec
 @SLRunning ufcg.edu.br.Sistema120121.testes.TesteEasy
-Test file: scripts/US03.txt | Passed Tests: 6 | Not Passed Tests: 15
+Test file: scripts/US02.txt | Passed Tests: 10 | Not Passed Tests: 54
 
 FAILURES:
-   At line 17: Unexpected error: Destino inválido
-   At line 18: Unexpected error: Origem inválida
-   At line 19: Unexpected error: Destino inválido
-   At line 23:Origem inválida
-   At line 24:Destino inválido
-   At line 25:Destino inválido
-   At line 26:Destino inválido
-   At line 30: Unexpected error: Origem inválida
-   At line 31: Unexpected error: Destino inválido
-   At line 32: Unexpected error: Destino inválido
-   At line 36: Expected the error message &lt;Origem inv√°lida&gt;, but the error message was &lt;Origem inválida&gt;
-   At line 37: Expected the error message &lt;Origem inv√°lida&gt;, but the error message was &lt;Origem inválida&gt;
-   At line 38: Expected the error message &lt;Origem inv√°lida&gt;, but the error message was &lt;Origem inválida&gt;
-   At line 39: Expected the error message &lt;Destino inv√°lido&gt;, but the error message was &lt;Destino inválido&gt;
-   At line 40: Expected the error message &lt;Destino inv√°lido&gt;, but the error message was &lt;Destino inválido&gt;
+   At line 16: Unexpected error: Destino inválido
+   At line 17: Unexpected error: Origem inválida
+   At line 18: Unexpected error: Destino inválido
+   At line 22:Destino inválido
+   At line 23: Unexpected error: Identificador do carona é inválido
+   At line 24: Unexpected error: Identificador do carona é inválido
+   At line 25: Unexpected error: Trajeto Inexistente
+   At line 27:Destino inválido
+   At line 28: Unexpected error: Identificador do carona é inválido
+   At line 29: Unexpected error: Identificador do carona é inválido
+   At line 31:Origem inválida
+   At line 32: Unexpected error: Carona Inexistente
+   At line 34:Origem inválida
+   At line 35: Unexpected error: Carona Inexistente
+   At line 37:Origem inválida
+   At line 38: Unexpected error: Carona Inexistente
+   At line 41: Unexpected error: Origem inválida
+   At line 42: Unexpected error: Destino inválido
+   At line 43: Unexpected error: Origem inválida
+   At line 46: Unexpected error: Origem inválida
+   At line 49: Unexpected error: Destino inválido
+   At line 52: Expected &lt;{,,,,}&gt;, but was &lt;{}&gt;
+   At line 55: Expected the error message &lt;SessÃ£o invÃ¡lida&gt;, but the error message was &lt;Sessão inválida&gt;
+   At line 56: Expected the error message &lt;SessÃ£o invÃ¡lida&gt;, but the error message was &lt;Sessão inválida&gt;
+   At line 57: Expected the error message &lt;SessÃ£o inexistente&gt;, but the error message was &lt;Sessão inexistente&gt;
+   At line 59: Expected the error message &lt;Origem invÃ¡lida&gt;, but the error message was &lt;Origem inválida&gt;
+   At line 60: Expected the error message &lt;Origem invÃ¡lida&gt;, but the error message was &lt;Origem inválida&gt;
+   At line 62: Expected the error message &lt;Destino invÃ¡lido&gt;, but the error message was &lt;Destino inválido&gt;
+   At line 63: Expected the error message &lt;Destino invÃ¡lido&gt;, but the error message was &lt;Destino inválido&gt;
+   At line 65: Expected the error message &lt;Data invÃ¡lida&gt;, but the error message was &lt;Data inválida&gt;
+   At line 66: Expected the error message &lt;Data invÃ¡lida&gt;, but the error message was &lt;Data inválida&gt;
+   At line 67: Expected the error message &lt;Data invÃ¡lida&gt;, but the error message was &lt;Data inválida&gt;
+   At line 68: Expected the error message &lt;Data invÃ¡lida&gt;, but the error message was &lt;Data inválida&gt;
+   At line 69: Expected the error message &lt;Data invÃ¡lida&gt;, but the error message was &lt;Data inválida&gt;
+   At line 70: Expected the error message &lt;Data invÃ¡lida&gt;, but the error message was &lt;Data inválida&gt;
+   At line 73: Expected the error message &lt;Hora invÃ¡lida&gt;, but the error message was &lt;Hora inválida&gt;
+   At line 74: Expected the error message &lt;Hora invÃ¡lida&gt;, but the error message was &lt;Hora inválida&gt;
+   At line 75: Expected the error message &lt;Hora invÃ¡lida&gt;, but the error message was &lt;Hora inválida&gt;
+   At line 77: Expected the error message &lt;Vaga invÃ¡lida&gt;, but the error message was &lt;Vaga inválida&gt;
+   At line 78: Expected the error message &lt;Vaga invÃ¡lida&gt;, but the error message was &lt;Vaga inválida&gt;
+   At line 80: Expected the error message &lt;Identificador do carona Ã© invÃ¡lido&gt;, but the error message was &lt;Identificador do carona é inválido&gt;
+   At line 81: Expected the error message &lt;Identificador do carona Ã© invÃ¡lido&gt;, but the error message was &lt;Identificador do carona é inválido&gt;
+   At line 83: Expected the error message &lt;Atributo invÃ¡lido&gt;, but the error message was &lt;Atributo inválido&gt;
+   At line 84: Expected the error message &lt;Atributo invÃ¡lido&gt;, but the error message was &lt;Atributo inválido&gt;
+   At line 85: Expected the error message &lt;Atributo inexistente&gt;, but the error message was &lt;Identificador do carona é inválido&gt;
+   At line 87: Expected the error message &lt;Carona InvÃ¡lida&gt;, but the error message was &lt;Carona Inválida&gt;
+   At line 90: Expected the error message &lt;Trajeto InvÃ¡lida&gt;, but the error message was &lt;Trajeto Inválida&gt;
+   At line 94: Expected the error message &lt;Origem invÃ¡lida&gt;, but the error message was &lt;Origem inválida&gt;
+   At line 95: Expected the error message &lt;Origem invÃ¡lida&gt;, but the error message was &lt;Origem inválida&gt;
+   At line 96: Expected the error message &lt;Origem invÃ¡lida&gt;, but the error message was &lt;Origem inválida&gt;
+   At line 97: Expected the error message &lt;Origem invÃ¡lida&gt;, but the error message was &lt;Origem inválida&gt;
+   At line 98: Expected the error message &lt;Destino invÃ¡lido&gt;, but the error message was &lt;Destino inválido&gt;
+   At line 99: Expected the error message &lt;Destino invÃ¡lido&gt;, but the error message was &lt;Destino inválido&gt;
+   At line 100: Expected the error message &lt;Destino invÃ¡lido&gt;, but the error message was &lt;Destino inválido&gt;
 ======================== 
 
 
