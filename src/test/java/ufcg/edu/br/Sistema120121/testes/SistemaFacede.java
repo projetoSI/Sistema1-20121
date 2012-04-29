@@ -9,6 +9,10 @@ import ufcg.edu.br.Sistema120121.sistema.Hora;
 import ufcg.edu.br.Sistema120121.sistema.Sistema;
 import ufcg.edu.br.Sistema120121.sistema.User;
 
+import java.util.ArrayList;
+
+import easyaccept.EasyAcceptFacade;
+
 public class SistemaFacede {
 
 	// Redistribuir alguns metodos em classes controllers
@@ -124,31 +128,50 @@ public class SistemaFacede {
 		return result;
 	}
 	
-	public int cadastrarCarona(String sessao, String origem, String destino, String data, String hora, int vagas) throws Exception{
+	public int cadastrarCarona(String sessao, String origem, String destino, String data, String hora, String vagas) throws Exception{
 		int result = 0;
 		
-		if (sessao == null || sessao.isEmpty()){
+		if (sessao == null || sessao.isEmpty())
 			throw new Exception("Sessão inválida");
+		
+		try {
+			if (Integer.parseInt(sessao) != idSessao)
+				throw new Exception("Sessão inexistente");
+		} catch (Exception e) {
+			throw new Exception("Sessão inexistente");
 		}
 		
-		if (hora.length() == 5 && (data.length() == 10 || data.length() == 8) /*&& vagas.matches("[0-9]*")*/){
-			Hora horaAux = new Hora(hora);
-			Data dataAux = new Data(data);
-			sistema.addCarona(origem, destino, horaAux, dataAux, vagas, user);
-			idCarona = Integer.parseInt(sessao);
-			carona = new Carona(origem, destino, horaAux, dataAux, vagas, user);
-		}else{
-			throw new Exception();
+		try {
+			Integer.parseInt(vagas); // se a vaga não for um número, null, ou vazia, é inválida e a conversão é o teste!
+		} catch (Exception e) {
+			throw new Exception("Vaga inválida");
 		}
+		
+		Hora horaAux = new Hora(hora);
+		Data dataAux = new Data(data);
+		sistema.addCarona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), user);
+		idCarona = Integer.parseInt(sessao);
+		carona = new Carona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), user);
+
 		return result;
 	}
 	
-	public String getAtributoCarona(int sessao, String atributo) throws Exception{
+	public String getAtributoCarona(String IDCarona, String atributo) throws Exception{
 		String result = null;
 
 		if (atributo == null || atributo.isEmpty())
 			throw new Exception("Atributo inválido");
 		
+		if (IDCarona == null || IDCarona.isEmpty())
+			throw new Exception("Identificador do carona é inválido");
+
+		try {
+			if (IDCarona.isEmpty() || Integer.parseInt(IDCarona) != idCarona)
+				throw new Exception("Item inexistente");
+		} catch (Exception e) {
+			throw new Exception("Item inexistente");
+		}
+
 		if (atributo.equals("origem"))
 				result = carona.getOrigem();
 		else if (atributo.equals("destino"))
@@ -164,32 +187,61 @@ public class SistemaFacede {
 		return result;
 	}
 	
-	public String getTrajeto(String idCarona){
-		return carona.getOrigem() + " - " + carona.getDestino();
+	public String getTrajeto(String IDCarona) throws Exception{
+		String result = "";
+		
+		if (IDCarona == null)
+			throw new Exception("Trajeto Inválida"); // eu sei que tá errado a concordância, mas a culpa é do teste :P
+
+		try {
+			if (IDCarona.isEmpty() || Integer.parseInt(IDCarona) != idCarona)
+				throw new Exception("Trajeto Inexistente");
+		} catch (Exception e) {
+			throw new Exception("Trajeto Inexistente");
+		}
+		
+		result = carona.getOrigem() + " - " + carona.getDestino();
+		
+		return result;
 	}
 	
-	public String getCarona(int id) {
+	public String getCarona(String id) throws Exception{
+		if (id == null)
+			throw new Exception("Carona Inválida");
+
+		try {
+			if (id.isEmpty() || Integer.parseInt(id) != idCarona)
+				throw new Exception("Carona Inexistente");
+		} catch (Exception e) {
+			throw new Exception("Carona Inexistente");
+		}
+
 		return carona.toString();
 	}
 	
 //	ate aqui US03 + 02 + 01
+	
+	
+	
+	
+	
+	
+	
+//	ate aqui US04
+	
 	public static void main(String[] args) {
+		List<String> files = new ArrayList<String>();
+//		files.add("scripts/US01.txt");
+		files.add("scripts/US02.txt");
+//		files.add("scripts/US03.txt");
+//		files.add("scripts/US04.txt");
+//		files.add("scripts/US05.txt");
 
-//		SistemaFacede n = new SistemaFacede();
-//		try {
-//			n.localizarCarona(0,"Jp", "Cg");
-//			n.criarUsuario(null, null, null, null, null);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-		String hora = "12:34";
-		System.out.println(hora.substring(0, 2));
-		System.out.println(hora.substring(3));
-		String data = "12/12/2012";
-		System.out.println(data.substring(0, 2));
-		System.out.println(data.substring(3, 5));
-		System.out.println(data.substring(6));
+
+		EasyAcceptFacade eaFacade = new EasyAcceptFacade(SistemaFacede.getInstanceFacede(),files);
+
+		eaFacade.executeTests();
+
+		System.out.println(eaFacade.getCompleteResults());
 	}
 }

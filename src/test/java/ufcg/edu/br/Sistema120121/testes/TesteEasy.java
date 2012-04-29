@@ -15,7 +15,7 @@ public class TesteEasy {
 
 		List<String> files = new ArrayList<String>();
 		// Put the us1.txt file into the "test scripts" list
-		files.add("scripts/US01.txt");
+		files.add("scripts/US04.txt");
 
 		// Instantiate the Monopoly Game fa�ade
 		SistemaFacede fachadaBigu = SistemaFacede.getInstanceFacede();
