@@ -19,7 +19,7 @@ public class TesteEasy {
 
 		// Instantiate the Monopoly Game fa�ade
 		SistemaFacede fachadaBigu = SistemaFacede.getInstanceFacede();
-
+		
 		// Instantiate EasyAccept fa�ade
 		EasyAcceptFacade eaFacade = new EasyAcceptFacade(fachadaBigu, files);
 
