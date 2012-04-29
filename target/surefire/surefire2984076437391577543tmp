@@ -1,0 +1,29 @@
+#surefire
+#Sun Apr 29 15:35:07 BRT 2012
+testClassesDirectory=/Users/jonhnanthan/git/Sistema1-20121/target/test-classes
+classPathUrl.4=/Users/jonhnanthan/.m2/repository/jdom/jdom/1.0/jdom-1.0.jar
+classPathUrl.3=/Users/jonhnanthan/.m2/repository/ufcg/edu/br/easyaccept/1.0.0/easyaccept-1.0.0.jar
+classPathUrl.2=/Users/jonhnanthan/.m2/repository/junit/junit/4.0/junit-4.0.jar
+useManifestOnlyJar=true
+classPathUrl.1=/Users/jonhnanthan/git/Sistema1-20121/target/classes
+reportsDirectory=/Users/jonhnanthan/git/Sistema1-20121/target/surefire-reports
+classPathUrl.0=/Users/jonhnanthan/git/Sistema1-20121/target/test-classes
+dirscanner.0=directoryScannerOptions
+providerConfiguration=org.apache.maven.surefire.junit4.JUnit4Provider
+testSuiteDefinitionTestSourceDirectory=/Users/jonhnanthan/git/Sistema1-20121/src/test/java
+surefireClassPathUrl.1=/Users/jonhnanthan/.m2/repository/org/apache/maven/surefire/surefire-api/2.7.1/surefire-api-2.7.1.jar
+surefireClassPathUrl.0=/Users/jonhnanthan/.m2/repository/org/apache/maven/surefire/surefire-junit4/2.7.1/surefire-junit4-2.7.1.jar
+report.2=org.apache.maven.surefire.report.XMLReporter
+useSystemClassLoader=true
+report.1=org.apache.maven.surefire.report.BriefFileReporter
+report.0=org.apache.maven.surefire.report.ForkingConsoleReporter
+excludes0=**/*$*
+isTrimStackTrace=true
+dirscanner.0.params=/Users/jonhnanthan/git/Sistema1-20121/target/test-classes|[**/Test*.java, **/*Test.java, **/*TestCase.java]|[**/*$*]
+enableAssertions=true
+includes2=**/*TestCase.java
+failIfNoTests=false
+includes1=**/*Test.java
+dirscanner.0.types=java.io.File|java.util.ArrayList|java.util.ArrayList
+includes0=**/Test*.java
+childDelegation=false

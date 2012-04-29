@@ -228,20 +228,4 @@ public class SistemaFacede {
 	
 	
 //	ate aqui US04
-	
-	public static void main(String[] args) {
-		List<String> files = new ArrayList<String>();
-//		files.add("scripts/US01.txt");
-		files.add("scripts/US02.txt");
-//		files.add("scripts/US03.txt");
-//		files.add("scripts/US04.txt");
-//		files.add("scripts/US05.txt");
-
-
-		EasyAcceptFacade eaFacade = new EasyAcceptFacade(SistemaFacede.getInstanceFacede(),files);
-
-		eaFacade.executeTests();
-
-		System.out.println(eaFacade.getCompleteResults());
-	}
 }
