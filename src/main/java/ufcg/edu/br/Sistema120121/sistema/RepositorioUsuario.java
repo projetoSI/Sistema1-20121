@@ -1,17 +1,16 @@
 package ufcg.edu.br.Sistema120121.sistema;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-import ufcg.edu.br.Sistema120121.excecoes.*;
+import ufcg.edu.br.Sistema120121.excecoes.EmailErrorException;
+import ufcg.edu.br.Sistema120121.excecoes.LoginErrorException;
+import ufcg.edu.br.Sistema120121.excecoes.UserException;
 
 public class RepositorioUsuario {
 
-	private static List<User> usersCadastrados = new ArrayList<User>();
+	private static List<User> usersCadastrados = new LinkedList<User>();
 	private static User newUser;
-	
-	
-	//ADDUSER as verificações de existencia de login e email
 	
 
 	//pelo padrão Creator

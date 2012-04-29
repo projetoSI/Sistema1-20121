@@ -1,11 +1,11 @@
 package ufcg.edu.br.Sistema120121.sistema;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class RepositorioCaronas {
 
-	private static List<Carona> caronasCadastradas = new ArrayList<Carona>();
+	private static List<Carona> caronasCadastradas = new LinkedList<Carona>();
 	private static Carona novaCarona;
 	
 	//pelo padrão Creator
@@ -24,7 +24,7 @@ public class RepositorioCaronas {
 	
 	//padrão EXPERT
 	public static List<Carona> recuperaCaronaUser(User usuario) {//CASO2 : AS CARONAS DO USER
-		List<Carona> caronasUser = new ArrayList<Carona>();
+		List<Carona> caronasUser = new LinkedList<Carona>();
 
 		for (Carona carona : caronasCadastradas) {
 			if (carona.getMotorista().getLogin().equals(usuario.getLogin())) {
@@ -38,7 +38,7 @@ public class RepositorioCaronas {
 	//padrão EXPERT
 	public static List<Carona> recuperaVagaCaronaUser(User usuario){
 		
-		List<Carona> vagaCaronaUser = new ArrayList<Carona>();
+		List<Carona> vagaCaronaUser = new LinkedList<Carona>();
 		
 		for (Carona carona : caronasCadastradas) {
 			
@@ -53,7 +53,7 @@ public class RepositorioCaronas {
 	//padrão EXPERT
 	public static List<Carona> getCaronas(String origem, String destino) throws Exception{//CASO 3: BUSCAR CARONAS POR ORIGEM E DESTINO,
 																									   //E RETORNAR APENAS AS QUE IRÃO OCORRER
-		List<Carona> auxCaronas = new ArrayList<Carona>();
+		List<Carona> auxCaronas = new LinkedList<Carona>();
 		
 		if (origem == null){
 			throw new Exception("Origem Inválida!");
