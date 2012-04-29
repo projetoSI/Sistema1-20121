@@ -1,34 +1,12 @@
 package ufcg.edu.br.Sistema120121.sistema;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.Serializable;
-import java.util.LinkedList;
 import java.util.List;
 
-import javax.naming.BinaryRefAddr;
-
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.adapters.JAXPDOMAdapter;
-import org.jdom.input.SAXBuilder;
-import org.jdom.output.XMLOutputter;
-import org.jdom.transform.XSLTransformer;
-
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.Dom4JDriver;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class Arquivo {
