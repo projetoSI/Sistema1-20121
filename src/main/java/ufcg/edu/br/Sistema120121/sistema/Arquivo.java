@@ -24,16 +24,14 @@ public class Arquivo {
 	private static void geraArquivo(String arquivo,List lista) throws IOException {
 		XStream stream;
 		String dados;
-		BufferedWriter out = null;
 		stream = new XStream(new DomDriver());
 		try {
-			out = new BufferedWriter(new FileWriter(arquivo));
+			BufferedWriter out = new BufferedWriter(new FileWriter(arquivo));
 			dados = stream.toXML(lista);
 			out.write(dados);
+			out.close();
 		} catch (IOException e) {
 			e.getMessage();
-		}finally{
-			out.close();
 		}
 	}
 
@@ -50,18 +48,15 @@ public class Arquivo {
 	 */
 	public static LinkedList lerArquivo(String arquivo) throws IOException{
 		LinkedList temp = null;
-		FileReader input = null;
 		XStream xst;
 		xst = new XStream(new DomDriver());
 		try {
-			input =  new FileReader(arquivo);
-			temp = (LinkedList) xst.fromXML(input);	
+			FileReader	input =  new FileReader(arquivo);
+			temp = (LinkedList) xst.fromXML(input);
+			input.close();
 		} catch (FileNotFoundException e) {
 			System.err.println(e.getLocalizedMessage());
-		} finally {
-			input.close();
 		}
-		
 		return temp; 
 	}
 	
@@ -70,8 +65,8 @@ public class Arquivo {
 	 * @throws IOException
 	 */
 	public static void escreveArquivo() throws IOException {
-		geraArquivo("Arquivos/arquivoUser.xml", getUsuarios());
-		geraArquivo("Arquivos/arquivoCarona.xml", getCaronas());
+		geraArquivo("c://Arquivos/arquivoUser.xml", getUsuarios());
+		geraArquivo("c://Arquivos/arquivoCarona.xml", getCaronas());
 	}
 	
 	/**

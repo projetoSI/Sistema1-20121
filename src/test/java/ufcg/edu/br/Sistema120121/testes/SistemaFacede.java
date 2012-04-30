@@ -272,20 +272,5 @@ public void aceitarSolicitacaoPontoEncontro(String IDSessao, String IDSolicitaca
 		return perfil;
 		
 	}
-	public static void main(String[] args) throws Exception {
-
-		  List<String> files = new ArrayList<String>();
-		  // Put the us1.txt file into the "test scripts" list
-		  files.add("scripts/US06.txt");
-		  // Instantiate the Monopoly Game façade
-		  SistemaFacede monopolyGameFacade = getInstanceFacede();
-		  // Instantiate EasyAccept façade
-		  EasyAcceptFacade eaFacade = new EasyAcceptFacade(monopolyGameFacade,
-		    files);
-		  // Execute the tests
-		  eaFacade.executeTests();
-		  // Print the tests execution results
-		  System.out.println(eaFacade.getCompleteResults());
-		 }
 	
 }

@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/main/java=UTF-8
-encoding//src/test/java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/App.java=ISO-8859-1
+encoding/<project>=ISO-8859-1
+encoding/pom.xml=ISO-8859-1
 separateDerivedEncodings=true
