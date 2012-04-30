@@ -5,6 +5,9 @@ import java.util.List;
 public class Perfil {
 
 	private User usuario;
+	private int caronasSeguras;
+	private int caronasNaoFuncionaram;
+	private int faltas;
 	
 	/**
 	 * Construtor de uma perfil para usuario.
@@ -13,6 +16,26 @@ public class Perfil {
 	 */
 	public Perfil (User usuario){
 		this.usuario = usuario;
+	}
+	
+	public String exibeNome() {
+		return usuario.getNome();
+	}
+	
+	public String exibeEndereco() {
+		return usuario.getEndereco();
+	}	
+	
+	public String exibeEmail() {
+		return usuario.getEmail();
+	}
+	
+	public int exibeCaronasSeguras(){
+		return caronasSeguras;
+	}
+	
+	public int exibeCaronasNaoFuncionaram(){
+		return caronasNaoFuncionaram;
 	}
 	
 	/**
@@ -25,17 +48,7 @@ public class Perfil {
 									+ usuario.getEndereco() +  " " 
 									+ usuario.getTelefone();
 	}
-	
-	/**
-	 * Exibe o perfil do usuario.
-	 * @return
-	 * 		O perfil do usuario.
-	 */
-	public String exibeMeuPerfil() {
-		return exibeCadastro() + usuario.getListaAmigos() + exibeHistoricoDeCaronas(usuario) + exibeHitoricoDeVagas(usuario);
-
-	}
-	
+		
 	/**
 	 * Exibe o historico de caronas dada pelo usuario.
 	 * @param usuario
@@ -43,8 +56,10 @@ public class Perfil {
 	 * @return
 	 * 		A lista de caronas de um determinado usuario.
 	 */
-	private List<Carona> exibeHistoricoDeCaronas(User usuario) {
-		return RepositorioCaronas.recuperaCaronaUser(usuario);
+	public String exibeHistoricoDeCaronas() {
+		List<Carona> historico = RepositorioCaronas.recuperaCaronaUser(usuario);
+		historico.addAll(AcessaDados.getCaronasDoUsuario(usuario));
+		return historico.toString();
 	}
 
 	/**
@@ -54,8 +69,12 @@ public class Perfil {
 	 * @return
 	 * 		A lista de caronas de um determinado usuario.
 	 */
-	private List<Carona> exibeHitoricoDeVagas(User usuario) {
+	public List<Carona> exibeHistoricoDeVagas() {
 		return RepositorioCaronas.recuperaVagaCaronaUser(usuario);
+	}
+
+	public int exibeFaltas() {
+		return faltas;
 	}
 	
 }

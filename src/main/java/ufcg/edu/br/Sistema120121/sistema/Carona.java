@@ -1,8 +1,10 @@
 package ufcg.edu.br.Sistema120121.sistema;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import ufcg.edu.br.Sistema120121.excecoes.LocalErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.QuantityVacancyErrorException;
@@ -16,8 +18,9 @@ public class Carona {
 	private int qntVagas;
 	private User motorista;
 	private IdentificadorCarona ID;
-	private List<User> caroneiros;
+	private Map<User,Situacao> caroneiros;
 	private PontoDeEncontro pontoDeEncontro;
+	public enum Situacao{FALTOU,NAO_FALTOU};
 	
 	
 	/**
@@ -48,7 +51,7 @@ public class Carona {
 		setQntVagas(qntVagas);
 		this.motorista = motorista;
 		this.ID = new IdentificadorCarona(motorista.getLogin(), data, hora);
-		caroneiros = new LinkedList<User>();
+		caroneiros = new HashMap<User,Situacao>();
 		pontoDeEncontro = new PontoDeEncontro();
 	}
 
@@ -222,7 +225,7 @@ public class Carona {
 			throw new Exception("Numero de vagas esgotado");
 		}else{
 			qntVagas = (qntVagas -1 );
-			caroneiros.add(user);
+			caroneiros.put(user,Situacao.NAO_FALTOU);
 		
 		}
 	}
@@ -236,7 +239,7 @@ public class Carona {
 	 * 		false - caso o para o caso do usuario não possuir uma vaga.
 	 */
 	public boolean verificaCaroneiro(User user){
-		return caroneiros.contains(user);
+		return caroneiros.containsKey(user);
 	}
 	
 	/**
@@ -246,7 +249,7 @@ public class Carona {
 	 */
 	public String getCaroneiros(){
 		String CaroneirosAprovados = "";
-		Iterator<User> it = caroneiros.iterator();
+		Iterator<User> it = caroneiros.keySet().iterator();
 		if (it.hasNext()) {
 			CaroneirosAprovados += it.next().getNome() + ", ";
 		}
@@ -262,6 +265,8 @@ public class Carona {
 		return pontoDeEncontro;
 	}
 	
+	
+	
 	public void setPontoDeEncontro(String pontoDeEncontro) throws Exception {
 		this.pontoDeEncontro.sugerirPonto(pontoDeEncontro);
 	}
@@ -274,6 +279,28 @@ public class Carona {
 	public String detalharCarona(){
 		return "Informacoes da carona: " + toString() + "Motorista: " + getMotorista() + "Caroneiros: " + getCaroneiros();
 		
+	}
+	
+	/**
+	 * Retorna a situacao de um determinado caroneiro.
+	 * @param caroneiro
+	 * 		O caroneiro que tera a situacao retornada.
+	 * @return
+	 * 		A situacao do caroneiro.
+	 */
+	public Situacao getSituacaoCaroneiro(User caroneiro){
+		return caroneiros.get(caroneiro);
+	}
+	
+	/**
+	 * Altera a situacao de um determinado usuario em relacao a carona
+	 * @param situacao
+	 * 		A nova situacao do usuario
+	 * @param caroneiro
+	 * 		O caroneiro que tera a situacao alterada.
+	 */
+	public void setSituacao(Situacao situacao,User caroneiro){
+		caroneiros.put(caroneiro, situacao);
 	}
 
 }

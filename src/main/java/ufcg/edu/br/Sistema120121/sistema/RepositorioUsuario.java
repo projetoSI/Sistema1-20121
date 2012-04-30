@@ -93,8 +93,9 @@ public class RepositorioUsuario {
 	 * 		O tipo de busca.
 	 * @return
 	 * 		O usuario.
+	 * @throws Exception 
 	 */
-	private static User foundUser(String argumento){
+	private static User foundUser(String argumento) throws Exception{
 		User usuario = null;
 		
 		for (User user : usersCadastrados) {
@@ -103,7 +104,6 @@ public class RepositorioUsuario {
 				break;
 			}
 		}
-				
 		return usuario;
 	}
 }

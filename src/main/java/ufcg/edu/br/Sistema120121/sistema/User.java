@@ -10,6 +10,7 @@ import ufcg.edu.br.Sistema120121.excecoes.LoginErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.NameErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.PasswordErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.PhoneErrorException;
+import ufcg.edu.br.Sistema120121.sistema.Carona.Situacao;
 
 public class User{
 	 
@@ -88,8 +89,8 @@ public class User{
 	 * @throws LoginErrorException
 	 * 		Caso o login esteja em um formato incorreto.
 	 */
-	public String getPerfil() throws AdressErrorException, EmailErrorException, PasswordErrorException, NameErrorException, PhoneErrorException, LoginErrorException{
-		return new Perfil(new User(login, senha, nome, endereco, email, telefone)).exibeMeuPerfil();
+	public Perfil getPerfil() throws AdressErrorException, EmailErrorException, PasswordErrorException, NameErrorException, PhoneErrorException, LoginErrorException{
+		return new Perfil(new User(login, senha, nome, endereco, email, telefone));
 	}
 
 	/**
@@ -296,7 +297,33 @@ public class User{
 		return "Você não pode vizualizar os detalhes dessa carona.";
 	}
 
-
+	/**
+	 * Retorna se um usuario faltou ou nao a carona
+	 * @param carona
+	 * 		A carona a ser verificada.
+	 * @param user
+	 * 		O usuario a ser verificado.
+	 * @return
+	 * 		Se o usuario foi ou não se encontrar com a carona.
+	 */
+	public Situacao getSitucao(Carona carona,User user){
+		return carona.getSituacaoCaroneiro(user);
+	}
+	
+	/**
+	 * Altera a situacao de um determinado usuario em realcao a uma carona
+	 * @param carona
+	 * 		A carona em questao.
+	 * @param user
+	 * 		O usuario que vai ter a situacao alterada
+	 * @param situacao
+	 * 		A atual situacao do usuario
+	 */
+	public void setSituacao(Carona carona,User user,Situacao situacao){
+		carona.setSituacao(situacao, user);
+	}
+	
+	
 }
 
 	

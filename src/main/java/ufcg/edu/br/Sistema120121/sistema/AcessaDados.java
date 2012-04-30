@@ -107,6 +107,10 @@ public class AcessaDados {
 		return RepositorioCaronas.getCarona(id);
 	}
 	
+	public static List<Carona> historicoCarona(User usuario){
+		return RepositorioCaronas.getTodasCaronas(usuario);
+	}
+	
 	
 	
 

@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: ufcg.edu.br.Sistema120121.testes.TesteEasy
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.262 sec <<< FAILURE!
-testarEasyAcceptScript(ufcg.edu.br.Sistema120121.testes.TesteEasy)  Time elapsed: 0.259 sec  <<< FAILURE!
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.338 sec <<< FAILURE!
+testarEasyAcceptScript(ufcg.edu.br.Sistema120121.testes.TesteEasy)  Time elapsed: 0.335 sec  <<< FAILURE!
 java.lang.AssertionError: null
 	at org.junit.Assert.fail(Assert.java:58)
 	at org.junit.Assert.assertTrue(Assert.java:27)

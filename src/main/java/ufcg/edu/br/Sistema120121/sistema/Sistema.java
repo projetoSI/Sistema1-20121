@@ -27,7 +27,7 @@ public class Sistema {
 	 * 		Telefone do novo usuario.
 	 * @throws Exception
 	 */
-	public void addUsuario(String login,String senha,String nome,String endereco,String email,String telefone) throws Exception{
+	public static void addUsuario(String login,String senha,String nome,String endereco,String email,String telefone) throws Exception{
 		AcessaDados.addUsuario(login, senha, nome,endereco,email,telefone);
 	}
 	
@@ -56,7 +56,7 @@ public class Sistema {
 	 * @return
 	 * 		A lista de usuarios cadastrados.
 	 */
-	public List<User> getUsuariosCadastrados() {
+	public static List<User> getUsuariosCadastrados() {
 		return AcessaDados.getUsuariosCadastrados();
 	}
 	
@@ -68,7 +68,7 @@ public class Sistema {
 	 * 		O usuario.
 	 * @throws Exception
 	 */
-	public User getUser(String login) throws Exception{
+	public static User getUser(String login) throws Exception{
 		return AcessaDados.getUser(login);
 		
 	}
@@ -83,7 +83,7 @@ public class Sistema {
 	 * 		O usuario.
 	 * @throws Exception
 	 */
-	public User acessarConta(String login,String senha) throws Exception {
+	public static User acessarConta(String login,String senha) throws Exception {
 		User usuario = null;
 		
 		if (senha == null ||senha.isEmpty()) {//Tah correto,aki?!
@@ -112,7 +112,7 @@ public class Sistema {
 	 * 		A carona desejada.
 	 * @throws Exception
 	 */
-	public List<Carona> getCaronas(String origem, String destino) throws Exception {
+	public static List<Carona> getCaronas(String origem, String destino) throws Exception {
 		return AcessaDados.localizarCarona(origem, destino);
 	}
 	
@@ -120,12 +120,5 @@ public class Sistema {
 		return AcessaDados.getCaronaID(id);
 		
 	}
-	
-	//localizarCaronas -> FEITO!
-	//solicitarVaga
-	//sugerirPontodeEncontro
-	
-	
-	
-
+	 
 }

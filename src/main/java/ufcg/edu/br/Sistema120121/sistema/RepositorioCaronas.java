@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import ufcg.edu.br.Sistema120121.sistema.Carona.Situacao;
+
 public class RepositorioCaronas {
 
 	private static List<Carona> caronasCadastradas = new LinkedList<Carona>();
@@ -146,6 +148,20 @@ public class RepositorioCaronas {
 			throw new Exception("Item inexistente");
 		}
 		return carona;
+	}
+
+	public static List<Carona> getTodasCaronas(User usuario) {
+		List<Carona> historico = null;
+		
+		for (Carona carona: recuperaCaronaUser(usuario)) {
+			if (carona.getCaroneiros().contains((CharSequence) usuario)
+					&& carona.getSituacaoCaroneiro(usuario).equals(
+							Situacao.NAO_FALTOU)
+					|| carona.getMotorista().equals(usuario)) {
+				historico.add(carona);
+			}
+	}
+		return historico;
 	}
 	
 
