@@ -13,11 +13,31 @@ public class RepositorioUsuario {
 	private static List<User> usersCadastrados = new LinkedList<User>();
 	private static User newUser;
 	
+	/**
+	 * Atualiza o repositorio de usuario.
+	 * @throws IOException
+	 *		Caso não consiga ler o arquivo. 		
+	 */
 	public void atualizaRepositorio() throws IOException {
 		usersCadastrados = Arquivo.lerArquivo("Arquivos/arquivoUser.xml");
 	}
 
-	//pelo padrão Creator
+	/**
+	 * Adicona um novo usuario ao repositorio.
+	 * @param login
+	 * 		Login do novo usuario.
+	 * @param senha
+	 * 		Senha do novo usuario.
+	 * @param nome
+	 * 		Nome do novo usuario.
+	 * @param endereco
+	 * 		Endereço do novo usuario.
+	 * @param email
+	 * 		Email do novo usuario.
+	 * @param telefone
+	 * 		Telefone do novo usuario.
+	 * @throws Exception
+	 */
 	public static void addUser(String login, String senha, String nome,	String endereco,String email, String telefone) throws Exception{
 		newUser = new User(login,senha,nome,endereco,email,telefone);
 		
@@ -28,25 +48,52 @@ public class RepositorioUsuario {
 		else if(getUsuarioLogin(login) != null) throw new UserException("Já existe um usuário com este login");
 		
 	}
-	//padrão EXPERT
+	
+	/**
+	 * Retorna os usuarios do respositorio
+	 * @return
+	 * 		Os usuarios do repositorios.
+	 */
 	public static List<User> getUsuarios() {
 		return usersCadastrados;
 		 
 	}
-	//padrão EXPERT
+	
+	/**
+	 * Retorna um determinado usuario através do Email.
+	 * @param email
+	 * 		O email do usuario a ser buscado.
+	 * @return
+	 * 		O usuario.
+	 * @throws Exception
+	 */
 	public static User getUsuarioEmail(String email) throws Exception{
 		if(email == null || email.isEmpty())
 			throw new EmailErrorException("Email inválido");
 		return foundUser(email);				
 	}
 	
-	//padrão EXPERT	
+	/**
+	 * Retorna um determinado usuario através do login
+	 * @param login
+	 * 		O login do usuario a ser buscado.
+	 * @return
+	 * 		O usuario.
+	 * @throws Exception
+	 */
 	public static User getUsuarioLogin(String login) throws Exception{
 		if(login == null || login.isEmpty())
 			throw new LoginErrorException("Login inválido");
 		return foundUser(login);		
 	}
 	
+	/**
+	 * Pesquisa um determinado usuario , atraves de seu login ou email.
+	 * @param argumento
+	 * 		O tipo de busca.
+	 * @return
+	 * 		O usuario.
+	 */
 	private static User foundUser(String argumento){
 		User usuario = null;
 		

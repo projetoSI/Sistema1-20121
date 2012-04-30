@@ -17,7 +17,33 @@ public class UserMotorista extends User {
 
 	List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 	private LinkedList<Solicitacao> solicitacoesAceitas;
-	
+	/**
+	 * Construtor de um usuario motorista.
+	 * @param login
+	 * 		Login do novo usuario.
+	 * @param senha
+	 * 		Senha do novo usuario.
+	 * @param nome
+	 * 		Nome do novo usuario.
+	 * @param endereco
+	 * 		Endereço do novo usuario.
+	 * @param email
+	 * 		Email do novo usuario.
+	 * @param telefone
+	 * 		Telefone do novo usuario.
+	 * @throws AdressErrorException
+	 * 		Caso o endereço esteja em um formato incorreto.
+	 * @throws EmailErrorException
+	 * 		Caso o email esteja em um formato incorreto
+	 * @throws PasswordErrorException
+	 * 		Caso a senha inserida seja invalida.
+	 * @throws NameErrorException
+	 * 		Caso o nome esteja incorreto
+	 * @throws PhoneErrorException
+	 * 		Caso o telefone esteja em um formato incorreto.
+	 * @throws LoginErrorException
+	 * 		Caso o login ja exista ou esteja em um formato incorreto.
+	 */
 	public UserMotorista(String login, String senha, String nome,String endereco, String email, String telefone)throws AdressErrorException, EmailErrorException,PasswordErrorException, NameErrorException, PhoneErrorException,LoginErrorException {
 		super(login, senha, nome, endereco, email, telefone);
 		solicitacoes = new LinkedList<Solicitacao>();

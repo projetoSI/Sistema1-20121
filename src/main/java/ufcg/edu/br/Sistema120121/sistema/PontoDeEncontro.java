@@ -10,6 +10,9 @@ public class PontoDeEncontro {
 	private List<String> blackList = new LinkedList<String>(); 
 	private String pontoValido;
 		
+	/**
+	 * Construtor de um ponto de encontro.
+	 */
 	public PontoDeEncontro() {
 	}
 	
@@ -22,10 +25,18 @@ public class PontoDeEncontro {
 		return pontoValido;
 	}
 	
+	/**
+	 * Aceita um determinado ponto de encontro.
+	 */
 	public void aceitar(){
 		pontoValido = sugestaoAtual;
 	}
 	
+	/**
+	 * Verifica a sugestão de ponto de encontro.
+	 * @return
+	 * 		O ponto de encontro.
+	 */
 	public String getSugestaoAtual() {
 		return sugestaoAtual;
 	}
@@ -42,14 +53,10 @@ public class PontoDeEncontro {
 		sugestaoAtual = novaSugestao;
 	}
 	
+	/**
+	 * Retorna as informações do ponto de encontro em forma de String.
+	 */
 	public String toString(){
 		return "Local do encontro: " + pontoValido;
-	}
-	
-	
-	
-	
-	
-	
-	
+	}	
 }
