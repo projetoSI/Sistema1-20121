@@ -1,5 +1,6 @@
 package ufcg.edu.br.Sistema120121.sistema;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,6 +9,10 @@ public class RepositorioCaronas {
 	private static List<Carona> caronasCadastradas = new LinkedList<Carona>();
 	private static Carona novaCarona;
 	
+	public void atualizaRepositorio() throws IOException {
+		caronasCadastradas = Arquivo.lerArquivo("Arquivos/arquivoCarona.xml");
+	}
+	
 	//pelo padrão Creator
 	public static void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
 		novaCarona = new Carona(origem, destino, hora, data, qntVagas, motorista);
@@ -15,6 +20,7 @@ public class RepositorioCaronas {
 			throw new Exception("Uma carona já foi cadastrada com essas informações");
 		}
 		caronasCadastradas.add(novaCarona);
+		Arquivo.setCaronas(caronasCadastradas);
 	}
 	
 	//padrão EXPERT
@@ -56,10 +62,10 @@ public class RepositorioCaronas {
 		List<Carona> auxCaronas = new LinkedList<Carona>();
 		
 		if (origem == null){
-			throw new Exception("Origem Inválida!");
+			throw new Exception("Origem inválida");
 		}
 		if (destino == null){
-			throw new Exception("Destino Inválido!");
+			throw new Exception("Destino inválido");
 		}
 		
 		if (destino.isEmpty() && origem.isEmpty()){

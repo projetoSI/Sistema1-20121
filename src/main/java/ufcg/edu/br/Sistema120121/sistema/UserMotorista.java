@@ -29,7 +29,7 @@ public class UserMotorista extends User {
 	 * 		Caso a solicitação seja nula
 	 */
 	public void addSolicitacao(Solicitacao solicitacao)throws Exception {
-		if (solicitacao == null) throw new Exception("Solicitação não pode ser nula");
+		if (solicitacao == null) throw new Exception("Solicitação inválida");
 		solicitacoes.add(solicitacao);
 	}
 	
@@ -45,16 +45,12 @@ public class UserMotorista extends User {
 	 * @throws Exception
 	 * 		Pro caso da solicitação ser nula ou não existir essa solicitação.
 	 */
-	public void avaliarSolicitacao(Solicitacao solicitacao,boolean avalicao,String pontoDeEncontro) throws Exception{
-		if (solicitacao == null || !solicitacoes.contains(solicitacao)) throw new Exception("Não existe esta solicitação");
-		
-		if (avalicao){
+	public void avaliarSolicitacao(Solicitacao solicitacao) throws Exception{
+		if (solicitacao == null || !solicitacoes.contains(solicitacao)) {
+			throw new Exception("Solicitação inexistente");
+		} else {
 			solicitacao.confirmarCarona();
-		}else{
-			if (!pontoDeEncontro.isEmpty()) solicitacao.AlterarLocalDeEncontro(pontoDeEncontro);
-			else solicitacao.cancelarCarona();
-		}		
-		
+		}	
 	}
 	
 	/**

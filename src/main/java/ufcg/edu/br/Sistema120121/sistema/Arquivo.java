@@ -21,7 +21,7 @@ public class Arquivo {
 	 * 
 	 * @throws IOException
 	 */
-	public static void escreveArquivo(String arquivo,List lista) throws IOException {
+	private static void geraArquivo(String arquivo,List lista) throws IOException {
 		XStream stream;
 		String dados;
 		BufferedWriter out = null;
@@ -47,21 +47,32 @@ public class Arquivo {
 	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
-	public static LinkedList lerArquivo(String arquivo1) throws IOException{
+	public static LinkedList lerArquivo(String arquivo) throws IOException{
 		LinkedList temp = null;
 		FileReader input = null;
 		XStream xst;
 		xst = new XStream(new DomDriver());
 		try {
-			input =  new FileReader(arquivo1);
+			input =  new FileReader(arquivo);
 			temp = (LinkedList) xst.fromXML(input);	
 		} catch (FileNotFoundException e) {
-			return (new LinkedList());
+			System.err.println(e.getLocalizedMessage());
 		} finally {
 			input.close();
 		}
 		
 		return temp; 
+	}
+	
+	public static void escreveArquivo() throws IOException {
+		geraArquivo("Arquivos/arquivoUser.xml", getUsuarios());
+		geraArquivo("Arquivos/arquivoCarona.xml", getCaronas());
+	}
+	
+	public static void zeraArquivos() throws IOException {
+		setUsuarios(new LinkedList<User>());
+		setCaronas(new LinkedList<Carona>());
+		escreveArquivo();
 	}
 
 	public static List<User> getUsuarios() {
@@ -80,13 +91,5 @@ public class Arquivo {
 		Arquivo.caronas = caronas;
 	}
 
-	public static void main(String[] args) throws Exception {
-		RepositorioUsuario.addUser("asas", "asas12", "asasaeeqw", "saoskok","asas@sasa.com", "123445677");
-		RepositorioUsuario.addUser("asggs", "ggsas12", "asasaeeqw", "saoskok","asas@sasds.com", "123445674");
-		RepositorioUsuario.addUser("asbbs", "acxas12", "asasaeeqw", "saoskok","abcas@sasa.com", "1245445677");;
-		setUsuarios(RepositorioUsuario.getUsuarios());
-		escreveArquivo("d://arquivoUsersXML.xml",getUsuarios());
-		System.out.println(lerArquivo("d://arquivoXML.xml"));
-	}
 
 }

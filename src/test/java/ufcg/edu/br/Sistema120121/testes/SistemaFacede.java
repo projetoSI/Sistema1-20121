@@ -1,8 +1,10 @@
 package ufcg.edu.br.Sistema120121.testes;
 
+import java.io.IOException;
 import java.util.List;
 
 import ufcg.edu.br.Sistema120121.excecoes.UserException;
+import ufcg.edu.br.Sistema120121.sistema.Arquivo;
 import ufcg.edu.br.Sistema120121.sistema.Carona;
 import ufcg.edu.br.Sistema120121.sistema.Data;
 import ufcg.edu.br.Sistema120121.sistema.Hora;
@@ -42,16 +44,10 @@ public class SistemaFacede {
 		sistema.addUsuario(login, "123", nome, endereco, email, "112121212");
 	}
 
-	public void zerarSistema() {
-		sistema = new Sistema();
-		usuarios = sistema.getUsuariosCadastrados();
+	public void zerarSistema() throws IOException {
 		idSessao = 0;
 		idCarona = idSessao;
-
-		// ACREDITO QUE ISSO É O QUE DEVE SER FEITO, AFINAL É PRECISO
-		// "REINICIAR" O SISTEMA -> Jonh...
-		// acho q esse metodo deve tah relacionado com o goal "clean" do maven!!
-		// -> Rafael
+		Arquivo.zeraArquivos();
 	}
 
 	public String getAtributoUsuario(String login, String atributo)
@@ -86,14 +82,9 @@ public class SistemaFacede {
 		return result;
 	}
 
-	public void encerrarSistema() {
-		// TOMANDO O NOME DO METODO COMO BASE, NÃO SERIA APENAS UM
-		// System.exit(1) ?? -> Jonh
-		// acho q esse metodo deve tah relacionado com algum goal do maven!! ->
-		// Rafael
+	public void encerrarSistema() throws IOException {
+		Arquivo.escreveArquivo();
 	}
-
-	// ate aki, US01.
 	
 	
 	public String localizarCarona(int sessão, String origem, String destino) throws Exception{
