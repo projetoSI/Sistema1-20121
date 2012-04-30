@@ -2,7 +2,7 @@ package ufcg.edu.br.Sistema120121.sistema;
 
 public class Solicitacao {
 	
-	private PontoDeEncontro pontoDeEncontro;
+	private PontoDeEncontro pontoDeEncontro = new PontoDeEncontro();
 	private Carona caronaDesejada;
 	private User caroneiro;
 	

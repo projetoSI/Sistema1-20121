@@ -227,12 +227,13 @@ public class SistemaFacede {
 	}
 	
 	public Solicitacao solicitarVagaPontoEncontro(String IDSessao, String IDCarona, String ponto) throws Exception{
-		solicitacao = new Solicitacao(Sistema.getCaronaID(IDCarona), user, ponto);
+		if (IDSessao != null && IDCarona != null && user != null)
+			solicitacao = new Solicitacao(Sistema.getCaronaID(IDCarona), user, ponto);
 		return solicitacao;
 	}
 	
 	public String getAtributoSolicitacao(String IDSolicitacao, String atributo) throws Exception{
-		String result = null;
+		String result = "";
 		
 		if (atributo.equals("origem"))
 			result = solicitacao.getCaronaDesejada().getOrigem();
@@ -243,7 +244,7 @@ public class SistemaFacede {
 		else if (atributo.equals("Dono da solicitacao"))
 			result = solicitacao.getCaroneiro();
 		else if (atributo.equals("Ponto de Encontro"))
-			result = solicitacao.getPontoDeEncontro().getPontoDeEcontro();
+			result = solicitacao.getPontoDeEncontro().getSugestaoAtual();
 		else
 			throw new Exception("Atributo inexistente");
 		
@@ -254,6 +255,9 @@ public class SistemaFacede {
 		
 	}
 	
+	public void desistirRequisicao(String IDSessao, String IDCarona, String IDSolicitacao){
+		
+	}
 	
 //	US04
 	public static void main(String[] args) throws Exception {
