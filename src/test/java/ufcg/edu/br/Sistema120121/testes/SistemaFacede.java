@@ -85,7 +85,6 @@ public class SistemaFacede {
 	public void encerrarSessao(String login){
 		if (user != null && login.equals(user.getLogin())){
 			user = null;
-			solicitacao = null;
 		}
 	}
 
