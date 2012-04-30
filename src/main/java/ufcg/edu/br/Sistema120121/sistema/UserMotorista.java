@@ -1,6 +1,7 @@
 package ufcg.edu.br.Sistema120121.sistema;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import ufcg.edu.br.Sistema120121.excecoes.AdressErrorException;
@@ -15,9 +16,12 @@ public class UserMotorista extends User {
 	
 
 	List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
+	private LinkedList<Solicitacao> solicitacoesAceitas;
 	
 	public UserMotorista(String login, String senha, String nome,String endereco, String email, String telefone)throws AdressErrorException, EmailErrorException,PasswordErrorException, NameErrorException, PhoneErrorException,LoginErrorException {
 		super(login, senha, nome, endereco, email, telefone);
+		solicitacoes = new LinkedList<Solicitacao>();
+		solicitacoesAceitas = new LinkedList<Solicitacao>();
 	
 	}
 	
@@ -33,37 +37,31 @@ public class UserMotorista extends User {
 		solicitacoes.add(solicitacao);
 	}
 	
+	public void rejeitaSolicitacao(Solicitacao solicitacao) throws Exception {
+		if(solicitacoes.contains(solicitacao)){
+			solicitacoes.remove(solicitacao);			
+		}else{
+			throw new Exception("Solicitacao Inexistente");
+		}
+		
+	}
+	
 	/**
-	 * Avalia a solicitação de um determinado caroneiro,podendo aceitar,recusar ou alterar o ponto de encontro da solicitação.
+	 * Aceita a solicitação de um determinado caroneiro.Retirando da lista de solicitações.
 	 * @param solicitacao
-	 * 		A solicitação a ser avaliada.
-	 * @param avalicao
-	 * 		true - caso o motorista aceite os termos da solicitacao
-	 * 		false - caso o motorista recuse ou deseje mudar o local de encontro. 
-	 * @param pontoDeEncontro
-	 * 		Caso o motorista aceite os termos da solicitação mas deseje alterar o ponto de encontro.
+	 * 		A solicitação a ser aceita.
 	 * @throws Exception
-	 * 		Pro caso da solicitação ser nula ou não existir essa solicitação.
+	 * 		Pro caso da solicitação ser invalida.
 	 */
 	public void avaliarSolicitacao(Solicitacao solicitacao) throws Exception{
 		if (solicitacao == null || !solicitacoes.contains(solicitacao)) {
 			throw new Exception("Solicitação inexistente");
 		} else {
 			solicitacao.confirmarCarona();
+			solicitacoes.remove(solicitacao);
+			solicitacoesAceitas.add(solicitacao);
 		}	
 	}
 	
-	/**
-	 * Retorna todas as solicitações que o motorista possui
-	 * @return
-	 * 		todas as solicitações do motorista.
-	 */
-	public String getSolicitacoesRealizadas(){
-		String realizadas = "";
-		for (Solicitacao solicitacao : solicitacoes) {
-			realizadas += solicitacao.toString();
-		}
-		if (realizadas.isEmpty()) return "Não existe solicitações";else return realizadas; 
-	}
 	
 }

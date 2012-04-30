@@ -1,15 +1,16 @@
 package ufcg.edu.br.Sistema120121.sistema;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class PontoDeEncontro {
 
 	
-	private String pontoDeEcontro;
-	public enum Situacao{SIM,NAO,ESPERA,MUDANCA};
-	private Situacao avaliacao;
+	private String sugestaoAtual;
+	private List<String> blackList = new LinkedList<String>(); 
+	private String pontoValido;
 		
-	public PontoDeEncontro(String pontoDeEncontro) {
-		this.pontoDeEcontro = pontoDeEncontro;
-		avaliacao = Situacao.ESPERA;
+	public PontoDeEncontro() {
 	}
 	
 	/**
@@ -18,43 +19,31 @@ public class PontoDeEncontro {
 	 * 		O ponto de encontro.
 	 */
 	public String getPontoDeEcontro() {
-		return pontoDeEcontro;
+		return pontoValido;
+	}
+	
+	public void aceitar(){
+		pontoValido = sugestaoAtual;
+	}
+	
+	public String getSugestaoAtual() {
+		return sugestaoAtual;
 	}
 
 	/**
-	 * Altera o local do ponto de encontro.
-	 * @param pontoDeEcontro
-	 * 		O novo ponto de encontro.
-	 * @throws Exception
-	 * 		Se o novo ponto de encontro for vazio.
-	 */
-	public void alterarPontoDeEncontro(String pontoDeEcontro)throws Exception {
-		if(pontoDeEcontro.isEmpty()) throw new Exception("O novo ponto de encontro não pode ser vazio");
-		this.pontoDeEcontro = pontoDeEcontro;
-		this.avaliacao = Situacao.MUDANCA;
-	}
-
-	/**
-	 * A situacao da carona,se ela ja foi avaliada ou não.
-	 * @return
-	 * 		A situação da carona
-	 */
-	public Situacao getAvaliacao() {
-		return avaliacao;
-	}
-
-	/**
-	 * Avalia o ponto de encontro.
+	 * Sugere um ponto de encontro.
 	 * @param escolha
 	 * 		true - caso o ponto de encontro seja confirmado.
 	 * 		false - caso o ponto de econtro seja recusado.
+	 * @throws Exception 
 	 */
-	public void avaliarPonto(boolean escolha){
-		if(escolha) avaliacao = Situacao.SIM; else avaliacao = Situacao.NAO;
+	public void sugerirPonto(String novaSugestao) throws Exception{
+		if(blackList.contains(novaSugestao))throw new Exception("Ponto inválido");
+		sugestaoAtual = novaSugestao;
 	}
 	
 	public String toString(){
-		return "Local do encontro: " + pontoDeEcontro + "Situacao da avaliacao: " + avaliacao;
+		return "Local do encontro: " + pontoValido;
 	}
 	
 	

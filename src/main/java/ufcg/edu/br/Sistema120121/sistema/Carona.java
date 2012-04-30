@@ -1,6 +1,7 @@
 package ufcg.edu.br.Sistema120121.sistema;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import ufcg.edu.br.Sistema120121.excecoes.LocalErrorException;
@@ -16,6 +17,7 @@ public class Carona {
 	private User motorista;
 	private IdentificadorCarona ID;
 	private List<User> caroneiros;
+	private PontoDeEncontro pontoDeEncontro;
 
 	public Carona(String origem, String destino, Hora hora, Data data, int qntVagas, User motorista) throws LocalErrorException, QuantityVacancyErrorException {
 		setOrigem(origem);
@@ -25,7 +27,8 @@ public class Carona {
 		setQntVagas(qntVagas);
 		this.motorista = motorista;
 		this.ID = new IdentificadorCarona(motorista.getLogin(), data, hora);
-		caroneiros = new ArrayList<User>();
+		caroneiros = new LinkedList<User>();
+		pontoDeEncontro = new PontoDeEncontro();
 	}
 
 	public IdentificadorCarona getID(){
@@ -128,6 +131,9 @@ public class Carona {
 			CaroneirosAprovados += it.next().getNome() + ", ";
 		}
 		return CaroneirosAprovados;
+	}
+	public PontoDeEncontro getPontoDeEncontro() {
+		return pontoDeEncontro;
 	}
 
 }

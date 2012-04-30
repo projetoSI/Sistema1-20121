@@ -1,6 +1,7 @@
 package ufcg.edu.br.Sistema120121.sistema;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import ufcg.edu.br.Sistema120121.excecoes.AdressErrorException;
@@ -9,16 +10,15 @@ import ufcg.edu.br.Sistema120121.excecoes.LoginErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.NameErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.PasswordErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.PhoneErrorException;
-import ufcg.edu.br.Sistema120121.sistema.PontoDeEncontro.Situacao;
 
 public class UserCaroneiro extends User {
 
 	
-	List<Solicitacao> solicitacoes = new ArrayList<Solicitacao>();
 	
 	
 	public UserCaroneiro(String login, String senha, String nome,String endereco, String email, String telefone)throws AdressErrorException, EmailErrorException,PasswordErrorException, NameErrorException, PhoneErrorException,LoginErrorException {
 		super(login, senha, nome, endereco, email, telefone);
+		solicitacoes = new LinkedList<Solicitacao>();
 	}
 	
 	
@@ -33,7 +33,7 @@ public class UserCaroneiro extends User {
 	 */
 	public void pedirCarona(Carona carona,String pontoDeEncontro)throws Exception{
 		if (carona == null) {
-			throw new Exception("Parametros não devem ser nulos");
+			throw new Exception("Carona inexistente");
 		}
 		Solicitacao solicitacao = new Solicitacao(carona,this, pontoDeEncontro);
 		UserMotorista motorista = (UserMotorista) carona.getMotorista();
@@ -50,7 +50,7 @@ public class UserCaroneiro extends User {
 	 */
 	public void pedirCarona(Carona carona)throws Exception{
 		if (carona == null) {
-			throw new Exception("Parametros não devem ser nulos");
+			throw new Exception("Carona inexistente");
 		}
 		
 		Solicitacao solicitacao = new Solicitacao(carona,this);
@@ -70,27 +70,8 @@ public class UserCaroneiro extends User {
 	 * @throws Exception
 	 * 		Caso o caroneiro não possua essa solicitação ou o motorista não tenha alterado o ponto de encontro
 	 */
-	public void avaliarPontoDeEncontro(Solicitacao solicitacao,boolean avaliacao) throws Exception{
-		
-		if (!solicitacoes.contains(solicitacao) || solicitacao.getPontoDeEncontro().getAvaliacao() != Situacao.MUDANCA) {
-			throw new Exception("Não é possivel avaliar o ponto de encontro");
-		}else{
-			if (avaliacao) solicitacao.confirmarCarona() ;
-			else solicitacao.cancelarCarona();solicitacoes.remove(solicitacao) ;				
-		}
-		
+	public void aceitarPontoDeEncontro(Carona carona) throws Exception{
+		carona.getPontoDeEncontro().aceitar();
 	}
 	
-	/**
-	 * Retorna todas as solicitações que o motorista possui
-	 * @return
-	 * 		todas as solicitações do motorista.
-	 */
-	public String getSolicitacoesRealizadas(){
-		String realizadas = "";
-		for (Solicitacao solicitacao : solicitacoes) {
-			realizadas += solicitacao.toString();
-		}
-		if (realizadas.isEmpty()) return "Não existe solicitações";else return realizadas; 
-	}
 }

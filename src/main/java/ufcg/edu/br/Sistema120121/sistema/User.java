@@ -1,6 +1,7 @@
 package ufcg.edu.br.Sistema120121.sistema;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import ufcg.edu.br.Sistema120121.excecoes.AdressErrorException;
@@ -18,7 +19,8 @@ public class User{
 	private String telefone;
 	private String nome;
 	private String senha;
-	private List<User> listaDeAmigos = new ArrayList<User>();
+	private List<User> listaDeAmigos = new LinkedList<User>();
+	protected List<Solicitacao> solicitacoes;
 
 	public User(String login,String senha,String nome,String endereco,String email,String telefone) throws AdressErrorException, EmailErrorException, PasswordErrorException, NameErrorException, PhoneErrorException, LoginErrorException{
 		if (email == null || email.isEmpty()){
@@ -39,6 +41,7 @@ public class User{
 		setEndereco(endereco);
 		setEmail(email);
 		setTelefone(telefone);
+
 	}
 	
 	public String getPerfil() throws AdressErrorException, EmailErrorException, PasswordErrorException, NameErrorException, PhoneErrorException, LoginErrorException{
@@ -117,6 +120,21 @@ public class User{
 
 	public void addAmigo(User usuario){
 		if (!(this.equals(usuario))) listaDeAmigos.add(usuario);
+	}
+	
+	public void sugerirPontoDeEncontro(Carona carona,String pontoDeEncontro) throws Exception{
+		carona.getPontoDeEncontro().sugerirPonto(pontoDeEncontro);
+		
+	}
+	
+	/**
+	 * Retorna todas as solicitações que o motorista possui
+	 * @return
+	 * 		todas as solicitações do motorista.
+	 * @throws Exception 
+	 */
+	public List<Solicitacao> getSolicitacoes() throws Exception{
+		if (solicitacoes.isEmpty()) throw new Exception("Não existe solicitações");else return solicitacoes; 
 	}
 	
 	

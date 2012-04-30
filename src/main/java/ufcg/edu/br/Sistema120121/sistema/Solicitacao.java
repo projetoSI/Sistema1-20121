@@ -4,27 +4,26 @@ public class Solicitacao {
 	
 	private PontoDeEncontro pontoDeEncontro;
 	private Carona caronaDesejada;
-	private UserCaroneiro caroneiro;
+	private User caroneiro;
 	
-	public Solicitacao(Carona carona,UserCaroneiro caroneiro,String pontoDeEncontro) {
+	public Solicitacao(Carona carona,User caroneiro,String pontoDeEncontro) throws Exception {
 		this.caronaDesejada = carona;
-		this.pontoDeEncontro = new PontoDeEncontro(pontoDeEncontro);
+		this.pontoDeEncontro.sugerirPonto(pontoDeEncontro);
 		this.caroneiro = caroneiro;
 	}
 	
-	public Solicitacao(Carona carona,UserCaroneiro caroneiro){
-		this.pontoDeEncontro = new PontoDeEncontro("");
+	public Solicitacao(Carona carona,User caroneiro){
 		this.caronaDesejada = carona;
 		this.caroneiro = caroneiro;
 		
 	}
-
-	public UserCaroneiro getCaroneiro() {
-		return caroneiro;
+	
+	public String getDonoDaCarona(){
+		return caronaDesejada.getMotorista().getNome();
 	}
 
-	public void setCaroneiro(UserCaroneiro caroneiro) {
-		this.caroneiro = caroneiro;
+	public String getCaroneiro() {
+		return caroneiro.getNome();
 	}
 	
 	public PontoDeEncontro getPontoDeEncontro() {
@@ -35,21 +34,20 @@ public class Solicitacao {
 		return caronaDesejada;
 	}
 
-	public boolean confirmarCarona() throws Exception {
+	public void confirmarCarona() throws Exception {
 		if (caronaDesejada.temVaga()) {
 			caronaDesejada.addCaroneiro(caroneiro);
-			pontoDeEncontro.avaliarPonto(true);
-			return true;
+		}else{
+			throw new Exception("Nao há vagas");
 		}
-		return false;
 	}
 	
 	public void AlterarLocalDeEncontro(String novoLocal) throws Exception{
-		pontoDeEncontro.alterarPontoDeEncontro(novoLocal);
+		pontoDeEncontro.sugerirPonto(novoLocal);
 	}
 
 	public void cancelarCarona() {
-		pontoDeEncontro.avaliarPonto(false);
+		
 	}
 	
 	public String toString(){
