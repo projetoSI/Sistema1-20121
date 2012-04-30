@@ -105,10 +105,10 @@ public class RepositorioCaronas {
 																									   //E RETORNAR APENAS AS QUE IRÃO OCORRER
 		List<Carona> auxCaronas = new LinkedList<Carona>();
 		
-		if (origem == null){
+		if (origem == null|| !origem.matches("[A-Za-zÇ-ú\\s]*+") ) {
 			throw new Exception("Origem inválida");
 		}
-		if (destino == null){
+		if (destino == null || !destino.matches("[A-Za-zÇ-ú\\s]*+")){
 			throw new Exception("Destino inválido");
 		}
 		
@@ -129,7 +129,25 @@ public class RepositorioCaronas {
 		return auxCaronas;
 
 	}
-
+	
+	public static Carona getCarona(String id) throws Exception{
+		if (id == null | id.equals("")) {
+			throw new Exception("Identificador do carona é inválido");
+		}
+		Carona carona = null;
+		for (Carona c : caronasCadastradas) {
+			if (c.getID().toString().equals(id)) {
+				carona = c;
+				break;
+			}
+		}
+		
+		if (carona == null ) {
+			throw new Exception("Item inexistente");
+		}
+		return carona;
+	}
+	
 
 	
 }

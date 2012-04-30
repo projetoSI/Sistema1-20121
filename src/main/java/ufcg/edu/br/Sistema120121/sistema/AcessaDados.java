@@ -103,6 +103,11 @@ public class AcessaDados {
 		return RepositorioCaronas.recuperaCaronaUser(motorista);
 	}
 	
+	public static Carona getCaronaID(String id) throws Exception{
+		return RepositorioCaronas.getCarona(id);
+	}
+	
+	
 	
 
 }

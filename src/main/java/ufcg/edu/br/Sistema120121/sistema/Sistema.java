@@ -116,6 +116,11 @@ public class Sistema {
 		return AcessaDados.localizarCarona(origem, destino);
 	}
 	
+	public static Carona getCaronaID(String id) throws Exception {
+		return AcessaDados.getCaronaID(id);
+		
+	}
+	
 	//localizarCaronas -> FEITO!
 	//solicitarVaga
 	//sugerirPontodeEncontro

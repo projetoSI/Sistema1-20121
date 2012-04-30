@@ -1,13 +1,19 @@
 package ufcg.edu.br.Sistema120121.testes;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import easyaccept.EasyAcceptFacade;
+
 import ufcg.edu.br.Sistema120121.excecoes.UserException;
+import ufcg.edu.br.Sistema120121.sistema.AcessaDados;
 import ufcg.edu.br.Sistema120121.sistema.Arquivo;
 import ufcg.edu.br.Sistema120121.sistema.Carona;
 import ufcg.edu.br.Sistema120121.sistema.Data;
 import ufcg.edu.br.Sistema120121.sistema.Hora;
+import ufcg.edu.br.Sistema120121.sistema.IdentificadorCarona;
+import ufcg.edu.br.Sistema120121.sistema.RepositorioCaronas;
 import ufcg.edu.br.Sistema120121.sistema.Sistema;
 import ufcg.edu.br.Sistema120121.sistema.User;
 
@@ -40,10 +46,6 @@ public class SistemaFacede {
 		sistema.addUsuario(login, senha, nome, endereco, email, "112121212");
 	}
 	
-	public void criarUsuario(String login, String nome, String endereco, String email) throws Exception {
-		sistema.addUsuario(login, "123", nome, endereco, email, "112121212");
-	}
-
 	public void zerarSistema() throws IOException {
 		idSessao = 0;
 		idCarona = idSessao;
@@ -77,6 +79,7 @@ public class SistemaFacede {
 	}
 
 	public int abrirSessao(String login, String senha) throws Exception {
+		idSessao++;
 		int result = idSessao;
 		user = sistema.acessarConta(login, senha);
 		return result;
@@ -96,11 +99,11 @@ public class SistemaFacede {
 			} else {
 				result = "{";
 
-				for (int i = 0; i < sistema.getCaronas(origem, destino).size(); i++) {
+				for (Carona carona:sistema.getCaronas(origem, destino)) {
 					if (result.equals("{")) {
-						result += idCarona;
+						result += carona.getID().toString();
 					} else {
-						result += "," + idCarona;
+						result += "," + carona.getID().toString();
 					}
 				}
 				result += "}";
@@ -115,8 +118,7 @@ public class SistemaFacede {
 		return result;
 	}
 	
-	public int cadastrarCarona(String sessao, String origem, String destino, String data, String hora, String vagas) throws Exception{
-		int result = 0;
+	public IdentificadorCarona cadastrarCarona(String sessao, String origem, String destino, String data, String hora, String vagas) throws Exception{
 		
 		if (sessao == null || sessao.isEmpty())
 			throw new Exception("Sessão inválida");
@@ -129,7 +131,7 @@ public class SistemaFacede {
 		}
 		
 		try {
-			Integer.parseInt(vagas); // se a vaga não for um número, null, ou vazia, é inválida e a conversão é o teste!
+			Integer.parseInt(vagas);
 		} catch (Exception e) {
 			throw new Exception("Vaga inválida");
 		}
@@ -137,27 +139,20 @@ public class SistemaFacede {
 		Hora horaAux = new Hora(hora);
 		Data dataAux = new Data(data);
 		sistema.addCarona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), user);
-		idCarona = Integer.parseInt(sessao);
 		carona = new Carona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), user);
 
-		return result;
+		return carona.getID();
 	}
 	
 	public String getAtributoCarona(String IDCarona, String atributo) throws Exception{
 		String result = null;
-
+		
+		if(IDCarona == null || IDCarona.equals("")){
+			throw new Exception("Identificador do carona é inválido");
+		}
+		Carona carona = Sistema.getCaronaID(IDCarona); 
 		if (atributo == null || atributo.isEmpty())
 			throw new Exception("Atributo inválido");
-		
-		if (IDCarona == null || IDCarona.isEmpty())
-			throw new Exception("Identificador do carona é inválido");
-
-		try {
-			if (IDCarona.isEmpty() || Integer.parseInt(IDCarona) != idCarona)
-				throw new Exception("Item inexistente");
-		} catch (Exception e) {
-			throw new Exception("Item inexistente");
-		}
 
 		if (atributo.equals("origem"))
 				result = carona.getOrigem();
@@ -176,12 +171,14 @@ public class SistemaFacede {
 	
 	public String getTrajeto(String IDCarona) throws Exception{
 		String result = "";
+		Carona carona;
 		
 		if (IDCarona == null)
-			throw new Exception("Trajeto Inválida"); // eu sei que tá errado a concordância, mas a culpa é do teste :P
+			throw new Exception("Trajeto Inválida");
 
 		try {
-			if (IDCarona.isEmpty() || Integer.parseInt(IDCarona) != idCarona)
+			carona = Sistema.getCaronaID(IDCarona);
+			if (IDCarona.isEmpty())
 				throw new Exception("Trajeto Inexistente");
 		} catch (Exception e) {
 			throw new Exception("Trajeto Inexistente");
@@ -193,21 +190,37 @@ public class SistemaFacede {
 	}
 	
 	public String getCarona(String id) throws Exception{
+		Carona carona;
 		if (id == null)
 			throw new Exception("Carona Inválida");
 
-		try {
-			if (id.isEmpty() || Integer.parseInt(id) != idCarona)
+			if (id.isEmpty())
 				throw new Exception("Carona Inexistente");
-		} catch (Exception e) {
-			throw new Exception("Carona Inexistente");
-		}
-
+			
+			try {
+				carona = Sistema.getCaronaID(id);
+			} catch (Exception e) {
+				throw new Exception("Carona Inexistente");
+			}
 		return carona.toString();
 	}
 	
 //	ate aqui US03 + 02 + 01
-	
+	public static void main(String[] args) throws Exception {
+
+		List<String> files = new ArrayList<String>();
+		// Put the us1.txt file into the "test scripts" list
+		files.add("scripts/US02.txt");
+		// Instantiate the Monopoly Game façade
+		SistemaFacede monopolyGameFacade = getInstanceFacede();
+		// Instantiate EasyAccept façade
+		EasyAcceptFacade eaFacade = new EasyAcceptFacade(monopolyGameFacade,
+				files);
+		// Execute the tests
+		eaFacade.executeTests();
+		// Print the tests execution results
+		System.out.println(eaFacade.getCompleteResults());
+	}
 	
 	
 	
