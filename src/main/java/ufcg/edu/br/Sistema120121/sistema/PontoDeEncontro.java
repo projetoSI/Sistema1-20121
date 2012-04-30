@@ -49,7 +49,8 @@ public class PontoDeEncontro {
 	 * @throws Exception 
 	 */
 	public void sugerirPonto(String novaSugestao) throws Exception{
-		if(blackList.contains(novaSugestao))throw new Exception("Ponto inválido");
+		if(novaSugestao == null || novaSugestao.isEmpty() || blackList.contains(novaSugestao))throw new Exception("Ponto Inválido");
+		blackList.add(sugestaoAtual);
 		sugestaoAtual = novaSugestao;
 	}
 	

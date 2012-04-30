@@ -7,14 +7,13 @@ import java.util.List;
 import easyaccept.EasyAcceptFacade;
 
 import ufcg.edu.br.Sistema120121.excecoes.UserException;
-import ufcg.edu.br.Sistema120121.sistema.AcessaDados;
 import ufcg.edu.br.Sistema120121.sistema.Arquivo;
 import ufcg.edu.br.Sistema120121.sistema.Carona;
 import ufcg.edu.br.Sistema120121.sistema.Data;
 import ufcg.edu.br.Sistema120121.sistema.Hora;
 import ufcg.edu.br.Sistema120121.sistema.IdentificadorCarona;
-import ufcg.edu.br.Sistema120121.sistema.RepositorioCaronas;
 import ufcg.edu.br.Sistema120121.sistema.Sistema;
+import ufcg.edu.br.Sistema120121.sistema.Solicitacao;
 import ufcg.edu.br.Sistema120121.sistema.User;
 
 public class SistemaFacede {
@@ -29,7 +28,7 @@ public class SistemaFacede {
 	private User user;
 	private Carona carona;
 	private int idSessao;
-	private int idCarona;
+	private Solicitacao solicitacao;
 
 	public static SistemaFacede getInstanceFacede() {
 		return facede;
@@ -39,7 +38,6 @@ public class SistemaFacede {
 		sistema = new Sistema();
 		usuarios = sistema.getUsuariosCadastrados();
 		idSessao = 0;
-		idCarona = idSessao;
 	}
 
 	public void criarUsuario(String login, String senha, String nome, String endereco, String email) throws Exception {
@@ -48,7 +46,6 @@ public class SistemaFacede {
 	
 	public void zerarSistema() throws IOException {
 		idSessao = 0;
-		idCarona = idSessao;
 		Arquivo.zeraArquivos();
 	}
 
@@ -83,6 +80,13 @@ public class SistemaFacede {
 		int result = idSessao;
 		user = sistema.acessarConta(login, senha);
 		return result;
+	}
+	
+	public void encerrarSessao(String login){
+		if (login.equals(user.getLogin())){
+			user = null;
+			solicitacao = null;
+		}
 	}
 
 	public void encerrarSistema() throws IOException {
@@ -206,11 +210,57 @@ public class SistemaFacede {
 	}
 	
 //	ate aqui US03 + 02 + 01
+	
+	public String sugerirPontoEncontro(String IDSessao, String IDCarona, String pontos) throws Exception{
+		String result = "";
+	
+		Sistema.getCaronaID(IDCarona).setPontoDeEncontro(pontos);
+		result = pontos;
+		
+		return result;
+	}
+	
+	public void responderSugestaoPontoEncontro(String IDSessao, String IdCarona, String IDSugestao, String pontos) throws Exception{
+		if (!IDSugestao.equalsIgnoreCase(pontos)){
+			Sistema.getCaronaID(IdCarona).setPontoDeEncontro(pontos);
+		}
+	}
+	
+	public Solicitacao solicitarVagaPontoEncontro(String IDSessao, String IDCarona, String ponto) throws Exception{
+		solicitacao = new Solicitacao(Sistema.getCaronaID(IDCarona), user, ponto);
+		return solicitacao;
+	}
+	
+	public String getAtributoSolicitacao(String IDSolicitacao, String atributo) throws Exception{
+		String result = null;
+		
+		if (atributo.equals("origem"))
+			result = solicitacao.getCaronaDesejada().getOrigem();
+		else if (atributo.equals("destino"))
+			result = solicitacao.getCaronaDesejada().getDestino();
+		else if (atributo.equals("Dono da carona"))
+			result = solicitacao.getDonoDaCarona();
+		else if (atributo.equals("Dono da solicitacao"))
+			result = solicitacao.getCaroneiro();
+		else if (atributo.equals("Ponto de Encontro"))
+			result = solicitacao.getPontoDeEncontro().getPontoDeEcontro();
+		else
+			throw new Exception("Atributo inexistente");
+		
+		return result;
+	}
+	
+	public void aceitarSolicitacaoPontoEncontro(String IDSessao, String IDSolicitacao){
+		
+	}
+	
+	
+//	US04
 	public static void main(String[] args) throws Exception {
 
 		List<String> files = new ArrayList<String>();
 		// Put the us1.txt file into the "test scripts" list
-		files.add("scripts/US02.txt");
+		files.add("scripts/US04.txt");
 		// Instantiate the Monopoly Game façade
 		SistemaFacede monopolyGameFacade = getInstanceFacede();
 		// Instantiate EasyAccept façade
@@ -221,11 +271,4 @@ public class SistemaFacede {
 		// Print the tests execution results
 		System.out.println(eaFacade.getCompleteResults());
 	}
-	
-	
-	
-	
-	
-	
-//	ate aqui US04
 }

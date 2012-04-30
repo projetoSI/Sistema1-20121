@@ -262,6 +262,10 @@ public class Carona {
 		return pontoDeEncontro;
 	}
 	
+	public void setPontoDeEncontro(String pontoDeEncontro) throws Exception {
+		this.pontoDeEncontro.sugerirPonto(pontoDeEncontro);
+	}
+
 	/**
 	 * Retorna todas as informações da carona.
 	 * @return
