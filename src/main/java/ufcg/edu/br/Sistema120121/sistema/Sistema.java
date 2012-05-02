@@ -7,7 +7,7 @@ import ufcg.edu.br.Sistema120121.excecoes.PasswordErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.UserException;
 
 
-public class Sistema {
+public abstract class Sistema {
 	
 	//Classe Controller,responsavel por gerenciar todo o sistema...
 	
@@ -47,7 +47,7 @@ public class Sistema {
 	 * 		O motorista da carona.
 	 * @throws Exception
 	 */
-	public void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
+	public static void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
 		AcessaDados.addCarona(origem, destino, hora, data, qntVagas, motorista);
 	}
 	
