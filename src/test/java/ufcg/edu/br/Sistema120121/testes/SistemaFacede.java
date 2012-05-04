@@ -92,7 +92,7 @@ public class SistemaFacede {
 	}
 	
 	
-	public String localizarCarona(int sessão, String origem, String destino) throws Exception{
+	public String localizarCarona(int sessao, String origem, String destino) throws Exception{
 		String result = "";
 		
 		if (origem.matches("[A-Za-zÇ-ú\\s]*+") && destino.matches("[A-Za-zÇ-ú\\s]*+")) {
@@ -300,7 +300,7 @@ public class SistemaFacede {
 
 		List<String> files = new ArrayList<String>();
 		// Put the us1.txt file into the "test scripts" list
-		files.add("scripts/US06.txt");
+		files.add("scripts/US01.txt");
 		// Instantiate the Monopoly Game façade
 		SistemaFacede monopolyGameFacade = getInstanceFacede();
 		// Instantiate EasyAccept façade
