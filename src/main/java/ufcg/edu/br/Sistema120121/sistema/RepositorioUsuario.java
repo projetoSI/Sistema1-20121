@@ -106,4 +106,22 @@ public class RepositorioUsuario {
 		}
 		return usuario;
 	}
+
+	public static void abreSessaoUser(String login) {
+		for (int i = 0; i < usersCadastrados.size(); i++) {
+			if (usersCadastrados.get(i).getLogin().equals(login)){
+				usersCadastrados.get(i).getID().abreSessao();
+				break;
+			}
+		}
+	}
+
+	public static void fechaSessaoUser(String login) {
+		for (int i = 0; i < usersCadastrados.size(); i++) {
+			if (usersCadastrados.get(i).getLogin().equals(login)){
+				usersCadastrados.get(i).getID().fechaSessao();
+				break;
+			}
+		}
+	}
 }

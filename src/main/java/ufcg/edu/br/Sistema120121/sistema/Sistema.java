@@ -120,5 +120,13 @@ public abstract class Sistema {
 		return AcessaDados.getCaronaID(id);
 		
 	}
+
+	public static void abreSessaoUser(String login) {
+		AcessaDados.abreSessaoUser(login);
+	}
+
+	public static void fechaSessaoUser(String login) {
+		AcessaDados.fechaSessaoUser(login);
+	}
 	 
 }

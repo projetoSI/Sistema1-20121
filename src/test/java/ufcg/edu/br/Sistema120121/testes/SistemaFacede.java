@@ -2,7 +2,9 @@ package ufcg.edu.br.Sistema120121.testes;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import easyaccept.EasyAcceptFacade;
 
@@ -24,10 +26,8 @@ public class SistemaFacede {
 	
 
 	private static SistemaFacede facede = new SistemaFacede();
-	private static List<User> usuarios;
 	private User user;
 	private Carona carona;
-	private int idSessao;
 	private Solicitacao solicitacao;
 	
 	public static SistemaFacede getInstanceFacede() {
@@ -35,8 +35,6 @@ public class SistemaFacede {
 	}
 	
 	private SistemaFacede() {
-		usuarios = Sistema.getUsuariosCadastrados();
-		idSessao = 0;
 	}
 
 	public void criarUsuario(String login, String senha, String nome, String endereco, String email) throws Exception {
@@ -44,7 +42,7 @@ public class SistemaFacede {
 	}
 	
 	public void zerarSistema() throws IOException {
-		idSessao = 0;
+		user = null;
 		Arquivo.zeraArquivos();
 	}
 
@@ -74,17 +72,14 @@ public class SistemaFacede {
 
 	}
 
-	public int abrirSessao(String login, String senha) throws Exception {
-		idSessao++;
-		int result = idSessao;
+	public String abrirSessao(String login, String senha) throws Exception {
 		user = Sistema.acessarConta(login, senha);
-		return result;
+		Sistema.abreSessaoUser(login);
+		return user.getID().toString();
 	}
 
 	public void encerrarSessao(String login){
-		if (user != null && login.equals(user.getLogin())){
-			user = null;
-		}
+		Sistema.fechaSessaoUser(login);
 	}
 	
 	public void encerrarSistema() throws IOException {
@@ -125,11 +120,9 @@ public class SistemaFacede {
 		if (sessao == null || sessao.isEmpty())
 			throw new Exception("Sessão inválida");
 		
-		try {
-			if (Integer.parseInt(sessao) != idSessao)
+		for (User aux : Sistema.getUsuariosCadastrados()) {
+			if (!sessao.equals(aux.getID().toString()))
 				throw new Exception("Sessão inexistente");
-		} catch (Exception e) {
-			throw new Exception("Sessão inexistente");
 		}
 		
 		try {
@@ -300,7 +293,7 @@ public class SistemaFacede {
 
 		List<String> files = new ArrayList<String>();
 		// Put the us1.txt file into the "test scripts" list
-		files.add("scripts/US01.txt");
+		files.add("scripts/US05.txt");
 		// Instantiate the Monopoly Game façade
 		SistemaFacede monopolyGameFacade = getInstanceFacede();
 		// Instantiate EasyAccept façade

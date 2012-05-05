@@ -110,6 +110,14 @@ public class AcessaDados {
 	public static List<Carona> historicoCarona(User usuario){
 		return RepositorioCaronas.getTodasCaronas(usuario);
 	}
+
+	public static void abreSessaoUser(String login) {
+		RepositorioUsuario.abreSessaoUser(login);
+	}
+
+	public static void fechaSessaoUser(String login) {
+		RepositorioUsuario.fechaSessaoUser(login);
+	}
 	
 	
 	

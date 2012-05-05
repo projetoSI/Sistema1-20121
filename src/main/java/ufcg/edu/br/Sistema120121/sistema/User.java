@@ -22,6 +22,7 @@ public class User{
 	private String senha;
 	private List<User> listaDeAmigos = new LinkedList<User>();
 	protected List<Solicitacao> solicitacoes;
+	private SessaoUser ID;
 
 	/**
 	 * Construtor de um usuario.
@@ -69,6 +70,7 @@ public class User{
 		setEndereco(endereco);
 		setEmail(email);
 		setTelefone(telefone);
+		ID = new SessaoUser(login, email);
 
 	}
 	
@@ -91,6 +93,10 @@ public class User{
 	 */
 	public Perfil getPerfil() throws AdressErrorException, EmailErrorException, PasswordErrorException, NameErrorException, PhoneErrorException, LoginErrorException{
 		return new Perfil(new User(login, senha, nome, endereco, email, telefone));
+	}
+
+	public SessaoUser getID() {
+		return ID;
 	}
 
 	/**
