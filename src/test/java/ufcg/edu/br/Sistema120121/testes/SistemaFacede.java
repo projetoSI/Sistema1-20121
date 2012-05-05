@@ -29,6 +29,7 @@ public class SistemaFacede {
 	private User user;
 	private Carona carona;
 	private Solicitacao solicitacao;
+	private List<Solicitacao> solicitacoes;
 	
 	public static SistemaFacede getInstanceFacede() {
 		return facede;
@@ -293,7 +294,7 @@ public class SistemaFacede {
 
 		List<String> files = new ArrayList<String>();
 		// Put the us1.txt file into the "test scripts" list
-		files.add("scripts/US06.txt");
+		files.add("scripts/US04.txt");
 		// Instantiate the Monopoly Game façade
 		SistemaFacede monopolyGameFacade = getInstanceFacede();
 		// Instantiate EasyAccept façade

@@ -151,13 +151,10 @@ public class RepositorioCaronas {
 	}
 
 	public static List<Carona> getTodasCaronas(User usuario) {
-		List<Carona> historico = null;
+		List<Carona> historico = new LinkedList<Carona>();
 		
 		for (Carona carona: recuperaCaronaUser(usuario)) {
-			if (carona.getCaroneiros().contains((CharSequence) usuario)
-					&& carona.getSituacaoCaroneiro(usuario).equals(
-							Situacao.NAO_FALTOU)
-					|| carona.getMotorista().equals(usuario)) {
+			if (carona.getCaroneiros().contains((CharSequence) usuario)	&& carona.getSituacaoCaroneiro(usuario).equals(Situacao.NAO_FALTOU)	|| carona.getMotorista().equals(usuario)) {
 				historico.add(carona);
 			}
 	}
