@@ -87,7 +87,7 @@ public class SistemaFacede {
 	}
 	
 	
-	public String localizarCarona(int sessao, String origem, String destino) throws Exception{
+	public String localizarCarona(String sessao, String origem, String destino) throws Exception{
 		String result = "";
 		
 		if (origem.matches("[A-Za-zÇ-ú\\s]*+") && destino.matches("[A-Za-zÇ-ú\\s]*+")) {
@@ -282,7 +282,7 @@ public class SistemaFacede {
 		
 	}
 	
-	public Perfil visualizarPerfil(int idSessao,String login) throws Exception{
+	public Perfil visualizarPerfil(String idSessao,String login) throws Exception{
 		if(Sistema.getUser(login) == null) throw new Exception("Login inválido");
 		Perfil perfil = new Perfil(Sistema.getUser(login));
 		return perfil;
@@ -293,7 +293,7 @@ public class SistemaFacede {
 
 		List<String> files = new ArrayList<String>();
 		// Put the us1.txt file into the "test scripts" list
-		files.add("scripts/US05.txt");
+		files.add("scripts/US06.txt");
 		// Instantiate the Monopoly Game façade
 		SistemaFacede monopolyGameFacade = getInstanceFacede();
 		// Instantiate EasyAccept façade
