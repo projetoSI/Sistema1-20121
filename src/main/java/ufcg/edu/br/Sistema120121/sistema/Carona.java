@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import ufcg.edu.br.Sistema120121.excecoes.LocalErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.QuantityVacancyErrorException;
@@ -51,7 +52,7 @@ public class Carona {
 		setQntVagas(qntVagas);
 		this.motorista = motorista;
 		this.ID = new IdentificadorCarona(motorista.getLogin(), data, hora);
-		caroneiros = new HashMap<User,Situacao>();
+		caroneiros = new TreeMap<User,Situacao>();
 		pontoDeEncontro = new PontoDeEncontro();
 	}
 
@@ -183,15 +184,15 @@ public class Carona {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof User)){
+		if(!(obj instanceof Carona)){
 			return false;
 		}
-		Carona carona1 = (Carona) obj;
-		return this.getOrigem().equals(carona1.getOrigem())
-				&& this.getDestino().equals(carona1.getDestino())
-				&& this.getData().equals(carona1.getData())
-				&& this.getHora().equals(carona1.getHora())
-				&& this.getMotorista().equals(carona1.getMotorista());
+		Carona carona = (Carona) obj;
+		return this.getOrigem().equals(carona.getOrigem())
+				&& this.getDestino().equals(carona.getDestino())
+				&& this.getData().equals(carona.getData())
+				&& this.getHora().equals(carona.getHora())
+				&& this.getMotorista().equals(carona.getMotorista());
 	}
 
 	/**

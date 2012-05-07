@@ -1,5 +1,6 @@
 package ufcg.edu.br.Sistema120121.sistema;
 
+import java.io.IOException;
 import java.util.List;
 
 import ufcg.edu.br.Sistema120121.excecoes.LoginErrorException;
@@ -7,9 +8,19 @@ import ufcg.edu.br.Sistema120121.excecoes.PasswordErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.UserException;
 
 
-public abstract class Sistema {
+public class Sistema {
 	
-	//Classe Controller,responsavel por gerenciar todo o sistema...
+	private static Sistema sistema = new Sistema();
+	
+	private Sistema(){
+		try {
+			AcessaDados.atualizaDados();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	/**
 	 * Adiciona um novo usuario no sistemka.
@@ -86,7 +97,7 @@ public abstract class Sistema {
 	public static User acessarConta(String login,String senha) throws Exception {
 		User usuario = null;
 		
-		if (senha == null ||senha.isEmpty()) {//Tah correto,aki?!
+		if (senha == null ||senha.isEmpty()) {
 			throw new PasswordErrorException("Senha inválida");
 		}
 		

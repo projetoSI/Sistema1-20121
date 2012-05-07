@@ -16,8 +16,8 @@ public class RepositorioCaronas {
 	 * @throws IOException
 	 *		Caso não consiga ler o arquivo. 		
 	 */
-	public void atualizaRepositorio() throws IOException {
-		caronasCadastradas = Arquivo.lerArquivo("c://Arquivos/arquivoCarona.xml");
+	public static void atualizaRepositorio() throws IOException {
+		caronasCadastradas = Arquivo.lerArquivo("d://arquivoCarona.xml");
 	}
 	
 	/**

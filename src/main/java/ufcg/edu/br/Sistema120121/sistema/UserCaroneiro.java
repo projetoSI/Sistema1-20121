@@ -1,8 +1,6 @@
 package ufcg.edu.br.Sistema120121.sistema;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 import ufcg.edu.br.Sistema120121.excecoes.AdressErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.EmailErrorException;
@@ -44,7 +42,6 @@ public class UserCaroneiro extends User {
 	 */
 	public UserCaroneiro(String login, String senha, String nome,String endereco, String email, String telefone)throws AdressErrorException, EmailErrorException,PasswordErrorException, NameErrorException, PhoneErrorException,LoginErrorException {
 		super(login, senha, nome, endereco, email, telefone);
-		solicitacoes = new LinkedList<Solicitacao>();
 	}
 	
 	

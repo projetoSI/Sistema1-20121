@@ -1,6 +1,5 @@
 package ufcg.edu.br.Sistema120121.sistema;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class User{
 	private String nome;
 	private String senha;
 	private List<User> listaDeAmigos = new LinkedList<User>();
-	protected List<Solicitacao> solicitacoes;
+	private List<Solicitacao> solicitacoes;
 	private SessaoUser ID;
 
 	/**
@@ -71,6 +70,7 @@ public class User{
 		setEmail(email);
 		setTelefone(telefone);
 		ID = new SessaoUser(login, email);
+		solicitacoes = new LinkedList<Solicitacao>();
 
 	}
 	

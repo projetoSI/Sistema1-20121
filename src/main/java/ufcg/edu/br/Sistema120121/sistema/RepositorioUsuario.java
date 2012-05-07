@@ -18,8 +18,8 @@ public class RepositorioUsuario {
 	 * @throws IOException
 	 *		Caso não consiga ler o arquivo. 		
 	 */
-	public void atualizaRepositorio() throws IOException {
-		usersCadastrados = Arquivo.lerArquivo("c://Arquivos/arquivoUser.xml");
+	public static void atualizaRepositorio() throws IOException {
+		usersCadastrados = Arquivo.lerArquivo("d://arquivoUser.xml");
 	}
 
 	/**

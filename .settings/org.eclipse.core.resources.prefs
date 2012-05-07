@@ -1,5 +1,16 @@
-#Wed May 02 20:06:33 BRT 2012
 eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
 encoding//src/main/java/ufcg/edu/br/Sistema120121/App.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/sistema=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/sistema/Carona.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/sistema/RepositorioCaronas.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/sistema/RepositorioUsuario.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/sistema/Sistema.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/sistema/User.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/sistema/UserCaroneiro.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/sistema/UserMotorista.java=UTF-8
+encoding//src/test/java/ufcg/edu/br/Sistema120121/testes=UTF-8
+encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/SistemaFacede.java=UTF-8
+encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TesteEasy.java=UTF-8
+encoding/<project>=UTF-8
 encoding/pom.xml=UTF-8
-separateDerivedEncodings=true
