@@ -25,14 +25,14 @@ public class SistemaFacade {
 	//Mais metodos e mais testes
 	
 
-	private static SistemaFacade facede = new SistemaFacade();
+	private static SistemaFacade facade = new SistemaFacade();
 	private User user;
 	private Carona carona;
 	private Solicitacao solicitacao;
 	private List<Solicitacao> solicitacoes;
 	
-	public static SistemaFacade getInstanceFacede() {
-		return facede;
+	public static SistemaFacade getInstanceFacade() {
+		return facade;
 	}
 	
 	private SistemaFacade() {
@@ -296,7 +296,7 @@ public class SistemaFacade {
 		// Put the us1.txt file into the "test scripts" list
 		files.add("scripts/US06.txt");
 		// Instantiate the Monopoly Game façade
-		SistemaFacade monopolyGameFacade = getInstanceFacede();
+		SistemaFacade monopolyGameFacade = getInstanceFacade();
 		// Instantiate EasyAccept façade
 		EasyAcceptFacade eaFacade = new EasyAcceptFacade(monopolyGameFacade,
 				files);
