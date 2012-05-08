@@ -72,8 +72,8 @@ public class Arquivo {
 	 * @throws IOException
 	 */
 	public static void escreveArquivo() throws IOException {
-		geraArquivo("d://arquivoUser.xml", getUsuarios());
-		geraArquivo("d://arquivoCarona.xml", getCaronas());
+		geraArquivo("arquivoUser.xml", getUsuarios());
+		geraArquivo("arquivoCarona.xml", getCaronas());
 	}
 	
 	/**

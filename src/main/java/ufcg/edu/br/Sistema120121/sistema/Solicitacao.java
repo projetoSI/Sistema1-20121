@@ -22,6 +22,10 @@ public class Solicitacao {
 		this.caroneiro = caroneiro;
 	}
 	
+	public String getSolicitacaoID(){
+		return caronaDesejada.getID() + "|" + caroneiro.getID();
+	}
+	
 	/**
 	 * Construtor de uma carona sem a necessidade de um ponto de encontro.
 	 * @param carona

@@ -1,0 +1,17 @@
+<linked-list>
+  <ufcg.edu.br.Sistema120121.sistema.User>
+    <login>mark</login>
+    <endereco>Palo Alto, California</endereco>
+    <email>mark@facebook.com</email>
+    <telefone>112121212</telefone>
+    <nome>Mark Zuckerberg</nome>
+    <senha>m@rk</senha>
+    <listaDeAmigos class="linked-list"/>
+    <solicitacoes class="linked-list"/>
+    <ID>
+      <login>mark</login>
+      <email>mark@facebook.com</email>
+      <sessao>true</sessao>
+    </ID>
+  </ufcg.edu.br.Sistema120121.sistema.User>
+</linked-list>

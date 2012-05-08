@@ -1,0 +1,37 @@
+<linked-list>
+  <ufcg.edu.br.Sistema120121.sistema.Carona>
+    <origem>São Francisco</origem>
+    <destino>Palo Alto</destino>
+    <data>
+      <data>12/09/2012</data>
+    </data>
+    <hora>
+      <Hora>21:00</Hora>
+    </hora>
+    <qntVagas>2</qntVagas>
+    <motorista>
+      <login>mark</login>
+      <endereco>Palo Alto, California</endereco>
+      <email>mark@facebook.com</email>
+      <telefone>112121212</telefone>
+      <nome>Mark Zuckerberg</nome>
+      <senha>m@rk</senha>
+      <listaDeAmigos class="linked-list"/>
+      <solicitacoes class="linked-list"/>
+      <ID>
+        <login>mark</login>
+        <email>mark@facebook.com</email>
+        <sessao>true</sessao>
+      </ID>
+    </motorista>
+    <ID>
+      <loginMotorista>mark</loginMotorista>
+      <horaCarona reference="../../hora"/>
+      <dataCarona reference="../../data"/>
+    </ID>
+    <caroneiros class="tree-map"/>
+    <pontoDeEncontro>
+      <blackList class="linked-list"/>
+    </pontoDeEncontro>
+  </ufcg.edu.br.Sistema120121.sistema.Carona>
+</linked-list>

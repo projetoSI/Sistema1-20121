@@ -75,7 +75,7 @@ public class IdentificadorCarona {
 	 */
 	@Override
 	public String toString() {
-		return getLoginMotorista() + "|" + getDataCarona() + "|" + getHoraCarona();
+		return getLoginMotorista() + "|" + getDataCarona().getDataAtual() + "|" + getHoraCarona().getHoraAtual();
 	}
 	
 
