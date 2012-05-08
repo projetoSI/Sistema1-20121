@@ -19,23 +19,23 @@ import ufcg.edu.br.Sistema120121.sistema.Sistema;
 import ufcg.edu.br.Sistema120121.sistema.Solicitacao;
 import ufcg.edu.br.Sistema120121.sistema.User;
 
-public class SistemaFacede {
+public class SistemaFacade {
 
 	// Redistribuir alguns metodos em classes controllers
 	//Mais metodos e mais testes
 	
 
-	private static SistemaFacede facede = new SistemaFacede();
+	private static SistemaFacade facede = new SistemaFacade();
 	private User user;
 	private Carona carona;
 	private Solicitacao solicitacao;
 	private List<Solicitacao> solicitacoes;
 	
-	public static SistemaFacede getInstanceFacede() {
+	public static SistemaFacade getInstanceFacede() {
 		return facede;
 	}
 	
-	private SistemaFacede() {
+	private SistemaFacade() {
 	}
 
 	public void criarUsuario(String login, String senha, String nome, String endereco, String email) throws Exception {
@@ -296,7 +296,7 @@ public class SistemaFacede {
 		// Put the us1.txt file into the "test scripts" list
 		files.add("scripts/US06.txt");
 		// Instantiate the Monopoly Game façade
-		SistemaFacede monopolyGameFacade = getInstanceFacede();
+		SistemaFacade monopolyGameFacade = getInstanceFacede();
 		// Instantiate EasyAccept façade
 		EasyAcceptFacade eaFacade = new EasyAcceptFacade(monopolyGameFacade,
 				files);
