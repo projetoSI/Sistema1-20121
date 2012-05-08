@@ -107,21 +107,25 @@ public class RepositorioUsuario {
 		return usuario;
 	}
 
-	public static void abreSessaoUser(String login) {
+	private static void sessaoUserAux(String login, boolean abre){
 		for (int i = 0; i < usersCadastrados.size(); i++) {
-			if (usersCadastrados.get(i).getLogin().equals(login)){
-				usersCadastrados.get(i).getID().abreSessao();
-				break;
+			if (usersCadastrados.get(i).getLogin().equals(login)) {
+				if (abre) {
+					usersCadastrados.get(i).getID().abreSessao();
+					break;
+				} else {
+					usersCadastrados.get(i).getID().fechaSessao();
+					break;
+				}
 			}
 		}
 	}
+	
+	public static void abreSessaoUser(String login) {
+		sessaoUserAux(login, true);
+	}
 
 	public static void fechaSessaoUser(String login) {
-		for (int i = 0; i < usersCadastrados.size(); i++) {
-			if (usersCadastrados.get(i).getLogin().equals(login)){
-				usersCadastrados.get(i).getID().fechaSessao();
-				break;
-			}
-		}
+		sessaoUserAux(login, false);
 	}
 }
