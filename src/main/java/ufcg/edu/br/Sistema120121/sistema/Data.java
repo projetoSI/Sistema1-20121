@@ -71,8 +71,7 @@ public class Data{
 	 * 		false - caso o formato não esteja correto.
 	 */
 	public boolean dataValida (String data){
-		String dataAtual = getDataAtual();
-		String dataEntrada = data;
+		if ( data == null || data.isEmpty())return false;
 		String dia, mes, ano;
 		try{
 		    dia = data.substring(0, 2);
@@ -83,14 +82,13 @@ public class Data{
 		
 		try{
 			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-			Date dataEntradaFormatada = format.parse(dataEntrada);
-			Date dataAtualFormatada = format.parse(dataAtual);
+			Date dataEntradaFormatada = format.parse(data);
+			Date dataAtualFormatada = format.parse(data);
 			if (dataEntradaFormatada.before(dataAtualFormatada)) return false;	
 		}catch (ParseException e){
 			return false;
 		}
-		if (data.isEmpty() || data == null) return false;
-		else if (!(verificaMeses31(dia, mes)) || !(verificaMeses30(dia, mes)) || !(verificaFevereiro(dia, mes, ano)) ||
+		if (!(verificaMeses31(dia, mes)) || !(verificaMeses30(dia, mes)) || !(verificaFevereiro(dia, mes, ano)) ||
 			(Integer.parseInt(mes) <= 0) || (Integer.parseInt(mes) > 12)) return false;
 		return true;
 		

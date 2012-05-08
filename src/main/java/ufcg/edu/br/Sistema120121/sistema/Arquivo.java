@@ -8,6 +8,13 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import ufcg.edu.br.Sistema120121.excecoes.AdressErrorException;
+import ufcg.edu.br.Sistema120121.excecoes.EmailErrorException;
+import ufcg.edu.br.Sistema120121.excecoes.LoginErrorException;
+import ufcg.edu.br.Sistema120121.excecoes.NameErrorException;
+import ufcg.edu.br.Sistema120121.excecoes.PasswordErrorException;
+import ufcg.edu.br.Sistema120121.excecoes.PhoneErrorException;
+
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
@@ -65,8 +72,8 @@ public class Arquivo {
 	 * @throws IOException
 	 */
 	public static void escreveArquivo() throws IOException {
-		geraArquivo("c://Arquivos/arquivoUser.xml", getUsuarios());
-		geraArquivo("c://Arquivos/arquivoCarona.xml", getCaronas());
+		geraArquivo("d://arquivoUser.xml", getUsuarios());
+		geraArquivo("d://arquivoCarona.xml", getCaronas());
 	}
 	
 	/**
@@ -114,6 +121,5 @@ public class Arquivo {
 	public static void setCaronas(List<Carona> caronas) {
 		Arquivo.caronas = caronas;
 	}
-
-
+	
 }

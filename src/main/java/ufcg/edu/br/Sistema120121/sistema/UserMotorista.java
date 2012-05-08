@@ -46,7 +46,6 @@ public class UserMotorista extends User {
 	 */
 	public UserMotorista(String login, String senha, String nome,String endereco, String email, String telefone)throws AdressErrorException, EmailErrorException,PasswordErrorException, NameErrorException, PhoneErrorException,LoginErrorException {
 		super(login, senha, nome, endereco, email, telefone);
-		solicitacoes = new LinkedList<Solicitacao>();
 		solicitacoesAceitas = new LinkedList<Solicitacao>();
 	
 	}

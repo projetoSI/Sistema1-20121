@@ -1,5 +1,6 @@
 package ufcg.edu.br.Sistema120121.sistema;
 
+import java.io.IOException;
 import java.util.List;
 
 public class AcessaDados {
@@ -117,6 +118,11 @@ public class AcessaDados {
 
 	public static void fechaSessaoUser(String login) {
 		RepositorioUsuario.fechaSessaoUser(login);
+	}
+
+	public static void atualizaDados() throws IOException {
+		RepositorioCaronas.atualizaRepositorio();
+		RepositorioUsuario.atualizaRepositorio();
 	}
 	
 	
