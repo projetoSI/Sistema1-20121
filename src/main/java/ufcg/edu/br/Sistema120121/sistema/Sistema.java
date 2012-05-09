@@ -148,6 +148,10 @@ public class Sistema {
 	public static void addSolicitacao(Carona caronaID, User user, String ponto) throws Exception {
 		AcessaDados.addSolicitacao(caronaID, user, ponto);
 	}
+	
+	public static void addSolicitacao(Carona caronaID, User user) throws Exception {
+		AcessaDados.addSolicitacao(caronaID, user);
+	}
 
 	public static void apagaCarona(Carona carona) {
 		AcessaDados.apagaCarona(carona);
@@ -155,5 +159,9 @@ public class Sistema {
 
 	public static void solicitacaoAceita(String IDSolicitacao) throws SolicitacaoException {
 		AcessaDados.aceitaSolicitacao(IDSolicitacao);
+	}
+	
+	public static void solicitacaoRecusada(String IDSolicitacao) throws SolicitacaoException {
+		AcessaDados.recusaSolicitacao(IDSolicitacao);
 	}
 }

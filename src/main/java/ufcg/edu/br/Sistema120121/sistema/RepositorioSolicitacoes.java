@@ -14,6 +14,11 @@ public abstract class RepositorioSolicitacoes {
 		solicitacoes.add(new Solicitacao(carona, caroneiro, pontoDeEncontro));
 	}
 	
+	public static void addSolicitacao(Carona carona, User user) {
+		solicitacoes.add(new Solicitacao(carona,user));
+		
+	}
+	
 	public static void aceitaSolicitacao(String IDSolicitacao) throws SolicitacaoException{
 		boolean notRemovida = true;
 		
@@ -28,6 +33,22 @@ public abstract class RepositorioSolicitacoes {
 		if (notRemovida)
 			throw new SolicitacaoException("Solicitação inexistente");
 	}
+	
+	public static void recusaSolicitacao(String IDSolicitacao) throws SolicitacaoException{
+		boolean notRemovida = true;
+		
+		for (int i = 0; i < solicitacoes.size(); i++) {
+			if(solicitacoes.get(i).getSolicitacaoID().toString().equals(IDSolicitacao)){
+				solicitacoes.remove(i);
+				notRemovida = false;
+				break;
+			}
+		}
+		
+		if (notRemovida)
+			throw new SolicitacaoException("Solicitação inexistente");
+	}
+	
 	
 	public static Solicitacao getSolicitacao(String ID) throws SolicitacaoException{
 		Solicitacao aux = null;
@@ -52,4 +73,6 @@ public abstract class RepositorioSolicitacoes {
 			throw new SolicitacaoException("Solicitação inexistente");
 		return aux;
 	}
+	
+	
 }

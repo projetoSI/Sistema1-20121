@@ -266,6 +266,30 @@ public class SistemaFacade {
 	
 // US04	
 	
+	public String solicitarVaga(String idSessao,String idCarona) throws Exception{
+		for (User aux : Sistema.getUsuariosCadastrados()) {
+			if (aux.getID().toString().equals(idSessao)){
+				user = aux;
+				break;
+			}
+		}
+		
+		Solicitacao solicitacao = new Solicitacao(Sistema.getCaronaID(idCarona), user);
+		Sistema.addSolicitacao(Sistema.getCaronaID(idCarona),user);
+		
+		return solicitacao.getSolicitacaoID();
+	}
+	
+	public void aceitarSolicitacao(String idSessao,String idSolicitacao) throws Exception{
+		Sistema.solicitacaoAceita(idSolicitacao);
+		Sistema.getSolicitacao(idSolicitacao).confirmarCarona();		 
+	}
+	
+	public void rejeitarSolicitacao(String idSessao,String idSolicitacao) throws SolicitacaoException{
+		Sistema.solicitacaoRecusada(idSolicitacao);
+	}
+// US05
+	
 	public String getAtributoPerfil(String login,String atributo) throws Exception{
 		Perfil pf= new Perfil(Sistema.getUser(login));
 		
@@ -306,7 +330,7 @@ public class SistemaFacade {
 
 		List<String> files = new ArrayList<String>();
 		// Put the us1.txt file into the "test scripts" list
-		files.add("scripts/US02.txt");
+		files.add("scripts/US05.txt");
 		// Instantiate the Monopoly Game façade
 		SistemaFacade monopolyGameFacade = getInstanceFacade();
 		// Instantiate EasyAccept façade

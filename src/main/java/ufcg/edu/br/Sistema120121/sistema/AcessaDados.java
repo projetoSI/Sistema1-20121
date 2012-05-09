@@ -135,6 +135,9 @@ public class AcessaDados {
 		RepositorioSolicitacoes.addSolicitacao(caronaID, user, ponto);
 	}
 
+	public static void addSolicitacao(Carona caronaID, User user) {
+		RepositorioSolicitacoes.addSolicitacao(caronaID, user);
+	}
 	public static void apagaCarona(Carona carona) {
 		RepositorioCaronas.apagaCarona(carona);
 	}
@@ -142,4 +145,9 @@ public class AcessaDados {
 	public static void aceitaSolicitacao(String IDSolicitacao) throws SolicitacaoException {
 		RepositorioSolicitacoes.aceitaSolicitacao(IDSolicitacao);
 	}
+	
+	public static void recusaSolicitacao(String IDSolicitacao) throws SolicitacaoException {
+		RepositorioSolicitacoes.recusaSolicitacao(IDSolicitacao);
+	}
+	
 }

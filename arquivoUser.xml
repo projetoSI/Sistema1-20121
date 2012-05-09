@@ -14,4 +14,19 @@
       <sessao>true</sessao>
     </ID>
   </ufcg.edu.br.Sistema120121.sistema.User>
+  <ufcg.edu.br.Sistema120121.sistema.User>
+    <login>bill</login>
+    <endereco>Medina, Washington</endereco>
+    <email>billzin@gmail.com</email>
+    <telefone>112121212</telefone>
+    <nome>William Henry Gates III</nome>
+    <senha>bilz@o</senha>
+    <listaDeAmigos class="linked-list"/>
+    <solicitacoes class="linked-list"/>
+    <ID>
+      <login>bill</login>
+      <email>billzin@gmail.com</email>
+      <sessao>true</sessao>
+    </ID>
+  </ufcg.edu.br.Sistema120121.sistema.User>
 </linked-list>
