@@ -138,7 +138,7 @@ public class RepositorioCaronas {
 		}
 		Carona carona = null;
 		for (Carona c : caronasCadastradas) {
-			if (c.getID().toString().equals(id)) {
+			if (id.equals(c.getID().toString())) {
 				carona = c;
 				break;
 			}
@@ -159,6 +159,10 @@ public class RepositorioCaronas {
 			}
 	}
 		return historico;
+	}
+
+	public static void apagaCarona(Carona carona) {
+		caronasCadastradas.remove(carona);
 	}
 	
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import ufcg.edu.br.Sistema120121.excecoes.LoginErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.PasswordErrorException;
+import ufcg.edu.br.Sistema120121.excecoes.SolicitacaoException;
 import ufcg.edu.br.Sistema120121.excecoes.UserException;
 
 
@@ -139,5 +140,20 @@ public class Sistema {
 	public static void fechaSessaoUser(String login) {
 		AcessaDados.fechaSessaoUser(login);
 	}
-	 
+
+	public static Solicitacao getSolicitacao(String IdSolicitacao) throws SolicitacaoException {
+		return AcessaDados.getSolicitacao(IdSolicitacao);
+	}
+
+	public static void addSolicitacao(Carona caronaID, User user, String ponto) throws Exception {
+		AcessaDados.addSolicitacao(caronaID, user, ponto);
+	}
+
+	public static void apagaCarona(Carona carona) {
+		AcessaDados.apagaCarona(carona);
+	}
+
+	public static void solicitacaoAceita(String IDSolicitacao) throws SolicitacaoException {
+		AcessaDados.aceitaSolicitacao(IDSolicitacao);
+	}
 }

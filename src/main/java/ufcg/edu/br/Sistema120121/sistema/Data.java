@@ -11,7 +11,7 @@ import ufcg.edu.br.Sistema120121.excecoes.DateErrorException;
 public class Data{
 
 	private String data;
-	
+
 	/**
 	 * Construtor de uma data.
 	 * @param data
@@ -23,9 +23,9 @@ public class Data{
 		if (dataValida(data)){
 			this.data = data;
 		}else throw new DateErrorException("Data inválida");
-	
+
 	}
-	
+
 	/**
 	 * Retorna a data.
 	 * @return
@@ -34,7 +34,7 @@ public class Data{
 	public String getData(){
 		return data;
 	}
-	
+
 	/**
 	 * Retorna o dia de um objeto data.
 	 * @return
@@ -61,7 +61,7 @@ public class Data{
 	public String getAno() {
 		return data.substring(6, 10);
 	}
-	
+
 	/**
 	 * Verifica se o formato da data esta correto
 	 * @param data
@@ -71,7 +71,8 @@ public class Data{
 	 * 		false - caso o formato não esteja correto.
 	 */
 	public boolean dataValida (String data){
-		if ( data == null || data.isEmpty())return false;
+		String dataAtual = getDataAtual();
+		String dataEntrada = data;
 		String dia, mes, ano;
 		try{
 		    dia = data.substring(0, 2);
@@ -79,21 +80,22 @@ public class Data{
 			ano = data.substring(6, 10);
 		}catch (IndexOutOfBoundsException b){ return false;}
 		 catch (NullPointerException c){return false;}
-		
+
 		try{
 			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-			Date dataEntradaFormatada = format.parse(data);
-			Date dataAtualFormatada = format.parse(data);
+			Date dataEntradaFormatada = format.parse(dataEntrada);
+			Date dataAtualFormatada = format.parse(dataAtual);
 			if (dataEntradaFormatada.before(dataAtualFormatada)) return false;	
 		}catch (ParseException e){
 			return false;
 		}
-		if (!(verificaMeses31(dia, mes)) || !(verificaMeses30(dia, mes)) || !(verificaFevereiro(dia, mes, ano)) ||
+		if (data.isEmpty() || data == null) return false;
+		else if (!(verificaMeses31(dia, mes)) || !(verificaMeses30(dia, mes)) || !(verificaFevereiro(dia, mes, ano)) ||
 			(Integer.parseInt(mes) <= 0) || (Integer.parseInt(mes) > 12)) return false;
 		return true;
-		
+
 	}
-	
+
 	/**
 	 * Verifica os meses que possui 31 dias.
 	 * @param dia
@@ -110,8 +112,8 @@ public class Data{
 			|| Integer.parseInt(dia) <= 0)) return false;
 		return true;
 	}
-	
-	
+
+
 	/**
 	 * Verifica os meses que possui 31 dias.
 	 * @param dia
@@ -127,7 +129,7 @@ public class Data{
 			((Integer.parseInt(dia) > 30) || (Integer.parseInt(dia) <= 0))) return false;
 		return true;
 	}
-	
+
 	/**
 	 * Verifica o mes de fevereiro.
 	 * @param dia

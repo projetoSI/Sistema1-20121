@@ -3,6 +3,8 @@ package ufcg.edu.br.Sistema120121.sistema;
 import java.io.IOException;
 import java.util.List;
 
+import ufcg.edu.br.Sistema120121.excecoes.SolicitacaoException;
+
 public class AcessaDados {
 	
 	//ClASSE CONTROLLE DOS REPOSITORIOS
@@ -124,8 +126,20 @@ public class AcessaDados {
 		RepositorioCaronas.atualizaRepositorio();
 		RepositorioUsuario.atualizaRepositorio();
 	}
-	
-	
-	
 
+	public static Solicitacao getSolicitacao(String idSolicitacao) throws SolicitacaoException {
+		return RepositorioSolicitacoes.getSolicitacao(idSolicitacao);
+	}
+
+	public static void addSolicitacao(Carona caronaID, User user, String ponto) throws Exception {
+		RepositorioSolicitacoes.addSolicitacao(caronaID, user, ponto);
+	}
+
+	public static void apagaCarona(Carona carona) {
+		RepositorioCaronas.apagaCarona(carona);
+	}
+
+	public static void aceitaSolicitacao(String IDSolicitacao) throws SolicitacaoException {
+		RepositorioSolicitacoes.aceitaSolicitacao(IDSolicitacao);
+	}
 }

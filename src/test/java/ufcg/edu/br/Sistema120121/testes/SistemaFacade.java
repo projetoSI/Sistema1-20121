@@ -2,12 +2,11 @@ package ufcg.edu.br.Sistema120121.testes;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import easyaccept.EasyAcceptFacade;
 
+import ufcg.edu.br.Sistema120121.excecoes.SolicitacaoException;
 import ufcg.edu.br.Sistema120121.excecoes.UserException;
 import ufcg.edu.br.Sistema120121.sistema.Arquivo;
 import ufcg.edu.br.Sistema120121.sistema.Carona;
@@ -28,8 +27,6 @@ public class SistemaFacade {
 	private static SistemaFacade facade = new SistemaFacade();
 	private User user;
 	private Carona carona;
-	private Solicitacao solicitacao;
-	private List<Solicitacao> solicitacoes;
 	
 	public static SistemaFacade getInstanceFacade() {
 		return facade;
@@ -206,6 +203,9 @@ public class SistemaFacade {
 	
 	public String sugerirPontoEncontro(String IDSessao, String IDCarona, String pontos) throws Exception{
 		String result = "";
+		
+		if (pontos == null || pontos.isEmpty())
+			throw new Exception("Ponto Inválido");
 	
 		Sistema.getCaronaID(IDCarona).setPontoDeEncontro(pontos);
 		result = pontos;
@@ -214,27 +214,39 @@ public class SistemaFacade {
 	}
 	
 	public void responderSugestaoPontoEncontro(String IDSessao, String IdCarona, String IDSugestao, String pontos) throws Exception{
+		if (pontos == null || pontos.isEmpty())
+			throw new Exception("Ponto Inválido");
 		if (!IDSugestao.equalsIgnoreCase(pontos)){
 			Sistema.getCaronaID(IdCarona).setPontoDeEncontro(pontos);
 		}
 	}
 	
-	public Solicitacao solicitarVagaPontoEncontro(String IDSessao, String IDCarona, String ponto) throws Exception{
-		if (IDSessao != null && IDCarona != null && user != null)
-			solicitacao = new Solicitacao(Sistema.getCaronaID(IDCarona), user, ponto);
-		return solicitacao;
+	public String solicitarVagaPontoEncontro(String IDSessao, String IDCarona, String ponto) throws Exception{
+		if (ponto == null || ponto.isEmpty())
+			throw new Exception("Ponto Inválido");
+
+		Solicitacao s = new Solicitacao(Sistema.getCaronaID(IDCarona), user, ponto);
+		Sistema.addSolicitacao(Sistema.getCaronaID(IDCarona), user, ponto);
+		return s.getSolicitacaoID();
 	}
 	
-	public void aceitarSolicitacaoPontoEncontro(String IDSessao, String IDSolicitacao){
-		
+	public void aceitarSolicitacaoPontoEncontro(String IDSessao, String IDSolicitacao) throws Exception{
+		Sistema.solicitacaoAceita(IDSolicitacao);
+		Sistema.getSolicitacao(IDSolicitacao).confirmarCarona();
 	}
 	
-	public void desistirRequisicao(String IDSessao, String IDCarona, String IDSolicitacao){
-		
+	public void desistirRequisicao(String IDSessao, String IDCarona, String IDSolicitacao) throws Exception{
+		Carona aux = Sistema.getSolicitacao(IDSolicitacao).getCaronaDesejada();
+		if (Sistema.getCaronaID(IDCarona).getID().equals(aux.getID())){
+			Sistema.apagaCarona(Sistema.getCaronaID(IDCarona));
+		} else{
+			throw new Exception("Desistencia não confirmada!");
+		}
 	}
 	
-	public String getAtributoSolicitacao(String IDSolicitacao, String atributo) throws Exception{
+	public String getAtributoSolicitacao(String IDSolicitacao, String atributo) throws SolicitacaoException{
 		String result = "";
+		Solicitacao solicitacao = Sistema.getSolicitacao(IDSolicitacao);
 		
 		if (atributo.equals("origem"))
 			result = solicitacao.getCaronaDesejada().getOrigem();
@@ -247,7 +259,7 @@ public class SistemaFacade {
 		else if (atributo.equals("Ponto de Encontro"))
 			result = solicitacao.getPontoDeEncontro().getSugestaoAtual();
 		else
-			throw new Exception("Atributo inexistente");
+			throw new SolicitacaoException("Atributo inexistente");
 		
 		return result;
 	}
@@ -294,7 +306,7 @@ public class SistemaFacade {
 
 		List<String> files = new ArrayList<String>();
 		// Put the us1.txt file into the "test scripts" list
-		files.add("scripts/US06.txt");
+		files.add("scripts/US02.txt");
 		// Instantiate the Monopoly Game façade
 		SistemaFacade monopolyGameFacade = getInstanceFacade();
 		// Instantiate EasyAccept façade
