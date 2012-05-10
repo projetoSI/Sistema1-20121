@@ -11,22 +11,22 @@
     <ID>
       <login>mark</login>
       <email>mark@facebook.com</email>
-      <sessao>true</sessao>
+      <sessao>false</sessao>
     </ID>
   </ufcg.edu.br.Sistema120121.sistema.User>
   <ufcg.edu.br.Sistema120121.sistema.User>
-    <login>bill</login>
-    <endereco>Medina, Washington</endereco>
-    <email>billzin@gmail.com</email>
+    <login>steve</login>
+    <endereco>Palo Alto, California</endereco>
+    <email>jobs@apple.com</email>
     <telefone>112121212</telefone>
-    <nome>William Henry Gates III</nome>
-    <senha>bilz@o</senha>
+    <nome>Steve Paul Jobs</nome>
+    <senha>5t3v3</senha>
     <listaDeAmigos class="linked-list"/>
     <solicitacoes class="linked-list"/>
     <ID>
-      <login>bill</login>
-      <email>billzin@gmail.com</email>
-      <sessao>true</sessao>
+      <login>steve</login>
+      <email>jobs@apple.com</email>
+      <sessao>false</sessao>
     </ID>
   </ufcg.edu.br.Sistema120121.sistema.User>
 </linked-list>

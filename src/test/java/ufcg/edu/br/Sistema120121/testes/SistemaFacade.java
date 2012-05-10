@@ -118,10 +118,15 @@ public class SistemaFacade {
 		if (sessao == null || sessao.isEmpty())
 			throw new Exception("Sessão inválida");
 		
+		boolean temSessao = false; 
 		for (User aux : Sistema.getUsuariosCadastrados()) {
-			if (!sessao.equals(aux.getID().toString()))
-				throw new Exception("Sessão inexistente");
+			if(sessao.equals(aux.getID().toString())){
+				temSessao = true;
+				break;
+			}
 		}
+		if (!temSessao)
+			throw new Exception("Sessão inexistente");
 		
 		try {
 			Integer.parseInt(vagas);
@@ -325,12 +330,43 @@ public class SistemaFacade {
 		return perfil;
 		
 	}
+//	US06
+	
+	public void reiniciarSistema(){
+		Sistema.reiniciar();
+	}
+	
+	public String getCaronaUsuario(String idSessao, String indexCarona){
+//		Sistema.getCaronaUser(idSessao).getID.toString();
+		return "";
+	}
+	
+	public String getTodasCaronasUsuario(String idSessao){
+		return "";
+	}
+	
+	public String getSolicitacoesConfirmadas(String idSessao, String idCarona){
+		return "";
+	}
+	
+	public String getSolicitacoesPendentes(String idSessao, String idCarona){
+		return "";
+	}
+	
+	public String getPontosSugeridos(String idSessao, String idCarona){
+		return "";
+	}
+	
+	public String getPontosEncontro(String idSessao, String idCarona){
+		return "";
+	}
+//	US07
 	
 	public static void main(String[] args) throws Exception {
 
 		List<String> files = new ArrayList<String>();
 		// Put the us1.txt file into the "test scripts" list
-		files.add("scripts/US05.txt");
+		files.add("scripts/US07.txt");
 		// Instantiate the Monopoly Game façade
 		SistemaFacade monopolyGameFacade = getInstanceFacade();
 		// Instantiate EasyAccept façade

@@ -21,7 +21,7 @@
       <ID>
         <login>mark</login>
         <email>mark@facebook.com</email>
-        <sessao>true</sessao>
+        <sessao>false</sessao>
       </ID>
     </motorista>
     <ID>
@@ -43,21 +43,43 @@
     <hora>
       <Hora>21:00</Hora>
     </hora>
-    <qntVagas>2</qntVagas>
+    <qntVagas>1</qntVagas>
     <motorista reference="../../ufcg.edu.br.Sistema120121.sistema.Carona/motorista"/>
     <ID>
       <loginMotorista>mark</loginMotorista>
       <horaCarona reference="../../hora"/>
       <dataCarona reference="../../data"/>
     </ID>
-    <caroneiros class="tree-map"/>
+    <caroneiros class="tree-map">
+      <entry>
+        <ufcg.edu.br.Sistema120121.sistema.User>
+          <login>steve</login>
+          <endereco>Palo Alto, California</endereco>
+          <email>jobs@apple.com</email>
+          <telefone>112121212</telefone>
+          <nome>Steve Paul Jobs</nome>
+          <senha>5t3v3</senha>
+          <listaDeAmigos class="linked-list"/>
+          <solicitacoes class="linked-list"/>
+          <ID>
+            <login>steve</login>
+            <email>jobs@apple.com</email>
+            <sessao>false</sessao>
+          </ID>
+        </ufcg.edu.br.Sistema120121.sistema.User>
+        <ufcg.edu.br.Sistema120121.sistema.Carona_-Situacao>NAO_FALTOU</ufcg.edu.br.Sistema120121.sistema.Carona_-Situacao>
+      </entry>
+    </caroneiros>
     <pontoDeEncontro>
-      <blackList class="linked-list"/>
+      <sugestaoAtual>[Acude Velho;Hiper Bompreco]</sugestaoAtual>
+      <blackList class="linked-list">
+        <null/>
+      </blackList>
     </pontoDeEncontro>
   </ufcg.edu.br.Sistema120121.sistema.Carona>
   <ufcg.edu.br.Sistema120121.sistema.Carona>
     <origem>Campina Grande</origem>
-    <destino>JoãoPessoa</destino>
+    <destino>João Pessoa</destino>
     <data>
       <data>01/06/2012</data>
     </data>
@@ -85,33 +107,14 @@
     <hora>
       <Hora>12:00</Hora>
     </hora>
-    <qntVagas>2</qntVagas>
+    <qntVagas>3</qntVagas>
     <motorista reference="../../ufcg.edu.br.Sistema120121.sistema.Carona/motorista"/>
     <ID>
       <loginMotorista>mark</loginMotorista>
       <horaCarona reference="../../hora"/>
       <dataCarona reference="../../data"/>
     </ID>
-    <caroneiros class="tree-map">
-      <entry>
-        <ufcg.edu.br.Sistema120121.sistema.User>
-          <login>bill</login>
-          <endereco>Medina, Washington</endereco>
-          <email>billzin@gmail.com</email>
-          <telefone>112121212</telefone>
-          <nome>William Henry Gates III</nome>
-          <senha>bilz@o</senha>
-          <listaDeAmigos class="linked-list"/>
-          <solicitacoes class="linked-list"/>
-          <ID>
-            <login>bill</login>
-            <email>billzin@gmail.com</email>
-            <sessao>true</sessao>
-          </ID>
-        </ufcg.edu.br.Sistema120121.sistema.User>
-        <ufcg.edu.br.Sistema120121.sistema.Carona_-Situacao>NAO_FALTOU</ufcg.edu.br.Sistema120121.sistema.Carona_-Situacao>
-      </entry>
-    </caroneiros>
+    <caroneiros class="tree-map"/>
     <pontoDeEncontro>
       <blackList class="linked-list"/>
     </pontoDeEncontro>

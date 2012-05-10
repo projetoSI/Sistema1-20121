@@ -164,4 +164,12 @@ public class Sistema {
 	public static void solicitacaoRecusada(String IDSolicitacao) throws SolicitacaoException {
 		AcessaDados.recusaSolicitacao(IDSolicitacao);
 	}
+
+	public static void reiniciar() {
+		sistema = new Sistema();
+	}
+
+//	public static Carona getCaronaUser(String idSessao) {
+//		return AcessaDados.;
+//	}
 }
