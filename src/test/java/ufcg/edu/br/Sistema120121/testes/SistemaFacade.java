@@ -2,7 +2,10 @@ package ufcg.edu.br.Sistema120121.testes;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import easyaccept.EasyAcceptFacade;
 
@@ -27,6 +30,7 @@ public class SistemaFacade {
 	private static SistemaFacade facade = new SistemaFacade();
 	private User user;
 	private Carona carona;
+	private Map<String, List<String>> refCaronasUsers = new TreeMap<String, List<String>>();
 	
 	public static SistemaFacade getInstanceFacade() {
 		return facade;
@@ -134,14 +138,33 @@ public class SistemaFacade {
 			throw new Exception("Vaga inválida");
 		}
 		
+		mudaUserAtual(sessao);
+		
 		Hora horaAux = new Hora(hora);
 		Data dataAux = new Data(data);
 		Sistema.addCarona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), user);
 		carona = new Carona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), user);
 
+		if (refCaronasUsers.containsKey(user.getID().toString())){
+			refCaronasUsers.get(user.getID().toString()).add(carona.getID().toString());
+		}else{
+			List<String> aux = new LinkedList<String>();
+			aux.add(carona.getID().toString());
+			refCaronasUsers.put(user.getID().toString(), aux);
+		}
+		
 		return carona.getID();
 	}
 	
+	private void mudaUserAtual(String sessao) {
+		for (User aux : Sistema.getUsuariosCadastrados()) {
+			if (aux.getID().toString().equals(sessao)) {
+				user = aux;
+				break;
+			}
+		}
+	}
+
 	public String getAtributoCarona(String IDCarona, String atributo) throws Exception{
 		String result = null;
 		
@@ -272,12 +295,7 @@ public class SistemaFacade {
 // US04	
 	
 	public String solicitarVaga(String idSessao,String idCarona) throws Exception{
-		for (User aux : Sistema.getUsuariosCadastrados()) {
-			if (aux.getID().toString().equals(idSessao)){
-				user = aux;
-				break;
-			}
-		}
+		mudaUserAtual(idSessao);
 		
 		Solicitacao solicitacao = new Solicitacao(Sistema.getCaronaID(idCarona), user);
 		Sistema.addSolicitacao(Sistema.getCaronaID(idCarona),user);
@@ -336,29 +354,64 @@ public class SistemaFacade {
 		Sistema.reiniciar();
 	}
 	
-	public String getCaronaUsuario(String idSessao, String indexCarona){
-//		Sistema.getCaronaUser(idSessao).getID.toString();
-		return "";
+	public String getCaronaUsuario(String idSessao, String indexCarona) throws Exception{
+		String idCarona = "";
+		
+		if (refCaronasUsers.containsKey(idSessao))
+			idCarona = refCaronasUsers.get(idSessao).get(Integer.parseInt(indexCarona)-1);
+		
+		return idCarona;
 	}
 	
-	public String getTodasCaronasUsuario(String idSessao){
-		return "";
+	public String getTodasCaronasUsuario(String idSessao) throws Exception{
+		String result = "{";
+
+		for (String idCarona : refCaronasUsers.get(idSessao)) {
+			if (result.equals("{")) {
+				result += Sistema.getCaronaID(idCarona).getID().toString();
+			} else {
+				result += "," + Sistema.getCaronaID(idCarona).getID().toString();
+			}
+		}
+		result += "}";
+
+		return result;
 	}
 	
 	public String getSolicitacoesConfirmadas(String idSessao, String idCarona){
-		return "";
+		String result = "{";
+
+		for (Solicitacao s : Sistema.getSolicitacoesAceitas()) {
+			if (s.getCaronaDesejada().getID().toString().equals(idCarona)) {
+				if (result.equals("{")) {
+					result += s.getSolicitacaoID();
+				} else {
+					result += "," + s.getSolicitacaoID();
+				}
+			}
+		}
+		result += "}";
+
+		return result;
 	}
 	
 	public String getSolicitacoesPendentes(String idSessao, String idCarona){
 		return "";
 	}
 	
-	public String getPontosSugeridos(String idSessao, String idCarona){
-		return "";
+	public String getPontosSugeridos(String idSessao, String idCarona) throws Exception{
+		String result = "";
+
+		for (String idAux : refCaronasUsers.get(idSessao)) {
+			if (idAux.equals(idCarona))
+					result = Sistema.getCaronaID(idAux).getPontoDeEncontro().getSugestaoAtual();
+			}
+
+		return result;
 	}
 	
-	public String getPontosEncontro(String idSessao, String idCarona){
-		return "";
+	public String getPontosEncontro(String idSessao, String idCarona) throws Exception{
+		return getPontosSugeridos(idSessao, idCarona);
 	}
 //	US07
 	

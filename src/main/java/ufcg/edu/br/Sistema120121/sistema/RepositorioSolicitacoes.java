@@ -74,5 +74,7 @@ public abstract class RepositorioSolicitacoes {
 		return aux;
 	}
 	
-	
+	public static List<Solicitacao> getSolicitacoesAceitas(){
+		return solicitacoesAceitas;
+	}
 }

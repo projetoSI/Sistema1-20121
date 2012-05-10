@@ -138,7 +138,7 @@ public class RepositorioCaronas {
 		}
 		Carona carona = null;
 		for (Carona c : caronasCadastradas) {
-			if (id.equals(c.getID().toString())) {
+			if (c.getID().toString().equals(id)) {
 				carona = c;
 				break;
 			}

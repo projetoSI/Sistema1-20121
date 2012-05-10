@@ -149,5 +149,9 @@ public class AcessaDados {
 	public static void recusaSolicitacao(String IDSolicitacao) throws SolicitacaoException {
 		RepositorioSolicitacoes.recusaSolicitacao(IDSolicitacao);
 	}
+
+	public static List<Solicitacao> getSolicitacoesAceitas() {
+		return RepositorioSolicitacoes.getSolicitacoesAceitas();
+	}
 	
 }

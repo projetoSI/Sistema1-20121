@@ -169,7 +169,8 @@ public class Sistema {
 		sistema = new Sistema();
 	}
 
-//	public static Carona getCaronaUser(String idSessao) {
-//		return AcessaDados.;
-//	}
+	public static List<Solicitacao> getSolicitacoesAceitas() {
+		return AcessaDados.getSolicitacoesAceitas();
+	}
+
 }

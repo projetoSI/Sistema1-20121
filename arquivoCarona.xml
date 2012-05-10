@@ -108,9 +108,9 @@
       <Hora>12:00</Hora>
     </hora>
     <qntVagas>3</qntVagas>
-    <motorista reference="../../ufcg.edu.br.Sistema120121.sistema.Carona/motorista"/>
+    <motorista reference="../../ufcg.edu.br.Sistema120121.sistema.Carona[2]/caroneiros/entry/ufcg.edu.br.Sistema120121.sistema.User"/>
     <ID>
-      <loginMotorista>mark</loginMotorista>
+      <loginMotorista>steve</loginMotorista>
       <horaCarona reference="../../hora"/>
       <dataCarona reference="../../data"/>
     </ID>
@@ -129,9 +129,9 @@
       <Hora>16:00</Hora>
     </hora>
     <qntVagas>2</qntVagas>
-    <motorista reference="../../ufcg.edu.br.Sistema120121.sistema.Carona/motorista"/>
+    <motorista reference="../../ufcg.edu.br.Sistema120121.sistema.Carona[2]/caroneiros/entry/ufcg.edu.br.Sistema120121.sistema.User"/>
     <ID>
-      <loginMotorista>mark</loginMotorista>
+      <loginMotorista>steve</loginMotorista>
       <horaCarona reference="../../hora"/>
       <dataCarona reference="../../data"/>
     </ID>
@@ -150,9 +150,9 @@
       <Hora>10:00</Hora>
     </hora>
     <qntVagas>3</qntVagas>
-    <motorista reference="../../ufcg.edu.br.Sistema120121.sistema.Carona/motorista"/>
+    <motorista reference="../../ufcg.edu.br.Sistema120121.sistema.Carona[2]/caroneiros/entry/ufcg.edu.br.Sistema120121.sistema.User"/>
     <ID>
-      <loginMotorista>mark</loginMotorista>
+      <loginMotorista>steve</loginMotorista>
       <horaCarona reference="../../hora"/>
       <dataCarona reference="../../data"/>
     </ID>
