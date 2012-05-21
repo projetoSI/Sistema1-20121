@@ -10,18 +10,17 @@ import ufcg.edu.br.Sistema120121.excecoes.UserException;
 
 public class RepositorioUsuario {
 
-	private static List<User> usersCadastrados = new LinkedList<User>();
-	private static User newUser;
+	private  List<User> usersCadastrados = new LinkedList<User>();
+	private  User newUser;
 	
 	/**
 	 * Atualiza o repositorio de usuario.
 	 * @throws IOException
 	 *		Caso não consiga ler o arquivo. 		
 	 */
-	public static void atualizaRepositorio() throws IOException {
-		usersCadastrados = Arquivo.lerArquivo("arquivoUser.xml");
+	public  void atualizaRepositorio(LinkedList<User> novosDados) throws IOException {
+		usersCadastrados = novosDados;
 	}
-
 	/**
 	 * Adicona um novo usuario ao repositorio.
 	 * @param login
@@ -38,12 +37,11 @@ public class RepositorioUsuario {
 	 * 		Telefone do novo usuario.
 	 * @throws Exception
 	 */
-	public static void addUser(String login, String senha, String nome,	String endereco,String email, String telefone) throws Exception{
+	public  void addUser(String login, String senha, String nome,	String endereco,String email, String telefone) throws Exception{
 		newUser = new User(login,senha,nome,endereco,email,telefone);
 		
 		if (getUsuarioEmail(email) == null && getUsuarioLogin(login) == null){
 			usersCadastrados.add(newUser);
-			Arquivo.setUsuarios(usersCadastrados);
 		}else if(getUsuarioEmail(email) != null) throw new UserException("Já existe um usuário com este email");
 		else if(getUsuarioLogin(login) != null) throw new UserException("Já existe um usuário com este login");
 		
@@ -54,7 +52,7 @@ public class RepositorioUsuario {
 	 * @return
 	 * 		Os usuarios do repositorios.
 	 */
-	public static List<User> getUsuarios() {
+	public  List<User> getUsuarios() {
 		return usersCadastrados;
 		 
 	}
@@ -67,7 +65,7 @@ public class RepositorioUsuario {
 	 * 		O usuario.
 	 * @throws Exception
 	 */
-	public static User getUsuarioEmail(String email) throws Exception{
+	public  User getUsuarioEmail(String email) throws Exception{
 		if(email == null || email.isEmpty())
 			throw new EmailErrorException("Email inválido");
 		return foundUser(email);				
@@ -81,7 +79,7 @@ public class RepositorioUsuario {
 	 * 		O usuario.
 	 * @throws Exception
 	 */
-	public static User getUsuarioLogin(String login) throws Exception{
+	public  User getUsuarioLogin(String login) throws Exception{
 		if(login == null || login.isEmpty())
 			throw new LoginErrorException("Login inválido");
 		return foundUser(login);		
@@ -95,7 +93,7 @@ public class RepositorioUsuario {
 	 * 		O usuario.
 	 * @throws Exception 
 	 */
-	private static User foundUser(String argumento) throws Exception{
+	private  User foundUser(String argumento) throws Exception{
 		User usuario = null;
 		
 		for (User user : usersCadastrados) {
@@ -107,7 +105,7 @@ public class RepositorioUsuario {
 		return usuario;
 	}
 
-	private static void sessaoUserAux(String login, boolean abre){
+	private  void sessaoUserAux(String login, boolean abre){
 		for (int i = 0; i < usersCadastrados.size(); i++) {
 			if (usersCadastrados.get(i).getLogin().equals(login)) {
 				if (abre) {
@@ -121,11 +119,11 @@ public class RepositorioUsuario {
 		}
 	}
 	
-	public static void abreSessaoUser(String login) {
+	public  void abreSessaoUser(String login) {
 		sessaoUserAux(login, true);
 	}
 
-	public static void fechaSessaoUser(String login) {
+	public  void fechaSessaoUser(String login) {
 		sessaoUserAux(login, false);
 	}
 }

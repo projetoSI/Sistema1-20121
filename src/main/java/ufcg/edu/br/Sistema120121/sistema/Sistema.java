@@ -12,15 +12,16 @@ import ufcg.edu.br.Sistema120121.excecoes.UserException;
 public class Sistema {
 	
 	private static Sistema sistema = new Sistema();
+	private static AcessaDados controlaDados = AcessaDados.getInstance();
+	
 	
 	private Sistema(){
-		try {
-			AcessaDados.atualizaDados();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
+	
+	public static Sistema getInstance() {
+		return sistema;
+	}
 	
 	
 	/**
@@ -39,9 +40,19 @@ public class Sistema {
 	 * 		Telefone do novo usuario.
 	 * @throws Exception
 	 */
-	public static void addUsuario(String login,String senha,String nome,String endereco,String email,String telefone) throws Exception{
-		AcessaDados.addUsuario(login, senha, nome,endereco,email,telefone);
+	public void addUsuario(String login,String senha,String nome,String endereco,String email,String telefone) throws Exception{
+		controlaDados.addUsuario(login, senha, nome,endereco,email,telefone);
 	}
+	
+	
+	public void zerarDados() throws IOException{
+		controlaDados.limparArquivo();
+	}
+	
+	public void guardarDados() throws IOException{
+		controlaDados.escreverArquivo();
+	}
+	
 	
 	/**
 	 * Adiciona uma nova carona ao sistema.
@@ -59,8 +70,8 @@ public class Sistema {
 	 * 		O motorista da carona.
 	 * @throws Exception
 	 */
-	public static void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
-		AcessaDados.addCarona(origem, destino, hora, data, qntVagas, motorista);
+	public void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
+		controlaDados.addCarona(origem, destino, hora, data, qntVagas, motorista);
 	}
 	
 	/**
@@ -68,8 +79,8 @@ public class Sistema {
 	 * @return
 	 * 		A lista de usuarios cadastrados.
 	 */
-	public static List<User> getUsuariosCadastrados() {
-		return AcessaDados.getUsuariosCadastrados();
+	public List<User> getUsuariosCadastrados() {
+		return controlaDados.getUsuariosCadastrados();
 	}
 	
 	/**
@@ -80,8 +91,8 @@ public class Sistema {
 	 * 		O usuario.
 	 * @throws Exception
 	 */
-	public static User getUser(String login) throws Exception{
-		return AcessaDados.getUser(login);
+	public User getUser(String login) throws Exception{
+		return controlaDados.getUser(login);
 		
 	}
 	
@@ -95,14 +106,14 @@ public class Sistema {
 	 * 		O usuario.
 	 * @throws Exception
 	 */
-	public static User acessarConta(String login,String senha) throws Exception {
+	public User acessarConta(String login,String senha) throws Exception {
 		User usuario = null;
 		
 		if (senha == null ||senha.isEmpty()) {
 			throw new PasswordErrorException("Senha inválida");
 		}
 		
-		usuario = AcessaDados.getUser(login);
+		usuario = controlaDados.getUser(login);
 		if (usuario == null)
 			throw new UserException("Usuário inexistente");
 		
@@ -124,53 +135,53 @@ public class Sistema {
 	 * 		A carona desejada.
 	 * @throws Exception
 	 */
-	public static List<Carona> getCaronas(String origem, String destino) throws Exception {
-		return AcessaDados.localizarCarona(origem, destino);
+	public List<Carona> getCaronas(String origem, String destino) throws Exception {
+		return controlaDados.localizarCarona(origem, destino);
 	}
 	
-	public static Carona getCaronaID(String id) throws Exception {
-		return AcessaDados.getCaronaID(id);
+	public Carona getCaronaID(String id) throws Exception {
+		return controlaDados.getCaronaID(id);
 		
 	}
 
-	public static void abreSessaoUser(String login) {
-		AcessaDados.abreSessaoUser(login);
+	public void abreSessaoUser(String login) {
+		controlaDados.abreSessaoUser(login);
 	}
 
-	public static void fechaSessaoUser(String login) {
-		AcessaDados.fechaSessaoUser(login);
+	public void fechaSessaoUser(String login) {
+		controlaDados.fechaSessaoUser(login);
 	}
 
-	public static Solicitacao getSolicitacao(String IdSolicitacao) throws SolicitacaoException {
-		return AcessaDados.getSolicitacao(IdSolicitacao);
+	public Solicitacao getSolicitacao(String IdSolicitacao) throws SolicitacaoException {
+		return controlaDados.getSolicitacao(IdSolicitacao);
 	}
 
-	public static void addSolicitacao(Carona caronaID, User user, String ponto) throws Exception {
-		AcessaDados.addSolicitacao(caronaID, user, ponto);
+	public void addSolicitacao(Carona caronaID, User user, String ponto) throws Exception {
+		controlaDados.addSolicitacao(caronaID, user, ponto);
 	}
 	
-	public static void addSolicitacao(Carona caronaID, User user) throws Exception {
-		AcessaDados.addSolicitacao(caronaID, user);
+	public void addSolicitacao(Carona caronaID, User user) throws Exception {
+		controlaDados.addSolicitacao(caronaID, user);
 	}
 
-	public static void apagaCarona(Carona carona) {
-		AcessaDados.apagaCarona(carona);
+	public void apagaCarona(Carona carona) {
+		controlaDados.apagaCarona(carona);
 	}
 
-	public static void solicitacaoAceita(String IDSolicitacao) throws SolicitacaoException {
-		AcessaDados.aceitaSolicitacao(IDSolicitacao);
+	public void solicitacaoAceita(String IDSolicitacao) throws SolicitacaoException {
+		controlaDados.aceitaSolicitacao(IDSolicitacao);
 	}
 	
-	public static void solicitacaoRecusada(String IDSolicitacao) throws SolicitacaoException {
-		AcessaDados.recusaSolicitacao(IDSolicitacao);
+	public void solicitacaoRecusada(String IDSolicitacao) throws SolicitacaoException {
+		controlaDados.recusaSolicitacao(IDSolicitacao);
 	}
 
-	public static void reiniciar() {
-		sistema = new Sistema();
+	public void reiniciar() throws IOException {
+		controlaDados.atualizaDados();
 	}
 
-	public static List<Solicitacao> getSolicitacoesAceitas() {
-		return AcessaDados.getSolicitacoesAceitas();
+	public List<Solicitacao> getSolicitacoesAceitas() {
+		return controlaDados.getSolicitacoesAceitas();
 	}
 
 }

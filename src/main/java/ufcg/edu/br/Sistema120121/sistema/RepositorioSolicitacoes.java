@@ -5,21 +5,21 @@ import java.util.List;
 
 import ufcg.edu.br.Sistema120121.excecoes.SolicitacaoException;
 
-public abstract class RepositorioSolicitacoes {
+public class RepositorioSolicitacoes {
 
-	private static List<Solicitacao> solicitacoes = new LinkedList<Solicitacao>();
-	private static List<Solicitacao> solicitacoesAceitas = new LinkedList<Solicitacao>();
+	private  List<Solicitacao> solicitacoes = new LinkedList<Solicitacao>();
+	private  List<Solicitacao> solicitacoesAceitas = new LinkedList<Solicitacao>();
 	
-	public static void addSolicitacao(Carona carona, User caroneiro, String pontoDeEncontro) throws Exception {
+	public  void addSolicitacao(Carona carona, User caroneiro, String pontoDeEncontro) throws Exception {
 		solicitacoes.add(new Solicitacao(carona, caroneiro, pontoDeEncontro));
 	}
 	
-	public static void addSolicitacao(Carona carona, User user) {
+	public  void addSolicitacao(Carona carona, User user) {
 		solicitacoes.add(new Solicitacao(carona,user));
 		
 	}
 	
-	public static void aceitaSolicitacao(String IDSolicitacao) throws SolicitacaoException{
+	public  void aceitaSolicitacao(String IDSolicitacao) throws SolicitacaoException{
 		boolean notRemovida = true;
 		
 		for (int i = 0; i < solicitacoes.size(); i++) {
@@ -34,7 +34,7 @@ public abstract class RepositorioSolicitacoes {
 			throw new SolicitacaoException("Solicitação inexistente");
 	}
 	
-	public static void recusaSolicitacao(String IDSolicitacao) throws SolicitacaoException{
+	public  void recusaSolicitacao(String IDSolicitacao) throws SolicitacaoException{
 		boolean notRemovida = true;
 		
 		for (int i = 0; i < solicitacoes.size(); i++) {
@@ -50,7 +50,7 @@ public abstract class RepositorioSolicitacoes {
 	}
 	
 	
-	public static Solicitacao getSolicitacao(String ID) throws SolicitacaoException{
+	public  Solicitacao getSolicitacao(String ID) throws SolicitacaoException{
 		Solicitacao aux = null;
 		
 		for (Solicitacao s : solicitacoes) {
@@ -74,7 +74,7 @@ public abstract class RepositorioSolicitacoes {
 		return aux;
 	}
 	
-	public static List<Solicitacao> getSolicitacoesAceitas(){
+	public  List<Solicitacao> getSolicitacoesAceitas(){
 		return solicitacoesAceitas;
 	}
 }

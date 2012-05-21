@@ -8,27 +8,28 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import ufcg.edu.br.Sistema120121.excecoes.AdressErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.EmailErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.LoginErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.NameErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.PasswordErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.PhoneErrorException;
-
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class Arquivo {
 
-	static List<User> usuarios;
-	static List<Carona> caronas;
+	private AcessaDados controlaDados = AcessaDados.getInstance();
+	private static Arquivo  instance = new Arquivo();
+	
+	private Arquivo(){
+		
+	}
+	
+	public static Arquivo getInstance(){
+		return instance;
+	}
 
 	/**
 	 * Metodo para escrever em um arquivo,se o arquivo não exite ele é criado.
 	 * 
 	 * @throws IOException
 	 */
-	private static void geraArquivo(String arquivo,List lista) throws IOException {
+	public void geraArquivo(String arquivo,List lista) throws IOException {
 		XStream stream;
 		String dados;
 		stream = new XStream(new DomDriver());
@@ -44,6 +45,7 @@ public class Arquivo {
 
 	/**
 	 * Leitura de arquivos
+	 * @param <T>
 	 * 
 	 * @param arquivo
 	 * 		Caminho do arquivo.
@@ -53,73 +55,27 @@ public class Arquivo {
 	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
-	public static LinkedList lerArquivo(String arquivo) throws IOException{
-		LinkedList temp = null;
+	public <T> List<T> lerArquivo(String arquivo) throws IOException{
+		List<T> temp = null;
 		XStream xst;
 		xst = new XStream(new DomDriver());
 		try {
 			FileReader	input =  new FileReader(arquivo);
-			temp = (LinkedList) xst.fromXML(input);
+			temp = ((LinkedList<T>) xst.fromXML(input));
 			input.close();
 		} catch (FileNotFoundException e) {
 			System.err.println(e.getLocalizedMessage());
 		}
 		return temp; 
 	}
-	
-	/**
-	 * Escrever no arquivo.
-	 * @throws IOException
-	 */
-	public static void escreveArquivo() throws IOException {
-		geraArquivo("arquivoUser.xml", getUsuarios());
-		geraArquivo("arquivoCarona.xml", getCaronas());
-	}
-	
 	/**
 	 * Reinicia o arquivo.
 	 * @throws IOException
 	 */
-	public static void zeraArquivos() throws IOException {
-		setUsuarios(new LinkedList<User>());
-		setCaronas(new LinkedList<Carona>());
-		escreveArquivo();
-	}
-	
-	/**
-	 * Retorna a lista de todos os usuarios do arquivo.
-	 * @return	
-	 * 		A lista de todos os usuarios.
-	 */
-	public static List<User> getUsuarios() {
-		return usuarios;
-	}
-
-	/**
-	 * Muda a lista de usuarios.
-	 * @param usuarios
-	 * 		A nova lista de usuarios.
-	 */
-	public static void setUsuarios(List<User> usuarios) {
-		Arquivo.usuarios = usuarios;
-	}
-
-	/**
-	 * Retorna a lista de todas as caronas contidas no arquivo.
-	 * @return
-	 * 		A lista de caronas.
-	 */
-	public static List<Carona> getCaronas() {
-		return caronas;
-	}
-
-	/**
-	 * Altera a lista de caronas.
-	 * @param caronas
-	 * 		A nova lista de caronas.
-	 */
-	public static void setCaronas(List<Carona> caronas) {
-		Arquivo.caronas = caronas;
+	public void zeraArquivos() throws IOException {
+		this.geraArquivo("arquivoUser.xml",new LinkedList<User>());
+		this.geraArquivo("arquivoCarona.xml",new LinkedList<Carona>());
 	}
 	
 }
+

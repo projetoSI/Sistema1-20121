@@ -1,14 +1,26 @@
 package ufcg.edu.br.Sistema120121.sistema;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import ufcg.edu.br.Sistema120121.excecoes.SolicitacaoException;
 
 public class AcessaDados {
 	
-	//ClASSE CONTROLLE DOS REPOSITORIOS
+	private static AcessaDados instance = new AcessaDados();
+	private RepositorioCaronas dadosCaronas = new RepositorioCaronas() ;
+	private RepositorioUsuario dadosUser = new RepositorioUsuario();
+	private RepositorioSolicitacoes  dadosSolicitacao = new RepositorioSolicitacoes();
+	private Arquivo arquivo = Arquivo.getInstance();
+
 	
+	private AcessaDados() {
+	}
+	
+	public static AcessaDados getInstance(){
+		return instance;
+	}
 	/**
 	 * Adiciona um novo usuario ao sistema.
 	 * @param login
@@ -25,8 +37,8 @@ public class AcessaDados {
 	 * 		Telefone do novo usuario.
 	 * @throws Exception
 	 */
-	public static void addUsuario(String login,String senha,String nome,String endereco,String email,String telefone) throws Exception{
-		RepositorioUsuario.addUser(login, senha, nome,endereco,email,telefone);
+	public void addUsuario(String login,String senha,String nome,String endereco,String email,String telefone) throws Exception{
+		dadosUser.addUser(login, senha, nome,endereco,email,telefone);
 	}
 	
 	/**
@@ -45,8 +57,8 @@ public class AcessaDados {
 	 * 		O motorista da carona.
 	 * @throws Exception
 	 */
-	public static void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
-		RepositorioCaronas.addCarona(origem, destino, hora, data, qntVagas, motorista);
+	public void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
+		dadosCaronas.addCarona(origem, destino, hora, data, qntVagas, motorista);
 	}
 	
 	/**
@@ -54,8 +66,16 @@ public class AcessaDados {
 	 * @return
 	 * 		A lista de usuarios cadastrados no sistema.
 	 */
-	public static List<User> getUsuariosCadastrados() {
-		return RepositorioUsuario.getUsuarios();
+	public List<User> getUsuariosCadastrados() {
+		return dadosUser.getUsuarios();
+	}
+	
+	public void escreverArquivo() throws IOException {
+		arquivo.geraArquivo("arquivoUser.xml",getUsuariosCadastrados());
+		arquivo.geraArquivo("arquivoCarona.xml",caronasCadastradas());
+	}
+	public void limparArquivo() throws IOException{
+		arquivo.zeraArquivos();
 	}
 	
 	/**
@@ -66,8 +86,8 @@ public class AcessaDados {
 	 * 		O usuario.
 	 * @throws Exception
 	 */
-	public static User getUser(String login) throws Exception{
-		return RepositorioUsuario.getUsuarioLogin(login);
+	public User getUser(String login) throws Exception{
+		return dadosUser.getUsuarioLogin(login);
 		
 	}
 	
@@ -81,18 +101,23 @@ public class AcessaDados {
 	 * 		A carona.
 	 * @throws Exception
 	 */
-	public static List<Carona> localizarCarona(String origem ,String destino) throws Exception {
-		return RepositorioCaronas.getCaronas(origem, destino);
+	public List<Carona> localizarCarona(String origem ,String destino) throws Exception {
+		return dadosCaronas.getCaronas(origem, destino);
 
 	}
+	
+	public List<Carona> getCaronasDoCaroneiro(User caroneiro){
+		return dadosCaronas.recuperaVagaCaronaUser(caroneiro);
+	}
+
 	
 	/**
 	 * Retorna a lista de caronas cadastradas.
 	 * @return
 	 * 		A lista de caronas cadastradas.
 	 */
-	public static List<Carona> caronasCadastradas() {
-		return RepositorioCaronas.getCaronasCadastradas();
+	public List<Carona> caronasCadastradas() {
+		return dadosCaronas.getCaronasCadastradas();
 	}
 	
 	/**
@@ -102,56 +127,56 @@ public class AcessaDados {
 	 * @return
 	 * 		A lista de caronas de um determinado usuario.
 	 */
-	public static List<Carona> getCaronasDoUsuario(User motorista) {
-		return RepositorioCaronas.recuperaCaronaUser(motorista);
+	public List<Carona> getCaronasDoMotorista(User motorista) {
+		return dadosCaronas.recuperaCaronaUser(motorista);
 	}
 	
-	public static Carona getCaronaID(String id) throws Exception{
-		return RepositorioCaronas.getCarona(id);
+	public Carona getCaronaID(String id) throws Exception{
+		return dadosCaronas.getCarona(id);
 	}
 	
-	public static List<Carona> historicoCarona(User usuario){
-		return RepositorioCaronas.getTodasCaronas(usuario);
+	public List<Carona> historicoCarona(User usuario){
+		return dadosCaronas.getTodasCaronas(usuario);
 	}
 
-	public static void abreSessaoUser(String login) {
-		RepositorioUsuario.abreSessaoUser(login);
+	public void abreSessaoUser(String login) {
+		dadosUser.abreSessaoUser(login);
 	}
 
-	public static void fechaSessaoUser(String login) {
-		RepositorioUsuario.fechaSessaoUser(login);
+	public void fechaSessaoUser(String login) {
+		dadosUser.fechaSessaoUser(login);
 	}
 
-	public static void atualizaDados() throws IOException {
-		RepositorioCaronas.atualizaRepositorio();
-		RepositorioUsuario.atualizaRepositorio();
+	public void atualizaDados() throws IOException {
+		dadosCaronas.atualizaRepositorio((LinkedList<Carona>) arquivo.<Carona>lerArquivo("arquivoUser.xml"));
+		dadosUser.atualizaRepositorio((LinkedList<User>) arquivo.<User>lerArquivo("arquivoCarona.xml"));
 	}
 
-	public static Solicitacao getSolicitacao(String idSolicitacao) throws SolicitacaoException {
-		return RepositorioSolicitacoes.getSolicitacao(idSolicitacao);
+	public Solicitacao getSolicitacao(String idSolicitacao) throws SolicitacaoException {
+		return dadosSolicitacao.getSolicitacao(idSolicitacao);
 	}
 
-	public static void addSolicitacao(Carona caronaID, User user, String ponto) throws Exception {
-		RepositorioSolicitacoes.addSolicitacao(caronaID, user, ponto);
+	public void addSolicitacao(Carona caronaID, User user, String ponto) throws Exception {
+		dadosSolicitacao.addSolicitacao(caronaID, user, ponto);
 	}
 
-	public static void addSolicitacao(Carona caronaID, User user) {
-		RepositorioSolicitacoes.addSolicitacao(caronaID, user);
+	public void addSolicitacao(Carona caronaID, User user) {
+		dadosSolicitacao.addSolicitacao(caronaID, user);
 	}
-	public static void apagaCarona(Carona carona) {
-		RepositorioCaronas.apagaCarona(carona);
+	public void apagaCarona(Carona carona) {
+		dadosCaronas.apagaCarona(carona);
 	}
 
-	public static void aceitaSolicitacao(String IDSolicitacao) throws SolicitacaoException {
-		RepositorioSolicitacoes.aceitaSolicitacao(IDSolicitacao);
+	public void aceitaSolicitacao(String IDSolicitacao) throws SolicitacaoException {
+		dadosSolicitacao.aceitaSolicitacao(IDSolicitacao);
 	}
 	
-	public static void recusaSolicitacao(String IDSolicitacao) throws SolicitacaoException {
-		RepositorioSolicitacoes.recusaSolicitacao(IDSolicitacao);
+	public void recusaSolicitacao(String IDSolicitacao) throws SolicitacaoException {
+		dadosSolicitacao.recusaSolicitacao(IDSolicitacao);
 	}
 
-	public static List<Solicitacao> getSolicitacoesAceitas() {
-		return RepositorioSolicitacoes.getSolicitacoesAceitas();
+	public List<Solicitacao> getSolicitacoesAceitas() {
+		return dadosSolicitacao.getSolicitacoesAceitas();
 	}
 	
 }

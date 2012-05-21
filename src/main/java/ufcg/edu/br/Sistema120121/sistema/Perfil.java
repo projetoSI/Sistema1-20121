@@ -57,8 +57,8 @@ public class Perfil {
 	 * 		A lista de caronas de um determinado usuario.
 	 */
 	public String exibeHistoricoDeCaronas() {
-		List<Carona> historico = RepositorioCaronas.recuperaCaronaUser(usuario);
-		historico.addAll(AcessaDados.getCaronasDoUsuario(usuario));
+		List<Carona> historico = exibeHistoricoDeVagas();
+		historico.addAll(AcessaDados.getInstance().getCaronasDoMotorista(usuario));
 		return historico.toString();
 	}
 
@@ -70,7 +70,7 @@ public class Perfil {
 	 * 		A lista de caronas de um determinado usuario.
 	 */
 	public List<Carona> exibeHistoricoDeVagas() {
-		return RepositorioCaronas.recuperaVagaCaronaUser(usuario);
+		return AcessaDados.getInstance().getCaronasDoCaroneiro(usuario);
 	}
 
 	public int exibeFaltas() {

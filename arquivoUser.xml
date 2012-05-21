@@ -11,22 +11,7 @@
     <ID>
       <login>mark</login>
       <email>mark@facebook.com</email>
-      <sessao>false</sessao>
-    </ID>
-  </ufcg.edu.br.Sistema120121.sistema.User>
-  <ufcg.edu.br.Sistema120121.sistema.User>
-    <login>steve</login>
-    <endereco>Palo Alto, California</endereco>
-    <email>jobs@apple.com</email>
-    <telefone>112121212</telefone>
-    <nome>Steve Paul Jobs</nome>
-    <senha>5t3v3</senha>
-    <listaDeAmigos class="linked-list"/>
-    <solicitacoes class="linked-list"/>
-    <ID>
-      <login>steve</login>
-      <email>jobs@apple.com</email>
-      <sessao>false</sessao>
+      <sessao>true</sessao>
     </ID>
   </ufcg.edu.br.Sistema120121.sistema.User>
 </linked-list>

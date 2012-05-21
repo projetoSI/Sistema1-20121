@@ -8,16 +8,16 @@ import ufcg.edu.br.Sistema120121.sistema.Carona.Situacao;
 
 public class RepositorioCaronas {
 
-	private static List<Carona> caronasCadastradas = new LinkedList<Carona>();
-	private static Carona novaCarona;
+	private  List<Carona> caronasCadastradas = new LinkedList<Carona>();
+	private  Carona novaCarona;
 	
 	/**
 	 * Atualiza o repositorio de caronas.
 	 * @throws IOException
 	 *		Caso não consiga ler o arquivo. 		
 	 */
-	public static void atualizaRepositorio() throws IOException {
-		caronasCadastradas = Arquivo.lerArquivo("arquivoCarona.xml");
+	public  void atualizaRepositorio(LinkedList<Carona> novosDados) throws IOException {
+		caronasCadastradas = novosDados;
 	}
 	
 	/**
@@ -36,13 +36,12 @@ public class RepositorioCaronas {
 	 * 		O motorista da carona.
 	 * @throws Exception
 	 */
-	public static void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
+	public  void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
 		novaCarona = new Carona(origem, destino, hora, data, qntVagas, motorista);
 		if (recuperaCaronaUser(motorista).contains(novaCarona)) {
 			throw new Exception("Uma carona já foi cadastrada com essas informações");
 		}
 		caronasCadastradas.add(novaCarona);
-		Arquivo.setCaronas(caronasCadastradas);
 	}
 	
 	/**
@@ -50,7 +49,7 @@ public class RepositorioCaronas {
 	 * @return
 	 * 		A lista de caronas cadastradas.
 	 */
-	public static List<Carona> getCaronasCadastradas() {//CASO1: TODAS AS CARONAS CADASTRADAS
+	public  List<Carona> getCaronasCadastradas() {//CASO1: TODAS AS CARONAS CADASTRADAS
 		return caronasCadastradas;
 	}
 	
@@ -61,7 +60,7 @@ public class RepositorioCaronas {
 	 * @return
 	 * 		A lista de caronas de um determinado usuario.
 	 */
-	public static List<Carona> recuperaCaronaUser(User usuario) {//CASO2 : AS CARONAS DO USER
+	public  List<Carona> recuperaCaronaUser(User usuario) {//CASO2 : AS CARONAS DO USER
 		List<Carona> caronasUser = new LinkedList<Carona>();
 
 		for (Carona carona : caronasCadastradas) {
@@ -79,7 +78,7 @@ public class RepositorioCaronas {
 	 * 		O usuario a ter seu historico de vagas exibido.
 	 * @return
 	 */
-	public static List<Carona> recuperaVagaCaronaUser(User usuario){
+	public List<Carona> recuperaVagaCaronaUser(User usuario){
 		
 		List<Carona> vagaCaronaUser = new LinkedList<Carona>();
 		
@@ -103,7 +102,7 @@ public class RepositorioCaronas {
 	 * @throws Exception
 	 * 	
 	 */
-	public static List<Carona> getCaronas(String origem, String destino) throws Exception{//CASO 3: BUSCAR CARONAS POR ORIGEM E DESTINO,
+	public  List<Carona> getCaronas(String origem, String destino) throws Exception{//CASO 3: BUSCAR CARONAS POR ORIGEM E DESTINO,
 																									   //E RETORNAR APENAS AS QUE IRÃO OCORRER
 		List<Carona> auxCaronas = new LinkedList<Carona>();
 		
@@ -132,7 +131,7 @@ public class RepositorioCaronas {
 
 	}
 	
-	public static Carona getCarona(String id) throws Exception{
+	public  Carona getCarona(String id) throws Exception{
 		if (id == null | id.equals("")) {
 			throw new Exception("Identificador do carona é inválido");
 		}
@@ -150,7 +149,7 @@ public class RepositorioCaronas {
 		return carona;
 	}
 
-	public static List<Carona> getTodasCaronas(User usuario) {
+	public  List<Carona> getTodasCaronas(User usuario) {
 		List<Carona> historico = new LinkedList<Carona>();
 		
 		for (Carona carona: recuperaCaronaUser(usuario)) {
@@ -161,7 +160,7 @@ public class RepositorioCaronas {
 		return historico;
 	}
 
-	public static void apagaCarona(Carona carona) {
+	public  void apagaCarona(Carona carona) {
 		caronasCadastradas.remove(carona);
 	}
 	

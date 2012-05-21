@@ -327,8 +327,7 @@ public class User{
 	 */
 	public void setSituacao(Carona carona,User user,Situacao situacao){
 		carona.setSituacao(situacao, user);
-	}
-	
+	}	
 	
 }
 
