@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import ufcg.edu.br.Sistema120121.sistema.*;
+import ufcg.edu.br.Sistema120121.logica.*;
 
 public class TestaClasseSolicitacao {
 	private Carona carona;

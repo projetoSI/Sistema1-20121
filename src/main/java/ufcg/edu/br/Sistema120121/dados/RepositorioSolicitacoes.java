@@ -1,16 +1,15 @@
-package ufcg.edu.br.Sistema120121.sistema;
+package ufcg.edu.br.Sistema120121.dados;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import ufcg.edu.br.Sistema120121.excecoes.SolicitacaoException;
+import ufcg.edu.br.Sistema120121.logica.*;
 
 public class RepositorioSolicitacoes {
 
 	private  List<Solicitacao> solicitacoes = new LinkedList<Solicitacao>();
 	private  List<Solicitacao> solicitacoesAceitas = new LinkedList<Solicitacao>();
 	
-	public  void addSolicitacao(Carona carona, User caroneiro, String pontoDeEncontro) throws Exception {
+	public  void addSolicitacao(Carona carona, User caroneiro, String pontoDeEncontro) throws PontoDeEncontroException{
 		solicitacoes.add(new Solicitacao(carona, caroneiro, pontoDeEncontro));
 	}
 	

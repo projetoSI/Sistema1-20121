@@ -1,11 +1,8 @@
-#Tue May 22 23:32:41 BRT 2012
+#Wed May 23 13:46:52 BRT 2012
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/java/ufcg/edu/br/Sistema120121/App.java=UTF-8
 encoding//src/main/java/ufcg/edu/br/Sistema120121/sistema=UTF-8
-encoding//src/main/java/ufcg/edu/br/Sistema120121/sistema/Carona.java=UTF-8
-encoding//src/main/java/ufcg/edu/br/Sistema120121/sistema/RepositorioCaronas.java=UTF-8
-encoding//src/main/java/ufcg/edu/br/Sistema120121/sistema/RepositorioUsuario.java=UTF-8
 encoding//src/main/java/ufcg/edu/br/Sistema120121/sistema/Sistema.java=UTF-8
 encoding//src/test/java/ufcg/edu/br/Sistema120121/testes=UTF-8
 encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/SistemaFacade.java=UTF-8

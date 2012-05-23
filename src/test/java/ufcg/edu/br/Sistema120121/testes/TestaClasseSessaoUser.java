@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import ufcg.edu.br.Sistema120121.sistema.*;
+import ufcg.edu.br.Sistema120121.logica.*;
 
 public class TestaClasseSessaoUser {
 	private SessaoUser secao;
@@ -28,12 +28,7 @@ public class TestaClasseSessaoUser {
 	
 	@Test
 	public void testaGetLogin(){
-		assertEquals("pherivelton", secao.getLogin());
-	}
-	
-	@Test
-	public void testaGetEmail(){
-		assertEquals("pherivelton@gmail.com", secao.getEmail());
+		assertTrue(secao.verificaLoginID("pherivelton"));
 	}
 	
 	@Test

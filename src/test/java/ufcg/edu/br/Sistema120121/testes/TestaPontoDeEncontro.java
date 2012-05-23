@@ -8,8 +8,7 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import ufcg.edu.br.Sistema120121.excecoes.*;
-import ufcg.edu.br.Sistema120121.sistema.*;
+import ufcg.edu.br.Sistema120121.logica.*;
 
 public class TestaPontoDeEncontro {
 	
@@ -24,26 +23,32 @@ public class TestaPontoDeEncontro {
 	}
 	
 	@Test
-	public void testaAceitar() throws MeetingErrorException, PontoDeEncontroException{
-		ponto.sugerirPonto("Cajá");
-		ponto.aceitar();
-		assertEquals("Cajá", ponto.getPontoDeEcontro());
+	public void testaAceitar() {
+		try {
+			ponto.sugerirPonto("Cajá");
+			ponto.aceitar();
+			assertEquals("Cajá", ponto.getPontoDeEcontro());
+		} catch (PontoDeEncontroException e) {
+			e.printStackTrace();
+		}
 		
-		ponto.sugerirPonto(null);
-		ponto.aceitar();
-		fail("Ponto de encontro inválido");
+		try {
+			ponto.sugerirPonto(null);
+			ponto.aceitar();
+			fail("Ponto de encontro inválido");
+		} catch (PontoDeEncontroException e) {
+		}
 		
-		ponto.sugerirPonto("");
-		ponto.aceitar();
-		fail("Ponto de encontro inválido");
-		
-		ponto.sugerirPonto("123");
-		ponto.aceitar();
-		fail("Ponto de encontro inválido");
+		try {
+			ponto.sugerirPonto("");
+			ponto.aceitar();
+			fail("Ponto de encontro inválido");
+		} catch (PontoDeEncontroException e) {
+		}
 	}
 	
 	@Test
-	public void testaToString() throws MeetingErrorException, PontoDeEncontroException{
+	public void testaToString() throws PontoDeEncontroException{
 		ponto.sugerirPonto("Campina Grande");
 		ponto.aceitar();
 		assertEquals("Local do encontro: Campina Grande", ponto.toString());

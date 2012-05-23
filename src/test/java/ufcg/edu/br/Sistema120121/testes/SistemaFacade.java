@@ -6,11 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
 import easyaccept.EasyAcceptFacade;
-
-import ufcg.edu.br.Sistema120121.excecoes.SolicitacaoException;
-import ufcg.edu.br.Sistema120121.excecoes.UserException;
+import ufcg.edu.br.Sistema120121.logica.*;
 import ufcg.edu.br.Sistema120121.sistema.*;
 
 public class SistemaFacade {
@@ -32,7 +29,7 @@ public class SistemaFacade {
 		sistema.addUsuario(login, senha, nome, endereco, email, "112121212");
 	}
 	
-	public void zerarsistema() throws IOException {
+	public void zerarSistema() throws IOException {
 		user = null;
 		sistema.zerarDados();
 	}
@@ -73,7 +70,7 @@ public class SistemaFacade {
 		sistema.fechaSessaoUser(login);
 	}
 	
-	public void encerrarsistema() throws IOException {
+	public void encerrarSistema() throws IOException {
 		sistema.guardarDados();
 	}
 	
@@ -339,7 +336,7 @@ public class SistemaFacade {
 	}
 //	US06
 	
-	public void reiniciarsistema() throws IOException{
+	public void reiniciarSistema() throws IOException{
 		sistema.reiniciar();
 	}
 	
@@ -408,7 +405,7 @@ public class SistemaFacade {
 
 		List<String> files = new ArrayList<String>();
 		// Put the us1.txt file into the "test scripts" list
-		files.add("scripts/US06.txt");
+		files.add("scripts/US07.txt");
 		// Instantiate the Monopoly Game façade
 		SistemaFacade monopolyGameFacade = getInstance();
 		// Instantiate EasyAccept façade

@@ -1,10 +1,9 @@
-package ufcg.edu.br.Sistema120121.sistema;
+package ufcg.edu.br.Sistema120121.dados;
 
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-
-import ufcg.edu.br.Sistema120121.excecoes.SolicitacaoException;
+import ufcg.edu.br.Sistema120121.logica.*;
 
 public class AcessaDados {
 	
@@ -35,9 +34,10 @@ public class AcessaDados {
 	 * 		Email do novo usuario.
 	 * @param telefone
 	 * 		Telefone do novo usuario.
-	 * @throws Exception
+	 * @throws LoginErrorException 
+	 * @throws UserException 
 	 */
-	public void addUsuario(String login,String senha,String nome,String endereco,String email,String telefone) throws Exception{
+	public void addUsuario(String login,String senha,String nome,String endereco,String email,String telefone) throws UserException{
 		dadosUser.addUser(login, senha, nome,endereco,email,telefone);
 	}
 	
@@ -55,9 +55,9 @@ public class AcessaDados {
 	 * 		A quantidade de vagas de carona.
 	 * @param motorista
 	 * 		O motorista da carona.
-	 * @throws Exception
+	 * @throws CaronaException 
 	 */
-	public void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
+	public void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws CaronaException{
 		dadosCaronas.addCarona(origem, destino, hora, data, qntVagas, motorista);
 	}
 	
@@ -84,9 +84,9 @@ public class AcessaDados {
 	 * 		O login do usuario.
 	 * @return
 	 * 		O usuario.
-	 * @throws Exception
+	 * @throws UserException 
 	 */
-	public User getUser(String login) throws Exception{
+	public User getUser(String login) throws UserException{
 		return dadosUser.getUsuarioLogin(login);
 		
 	}
@@ -99,9 +99,9 @@ public class AcessaDados {
 	 * 		Local de chegada da carona.
 	 * @return
 	 * 		A carona.
-	 * @throws Exception
+	 * @throws CaronaException 
 	 */
-	public List<Carona> localizarCarona(String origem ,String destino) throws Exception {
+	public List<Carona> localizarCarona(String origem ,String destino) throws CaronaException{
 		return dadosCaronas.getCaronas(origem, destino);
 
 	}
@@ -131,7 +131,7 @@ public class AcessaDados {
 		return dadosCaronas.recuperaCaronaUser(motorista);
 	}
 	
-	public Carona getCaronaID(String id) throws Exception{
+	public Carona getCaronaID(String id) throws CaronaException{
 		return dadosCaronas.getCarona(id);
 	}
 	
@@ -156,7 +156,7 @@ public class AcessaDados {
 		return dadosSolicitacao.getSolicitacao(idSolicitacao);
 	}
 
-	public void addSolicitacao(Carona caronaID, User user, String ponto) throws Exception {
+	public void addSolicitacao(Carona caronaID, User user, String ponto) throws PontoDeEncontroException {
 		dadosSolicitacao.addSolicitacao(caronaID, user, ponto);
 	}
 

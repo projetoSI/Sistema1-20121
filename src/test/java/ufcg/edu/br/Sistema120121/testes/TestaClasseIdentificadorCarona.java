@@ -8,8 +8,7 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import ufcg.edu.br.Sistema120121.excecoes.*;
-import ufcg.edu.br.Sistema120121.sistema.*;
+import ufcg.edu.br.Sistema120121.logica.*;
 
 public class TestaClasseIdentificadorCarona {
 	private IdentificadorCarona id;
@@ -30,23 +29,24 @@ public class TestaClasseIdentificadorCarona {
 	
 	@Test
 	public void testaGetHoraCarona(){
-		assertEquals("23:00", id.getHoraCarona().getHoras());
+		assertEquals("23:00", id.getHoraCarona());
 	}
 	
 	@Test
 	public void testaGetDataCarona(){
-		assertEquals("14/08/2012", id.getDataCarona().getData());
+		assertEquals("14/08/2012", id.getDataCarona());
 	}
 	
 	@Test
 	public void testaEquals(){
-		assertTrue(id.equals(id2));
+		assertTrue(id2.equals(id));
 		assertFalse(id.equals(id3));
 	}
 	
 	@Test
 	public void testaToString(){
-		assertEquals("pherivelton|14/08/2012|23:00", id.toString());
-		assertEquals("jonhnanthan|29/09/2012|14:00", id3.toString());
+		assertEquals("pherivelton|14/08/2012", id.toString());
+		assertEquals("pherivelton|14/08/2012", id2.toString());
+		assertEquals("jonhnanthan|29/09/2012", id3.toString());
 	}
 }

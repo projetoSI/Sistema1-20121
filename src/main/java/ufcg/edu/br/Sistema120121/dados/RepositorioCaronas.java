@@ -1,10 +1,11 @@
-package ufcg.edu.br.Sistema120121.sistema;
+package ufcg.edu.br.Sistema120121.dados;
 
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import ufcg.edu.br.Sistema120121.sistema.Carona.Situacao;
+import ufcg.edu.br.Sistema120121.logica.*;
+import ufcg.edu.br.Sistema120121.logica.Carona.Situacao;
 
 public class RepositorioCaronas {
 
@@ -36,10 +37,10 @@ public class RepositorioCaronas {
 	 * 		O motorista da carona.
 	 * @throws Exception
 	 */
-	public  void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
+	public  void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws CaronaException {
 		novaCarona = new Carona(origem, destino, hora, data, qntVagas, motorista);
 		if (recuperaCaronaUser(motorista).contains(novaCarona)) {
-			throw new Exception("Uma carona já foi cadastrada com essas informações");
+			throw new CaronaException("Uma carona já foi cadastrada com essas informações");
 		}
 		caronasCadastradas.add(novaCarona);
 	}
@@ -102,15 +103,15 @@ public class RepositorioCaronas {
 	 * @throws Exception
 	 * 	
 	 */
-	public  List<Carona> getCaronas(String origem, String destino) throws Exception{//CASO 3: BUSCAR CARONAS POR ORIGEM E DESTINO,
+	public  List<Carona> getCaronas(String origem, String destino) throws CaronaException{//CASO 3: BUSCAR CARONAS POR ORIGEM E DESTINO,
 																									   //E RETORNAR APENAS AS QUE IRÃO OCORRER
 		List<Carona> auxCaronas = new LinkedList<Carona>();
 		
 		if (origem == null|| !origem.matches("[A-Za-zÇ-ú\\s]*+") ) {
-			throw new Exception("Origem inválida");
+			throw new CaronaException("Origem inválida");
 		}
 		if (destino == null || !destino.matches("[A-Za-zÇ-ú\\s]*+")){
-			throw new Exception("Destino inválido");
+			throw new CaronaException("Destino inválido");
 		}
 		
 		if (destino.isEmpty() && origem.isEmpty()){
@@ -131,9 +132,9 @@ public class RepositorioCaronas {
 
 	}
 	
-	public  Carona getCarona(String id) throws Exception{
+	public  Carona getCarona(String id) throws CaronaException{
 		if (id == null | id.equals("")) {
-			throw new Exception("Identificador do carona é inválido");
+			throw new CaronaException("Identificador do carona é inválido");
 		}
 		Carona carona = null;
 		for (Carona c : caronasCadastradas) {
@@ -144,7 +145,7 @@ public class RepositorioCaronas {
 		}
 		
 		if (carona == null ) {
-			throw new Exception("Item inexistente");
+			throw new CaronaException("Item inexistente");
 		}
 		return carona;
 	}

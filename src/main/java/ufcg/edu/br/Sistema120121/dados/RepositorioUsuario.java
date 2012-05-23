@@ -1,12 +1,9 @@
-package ufcg.edu.br.Sistema120121.sistema;
+package ufcg.edu.br.Sistema120121.dados;
 
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-
-import ufcg.edu.br.Sistema120121.excecoes.EmailErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.LoginErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.UserException;
+import ufcg.edu.br.Sistema120121.logica.*;
 
 public class RepositorioUsuario {
 
@@ -35,9 +32,10 @@ public class RepositorioUsuario {
 	 * 		Email do novo usuario.
 	 * @param telefone
 	 * 		Telefone do novo usuario.
+	 * @throws LoginErrorException 
 	 * @throws Exception
 	 */
-	public  void addUser(String login, String senha, String nome,	String endereco,String email, String telefone) throws Exception{
+	public  void addUser(String login, String senha, String nome,	String endereco,String email, String telefone) throws UserException{
 		newUser = new User(login,senha,nome,endereco,email,telefone);
 		
 		if (getUsuarioEmail(email) == null && getUsuarioLogin(login) == null){
@@ -65,9 +63,9 @@ public class RepositorioUsuario {
 	 * 		O usuario.
 	 * @throws Exception
 	 */
-	public  User getUsuarioEmail(String email) throws Exception{
+	public  User getUsuarioEmail(String email) throws UserException{
 		if(email == null || email.isEmpty())
-			throw new EmailErrorException("Email inválido");
+			throw new UserException("Email inválido");
 		return foundUser(email);				
 	}
 	
@@ -79,9 +77,9 @@ public class RepositorioUsuario {
 	 * 		O usuario.
 	 * @throws Exception
 	 */
-	public  User getUsuarioLogin(String login) throws Exception{
+	public  User getUsuarioLogin(String login) throws UserException{
 		if(login == null || login.isEmpty())
-			throw new LoginErrorException("Login inválido");
+			throw new UserException("Login inválido");
 		return foundUser(login);		
 	}
 	
@@ -93,7 +91,7 @@ public class RepositorioUsuario {
 	 * 		O usuario.
 	 * @throws Exception 
 	 */
-	private  User foundUser(String argumento) throws Exception{
+	private  User foundUser(String argumento) throws UserException{
 		User usuario = null;
 		
 		for (User user : usersCadastrados) {

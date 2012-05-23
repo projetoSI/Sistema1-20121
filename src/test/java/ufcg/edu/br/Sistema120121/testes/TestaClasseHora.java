@@ -7,8 +7,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import ufcg.edu.br.Sistema120121.excecoes.HourErrorException;
-import ufcg.edu.br.Sistema120121.sistema.Hora;
+import ufcg.edu.br.Sistema120121.logica.HourErrorException;
+import ufcg.edu.br.Sistema120121.logica.Hora;
 
 public class TestaClasseHora {
 	

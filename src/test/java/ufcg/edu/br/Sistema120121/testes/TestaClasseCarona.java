@@ -7,11 +7,8 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import ufcg.edu.br.Sistema120121.excecoes.LocalErrorException;
-import ufcg.edu.br.Sistema120121.sistema.Carona;
-import ufcg.edu.br.Sistema120121.sistema.Data;
-import ufcg.edu.br.Sistema120121.sistema.Hora;
-import ufcg.edu.br.Sistema120121.sistema.User;
+import ufcg.edu.br.Sistema120121.logica.*;
+
 public class TestaClasseCarona {
 	
 	private Carona carona1;
@@ -34,28 +31,28 @@ public class TestaClasseCarona {
 	}
 	
 	@Test
-	public void testaSetOrigem() throws LocalErrorException{
+	public void testaSetOrigem() throws CaronaException{
 		assertEquals("Joao Pessoa", carona1.getOrigem());
 		carona1.setOrigem("Campina Grande");
 		assertEquals("Campina Grande", carona1.getOrigem());
 		try{
 			carona1.setOrigem("");
 			fail("Origem Inv�lida");
-		}catch (LocalErrorException e){}
+		}catch (CaronaException e){}
 		
 		try{
 			carona1.setOrigem("1234");
 			fail("Origem Inv�lida");
-		}catch (LocalErrorException e){}
+		}catch (CaronaException e){}
 		
 		try{
 			carona1.setOrigem("Jo�o Pessoa123");
 			fail("Origem Inv�lida");
-		}catch (LocalErrorException e){}
+		}catch (CaronaException e){}
 	}
 	
 	@Test
-	public void testaGetDestino() throws LocalErrorException{
+	public void testaGetDestino() throws CaronaException{
 		assertEquals("Campina Grande", carona1.getDestino());
 		assertFalse("eh pra dar erro", carona1.getOrigem().equals("Caj�"));
 	}

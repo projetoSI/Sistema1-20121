@@ -2,11 +2,8 @@ package ufcg.edu.br.Sistema120121.sistema;
 
 import java.io.IOException;
 import java.util.List;
-
-import ufcg.edu.br.Sistema120121.excecoes.LoginErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.PasswordErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.SolicitacaoException;
-import ufcg.edu.br.Sistema120121.excecoes.UserException;
+import ufcg.edu.br.Sistema120121.logica.*;
+import ufcg.edu.br.Sistema120121.dados.*;
 
 
 public class Sistema {
@@ -38,9 +35,9 @@ public class Sistema {
 	 * 		Email do novo usuario.
 	 * @param telefone
 	 * 		Telefone do novo usuario.
-	 * @throws Exception
+	 * @throws UserException 
 	 */
-	public void addUsuario(String login,String senha,String nome,String endereco,String email,String telefone) throws Exception{
+	public void addUsuario(String login,String senha,String nome,String endereco,String email,String telefone) throws UserException {
 		controlaDados.addUsuario(login, senha, nome,endereco,email,telefone);
 	}
 	
@@ -68,9 +65,9 @@ public class Sistema {
 	 * 		A quantidade de vagas de carona.
 	 * @param motorista
 	 * 		O motorista da carona.
-	 * @throws Exception
+	 * @throws CaronaException 
 	 */
-	public void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws Exception {
+	public void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws CaronaException {
 		controlaDados.addCarona(origem, destino, hora, data, qntVagas, motorista);
 	}
 	
@@ -89,9 +86,9 @@ public class Sistema {
 	 * 		O login do usuario a ser buscado.
 	 * @return
 	 * 		O usuario.
-	 * @throws Exception
+	 * @throws UserException 
 	 */
-	public User getUser(String login) throws Exception{
+	public User getUser(String login) throws UserException {
 		return controlaDados.getUser(login);
 		
 	}
@@ -106,11 +103,11 @@ public class Sistema {
 	 * 		O usuario.
 	 * @throws Exception
 	 */
-	public User acessarConta(String login,String senha) throws Exception {
+	public User acessarConta(String login,String senha) throws UserException {
 		User usuario = null;
 		
 		if (senha == null ||senha.isEmpty()) {
-			throw new PasswordErrorException("Senha inválida");
+			throw new UserException("Senha inválida");
 		}
 		
 		usuario = controlaDados.getUser(login);
@@ -118,7 +115,7 @@ public class Sistema {
 			throw new UserException("Usuário inexistente");
 		
 		if (!usuario.getSenha().equals(senha))
-			throw new LoginErrorException("Login inválido");
+			throw new UserException("Login inválido");
 		
 		
 		return usuario;
@@ -133,13 +130,13 @@ public class Sistema {
 	 * 		O destino da carona.
 	 * @return
 	 * 		A carona desejada.
-	 * @throws Exception
+	 * @throws CaronaException 
 	 */
-	public List<Carona> getCaronas(String origem, String destino) throws Exception {
+	public List<Carona> getCaronas(String origem, String destino) throws CaronaException {
 		return controlaDados.localizarCarona(origem, destino);
 	}
 	
-	public Carona getCaronaID(String id) throws Exception {
+	public Carona getCaronaID(String id) throws CaronaException {
 		return controlaDados.getCaronaID(id);
 		
 	}
@@ -156,11 +153,11 @@ public class Sistema {
 		return controlaDados.getSolicitacao(IdSolicitacao);
 	}
 
-	public void addSolicitacao(Carona caronaID, User user, String ponto) throws Exception {
+	public void addSolicitacao(Carona caronaID, User user, String ponto) throws PontoDeEncontroException {
 		controlaDados.addSolicitacao(caronaID, user, ponto);
 	}
 	
-	public void addSolicitacao(Carona caronaID, User user) throws Exception {
+	public void addSolicitacao(Carona caronaID, User user){
 		controlaDados.addSolicitacao(caronaID, user);
 	}
 

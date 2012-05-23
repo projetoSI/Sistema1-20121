@@ -1,4 +1,4 @@
-package ufcg.edu.br.Sistema120121.sistema;
+package ufcg.edu.br.Sistema120121.dados;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-
+import ufcg.edu.br.Sistema120121.logica.*;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
