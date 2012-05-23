@@ -3,6 +3,8 @@ package ufcg.edu.br.Sistema120121.sistema;
 import java.util.LinkedList;
 import java.util.List;
 
+import ufcg.edu.br.Sistema120121.excecoes.PontoDeEncontroException;
+
 public class PontoDeEncontro {
 
 	
@@ -48,8 +50,8 @@ public class PontoDeEncontro {
 	 * 		false - caso o ponto de econtro seja recusado.
 	 * @throws Exception 
 	 */
-	public void sugerirPonto(String novaSugestao) throws Exception{
-		if(novaSugestao == null || novaSugestao.isEmpty() || blackList.contains(novaSugestao))throw new Exception("Ponto Inválido");
+	public void sugerirPonto(String novaSugestao) throws PontoDeEncontroException{
+		if(novaSugestao == null || novaSugestao.isEmpty() || blackList.contains(novaSugestao))throw new PontoDeEncontroException("Ponto Inválido");
 		blackList.add(sugestaoAtual);
 		sugestaoAtual = novaSugestao;
 	}

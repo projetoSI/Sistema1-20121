@@ -8,17 +8,8 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import ufcg.edu.br.Sistema120121.excecoes.AdressErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.DateErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.EmailErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.HourErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.LocalErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.LoginErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.NameErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.PasswordErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.PhoneErrorException;
-import ufcg.edu.br.Sistema120121.excecoes.QuantityVacancyErrorException;
-import ufcg.edu.br.Sistema120121.sistema.User;
+import ufcg.edu.br.Sistema120121.excecoes.*;
+import ufcg.edu.br.Sistema120121.sistema.*;
 
 
 public class TestaClasseUser {
@@ -26,6 +17,9 @@ public class TestaClasseUser {
 	private User user2;
 	private User user3;
 	private User user4;
+	private Carona carona1;
+	private Carona carona2;
+	
 
 	
 	@Before
@@ -34,9 +28,8 @@ public class TestaClasseUser {
 		user2 = new User("pherivelton", "123456", "Pablo","Rua lalala", "pherivelton@gmail.com","88888888");
 		user3 = new User("pherivelton2", "123456", "PabloHerivelton","Rua dos Olivedos, 182", "pherivelton2@hotmail.com.br","8888888888");
 		user4 = new User("rafael", "panda", "Rafael Ribeiro", "Rua perto da UFCG", "rafael@gmail.com", "12345678");
-		
-	
-	
+		carona1 = new Carona("Campina Grande", "João Pessoa", new Hora("23:00"), new Data("23/05/2013"), 3, user1);
+		carona2 = new Carona("Campina Grande", "Jacumã", new Hora("17:00"), new Data("27/05/2013"), 3, user4);
 	}
 	
 	@Test
@@ -212,4 +205,33 @@ public class TestaClasseUser {
 		assertFalse(user1.getListaAmigos().isEmpty());
 	}
 	
+	@Test
+	public void testaGetAmigos(){
+		assertTrue(user1.getListaAmigos().isEmpty());
+		user1.addAmigo(user4);
+		assertFalse(user1.getListaAmigos().isEmpty());
+		assertEquals(1, user1.getListaAmigos().size());
+	}
+	
+	@Test
+	public void testaSugerirPontoDeEncontro() throws PontoDeEncontroException, MeetingErrorException{
+		assertEquals(null, carona2.getPontoDeEncontro().getSugestaoAtual());
+		user1.sugerirPontoDeEncontro(carona2, "Cajá");
+		
+		assertEquals("Cajá",carona2.getPontoDeEncontro().getSugestaoAtual());
+		user1.sugerirPontoDeEncontro(carona2, "Cajá");
+		fail("Ponto de Encontro Inválido");;
+		
+		user1.sugerirPontoDeEncontro(carona2, null);
+		fail("Ponto de Encontro Inválido");;
+		
+		user1.sugerirPontoDeEncontro(carona2, "");
+		fail("Ponto de Encontro Inválido");;
+	}
+	
+	@Test
+	public void testaDetalharCarona(){
+		assertEquals(carona1.detalharCarona(), user1.detalharCarona(carona1));
+		assertEquals("Você não pode vizualizar os detalhes dessa carona.", user4.detalharCarona(carona1));
+	}
 }

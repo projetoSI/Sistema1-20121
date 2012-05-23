@@ -9,6 +9,7 @@ import ufcg.edu.br.Sistema120121.excecoes.LoginErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.NameErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.PasswordErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.PhoneErrorException;
+import ufcg.edu.br.Sistema120121.excecoes.PontoDeEncontroException;
 import ufcg.edu.br.Sistema120121.excecoes.SolicitacaoException;
 import ufcg.edu.br.Sistema120121.sistema.Carona.Situacao;
 
@@ -276,7 +277,7 @@ public class User{
 	 * @throws Exception
 	 * 		Para o caso de carona incorreta.
 	 */
-	public void sugerirPontoDeEncontro(Carona carona,String pontoDeEncontro) throws Exception{
+	public void sugerirPontoDeEncontro(Carona carona,String pontoDeEncontro) throws PontoDeEncontroException{
 		carona.getPontoDeEncontro().sugerirPonto(pontoDeEncontro);
 		
 	}
