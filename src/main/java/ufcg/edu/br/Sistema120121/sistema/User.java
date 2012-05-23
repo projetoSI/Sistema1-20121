@@ -9,6 +9,7 @@ import ufcg.edu.br.Sistema120121.excecoes.LoginErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.NameErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.PasswordErrorException;
 import ufcg.edu.br.Sistema120121.excecoes.PhoneErrorException;
+import ufcg.edu.br.Sistema120121.excecoes.SolicitacaoException;
 import ufcg.edu.br.Sistema120121.sistema.Carona.Situacao;
 
 public class User{
@@ -20,6 +21,8 @@ public class User{
 	private String nome;
 	private String senha;
 	private List<User> listaDeAmigos = new LinkedList<User>();
+	private List<Carona> caronasOferecidas = new LinkedList<Carona>();
+	private List<Carona> caronasPedidas = new LinkedList<Carona>();
 	private List<Solicitacao> solicitacoes;
 	private SessaoUser ID;
 
@@ -302,6 +305,10 @@ public class User{
 		
 		return "Você não pode vizualizar os detalhes dessa carona.";
 	}
+	
+	public boolean containsCarona(Carona carona){
+		return caronasOferecidas.contains(carona);
+	}
 
 	/**
 	 * Retorna se um usuario faltou ou nao a carona
@@ -317,7 +324,7 @@ public class User{
 	}
 	
 	/**
-	 * Altera a situacao de um determinado usuario em realcao a uma carona
+	 * Altera a situacao de um determinado usuario em relacao a uma carona
 	 * @param carona
 	 * 		A carona em questao.
 	 * @param user
@@ -327,7 +334,52 @@ public class User{
 	 */
 	public void setSituacao(Carona carona,User user,Situacao situacao){
 		carona.setSituacao(situacao, user);
-	}	
+	}
+	
+	public void SolicitarCarona(User motorista,String pontoDeEcontro,Carona carona)throws Exception{
+		if (motorista.containsCarona(carona)) {
+			
+			if (pontoDeEcontro.isEmpty()) motorista.addSolicitacao(new Solicitacao(carona,this));
+			else motorista.addSolicitacao(new Solicitacao(carona,this,pontoDeEcontro));
+		
+		}else{
+			throw new Exception("Motorista nao possui a carona informada.");
+		}
+	}
+	
+
+	private void addSolicitacao(Solicitacao solicitacao) {
+		solicitacoes.add(solicitacao);
+	}
+	
+	public void alterarPontoDeEcontro(Solicitacao solicitacao,String pontoDeEncontro) throws Exception{
+		
+		if (this.getSolicitacoes().contains(solicitacao)) solicitacao.AlterarLocalDeEncontro(pontoDeEncontro);
+		else throw new SolicitacaoException("Voce nao possui essa solicitacao");
+	}
+	
+	public void confirmarSolicitacao(Solicitacao solicitacao) throws Exception{
+		if (this.getSolicitacoes().contains(solicitacao)) solicitacao.confirmarSolicitacao();
+		else  throw new SolicitacaoException("Voce nao possui essa solicitacao");
+
+		
+	}
+	
+	public void rejeitarSolicitacao(Solicitacao solicitacao) throws Exception{
+		
+		if (this.getSolicitacoes().contains(solicitacao)){
+			solicitacao.rejetirarSolicitacao();
+			this.solicitacoes.remove(solicitacao);
+		}
+		else  throw new SolicitacaoException("Voce nao possui essa solicitacao");
+
+	}
+	
+	public void confirmarNovoLocal(Solicitacao solicitacao)throws Exception{
+		if (solicitacao.VerificaPontoDeEcontro() && this.getSolicitacoes().contains(solicitacao)) solicitacao.confirmarSolicitacao();
+		else  throw new SolicitacaoException("Voce nao pode realizar a operacao pois o ponto nao foi alterado ou voce nao possui a solicitacao informada.");
+	}
+	
 	
 }
 

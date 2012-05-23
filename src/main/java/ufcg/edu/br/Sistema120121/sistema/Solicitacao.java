@@ -5,7 +5,8 @@ public class Solicitacao {
 	private PontoDeEncontro pontoDeEncontro = new PontoDeEncontro();
 	private Carona caronaDesejada;
 	private User caroneiro;
-	
+	private boolean pontoAlterado = false;
+	private boolean rejeitada = false;
 	/**
 	 * Construtor de uma solicitação 
 	 * @param carona
@@ -80,12 +81,20 @@ public class Solicitacao {
 	 * @throws Exception
 	 * 		Caso não exista mais vaga na carona.
 	 */
-	public void confirmarCarona() throws Exception {
+	public void confirmarSolicitacao() throws Exception {
 		if (caronaDesejada.temVaga()) {
 			caronaDesejada.addCaroneiro(caroneiro);
 		}else{
 			throw new Exception("Nao há vagas");
 		}
+	}
+	
+	public void rejetirarSolicitacao() throws Exception{
+		rejeitada = true;
+	}
+	
+	public boolean getSituacaoSolicitacao(){
+		return rejeitada;
 	}
 	
 	/**
@@ -96,15 +105,23 @@ public class Solicitacao {
 	 */
 	public void AlterarLocalDeEncontro(String novoLocal) throws Exception{
 		pontoDeEncontro.sugerirPonto(novoLocal);
+		pontoAlterado = true;
 	}
-
+	
+	
+	public boolean VerificaPontoDeEcontro() {
+		return pontoAlterado;
+	}
+	
 	/**
 	 * Retorna as informações da solicitação em forma de String.
 	 * @return	
 	 * 		As informações da solicitação.
 	 */
 	public String toString(){
-		return "\n->Caroneiro: " + caroneiro.toString() + "\n->Carona: " + caronaDesejada.toString() + "\n->Ponto de Encontro: " + pontoDeEncontro.toString();
+		String localAterado = "Local nao foi alterado.";
+		if (pontoAlterado) localAterado = "Local foi alterado.";
+		return "\n->Caroneiro: " + caroneiro.toString() + "\n->Carona: " + caronaDesejada.toString() + "\n->Ponto de Encontro: " + pontoDeEncontro.toString() + "\n" + localAterado;
 	}
 	
 	/**

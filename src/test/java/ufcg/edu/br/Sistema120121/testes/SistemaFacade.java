@@ -249,7 +249,7 @@ public class SistemaFacade {
 	
 	public void aceitarSolicitacaoPontoEncontro(String IDSessao, String IDSolicitacao) throws Exception{
 		sistema.solicitacaoAceita(IDSolicitacao);
-		sistema.getSolicitacao(IDSolicitacao).confirmarCarona();
+		sistema.getSolicitacao(IDSolicitacao).confirmarSolicitacao();
 	}
 	
 	public void desistirRequisicao(String IDSessao, String IDCarona, String IDSolicitacao) throws Exception{
@@ -294,7 +294,7 @@ public class SistemaFacade {
 	
 	public void aceitarSolicitacao(String idSessao,String idSolicitacao) throws Exception{
 		sistema.solicitacaoAceita(idSolicitacao);
-		sistema.getSolicitacao(idSolicitacao).confirmarCarona();		 
+		sistema.getSolicitacao(idSolicitacao).confirmarSolicitacao();		 
 	}
 	
 	public void rejeitarSolicitacao(String idSessao,String idSolicitacao) throws SolicitacaoException{
