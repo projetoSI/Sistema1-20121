@@ -14,7 +14,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 public class Arquivo {
 
 	private AcessaDados controlaDados = AcessaDados.getInstance();
-	private static Arquivo  instance = new Arquivo();
+	private static Arquivo instance = new Arquivo();
 	
 	private Arquivo(){
 		

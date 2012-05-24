@@ -60,7 +60,7 @@ public class SistemaFacade {
 
 	}
 
-	public String abrirSessao(String login, String senha) throws Exception {
+	public String abrirSessao(String login, String senha) throws UserException {
 		user = sistema.acessarConta(login, senha);
 		sistema.abreSessaoUser(login);
 		return user.getID().toString();

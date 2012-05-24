@@ -1,34 +1,166 @@
 <linked-list>
-  <ufcg.edu.br.Sistema120121.logica.User>
-    <login>mark</login>
-    <endereco>Palo Alto, California</endereco>
-    <email>mark@facebook.com</email>
-    <telefone>112121212</telefone>
-    <nome>Mark Zuckerberg</nome>
-    <senha>m@rk</senha>
-    <listaDeAmigos class="linked-list"/>
-    <caronasOferecidas class="linked-list"/>
-    <solicitacoes class="linked-list"/>
-    <ID>
+  <ufcg.edu.br.Sistema120121.logica.Carona>
+    <origem>Cajazeiras</origem>
+    <destino>Patos</destino>
+    <data>
+      <data>20/07/2012</data>
+    </data>
+    <hora>
+      <Hora>14:00</Hora>
+    </hora>
+    <qntVagas>4</qntVagas>
+    <motorista>
       <login>mark</login>
+      <endereco>Palo Alto, California</endereco>
       <email>mark@facebook.com</email>
-      <sessao>false</sessao>
-    </ID>
-  </ufcg.edu.br.Sistema120121.logica.User>
-  <ufcg.edu.br.Sistema120121.logica.User>
-    <login>steve</login>
-    <endereco>Palo Alto, California</endereco>
-    <email>jobs@apple.com</email>
-    <telefone>112121212</telefone>
-    <nome>Steve Paul Jobs</nome>
-    <senha>5t3v3</senha>
-    <listaDeAmigos class="linked-list"/>
-    <caronasOferecidas class="linked-list"/>
-    <solicitacoes class="linked-list"/>
+      <telefone>112121212</telefone>
+      <nome>Mark Zuckerberg</nome>
+      <senha>m@rk</senha>
+      <listaDeAmigos class="linked-list"/>
+      <caronasOferecidas class="linked-list"/>
+      <solicitacoes class="linked-list"/>
+      <ID>
+        <login>mark</login>
+        <email>mark@facebook.com</email>
+        <sessao>false</sessao>
+      </ID>
+    </motorista>
     <ID>
-      <login>steve</login>
-      <email>jobs@apple.com</email>
-      <sessao>false</sessao>
+      <loginMotorista>mark</loginMotorista>
+      <horaCarona reference="../../hora"/>
+      <dataCarona reference="../../data"/>
     </ID>
-  </ufcg.edu.br.Sistema120121.logica.User>
+    <caroneiros class="tree-map"/>
+    <pontoDeEncontro>
+      <blackList class="linked-list"/>
+    </pontoDeEncontro>
+  </ufcg.edu.br.Sistema120121.logica.Carona>
+  <ufcg.edu.br.Sistema120121.logica.Carona>
+    <origem>São Francisco</origem>
+    <destino>Palo Alto</destino>
+    <data>
+      <data>12/09/2012</data>
+    </data>
+    <hora>
+      <Hora>21:00</Hora>
+    </hora>
+    <qntVagas>1</qntVagas>
+    <motorista reference="../../ufcg.edu.br.Sistema120121.logica.Carona/motorista"/>
+    <ID>
+      <loginMotorista>mark</loginMotorista>
+      <horaCarona reference="../../hora"/>
+      <dataCarona reference="../../data"/>
+    </ID>
+    <caroneiros class="tree-map">
+      <entry>
+        <ufcg.edu.br.Sistema120121.logica.User>
+          <login>steve</login>
+          <endereco>Palo Alto, California</endereco>
+          <email>jobs@apple.com</email>
+          <telefone>112121212</telefone>
+          <nome>Steve Paul Jobs</nome>
+          <senha>5t3v3</senha>
+          <listaDeAmigos class="linked-list"/>
+          <caronasOferecidas class="linked-list"/>
+          <solicitacoes class="linked-list"/>
+          <ID>
+            <login>steve</login>
+            <email>jobs@apple.com</email>
+            <sessao>false</sessao>
+          </ID>
+        </ufcg.edu.br.Sistema120121.logica.User>
+        <ufcg.edu.br.Sistema120121.logica.Carona_-Situacao>NAO_FALTOU</ufcg.edu.br.Sistema120121.logica.Carona_-Situacao>
+      </entry>
+    </caroneiros>
+    <pontoDeEncontro>
+      <sugestaoAtual>[Acude Velho;Hiper Bompreco]</sugestaoAtual>
+      <blackList class="linked-list">
+        <null/>
+      </blackList>
+    </pontoDeEncontro>
+  </ufcg.edu.br.Sistema120121.logica.Carona>
+  <ufcg.edu.br.Sistema120121.logica.Carona>
+    <origem>Campina Grande</origem>
+    <destino>João Pessoa</destino>
+    <data>
+      <data>01/06/2012</data>
+    </data>
+    <hora>
+      <Hora>12:00</Hora>
+    </hora>
+    <qntVagas>1</qntVagas>
+    <motorista reference="../../ufcg.edu.br.Sistema120121.logica.Carona/motorista"/>
+    <ID>
+      <loginMotorista>mark</loginMotorista>
+      <horaCarona reference="../../hora"/>
+      <dataCarona reference="../../data"/>
+    </ID>
+    <caroneiros class="tree-map"/>
+    <pontoDeEncontro>
+      <blackList class="linked-list"/>
+    </pontoDeEncontro>
+  </ufcg.edu.br.Sistema120121.logica.Carona>
+  <ufcg.edu.br.Sistema120121.logica.Carona>
+    <origem>Campina Grande</origem>
+    <destino>João Pessoa</destino>
+    <data>
+      <data>02/06/2012</data>
+    </data>
+    <hora>
+      <Hora>12:00</Hora>
+    </hora>
+    <qntVagas>3</qntVagas>
+    <motorista reference="../../ufcg.edu.br.Sistema120121.logica.Carona[2]/caroneiros/entry/ufcg.edu.br.Sistema120121.logica.User"/>
+    <ID>
+      <loginMotorista>steve</loginMotorista>
+      <horaCarona reference="../../hora"/>
+      <dataCarona reference="../../data"/>
+    </ID>
+    <caroneiros class="tree-map"/>
+    <pontoDeEncontro>
+      <blackList class="linked-list"/>
+    </pontoDeEncontro>
+  </ufcg.edu.br.Sistema120121.logica.Carona>
+  <ufcg.edu.br.Sistema120121.logica.Carona>
+    <origem>Campina Grande</origem>
+    <destino>João Pessoa</destino>
+    <data>
+      <data>04/06/2012</data>
+    </data>
+    <hora>
+      <Hora>16:00</Hora>
+    </hora>
+    <qntVagas>2</qntVagas>
+    <motorista reference="../../ufcg.edu.br.Sistema120121.logica.Carona[2]/caroneiros/entry/ufcg.edu.br.Sistema120121.logica.User"/>
+    <ID>
+      <loginMotorista>steve</loginMotorista>
+      <horaCarona reference="../../hora"/>
+      <dataCarona reference="../../data"/>
+    </ID>
+    <caroneiros class="tree-map"/>
+    <pontoDeEncontro>
+      <blackList class="linked-list"/>
+    </pontoDeEncontro>
+  </ufcg.edu.br.Sistema120121.logica.Carona>
+  <ufcg.edu.br.Sistema120121.logica.Carona>
+    <origem>Leeds</origem>
+    <destino>Londres</destino>
+    <data>
+      <data>10/02/2013</data>
+    </data>
+    <hora>
+      <Hora>10:00</Hora>
+    </hora>
+    <qntVagas>3</qntVagas>
+    <motorista reference="../../ufcg.edu.br.Sistema120121.logica.Carona[2]/caroneiros/entry/ufcg.edu.br.Sistema120121.logica.User"/>
+    <ID>
+      <loginMotorista>steve</loginMotorista>
+      <horaCarona reference="../../hora"/>
+      <dataCarona reference="../../data"/>
+    </ID>
+    <caroneiros class="tree-map"/>
+    <pontoDeEncontro>
+      <blackList class="linked-list"/>
+    </pontoDeEncontro>
+  </ufcg.edu.br.Sistema120121.logica.Carona>
 </linked-list>

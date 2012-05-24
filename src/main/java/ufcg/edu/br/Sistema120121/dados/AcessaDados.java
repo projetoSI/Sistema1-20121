@@ -148,8 +148,8 @@ public class AcessaDados {
 	}
 
 	public void atualizaDados() throws IOException {
-		dadosCaronas.atualizaRepositorio((LinkedList<Carona>) arquivo.<Carona>lerArquivo("arquivoUser.xml"));
-		dadosUser.atualizaRepositorio((LinkedList<User>) arquivo.<User>lerArquivo("arquivoCarona.xml"));
+		dadosCaronas.atualizaRepositorio((LinkedList<Carona>) arquivo.<Carona>lerArquivo("arquivoCarona.xml"));
+		dadosUser.atualizaRepositorio((LinkedList<User>) arquivo.<User>lerArquivo("arquivoUser.xml"));
 	}
 
 	public Solicitacao getSolicitacao(String idSolicitacao) throws SolicitacaoException {
