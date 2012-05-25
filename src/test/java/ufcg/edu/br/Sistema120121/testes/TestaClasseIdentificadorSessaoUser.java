@@ -9,20 +9,20 @@ import org.junit.Test;
 
 import ufcg.edu.br.Sistema120121.logica.*;
 
-public class TestaClasseSessaoUser {
-	private SessaoUser secao;
-	private SessaoUser secao2;
-	private SessaoUser secao3;
-	private SessaoUser secao4;
-	private SessaoUser secao5;
+public class TestaClasseIdentificadorSessaoUser {
+	private IdentificadorSessaoUser secao;
+	private IdentificadorSessaoUser secao2;
+	private IdentificadorSessaoUser secao3;
+	private IdentificadorSessaoUser secao4;
+	private IdentificadorSessaoUser secao5;
 	
 	@Before
 	public void setup(){
-		secao = new SessaoUser("pherivelton", "pherivelton@gmail.com");
-		secao2 = new SessaoUser("pherivelton", "pherivelton@gmail.com");
-		secao3 = new SessaoUser("pherivelton", "pherivelton2@gmail.com");
-		secao4 = new SessaoUser("pherivelton2", "pherivelton@gmail.com");
-		secao5 = new SessaoUser("jonh", "jonhnanthan@gmail.com");
+		secao = new IdentificadorSessaoUser("pherivelton", "pherivelton@gmail.com");
+		secao2 = new IdentificadorSessaoUser("pherivelton", "pherivelton@gmail.com");
+		secao3 = new IdentificadorSessaoUser("pherivelton", "pherivelton2@gmail.com");
+		secao4 = new IdentificadorSessaoUser("pherivelton2", "pherivelton@gmail.com");
+		secao5 = new IdentificadorSessaoUser("jonh", "jonhnanthan@gmail.com");
 		
 	}
 	

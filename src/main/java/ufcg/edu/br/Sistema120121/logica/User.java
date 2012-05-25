@@ -3,6 +3,7 @@ package ufcg.edu.br.Sistema120121.logica;
 import java.util.LinkedList;
 import java.util.List;
 
+import ufcg.edu.br.Sistema120121.dados.AcessaDados;
 import ufcg.edu.br.Sistema120121.logica.Carona.Situacao;
 
 /**
@@ -17,10 +18,13 @@ public class User {
 	private String telefone;
 	private String nome;
 	private String senha;
+	private int caronasSeguras;
+	private int caronasNaoFuncionaram;
+	private int faltas;
 	private List<User> listaDeAmigos = new LinkedList<User>();
 	private List<Carona> caronasOferecidas = new LinkedList<Carona>();
 	private List<Solicitacao> solicitacoes;
-	private SessaoUser ID;
+	private IdentificadorSessaoUser ID;
 
 	/**
 	 * Construtor de um usuario.
@@ -65,7 +69,7 @@ public class User {
 		setEndereco(endereco);
 		setEmail(email);
 		setTelefone(telefone);
-		ID = new SessaoUser(login, email);
+		ID = new IdentificadorSessaoUser(login, email);
 		solicitacoes = new LinkedList<Solicitacao>();
 
 	}
@@ -81,9 +85,15 @@ public class User {
 	 *             incorreto; Caso o telefone esteja em um formato incorreto;
 	 *             Caso o login esteja em um formato incorreto.
 	 */
-	public Perfil getPerfil() throws UserException {
-		return new Perfil(new User(login, senha, nome, endereco, email,
-				telefone));
+
+	public String vizualizaPerfil(User usuario) throws UserException {
+		if (ehAmigo(usuario) || this.equals(usuario)) {
+			return exibeCadastro(usuario) + "" + usuario.getListaAmigos() + ""
+					+ usuario.exibeHistoricoDeCaronas() + ""
+					+ usuario.exibeHistoricoDeVagas();
+		}
+		return "Impossivel vizualizar perfil";
+
 	}
 
 	/**
@@ -91,7 +101,7 @@ public class User {
 	 * 
 	 * @return o identificador
 	 */
-	public SessaoUser getID() {
+	public IdentificadorSessaoUser getID() {
 		return ID;
 	}
 
@@ -256,6 +266,33 @@ public class User {
 	}
 
 	/**
+	 * Quantidade de caronas efetivadas
+	 * 
+	 * @return valor inteiro da quantidade
+	 */
+	public int exibeCaronasSeguras() {
+		return caronasSeguras;
+	}
+
+	/**
+	 * Quantidade de caronas não efetivadas
+	 * 
+	 * @return valor inteiro da quantidade
+	 */
+	public int exibeCaronasNaoFuncionaram() {
+		return caronasNaoFuncionaram;
+	}
+
+	/**
+	 * Caronas não comparecidas
+	 * 
+	 * @return quantidade
+	 */
+	public int exibeFaltas() {
+		return faltas;
+	}
+
+	/**
 	 * Verifica se um determinado usuario esta na lista de amigos.
 	 * 
 	 * @param usuario
@@ -274,8 +311,9 @@ public class User {
 	 *            O novo usuario.
 	 */
 	public void addAmigo(User usuario) {
-		if (!(this.equals(usuario)))
+		if (!(this.equals(usuario))) {
 			listaDeAmigos.add(usuario);
+		}
 	}
 
 	/**
@@ -479,6 +517,42 @@ public class User {
 		else
 			throw new SolicitacaoException(
 					"Voce nao pode realizar a operacao pois o ponto nao foi alterado ou voce nao possui a solicitacao informada.");
+	}
+
+	/**
+	 * Exibe as informações de cadastro do usuario.
+	 * 
+	 * @param - recebe um usuario
+	 * @return string com todas as informações do user
+	 */
+	public String exibeCadastro(User usuario) {
+		return usuario.getNome() + " " + usuario.getLogin() + " "
+				+ usuario.getEmail() + " " + usuario.getEndereco() + " "
+				+ usuario.getTelefone();
+	}
+
+	/**
+	 * Exibe o historico de caronas dada pelo usuario.
+	 * 
+	 * @param usuario
+	 *            O usuario a ter sua lista de caronas exibida.
+	 * @return A lista de caronas de um determinado usuario.
+	 */
+	public String exibeHistoricoDeCaronas() {
+		List<Carona> historico = exibeHistoricoDeVagas();
+		historico.addAll(AcessaDados.getInstance().getCaronasDoMotorista(this));
+		return historico.toString();
+	}
+
+	/**
+	 * Exibe o historico de caronas dada pelo usuario.
+	 * 
+	 * @param usuario
+	 *            O usuario a ter sua lista de caronas exibida.
+	 * @return A lista de caronas de um determinado usuario.
+	 */
+	public List<Carona> exibeHistoricoDeVagas() {
+		return AcessaDados.getInstance().getCaronasDoCaroneiro(this);
 	}
 
 }

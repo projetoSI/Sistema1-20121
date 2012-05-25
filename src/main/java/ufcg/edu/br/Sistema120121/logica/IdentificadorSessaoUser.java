@@ -4,7 +4,7 @@ package ufcg.edu.br.Sistema120121.logica;
  * Identificador de sessão de um usuário
  * 
  */
-public class SessaoUser {
+public class IdentificadorSessaoUser {
 
 	private String login, email;
 	private boolean sessao = false;
@@ -17,7 +17,7 @@ public class SessaoUser {
 	 * @param email
 	 *            email do usuario
 	 */
-	public SessaoUser(String login, String email) {
+	public IdentificadorSessaoUser(String login, String email) {
 		this.login = login;
 		this.email = email;
 	}
@@ -89,10 +89,10 @@ public class SessaoUser {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof SessaoUser)) {
+		if (!(obj instanceof IdentificadorSessaoUser)) {
 			return false;
 		}
-		SessaoUser other = (SessaoUser) obj;
+		IdentificadorSessaoUser other = (IdentificadorSessaoUser) obj;
 		return this.getEmail().equals(other.getEmail())
 				&& this.getLogin().equals(other.getLogin());
 	}

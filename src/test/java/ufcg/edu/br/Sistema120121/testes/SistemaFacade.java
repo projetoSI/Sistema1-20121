@@ -300,27 +300,27 @@ public class SistemaFacade {
 // US05
 	
 	public String getAtributoPerfil(String login,String atributo) throws Exception{
-		Perfil pf= new Perfil(sistema.getUser(login));
+		User perfilUsuario = sistema.getUser(login);
 		
 		String result;
 		if (atributo.equals("nome"))
-			result = pf.exibeNome();
+			result = perfilUsuario.getNome();
 		else if (atributo.equals("endereco"))
-			result = pf.exibeEndereco();
+			result = perfilUsuario.getEndereco();
 		else if (atributo.equals("email"))
-			result = pf.exibeEmail();
+			result = perfilUsuario.getEmail();
 		else if (atributo.equals("historico de caronas"))
-			result = pf.exibeHistoricoDeCaronas();
+			result = perfilUsuario.exibeHistoricoDeCaronas();
 		else if (atributo.equals("historico de vagas em caronas"))
-			result = "" + pf.exibeHistoricoDeVagas();
+			result = "" + perfilUsuario.exibeHistoricoDeVagas();
 		else if (atributo.equals("caronas seguras e tranquilas"))
-			result = "" + pf.exibeCaronasSeguras();
+			result = "" + perfilUsuario.exibeCaronasSeguras();
 		else if (atributo.equals("caronas que não funcionaram"))
-			result = "" + pf.exibeCaronasNaoFuncionaram();
+			result = "" + perfilUsuario.exibeCaronasNaoFuncionaram();
 		else if (atributo.equals("faltas em vagas de caronas"))
-			result = "" + pf.exibeFaltas();
+			result = "" + perfilUsuario.exibeFaltas();
 		else if (atributo.equals("presenças em vagas de caronas"))
-			result = "" + (pf.exibeHistoricoDeVagas().size() - pf.exibeFaltas());		
+			result = "" + (perfilUsuario.exibeHistoricoDeVagas().size() - perfilUsuario.exibeFaltas());		
 		else
 			throw new Exception("Atributo inexistente");
 
@@ -328,10 +328,10 @@ public class SistemaFacade {
 		
 	}
 	
-	public Perfil visualizarPerfil(String idSessao,String login) throws Exception{
+	public User visualizarPerfil(String idSessao,String login) throws Exception{
 		if(sistema.getUser(login) == null) throw new Exception("Login inválido");
-		Perfil perfil = new Perfil(sistema.getUser(login));
-		return perfil;
+		User perfilUsuario = sistema.getUser(login);
+		return perfilUsuario;
 		
 	}
 //	US06
@@ -405,7 +405,7 @@ public class SistemaFacade {
 
 		List<String> files = new ArrayList<String>();
 		// Put the us1.txt file into the "test scripts" list
-		files.add("scripts/US07.txt");
+		files.add("scripts/US06.txt");
 		// Instantiate the Monopoly Game façade
 		SistemaFacade monopolyGameFacade = getInstance();
 		// Instantiate EasyAccept façade

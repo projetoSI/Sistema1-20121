@@ -6,28 +6,15 @@
     <telefone>112121212</telefone>
     <nome>Mark Zuckerberg</nome>
     <senha>m@rk</senha>
+    <caronasSeguras>0</caronasSeguras>
+    <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
+    <faltas>0</faltas>
     <listaDeAmigos class="linked-list"/>
     <caronasOferecidas class="linked-list"/>
     <solicitacoes class="linked-list"/>
     <ID>
       <login>mark</login>
       <email>mark@facebook.com</email>
-      <sessao>true</sessao>
-    </ID>
-  </ufcg.edu.br.Sistema120121.logica.User>
-  <ufcg.edu.br.Sistema120121.logica.User>
-    <login>steve</login>
-    <endereco>Palo Alto, California</endereco>
-    <email>jobs@apple.com</email>
-    <telefone>112121212</telefone>
-    <nome>Steve Paul Jobs</nome>
-    <senha>5t3v3</senha>
-    <listaDeAmigos class="linked-list"/>
-    <caronasOferecidas class="linked-list"/>
-    <solicitacoes class="linked-list"/>
-    <ID>
-      <login>steve</login>
-      <email>jobs@apple.com</email>
       <sessao>true</sessao>
     </ID>
   </ufcg.edu.br.Sistema120121.logica.User>
