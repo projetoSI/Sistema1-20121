@@ -18,4 +18,42 @@
       <sessao>true</sessao>
     </ID>
   </ufcg.edu.br.Sistema120121.logica.User>
+  <ufcg.edu.br.Sistema120121.logica.User>
+    <login>bill</login>
+    <endereco>Medina, Washington</endereco>
+    <email>billzin@gmail.com</email>
+    <telefone>112121212</telefone>
+    <nome>William Henry Gates III</nome>
+    <senha>bilz@o</senha>
+    <caronasSeguras>0</caronasSeguras>
+    <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
+    <faltas>0</faltas>
+    <listaDeAmigos class="linked-list"/>
+    <caronasOferecidas class="linked-list"/>
+    <solicitacoes class="linked-list"/>
+    <ID>
+      <login>bill</login>
+      <email>billzin@gmail.com</email>
+      <sessao>true</sessao>
+    </ID>
+  </ufcg.edu.br.Sistema120121.logica.User>
+  <ufcg.edu.br.Sistema120121.logica.User>
+    <login>vader</login>
+    <endereco>Death Star I</endereco>
+    <email>darthvader@empire.com</email>
+    <telefone>112121212</telefone>
+    <nome>Anakin Skywalker</nome>
+    <senha>d4rth</senha>
+    <caronasSeguras>0</caronasSeguras>
+    <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
+    <faltas>0</faltas>
+    <listaDeAmigos class="linked-list"/>
+    <caronasOferecidas class="linked-list"/>
+    <solicitacoes class="linked-list"/>
+    <ID>
+      <login>vader</login>
+      <email>darthvader@empire.com</email>
+      <sessao>true</sessao>
+    </ID>
+  </ufcg.edu.br.Sistema120121.logica.User>
 </linked-list>

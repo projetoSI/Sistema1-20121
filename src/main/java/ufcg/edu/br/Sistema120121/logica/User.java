@@ -538,10 +538,8 @@ public class User {
 	 *            O usuario a ter sua lista de caronas exibida.
 	 * @return A lista de caronas de um determinado usuario.
 	 */
-	public String exibeHistoricoDeCaronas() {
-		List<Carona> historico = exibeHistoricoDeVagas();
-		historico.addAll(AcessaDados.getInstance().getCaronasDoMotorista(this));
-		return historico.toString();
+	public List<Carona> exibeHistoricoDeCaronas() {
+		return AcessaDados.getInstance().getCaronasDoMotorista(this);
 	}
 
 	/**

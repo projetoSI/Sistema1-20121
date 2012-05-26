@@ -1,8 +1,12 @@
 package ufcg.edu.br.Sistema120121.logica;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.Map.Entry;
 
 /**
  * Objeto carona e todos os seus atributos. Responsável por todas as informações
@@ -54,7 +58,7 @@ public class Carona {
 		setQntVagas(qntVagas);
 		this.motorista = motorista;
 		this.ID = new IdentificadorCarona(motorista.getLogin(), data, hora);
-		caroneiros = new TreeMap<User, Situacao>();
+		caroneiros = new HashMap<User, Situacao>();
 		pontoDeEncontro = new PontoDeEncontro();
 	}
 

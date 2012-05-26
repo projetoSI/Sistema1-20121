@@ -11,24 +11,25 @@ import ufcg.edu.br.Sistema120121.logica.*;
 import ufcg.edu.br.Sistema120121.sistema.*;
 
 public class SistemaFacade {
-	
+
 	private User user;
 	private Carona carona;
 	private static Sistema sistema = Sistema.getInstance();
 	private static SistemaFacade facade = new SistemaFacade();
 	private Map<String, List<String>> refCaronasUsers = new TreeMap<String, List<String>>();
-	
+
 	public static SistemaFacade getInstance() {
 		return facade;
 	}
-	
+
 	private SistemaFacade() {
 	}
 
-	public void criarUsuario(String login, String senha, String nome, String endereco, String email) throws Exception {
+	public void criarUsuario(String login, String senha, String nome,
+			String endereco, String email) throws Exception {
 		sistema.addUsuario(login, senha, nome, endereco, email, "112121212");
 	}
-	
+
 	public void zerarSistema() throws IOException {
 		user = null;
 		sistema.zerarDados();
@@ -41,7 +42,7 @@ public class SistemaFacade {
 		user = sistema.getUser(login);
 		if (atributo == null || atributo.isEmpty())
 			throw new Exception("Atributo inválido");
-		
+
 		if (user == null)
 			throw new UserException("Usuário inexistente");
 
@@ -66,19 +67,20 @@ public class SistemaFacade {
 		return user.getID().toString();
 	}
 
-	public void encerrarSessao(String login){
+	public void encerrarSessao(String login) {
 		sistema.fechaSessaoUser(login);
 	}
-	
+
 	public void encerrarSistema() throws IOException {
 		sistema.guardarDados();
 	}
-	
-	
-	public String localizarCarona(String sessao, String origem, String destino) throws Exception{
+
+	public String localizarCarona(String sessao, String origem, String destino)
+			throws Exception {
 		String result = "";
-		
-		if (origem.matches("[A-Za-zÇ-ú\\s]*+") && destino.matches("[A-Za-zÇ-ú\\s]*+")) {
+
+		if (origem.matches("[A-Za-zÇ-ú\\s]*+")
+				&& destino.matches("[A-Za-zÇ-ú\\s]*+")) {
 			if (sistema.getCaronas(origem, destino).size() == 0) {
 				result = "{}";
 			} else {
@@ -99,49 +101,54 @@ public class SistemaFacade {
 			if (!destino.matches("[A-Za-zÇ-ú\\s]*+"))
 				throw new Exception("Destino inválido");
 		}
-		
+
 		return result;
 	}
-	
-	public IdentificadorCarona cadastrarCarona(String sessao, String origem, String destino, String data, String hora, String vagas) throws Exception{
-		
+
+	public IdentificadorCarona cadastrarCarona(String sessao, String origem,
+			String destino, String data, String hora, String vagas)
+			throws Exception {
+
 		if (sessao == null || sessao.isEmpty())
 			throw new Exception("Sessão inválida");
-		
-		boolean temSessao = false; 
+
+		boolean temSessao = false;
 		for (User aux : sistema.getUsuariosCadastrados()) {
-			if(sessao.equals(aux.getID().toString())){
+			if (sessao.equals(aux.getID().toString())) {
 				temSessao = true;
 				break;
 			}
 		}
 		if (!temSessao)
 			throw new Exception("Sessão inexistente");
-		
+
 		try {
 			Integer.parseInt(vagas);
 		} catch (Exception e) {
 			throw new Exception("Vaga inválida");
 		}
-		
+
 		mudaUserAtual(sessao);
-		
+
 		Hora horaAux = new Hora(hora);
 		Data dataAux = new Data(data);
-		sistema.addCarona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), user);
-		carona = new Carona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), user);
+		sistema.addCarona(origem, destino, horaAux, dataAux,
+				Integer.parseInt(vagas), user);
+		carona = new Carona(origem, destino, horaAux, dataAux,
+				Integer.parseInt(vagas), user);
 
-		if (refCaronasUsers.containsKey(user.getID().toString())){
-			refCaronasUsers.get(user.getID().toString()).add(carona.getID().toString());
-		}else{
+		if (refCaronasUsers.containsKey(user.getID().toString())) {
+			refCaronasUsers.get(user.getID().toString()).add(
+					carona.getID().toString());
+		} else {
 			List<String> aux = new LinkedList<String>();
 			aux.add(carona.getID().toString());
 			refCaronasUsers.put(user.getID().toString(), aux);
 		}
-		
+
 		return carona.getID();
 	}
-	
+
 	private void mudaUserAtual(String sessao) {
 		for (User aux : sistema.getUsuariosCadastrados()) {
 			if (aux.getID().toString().equals(sessao)) {
@@ -151,17 +158,18 @@ public class SistemaFacade {
 		}
 	}
 
-	public String getAtributoCarona(String IDCarona, String atributo) throws Exception{
+	public String getAtributoCarona(String IDCarona, String atributo)
+			throws Exception {
 		String result = null;
-		
-		if(IDCarona == null || IDCarona.equals("")){
+
+		if (IDCarona == null || IDCarona.equals("")) {
 			throw new Exception("Identificador do carona é inválido");
 		}
-		
-		Carona carona = sistema.getCaronaID(IDCarona); 
+
+		Carona carona = sistema.getCaronaID(IDCarona);
 		if (atributo == null || atributo.isEmpty())
 			throw new Exception("Atributo inválido");
-		
+
 		if (atributo.equals("origem"))
 			result = carona.getOrigem();
 		else if (atributo.equals("destino"))
@@ -172,18 +180,19 @@ public class SistemaFacade {
 			result = carona.getData().getData();
 		else if (atributo.equals("vagas"))
 			result = "" + carona.getQntVagas();
-		else throw new Exception("Atributo inexistente");
-		
+		else
+			throw new Exception("Atributo inexistente");
+
 		return result;
 	}
-	
-	public String getTrajeto(String IDCarona) throws Exception{
+
+	public String getTrajeto(String IDCarona) throws Exception {
 		String result = "";
 		Carona carona;
-		
+
 		if (IDCarona == null)
 			throw new Exception("Trajeto Inválida");
-		
+
 		try {
 			carona = sistema.getCaronaID(IDCarona);
 			if (IDCarona.isEmpty())
@@ -191,20 +200,20 @@ public class SistemaFacade {
 		} catch (Exception e) {
 			throw new Exception("Trajeto Inexistente");
 		}
-		
+
 		result = carona.getOrigem() + " - " + carona.getDestino();
-		
+
 		return result;
 	}
-	
-	public String getCarona(String id) throws Exception{
+
+	public String getCarona(String id) throws Exception {
 		Carona carona;
 		if (id == null)
 			throw new Exception("Carona Inválida");
-		
+
 		if (id.isEmpty())
 			throw new Exception("Carona Inexistente");
-		
+
 		try {
 			carona = sistema.getCaronaID(id);
 		} catch (Exception e) {
@@ -212,56 +221,63 @@ public class SistemaFacade {
 		}
 		return carona.toString();
 	}
-	
-// até aqui US03 + 02 + 01
-	
-	public String sugerirPontoEncontro(String IDSessao, String IDCarona, String pontos) throws Exception{
+
+	// até aqui US03 + 02 + 01
+
+	public String sugerirPontoEncontro(String IDSessao, String IDCarona,
+			String pontos) throws Exception {
 		String result = "";
-		
+
 		if (pontos == null || pontos.isEmpty())
 			throw new Exception("Ponto Inválido");
-	
+
 		sistema.getCaronaID(IDCarona).setPontoDeEncontro(pontos);
 		result = pontos;
-		
+
 		return result;
 	}
-	
-	public void responderSugestaoPontoEncontro(String IDSessao, String IdCarona, String IDSugestao, String pontos) throws Exception{
+
+	public void responderSugestaoPontoEncontro(String IDSessao,
+			String IdCarona, String IDSugestao, String pontos) throws Exception {
 		if (pontos == null || pontos.isEmpty())
 			throw new Exception("Ponto Inválido");
-		if (!IDSugestao.equalsIgnoreCase(pontos)){
+		if (!IDSugestao.equalsIgnoreCase(pontos)) {
 			sistema.getCaronaID(IdCarona).setPontoDeEncontro(pontos);
 		}
 	}
-	
-	public String solicitarVagaPontoEncontro(String IDSessao, String IDCarona, String ponto) throws Exception{
+
+	public String solicitarVagaPontoEncontro(String IDSessao, String IDCarona,
+			String ponto) throws Exception {
 		if (ponto == null || ponto.isEmpty())
 			throw new Exception("Ponto Inválido");
 
-		Solicitacao s = new Solicitacao(sistema.getCaronaID(IDCarona), user, ponto);
+		Solicitacao s = new Solicitacao(sistema.getCaronaID(IDCarona), user,
+				ponto);
 		sistema.addSolicitacao(sistema.getCaronaID(IDCarona), user, ponto);
 		return s.getSolicitacaoID();
 	}
-	
-	public void aceitarSolicitacaoPontoEncontro(String IDSessao, String IDSolicitacao) throws Exception{
+
+	public void aceitarSolicitacaoPontoEncontro(String IDSessao,
+			String IDSolicitacao) throws Exception {
 		sistema.solicitacaoAceita(IDSolicitacao);
 		sistema.getSolicitacao(IDSolicitacao).confirmarSolicitacao();
 	}
-	
-	public void desistirRequisicao(String IDSessao, String IDCarona, String IDSolicitacao) throws Exception{
+
+	public void desistirRequisicao(String IDSessao, String IDCarona,
+			String IDSolicitacao) throws Exception {
 		Carona aux = sistema.getSolicitacao(IDSolicitacao).getCaronaDesejada();
-		if (sistema.getCaronaID(IDCarona).getID().equals(aux.getID())){
+		if (sistema.getCaronaID(IDCarona).getID().equals(aux.getID())) {
 			sistema.apagaCarona(sistema.getCaronaID(IDCarona));
-		} else{
+		} else {
 			throw new Exception("Desistencia não confirmada!");
 		}
 	}
-	
-	public String getAtributoSolicitacao(String IDSolicitacao, String atributo) throws SolicitacaoException{
+
+	public String getAtributoSolicitacao(String IDSolicitacao, String atributo)
+			throws SolicitacaoException {
 		String result = "";
 		Solicitacao solicitacao = sistema.getSolicitacao(IDSolicitacao);
-		
+
 		if (atributo.equals("origem"))
 			result = solicitacao.getCaronaDesejada().getOrigem();
 		else if (atributo.equals("destino"))
@@ -274,45 +290,58 @@ public class SistemaFacade {
 			result = solicitacao.getPontoDeEncontro().getSugestaoAtual();
 		else
 			throw new SolicitacaoException("Atributo inexistente");
-		
+
 		return result;
 	}
-	
-// US04	
-	
-	public String solicitarVaga(String idSessao,String idCarona) throws Exception{
+
+	// US04
+
+	public String solicitarVaga(String idSessao, String idCarona)
+			throws Exception {
 		mudaUserAtual(idSessao);
-		
-		Solicitacao solicitacao = new Solicitacao(sistema.getCaronaID(idCarona), user);
-		sistema.addSolicitacao(sistema.getCaronaID(idCarona),user);
-		
+
+		Solicitacao solicitacao = new Solicitacao(
+				sistema.getCaronaID(idCarona), user);
+		sistema.addSolicitacao(sistema.getCaronaID(idCarona), user);
+
 		return solicitacao.getSolicitacaoID();
 	}
-	
-	public void aceitarSolicitacao(String idSessao,String idSolicitacao) throws Exception{
+
+	public void aceitarSolicitacao(String idSessao, String idSolicitacao)
+			throws Exception {
 		sistema.solicitacaoAceita(idSolicitacao);
-		sistema.getSolicitacao(idSolicitacao).confirmarSolicitacao();		 
+		sistema.getSolicitacao(idSolicitacao).confirmarSolicitacao();
 	}
-	
-	public void rejeitarSolicitacao(String idSessao,String idSolicitacao) throws SolicitacaoException{
+
+	public void rejeitarSolicitacao(String idSessao, String idSolicitacao)
+			throws SolicitacaoException {
 		sistema.solicitacaoRecusada(idSolicitacao);
 	}
-// US05
-	
-	public String getAtributoPerfil(String login,String atributo) throws Exception{
-		User perfilUsuario = sistema.getUser(login);
-		
-		String result;
+
+	// US05
+
+	public String getAtributoPerfil(String login, String atributo) throws Exception {
+		User perfilUsuario = user;
+
+		String result = null;
 		if (atributo.equals("nome"))
 			result = perfilUsuario.getNome();
 		else if (atributo.equals("endereco"))
 			result = perfilUsuario.getEndereco();
 		else if (atributo.equals("email"))
 			result = perfilUsuario.getEmail();
-		else if (atributo.equals("historico de caronas"))
-			result = perfilUsuario.exibeHistoricoDeCaronas();
-		else if (atributo.equals("historico de vagas em caronas"))
-			result = "" + perfilUsuario.exibeHistoricoDeVagas();
+		else if (atributo.equals("historico de caronas")) {
+			result = "[";
+			for (Carona c : perfilUsuario.exibeHistoricoDeCaronas()) {
+				if (result.equals("[")) {
+					result += c.getID().toString();
+				} else {
+					result += "," + c.getID().toString();
+				}
+			}
+			result += "]";
+		} else if (atributo.equals("historico de vagas em caronas"))
+			result = perfilUsuario.exibeHistoricoDeVagas().toString();
 		else if (atributo.equals("caronas seguras e tranquilas"))
 			result = "" + perfilUsuario.exibeCaronasSeguras();
 		else if (atributo.equals("caronas que não funcionaram"))
@@ -320,51 +349,57 @@ public class SistemaFacade {
 		else if (atributo.equals("faltas em vagas de caronas"))
 			result = "" + perfilUsuario.exibeFaltas();
 		else if (atributo.equals("presenças em vagas de caronas"))
-			result = "" + (perfilUsuario.exibeHistoricoDeVagas().size() - perfilUsuario.exibeFaltas());		
+			result = "" + (perfilUsuario.exibeHistoricoDeVagas().size() - perfilUsuario.exibeFaltas());
 		else
 			throw new Exception("Atributo inexistente");
 
 		return result;
-		
+
 	}
-	
-	public User visualizarPerfil(String idSessao,String login) throws Exception{
-		if(sistema.getUser(login) == null) throw new Exception("Login inválido");
+
+	public User visualizarPerfil(String idSessao, String login)
+			throws Exception {
+		if (sistema.getUser(login) == null)
+			throw new Exception("Login inválido");
 		User perfilUsuario = sistema.getUser(login);
 		return perfilUsuario;
-		
+
 	}
-//	US06
-	
-	public void reiniciarSistema() throws IOException{
+
+	// US06
+
+	public void reiniciarSistema() throws IOException {
 		sistema.reiniciar();
 	}
-	
-	public String getCaronaUsuario(String idSessao, String indexCarona) throws Exception{
+
+	public String getCaronaUsuario(String idSessao, String indexCarona)
+			throws Exception {
 		String idCarona = "";
-		
+
 		if (refCaronasUsers.containsKey(idSessao))
-			idCarona = refCaronasUsers.get(idSessao).get(Integer.parseInt(indexCarona)-1);
-		
+			idCarona = refCaronasUsers.get(idSessao).get(
+					Integer.parseInt(indexCarona) - 1);
+
 		return idCarona;
 	}
-	
-	public String getTodasCaronasUsuario(String idSessao) throws Exception{
+
+	public String getTodasCaronasUsuario(String idSessao) throws Exception {
 		String result = "{";
 
 		for (String idCarona : refCaronasUsers.get(idSessao)) {
 			if (result.equals("{")) {
 				result += sistema.getCaronaID(idCarona).getID().toString();
 			} else {
-				result += "," + sistema.getCaronaID(idCarona).getID().toString();
+				result += ","
+						+ sistema.getCaronaID(idCarona).getID().toString();
 			}
 		}
 		result += "}";
 
 		return result;
 	}
-	
-	public String getSolicitacoesConfirmadas(String idSessao, String idCarona){
+
+	public String getSolicitacoesConfirmadas(String idSessao, String idCarona) {
 		String result = "{";
 
 		for (Solicitacao s : sistema.getSolicitacoesAceitas()) {
@@ -380,36 +415,39 @@ public class SistemaFacade {
 
 		return result;
 	}
-	
-	public String getSolicitacoesPendentes(String idSessao, String idCarona){
+
+	public String getSolicitacoesPendentes(String idSessao, String idCarona) {
 		return "";
 	}
-	
-	public String getPontosSugeridos(String idSessao, String idCarona) throws Exception{
+
+	public String getPontosSugeridos(String idSessao, String idCarona)
+			throws Exception {
 		String result = "";
 
 		for (String idAux : refCaronasUsers.get(idSessao)) {
 			if (idAux.equals(idCarona))
-					result = sistema.getCaronaID(idAux).getPontoDeEncontro().getSugestaoAtual();
-			}
+				result = sistema.getCaronaID(idAux).getPontoDeEncontro()
+						.getSugestaoAtual();
+		}
 
 		return result;
 	}
-	
-	public String getPontosEncontro(String idSessao, String idCarona) throws Exception{
+
+	public String getPontosEncontro(String idSessao, String idCarona)
+			throws Exception {
 		return getPontosSugeridos(idSessao, idCarona);
 	}
 
-	
 	public static void main(String[] args) throws Exception {
 
 		List<String> files = new ArrayList<String>();
 		// Put the us1.txt file into the "test scripts" list
-		files.add("scripts/US06.txt");
+		files.add("scripts/US08.txt");
 		// Instantiate the Monopoly Game façade
 		SistemaFacade monopolyGameFacade = getInstance();
 		// Instantiate EasyAccept façade
-		EasyAcceptFacade eaFacade = new EasyAcceptFacade(monopolyGameFacade,files);
+		EasyAcceptFacade eaFacade = new EasyAcceptFacade(monopolyGameFacade,
+				files);
 		// Execute the tests
 		eaFacade.executeTests();
 		// Print the tests execution results
