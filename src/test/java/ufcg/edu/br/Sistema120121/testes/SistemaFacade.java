@@ -340,9 +340,17 @@ public class SistemaFacade {
 				}
 			}
 			result += "]";
-		} else if (atributo.equals("historico de vagas em caronas"))
-			result = perfilUsuario.exibeHistoricoDeVagas().toString();
-		else if (atributo.equals("caronas seguras e tranquilas"))
+		} else if (atributo.equals("historico de vagas em caronas")){
+			result = "[";
+			for (Carona c : perfilUsuario.exibeHistoricoDeVagas()) {
+				if (result.equals("[")) {
+					result += c.getID().toString();
+				} else {
+					result += "," + c.getID().toString();
+				}
+			}
+			result += "]";
+		}else if (atributo.equals("caronas seguras e tranquilas"))
 			result = "" + perfilUsuario.exibeCaronasSeguras();
 		else if (atributo.equals("caronas que não funcionaram"))
 			result = "" + perfilUsuario.exibeCaronasNaoFuncionaram();
