@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import easyaccept.EasyAcceptFacade;
 import ufcg.edu.br.Sistema120121.logica.*;
+import ufcg.edu.br.Sistema120121.logica.Carona.Situacao;
 import ufcg.edu.br.Sistema120121.sistema.*;
 
 public class SistemaFacade {
@@ -33,6 +34,7 @@ public class SistemaFacade {
 	public void zerarSistema() throws IOException {
 		user = null;
 		sistema.zerarDados();
+		sistema.reiniciar();
 	}
 
 	public String getAtributoUsuario(String login, String atributo)
@@ -321,7 +323,7 @@ public class SistemaFacade {
 	// US05
 
 	public String getAtributoPerfil(String login, String atributo) throws Exception {
-		User perfilUsuario = user;
+		User perfilUsuario = sistema.getUser(login);
 
 		String result = null;
 		if (atributo.equals("nome"))
@@ -357,7 +359,7 @@ public class SistemaFacade {
 		else if (atributo.equals("faltas em vagas de caronas"))
 			result = "" + perfilUsuario.exibeFaltas();
 		else if (atributo.equals("presenças em vagas de caronas"))
-			result = "" + (perfilUsuario.exibeHistoricoDeVagas().size() - perfilUsuario.exibeFaltas());
+			result = "" + perfilUsuario.getPresencas();
 		else
 			throw new Exception("Atributo inexistente");
 
@@ -446,10 +448,52 @@ public class SistemaFacade {
 		return getPontosSugeridos(idSessao, idCarona);
 	}
 
+	public void reviewVagaEmCarona(String idSessao,String idCarona,String login,String review) throws Exception{
+		
+		if (review.equals("faltou")) {
+			if (sistema.getCaronaID(idCarona).verificaCaroneiro(sistema.getUser(login))){
+				sistema.getCaronaID(idCarona).setSituacao(Situacao.FALTOU, sistema.getUser(login));
+			}
+		}else if(review.equals("não faltou")){
+			if (sistema.getCaronaID(idCarona).verificaCaroneiro(sistema.getUser(login))){
+				sistema.getCaronaID(idCarona).setSituacao(Situacao.NAO_FALTOU, sistema.getUser(login));
+			}
+		}else if(review.equals("não funcionou")){
+			throw new Exception("Usuário não possui vaga na carona.");
+			
+		}else{
+			throw new Exception("Opção inválida.");
+		}
+	
+	}
+	
+//	public void reviewCarona(String idSessao,String idCarona,String review){
+//		
+//		if (review.equals("segura e tranquila")) {
+//			sistema.;
+//			
+//		}else if(review.equals("não faltou")){
+//			sistema.getUser(login).addPresença();
+//		
+//		}else if(review.equals("não funcionou")){
+//			throw new Exception("Usuário não possui vaga na carona.");
+//			
+//		}else{
+//			throw new Exception("Opção inválida.");
+//		}
+//	}
+//	
 	public static void main(String[] args) throws Exception {
 
 		List<String> files = new ArrayList<String>();
 		// Put the us1.txt file into the "test scripts" list
+//		files.add("scripts/US01.txt");
+//		files.add("scripts/US02.txt");
+//		files.add("scripts/US03.txt");
+//		files.add("scripts/US04.txt");
+//		files.add("scripts/US05.txt");
+//		files.add("scripts/US06.txt");
+//		files.add("scripts/US07.txt");
 		files.add("scripts/US08.txt");
 		// Instantiate the Monopoly Game façade
 		SistemaFacade monopolyGameFacade = getInstance();

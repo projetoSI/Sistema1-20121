@@ -80,7 +80,7 @@ public class IdentificadorCarona {
 	 */
 	@Override
 	public String toString() {
-		return getLoginMotorista() + "|" + getDataCarona();
+		return getLoginMotorista() + "|" + getDataCarona() + "|" + getHoraCarona();
 	}
 
 }

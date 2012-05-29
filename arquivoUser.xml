@@ -9,6 +9,7 @@
     <caronasSeguras>0</caronasSeguras>
     <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
     <faltas>0</faltas>
+    <presenca>0</presenca>
     <listaDeAmigos class="linked-list"/>
     <caronasOferecidas class="linked-list"/>
     <solicitacoes class="linked-list"/>
@@ -27,7 +28,8 @@
     <senha>bilz@o</senha>
     <caronasSeguras>0</caronasSeguras>
     <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
-    <faltas>0</faltas>
+    <faltas>1</faltas>
+    <presenca>1</presenca>
     <listaDeAmigos class="linked-list"/>
     <caronasOferecidas class="linked-list"/>
     <solicitacoes class="linked-list"/>
@@ -47,6 +49,7 @@
     <caronasSeguras>0</caronasSeguras>
     <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
     <faltas>0</faltas>
+    <presenca>0</presenca>
     <listaDeAmigos class="linked-list"/>
     <caronasOferecidas class="linked-list"/>
     <solicitacoes class="linked-list"/>

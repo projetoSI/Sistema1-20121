@@ -20,7 +20,7 @@ public class User {
 	private String senha;
 	private int caronasSeguras;
 	private int caronasNaoFuncionaram;
-	private int faltas;
+	private int faltas, presenca;
 	private List<User> listaDeAmigos = new LinkedList<User>();
 	private List<Carona> caronasOferecidas = new LinkedList<Carona>();
 	private List<Solicitacao> solicitacoes;
@@ -275,6 +275,22 @@ public class User {
 	}
 
 	/**
+	 * Qtde de presencas em caronas
+	 * 
+	 * @return quantidade de presencas
+	 */
+	public int getPresencas() {
+		return presenca;
+	}
+
+	/**
+	 * Conta uma presença na carona
+	 */
+	public void addPresenca() {
+		presenca++;
+	}
+
+	/**
 	 * Quantidade de caronas não efetivadas
 	 * 
 	 * @return valor inteiro da quantidade
@@ -290,6 +306,13 @@ public class User {
 	 */
 	public int exibeFaltas() {
 		return faltas;
+	}
+
+	/**
+	 * Conta uma falta
+	 */
+	public void addFalta() {
+		faltas++;
 	}
 
 	/**

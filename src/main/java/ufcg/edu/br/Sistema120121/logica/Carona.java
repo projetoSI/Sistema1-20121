@@ -22,7 +22,7 @@ public class Carona {
 	private PontoDeEncontro pontoDeEncontro;
 
 	public enum Situacao {
-		FALTOU, NAO_FALTOU
+		FALTOU, NAO_FALTOU, AGUARDANDO
 	};
 
 	/**
@@ -243,7 +243,7 @@ public class Carona {
 			throw new CaronaException("Numero de vagas esgotado");
 		} else {
 			qntVagas = (qntVagas - 1);
-			caroneiros.put(user, Situacao.NAO_FALTOU);
+			caroneiros.put(user, Situacao.AGUARDANDO);
 
 		}
 	}
@@ -268,7 +268,7 @@ public class Carona {
 	public String getCaroneiros() {
 		String CaroneirosAprovados = "";
 		Iterator<User> it = caroneiros.keySet().iterator();
-		if (it.hasNext()) {
+		while (it.hasNext()) {
 			CaroneirosAprovados += it.next().getNome() + ", ";
 		}
 		return CaroneirosAprovados;
@@ -327,7 +327,19 @@ public class Carona {
 	 *            O caroneiro que tera a situacao alterada.
 	 */
 	public void setSituacao(Situacao situacao, User caroneiro) {
-		caroneiros.put(caroneiro, situacao);
+		if (caroneiros.containsKey(caroneiro))
+			caroneiros.remove(caroneiro);
+		
+		if (situacao.equals(Situacao.FALTOU)){
+			caroneiro.addFalta();
+			caroneiros.put(caroneiro, situacao);
+		} else if (situacao.equals(Situacao.NAO_FALTOU)){
+			caroneiro.addPresenca();
+			caroneiros.put(caroneiro, situacao);
+		} else{
+			caroneiros.put(caroneiro, situacao);
+		}
+			
 	}
 
 }
