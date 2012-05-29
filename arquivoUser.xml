@@ -6,8 +6,8 @@
     <telefone>112121212</telefone>
     <nome>Mark Zuckerberg</nome>
     <senha>m@rk</senha>
-    <caronasSeguras>0</caronasSeguras>
-    <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
+    <caronasSeguras>1</caronasSeguras>
+    <caronasNaoFuncionaram>1</caronasNaoFuncionaram>
     <faltas>0</faltas>
     <presenca>0</presenca>
     <listaDeAmigos class="linked-list"/>
@@ -28,8 +28,8 @@
     <senha>bilz@o</senha>
     <caronasSeguras>0</caronasSeguras>
     <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
-    <faltas>1</faltas>
-    <presenca>1</presenca>
+    <faltas>0</faltas>
+    <presenca>0</presenca>
     <listaDeAmigos class="linked-list"/>
     <caronasOferecidas class="linked-list"/>
     <solicitacoes class="linked-list"/>

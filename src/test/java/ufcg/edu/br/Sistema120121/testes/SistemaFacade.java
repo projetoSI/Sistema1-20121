@@ -13,7 +13,7 @@ import ufcg.edu.br.Sistema120121.sistema.*;
 
 public class SistemaFacade {
 
-	private User user;
+	private static User user;
 	private Carona carona;
 	private static Sistema sistema = Sistema.getInstance();
 	private static SistemaFacade facade = new SistemaFacade();
@@ -353,9 +353,9 @@ public class SistemaFacade {
 			}
 			result += "]";
 		}else if (atributo.equals("caronas seguras e tranquilas"))
-			result = "" + perfilUsuario.exibeCaronasSeguras();
+			result = "" + perfilUsuario.getCaronasSeguras();
 		else if (atributo.equals("caronas que não funcionaram"))
-			result = "" + perfilUsuario.exibeCaronasNaoFuncionaram();
+			result = "" + perfilUsuario.getCaronasNaoFuncionaram();
 		else if (atributo.equals("faltas em vagas de caronas"))
 			result = "" + perfilUsuario.exibeFaltas();
 		else if (atributo.equals("presenças em vagas de caronas"))
@@ -367,8 +367,7 @@ public class SistemaFacade {
 
 	}
 
-	public User visualizarPerfil(String idSessao, String login)
-			throws Exception {
+	public User visualizarPerfil(String idSessao, String login)	throws Exception {
 		if (sistema.getUser(login) == null)
 			throw new Exception("Login inválido");
 		User perfilUsuario = sistema.getUser(login);
@@ -448,7 +447,7 @@ public class SistemaFacade {
 		return getPontosSugeridos(idSessao, idCarona);
 	}
 
-	public void reviewVagaEmCarona(String idSessao,String idCarona,String login,String review) throws Exception{
+	public void reviewVagaEmCarona(String idSessao, String idCarona, String login, String review) throws Exception{
 		
 		if (review.equals("faltou")) {
 			if (sistema.getCaronaID(idCarona).verificaCaroneiro(sistema.getUser(login))){
@@ -459,30 +458,34 @@ public class SistemaFacade {
 				sistema.getCaronaID(idCarona).setSituacao(Situacao.NAO_FALTOU, sistema.getUser(login));
 			}
 		}else if(review.equals("não funcionou")){
-			throw new Exception("Usuário não possui vaga na carona.");
-			
+			if (!sistema.getCaronaID(idCarona).verificaCaroneiro(sistema.getUser(login))) {
+				throw new Exception("Usuário não possui vaga na carona.");
+			} else{
+				sistema.getUser(login).addCaronasNaoFuncionaram();
+			}
 		}else{
 			throw new Exception("Opção inválida.");
 		}
 	
 	}
 	
-//	public void reviewCarona(String idSessao,String idCarona,String review){
-//		
-//		if (review.equals("segura e tranquila")) {
-//			sistema.;
-//			
-//		}else if(review.equals("não faltou")){
-//			sistema.getUser(login).addPresença();
-//		
-//		}else if(review.equals("não funcionou")){
-//			throw new Exception("Usuário não possui vaga na carona.");
-//			
-//		}else{
-//			throw new Exception("Opção inválida.");
-//		}
-//	}
-//	
+	public void reviewCarona(String idSessao, String idCarona, String review) throws Exception{
+		mudaUserAtual(idSessao);
+
+		if (review.equals("segura e tranquila")) {
+			if (user.getID().sessaoAtiva())
+			sistema.getCaronaID(idCarona).getMotorista().addCaronasSeguras();
+		}else if(review.equals("não funcionou")){
+			if (!sistema.getCaronaID(idCarona).verificaCaroneiro(sistema.getUser(user.getLogin()))) {
+				throw new Exception("Usuário não possui vaga na carona.");
+			} else{
+				sistema.getCaronaID(idCarona).getMotorista().addCaronasNaoFuncionaram();
+			}			
+		}else{
+			throw new Exception("Opção inválida.");
+		}
+	}
+	
 	public static void main(String[] args) throws Exception {
 
 		List<String> files = new ArrayList<String>();
@@ -494,7 +497,8 @@ public class SistemaFacade {
 //		files.add("scripts/US05.txt");
 //		files.add("scripts/US06.txt");
 //		files.add("scripts/US07.txt");
-		files.add("scripts/US08.txt");
+//		files.add("scripts/US08.txt");
+		files.add("scripts/US09.txt");
 		// Instantiate the Monopoly Game façade
 		SistemaFacade monopolyGameFacade = getInstance();
 		// Instantiate EasyAccept façade

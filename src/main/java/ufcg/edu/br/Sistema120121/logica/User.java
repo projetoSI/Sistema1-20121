@@ -270,10 +270,17 @@ public class User {
 	 * 
 	 * @return valor inteiro da quantidade
 	 */
-	public int exibeCaronasSeguras() {
+	public int getCaronasSeguras() {
 		return caronasSeguras;
 	}
 
+	/**
+	 * Incrementa a quantidade de caronas seguras
+	 */
+	public void addCaronasSeguras(){
+		caronasSeguras++;
+	}
+	
 	/**
 	 * Qtde de presencas em caronas
 	 * 
@@ -295,10 +302,17 @@ public class User {
 	 * 
 	 * @return valor inteiro da quantidade
 	 */
-	public int exibeCaronasNaoFuncionaram() {
+	public int getCaronasNaoFuncionaram() {
 		return caronasNaoFuncionaram;
 	}
 
+	/**
+	 * Incrementa contador de caronas que não funcionaram
+	 */
+	public void addCaronasNaoFuncionaram(){
+		caronasNaoFuncionaram++;
+	}
+	
 	/**
 	 * Caronas não comparecidas
 	 * 
