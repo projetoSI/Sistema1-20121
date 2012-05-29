@@ -45,8 +45,8 @@ public class TestaClasseIdentificadorCarona {
 	
 	@Test
 	public void testaToString(){
-		assertEquals("pherivelton|14/08/2012", id.toString());
-		assertEquals("pherivelton|14/08/2012", id2.toString());
-		assertEquals("jonhnanthan|29/09/2012", id3.toString());
+		assertEquals("pherivelton|14/08/2012|23:00", id.toString());
+		assertEquals("pherivelton|14/08/2012|23:00", id2.toString());
+		assertEquals("jonhnanthan|29/09/2012|14:00", id3.toString());
 	}
 }
