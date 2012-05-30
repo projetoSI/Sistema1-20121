@@ -94,6 +94,7 @@ public class Data {
 			Date dataAtualFormatada = format.parse(dataAtual);
 			
 			//String resultado = format.format(dataEntradaFormatada);
+			// DICA DE NAZARENO... VERIFICAR DEPOIS...
 			
 			if (dataEntradaFormatada.before(dataAtualFormatada))
 				return false;
