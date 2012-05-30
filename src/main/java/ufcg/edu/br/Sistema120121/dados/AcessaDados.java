@@ -12,6 +12,7 @@ public class AcessaDados {
 	private RepositorioUsuario dadosUser = new RepositorioUsuario();
 	private RepositorioSolicitacoes  dadosSolicitacao = new RepositorioSolicitacoes();
 	private Arquivo arquivo = Arquivo.getInstance();
+	private final String arquivoUser = "arquivoUser.xml", arquivoCarona = "arquivoCarona.xml"; 
 
 	
 	private AcessaDados() {
@@ -71,8 +72,8 @@ public class AcessaDados {
 	}
 	
 	public void escreverArquivo() throws IOException {
-		arquivo.geraArquivo("arquivoUser.xml",getUsuariosCadastrados());
-		arquivo.geraArquivo("arquivoCarona.xml",caronasCadastradas());
+		arquivo.geraArquivo(arquivoUser,getUsuariosCadastrados());
+		arquivo.geraArquivo(arquivoCarona,caronasCadastradas());
 	}
 	public void limparArquivo() throws IOException{
 		arquivo.zeraArquivos();
@@ -148,8 +149,8 @@ public class AcessaDados {
 	}
 
 	public void atualizaDados() throws IOException {
-		dadosCaronas.atualizaRepositorio((LinkedList<Carona>) arquivo.<Carona>lerArquivo("arquivoCarona.xml"));
-		dadosUser.atualizaRepositorio((LinkedList<User>) arquivo.<User>lerArquivo("arquivoUser.xml"));
+		dadosCaronas.atualizaRepositorio((LinkedList<Carona>) arquivo.<Carona>lerArquivo(arquivoCarona));
+		dadosUser.atualizaRepositorio((LinkedList<User>) arquivo.<User>lerArquivo(arquivoUser));
 	}
 
 	public Solicitacao getSolicitacao(String idSolicitacao) throws SolicitacaoException {

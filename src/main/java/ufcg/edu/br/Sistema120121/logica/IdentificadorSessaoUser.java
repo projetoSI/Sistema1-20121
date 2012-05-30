@@ -62,9 +62,8 @@ public class IdentificadorSessaoUser {
 	public boolean sessaoAtiva() {
 		boolean result = false;
 
-		if (sessao) {
+		if (sessao)
 			result = true;
-		}
 
 		return result;
 	}
@@ -80,9 +79,8 @@ public class IdentificadorSessaoUser {
 	public boolean verificaLoginID(String s) {
 		boolean result = false;
 
-		if (s.equals(getLogin())) {
+		if (s.equals(getLogin()))
 			result = true;
-		}
 
 		return result;
 	}

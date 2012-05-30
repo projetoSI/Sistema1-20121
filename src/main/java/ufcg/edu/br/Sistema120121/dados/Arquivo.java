@@ -14,7 +14,8 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 public class Arquivo {
 
 	private static Arquivo instance = new Arquivo();
-	
+	private final String arquivoUser = "arquivoUser.xml", arquivoCarona = "arquivoCarona.xml"; 
+
 	private Arquivo(){
 		
 	}
@@ -72,8 +73,8 @@ public class Arquivo {
 	 * @throws IOException
 	 */
 	public void zeraArquivos() throws IOException {
-		this.geraArquivo("arquivoUser.xml",new LinkedList<User>());
-		this.geraArquivo("arquivoCarona.xml",new LinkedList<Carona>());
+		this.geraArquivo(arquivoUser, new LinkedList<User>());
+		this.geraArquivo(arquivoCarona, new LinkedList<Carona>());
 	}
 	
 }

@@ -18,8 +18,7 @@ public class RepositorioCaronas {
 	 * @throws IOException
 	 *             Caso não consiga ler o arquivo.
 	 */
-	public void atualizaRepositorio(LinkedList<Carona> novosDados)
-			throws IOException {
+	public void atualizaRepositorio(LinkedList<Carona> novosDados) throws IOException {
 		caronasCadastradas = novosDados;
 	}
 
@@ -40,14 +39,10 @@ public class RepositorioCaronas {
 	 *            O motorista da carona.
 	 * @throws Exception
 	 */
-	public void addCarona(String origem, String destino, Hora hora, Data data,
-			int qntVagas, User motorista) throws CaronaException {
-		novaCarona = new Carona(origem, destino, hora, data, qntVagas,
-				motorista);
-		if (recuperaCaronaUser(motorista).contains(novaCarona)) {
-			throw new CaronaException(
-					"Uma carona já foi cadastrada com essas informações");
-		}
+	public void addCarona(String origem, String destino, Hora hora, Data data, int qntVagas, User motorista) throws CaronaException {
+		novaCarona = new Carona(origem, destino, hora, data, qntVagas, motorista);
+		if (recuperaCaronaUser(motorista).contains(novaCarona))
+			throw new CaronaException("Uma carona já foi cadastrada com essas informações");
 		caronasCadastradas.add(novaCarona);
 	}
 
@@ -56,8 +51,7 @@ public class RepositorioCaronas {
 	 * 
 	 * @return A lista de caronas cadastradas.
 	 */
-	public List<Carona> getCaronasCadastradas() {// CASO1: TODAS AS CARONAS
-													// CADASTRADAS
+	public List<Carona> getCaronasCadastradas() {// CASO1: TODAS AS CARONAS CADASTRADAS
 		return caronasCadastradas;
 	}
 
@@ -68,14 +62,12 @@ public class RepositorioCaronas {
 	 *            O usuario a ter suas caronas retornada.
 	 * @return A lista de caronas de um determinado usuario.
 	 */
-	public List<Carona> recuperaCaronaUser(User usuario) {// CASO2 : AS CARONAS
-															// DO USER
+	public List<Carona> recuperaCaronaUser(User usuario) {// CASO2 : AS CARONAS DO USER
 		List<Carona> caronasUser = new LinkedList<Carona>();
 
 		for (Carona carona : caronasCadastradas) {
-			if (carona.getMotorista().getLogin().equals(usuario.getLogin())) {
+			if (carona.getMotorista().getLogin().equals(usuario.getLogin()))
 				caronasUser.add(carona);
-			}
 		}
 
 		return caronasUser;
@@ -92,9 +84,8 @@ public class RepositorioCaronas {
 		List<Carona> vagaCaronaUser = new LinkedList<Carona>();
 
 		for (Carona carona : caronasCadastradas) {
-			if (carona.verificaCaroneiro(usuario)) {
+			if (carona.verificaCaroneiro(usuario))
 				vagaCaronaUser.add(carona);
-			}
 		}
 
 		return vagaCaronaUser;
@@ -111,61 +102,44 @@ public class RepositorioCaronas {
 	 * @throws Exception
 	 * 
 	 */
-	public List<Carona> getCaronas(String origem, String destino)
-			throws CaronaException {// CASO 3: BUSCAR CARONAS POR ORIGEM E
-									// DESTINO,
-									// E RETORNAR APENAS AS QUE IRÃO OCORRER
+	public List<Carona> getCaronas(String origem, String destino) throws CaronaException {// CASO 3: BUSCAR CARONAS POR ORIGEM E DESTINO, E RETORNAR APENAS AS QUE IRÃO OCORRER
 		List<Carona> auxCaronas = new LinkedList<Carona>();
 
-		if (origem == null || !origem.matches("[A-Za-zÇ-ú\\s]*+")) {
+		if (origem == null || !origem.matches("[A-Za-zÇ-ú\\s]*+"))
 			throw new CaronaException("Origem inválida");
-		}
-		if (destino == null || !destino.matches("[A-Za-zÇ-ú\\s]*+")) {
+
+		if (destino == null || !destino.matches("[A-Za-zÇ-ú\\s]*+"))
 			throw new CaronaException("Destino inválido");
-		}
 
-		if (destino.isEmpty() && origem.isEmpty()) {
+		if (destino.isEmpty() && origem.isEmpty())
 			return getCaronasCadastradas();
-
-		} else {
+		else {
 			for (Carona carona : caronasCadastradas) {
-				if (destino.isEmpty() && origem.equals(carona.getOrigem())) // todas
-																			// as
-																			// caronas
-																			// com
-																			// origem
-																			// igual
-																			// e
-																			// destino
-																			// vazio
+				if (destino.isEmpty() && origem.equals(carona.getOrigem())) // todas as caronas com origem igual e destino vazio
 					auxCaronas.add(carona);
-				if (origem.isEmpty() && destino.equals(carona.getDestino())) // todas
-																				// as
-																				// caronas
-																				// com
-																				// destino
-																				// igual
-																				// e
-																				// origem
-																				// vazia
+				if (origem.isEmpty() && destino.equals(carona.getDestino())) // todas as caronas com destino igual e origem vazia
 					auxCaronas.add(carona);
-				if (origem.equals(carona.getOrigem())
-						&& destino.equals(carona.getDestino())) // todas as
-																// caronas com
-																// destino e
-																// origem igual
+				if (origem.equals(carona.getOrigem()) && destino.equals(carona.getDestino())) // todas as caronas com destino e origem igual
 					auxCaronas.add(carona);
 			}
 		}
 
 		return auxCaronas;
-
 	}
 
+	/**
+	 * Recupera uma carona pelo seu identificador
+	 * 
+	 * @param id
+	 *            identificador da carona
+	 * @return a carona procurada
+	 * @throws CaronaException
+	 *             caso o identificador seja vazio ou caso a carona não exista
+	 */
 	public Carona getCarona(String id) throws CaronaException {
-		if (id == null | id.equals("")) {
+		if (id == null | id.equals(""))
 			throw new CaronaException("Identificador do carona é inválido");
-		}
+
 		Carona carona = null;
 		for (Carona c : caronasCadastradas) {
 			if (c.getID().toString().equals(id)) {
@@ -174,30 +148,43 @@ public class RepositorioCaronas {
 			}
 		}
 
-		if (carona == null) {
+		if (carona == null)
 			throw new CaronaException("Item inexistente");
-		}
+
 		return carona;
 	}
 
+	/**
+	 * Recupera todas as caronas de um usuário
+	 * 
+	 * @param usuario
+	 *            o usuário que se deseja as caronas
+	 * @return todas as caronas
+	 */
 	public List<Carona> getTodasCaronas(User usuario) {
 		List<Carona> historico = new LinkedList<Carona>();
 
 		for (Carona carona : recuperaCaronaUser(usuario)) {
-			if (carona.getCaroneiros().contains((CharSequence) usuario)
-					&& carona.getSituacaoCaroneiro(usuario).equals(
-							Situacao.NAO_FALTOU)
-					|| carona.getMotorista().equals(usuario)) {
+			if (carona.getCaroneiros().contains((CharSequence) usuario)	&& carona.getSituacaoCaroneiro(usuario).equals(Situacao.NAO_FALTOU)	|| carona.getMotorista().equals(usuario)) {
 				historico.add(carona);
 			}
 		}
 		return historico;
 	}
 
+	/**
+	 * Apaga do repositório a carona passada
+	 * 
+	 * @param carona
+	 *            a carona a ser removida
+	 */
 	public void apagaCarona(Carona carona) {
 		caronasCadastradas.remove(carona);
 	}
 
+	/**
+	 * Zera o repositório
+	 */
 	public void zeraRepositorioCaronas(){
 		caronasCadastradas = new LinkedList<Carona>();
 	}

@@ -44,12 +44,12 @@ public class TestaClasseUser {
 		assertEquals("Galo da Borborema", user1.getEndereco());
 		try{
 			user1.setEndereco("");
-			fail("Endereï¿½o Invalido");
+			fail("Endereço Invalido");
 		}catch (UserException e){}
 		
 		try{
 			user1.setEndereco("12345");
-			fail("Endereï¿½o Invalido");
+			fail("Endereço Invalido");
 		}catch (UserException e){}
 
 	}
@@ -228,13 +228,13 @@ public class TestaClasseUser {
 		
 		try {
 			user1.sugerirPontoDeEncontro(carona2, null);
-			fail("Ponto de Encontro Inválido");;
+			fail("Ponto de Encontro Inválido");
 		} catch (PontoDeEncontroException e) {
 		}
 		
 		try {
 			user1.sugerirPontoDeEncontro(carona2, "");
-			fail("Ponto de Encontro Inválido");;
+			fail("Ponto de Encontro Inválido");
 		} catch (PontoDeEncontroException e) {
 		}
 	}

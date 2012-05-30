@@ -1,9 +1,31 @@
-#Wed May 30 12:08:21 BRT 2012
+#Wed May 30 17:32:59 BRT 2012
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/Carona.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/CaronaException.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/Data.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/DateErrorException.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/Hora.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/HourErrorException.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/IdentificadorCarona.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/IdentificadorSessaoUser.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/PontoDeEncontro.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/PontoDeEncontroException.java=UTF-8
 encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/Sistema.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/Solicitacao.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/SolicitacaoException.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/User.java=UTF-8
+encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/UserException.java=UTF-8
 encoding//src/test/java/ufcg/edu/br/Sistema120121/testes=UTF-8
 encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/SistemaFacade.java=UTF-8
+encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TestaClasseCarona.java=UTF-8
+encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TestaClasseData.java=UTF-8
+encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TestaClasseHora.java=UTF-8
+encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TestaClasseIdentificadorCarona.java=UTF-8
+encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TestaClasseIdentificadorSessaoUser.java=UTF-8
+encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TestaClasseSolicitacao.java=UTF-8
+encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TestaClasseUser.java=UTF-8
+encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TestaPontoDeEncontro.java=UTF-8
 encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TesteEasy.java=UTF-8
 encoding/<project>=UTF-8
 encoding/pom.xml=UTF-8
