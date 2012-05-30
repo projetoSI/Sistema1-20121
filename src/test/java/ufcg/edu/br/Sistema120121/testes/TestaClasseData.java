@@ -14,7 +14,7 @@ public class TestaClasseData {
 	
 	@Before
 	public void setup() throws DateErrorException{
-		data = new Data("23/05/2012");
+		data = new Data("23/05/2013");
 	}
 	
 	@Test
@@ -31,13 +31,13 @@ public class TestaClasseData {
 	
 	@Test
 	public void testaGetAno(){
-		assertEquals("2012", data.getAno());
-		assertFalse("eh pra dar erro", data.getAno().equals("2013"));
+		assertEquals("2013", data.getAno());
+		assertFalse("eh pra dar erro", data.getAno().equals("2014"));
 	}
 	
 	@Test
 	public void testaGetData(){
-		assertEquals("23/05/2012", data.getData());
+		assertEquals("23/05/2013", data.getData());
 	}
 	
 	//LEMBRAR DE MUDAR A DATA NA HORA DE TESTAR.
@@ -125,8 +125,8 @@ public class TestaClasseData {
 		assertTrue(data.dataValida("29/11/2013"));
 		assertTrue(data.dataValida("01/12/2013"));
 		assertTrue(data.dataValida("30/12/2013"));
-		assertTrue(data.dataValida("10/05/2012"));
-		assertTrue(data.dataValida("03/05/2012"));
+		assertFalse(data.dataValida("10/05/2012"));
+		assertFalse(data.dataValida("03/05/2012"));
 		
 	}
 	

@@ -1,8 +1,7 @@
-package ufcg.edu.br.Sistema120121.sistema;
+package ufcg.edu.br.Sistema120121.logica;
 
 import java.io.IOException;
 import java.util.List;
-import ufcg.edu.br.Sistema120121.logica.*;
 import ufcg.edu.br.Sistema120121.dados.*;
 
 
@@ -43,6 +42,7 @@ public class Sistema {
 	
 	
 	public void zerarDados() throws IOException{
+		controlaDados.zeraRepositorios();
 		controlaDados.limparArquivo();
 	}
 	

@@ -76,4 +76,9 @@ public class RepositorioSolicitacoes {
 	public  List<Solicitacao> getSolicitacoesAceitas(){
 		return solicitacoesAceitas;
 	}
+	
+	public void zeraRepositorioSolicitacoes(){
+		solicitacoes = new LinkedList<Solicitacao>();
+		solicitacoesAceitas = new LinkedList<Solicitacao>();
+	}
 }

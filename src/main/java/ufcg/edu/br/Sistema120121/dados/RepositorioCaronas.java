@@ -198,4 +198,7 @@ public class RepositorioCaronas {
 		caronasCadastradas.remove(carona);
 	}
 
+	public void zeraRepositorioCaronas(){
+		caronasCadastradas = new LinkedList<Carona>();
+	}
 }

@@ -92,6 +92,9 @@ public class Data {
 			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 			Date dataEntradaFormatada = format.parse(dataEntrada);
 			Date dataAtualFormatada = format.parse(dataAtual);
+			
+			//String resultado = format.format(dataEntradaFormatada);
+			
 			if (dataEntradaFormatada.before(dataAtualFormatada))
 				return false;
 		} catch (ParseException e) {

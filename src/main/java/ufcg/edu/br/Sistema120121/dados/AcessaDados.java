@@ -179,4 +179,9 @@ public class AcessaDados {
 		return dadosSolicitacao.getSolicitacoesAceitas();
 	}
 	
+	public void zeraRepositorios(){
+		dadosCaronas.zeraRepositorioCaronas();
+		dadosUser.zeraRepositorioUsuarios();
+		dadosSolicitacao.zeraRepositorioSolicitacoes();
+	}
 }

@@ -9,15 +9,14 @@ import java.util.TreeMap;
 import easyaccept.EasyAcceptFacade;
 import ufcg.edu.br.Sistema120121.logica.*;
 import ufcg.edu.br.Sistema120121.logica.Carona.Situacao;
-import ufcg.edu.br.Sistema120121.sistema.*;
 
 public class SistemaFacade {
 
-	private static User user;
+	private User user;
 	private Carona carona;
 	private static Sistema sistema = Sistema.getInstance();
 	private static SistemaFacade facade = new SistemaFacade();
-	private Map<String, List<String>> refCaronasUsers = new TreeMap<String, List<String>>();
+	private static Map<String, List<String>> refCaronasUsers = new TreeMap<String, List<String>>();
 
 	public static SistemaFacade getInstance() {
 		return facade;
@@ -26,19 +25,17 @@ public class SistemaFacade {
 	private SistemaFacade() {
 	}
 
-	public void criarUsuario(String login, String senha, String nome,
-			String endereco, String email) throws Exception {
+	public void criarUsuario(String login, String senha, String nome, String endereco, String email) throws Exception {
 		sistema.addUsuario(login, senha, nome, endereco, email, "112121212");
 	}
 
 	public void zerarSistema() throws IOException {
 		user = null;
 		sistema.zerarDados();
-		sistema.reiniciar();
+		refCaronasUsers = new TreeMap<String, List<String>>();
 	}
 
-	public String getAtributoUsuario(String login, String atributo)
-			throws Exception {
+	public String getAtributoUsuario(String login, String atributo)	throws Exception {
 		String result = "";
 
 		user = sistema.getUser(login);
@@ -77,12 +74,10 @@ public class SistemaFacade {
 		sistema.guardarDados();
 	}
 
-	public String localizarCarona(String sessao, String origem, String destino)
-			throws Exception {
+	public String localizarCarona(String sessao, String origem, String destino)	throws Exception {
 		String result = "";
 
-		if (origem.matches("[A-Za-zÇ-ú\\s]*+")
-				&& destino.matches("[A-Za-zÇ-ú\\s]*+")) {
+		if (origem.matches("[A-Za-zÇ-ú\\s]*+") && destino.matches("[A-Za-zÇ-ú\\s]*+")) {
 			if (sistema.getCaronas(origem, destino).size() == 0) {
 				result = "{}";
 			} else {
@@ -107,9 +102,7 @@ public class SistemaFacade {
 		return result;
 	}
 
-	public IdentificadorCarona cadastrarCarona(String sessao, String origem,
-			String destino, String data, String hora, String vagas)
-			throws Exception {
+	public IdentificadorCarona cadastrarCarona(String sessao, String origem, String destino, String data, String hora, String vagas) throws Exception {
 
 		if (sessao == null || sessao.isEmpty())
 			throw new Exception("Sessão inválida");
@@ -121,6 +114,7 @@ public class SistemaFacade {
 				break;
 			}
 		}
+		
 		if (!temSessao)
 			throw new Exception("Sessão inexistente");
 
@@ -134,14 +128,11 @@ public class SistemaFacade {
 
 		Hora horaAux = new Hora(hora);
 		Data dataAux = new Data(data);
-		sistema.addCarona(origem, destino, horaAux, dataAux,
-				Integer.parseInt(vagas), user);
-		carona = new Carona(origem, destino, horaAux, dataAux,
-				Integer.parseInt(vagas), user);
+		sistema.addCarona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), user);
+		carona = new Carona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), user);
 
 		if (refCaronasUsers.containsKey(user.getID().toString())) {
-			refCaronasUsers.get(user.getID().toString()).add(
-					carona.getID().toString());
+			refCaronasUsers.get(user.getID().toString()).add(carona.getID().toString());
 		} else {
 			List<String> aux = new LinkedList<String>();
 			aux.add(carona.getID().toString());
@@ -160,8 +151,7 @@ public class SistemaFacade {
 		}
 	}
 
-	public String getAtributoCarona(String IDCarona, String atributo)
-			throws Exception {
+	public String getAtributoCarona(String IDCarona, String atributo) throws Exception {
 		String result = null;
 
 		if (IDCarona == null || IDCarona.equals("")) {
@@ -224,10 +214,7 @@ public class SistemaFacade {
 		return carona.toString();
 	}
 
-	// até aqui US03 + 02 + 01
-
-	public String sugerirPontoEncontro(String IDSessao, String IDCarona,
-			String pontos) throws Exception {
+	public String sugerirPontoEncontro(String IDSessao, String IDCarona, String pontos) throws Exception {
 		String result = "";
 
 		if (pontos == null || pontos.isEmpty())
@@ -239,8 +226,7 @@ public class SistemaFacade {
 		return result;
 	}
 
-	public void responderSugestaoPontoEncontro(String IDSessao,
-			String IdCarona, String IDSugestao, String pontos) throws Exception {
+	public void responderSugestaoPontoEncontro(String IDSessao, String IdCarona, String IDSugestao, String pontos) throws Exception {
 		if (pontos == null || pontos.isEmpty())
 			throw new Exception("Ponto Inválido");
 		if (!IDSugestao.equalsIgnoreCase(pontos)) {
@@ -248,25 +234,20 @@ public class SistemaFacade {
 		}
 	}
 
-	public String solicitarVagaPontoEncontro(String IDSessao, String IDCarona,
-			String ponto) throws Exception {
+	public String solicitarVagaPontoEncontro(String IDSessao, String IDCarona, String ponto) throws Exception {
 		if (ponto == null || ponto.isEmpty())
 			throw new Exception("Ponto Inválido");
 
-		Solicitacao s = new Solicitacao(sistema.getCaronaID(IDCarona), user,
-				ponto);
+		Solicitacao s = new Solicitacao(sistema.getCaronaID(IDCarona), user, ponto);
 		sistema.addSolicitacao(sistema.getCaronaID(IDCarona), user, ponto);
 		return s.getSolicitacaoID();
 	}
 
-	public void aceitarSolicitacaoPontoEncontro(String IDSessao,
-			String IDSolicitacao) throws Exception {
-		sistema.solicitacaoAceita(IDSolicitacao);
-		sistema.getSolicitacao(IDSolicitacao).confirmarSolicitacao();
+	public void aceitarSolicitacaoPontoEncontro(String IDSessao, String IDSolicitacao) throws SolicitacaoException, CaronaException {
+		aceitarSolicitacao(IDSessao, IDSolicitacao);
 	}
 
-	public void desistirRequisicao(String IDSessao, String IDCarona,
-			String IDSolicitacao) throws Exception {
+	public void desistirRequisicao(String IDSessao, String IDCarona, String IDSolicitacao) throws Exception {
 		Carona aux = sistema.getSolicitacao(IDSolicitacao).getCaronaDesejada();
 		if (sistema.getCaronaID(IDCarona).getID().equals(aux.getID())) {
 			sistema.apagaCarona(sistema.getCaronaID(IDCarona));
@@ -275,8 +256,7 @@ public class SistemaFacade {
 		}
 	}
 
-	public String getAtributoSolicitacao(String IDSolicitacao, String atributo)
-			throws SolicitacaoException {
+	public String getAtributoSolicitacao(String IDSolicitacao, String atributo)	throws SolicitacaoException {
 		String result = "";
 		Solicitacao solicitacao = sistema.getSolicitacao(IDSolicitacao);
 
@@ -296,31 +276,23 @@ public class SistemaFacade {
 		return result;
 	}
 
-	// US04
-
-	public String solicitarVaga(String idSessao, String idCarona)
-			throws Exception {
+	public String solicitarVaga(String idSessao, String idCarona) throws Exception {
 		mudaUserAtual(idSessao);
 
-		Solicitacao solicitacao = new Solicitacao(
-				sistema.getCaronaID(idCarona), user);
+		Solicitacao solicitacao = new Solicitacao(sistema.getCaronaID(idCarona), user);
 		sistema.addSolicitacao(sistema.getCaronaID(idCarona), user);
 
 		return solicitacao.getSolicitacaoID();
 	}
 
-	public void aceitarSolicitacao(String idSessao, String idSolicitacao)
-			throws Exception {
+	public void aceitarSolicitacao(String idSessao, String idSolicitacao) throws SolicitacaoException, CaronaException {
 		sistema.solicitacaoAceita(idSolicitacao);
 		sistema.getSolicitacao(idSolicitacao).confirmarSolicitacao();
 	}
 
-	public void rejeitarSolicitacao(String idSessao, String idSolicitacao)
-			throws SolicitacaoException {
+	public void rejeitarSolicitacao(String idSessao, String idSolicitacao) throws SolicitacaoException {
 		sistema.solicitacaoRecusada(idSolicitacao);
 	}
-
-	// US05
 
 	public String getAtributoPerfil(String login, String atributo) throws Exception {
 		User perfilUsuario = sistema.getUser(login);
@@ -375,19 +347,15 @@ public class SistemaFacade {
 
 	}
 
-	// US06
-
 	public void reiniciarSistema() throws IOException {
 		sistema.reiniciar();
 	}
 
-	public String getCaronaUsuario(String idSessao, String indexCarona)
-			throws Exception {
+	public String getCaronaUsuario(String idSessao, String indexCarona)	throws Exception {
 		String idCarona = "";
 
 		if (refCaronasUsers.containsKey(idSessao))
-			idCarona = refCaronasUsers.get(idSessao).get(
-					Integer.parseInt(indexCarona) - 1);
+			idCarona = refCaronasUsers.get(idSessao).get(Integer.parseInt(indexCarona) - 1);
 
 		return idCarona;
 	}
@@ -399,8 +367,7 @@ public class SistemaFacade {
 			if (result.equals("{")) {
 				result += sistema.getCaronaID(idCarona).getID().toString();
 			} else {
-				result += ","
-						+ sistema.getCaronaID(idCarona).getID().toString();
+				result += "," + sistema.getCaronaID(idCarona).getID().toString();
 			}
 		}
 		result += "}";
@@ -429,21 +396,18 @@ public class SistemaFacade {
 		return "";
 	}
 
-	public String getPontosSugeridos(String idSessao, String idCarona)
-			throws Exception {
+	public String getPontosSugeridos(String idSessao, String idCarona) throws Exception {
 		String result = "";
 
 		for (String idAux : refCaronasUsers.get(idSessao)) {
 			if (idAux.equals(idCarona))
-				result = sistema.getCaronaID(idAux).getPontoDeEncontro()
-						.getSugestaoAtual();
+				result = sistema.getCaronaID(idAux).getPontoDeEncontro().getSugestaoAtual();
 		}
 
 		return result;
 	}
 
-	public String getPontosEncontro(String idSessao, String idCarona)
-			throws Exception {
+	public String getPontosEncontro(String idSessao, String idCarona) throws Exception {
 		return getPontosSugeridos(idSessao, idCarona);
 	}
 
@@ -476,37 +440,37 @@ public class SistemaFacade {
 			if (user.getID().sessaoAtiva())
 			sistema.getCaronaID(idCarona).getMotorista().addCaronasSeguras();
 		}else if(review.equals("não funcionou")){
-			if (!sistema.getCaronaID(idCarona).verificaCaroneiro(sistema.getUser(user.getLogin()))) {
+			if (!sistema.getCaronaID(idCarona).verificaCaroneiro(sistema.getUser(user.getLogin())))
 				throw new Exception("Usuário não possui vaga na carona.");
-			} else{
-				sistema.getCaronaID(idCarona).getMotorista().addCaronasNaoFuncionaram();
-			}			
-		}else{
+			else
+				sistema.getCaronaID(idCarona).getMotorista().addCaronasNaoFuncionaram();		
+		}else
 			throw new Exception("Opção inválida.");
-		}
 	}
 	
 	public static void main(String[] args) throws Exception {
 
 		List<String> files = new ArrayList<String>();
-		// Put the us1.txt file into the "test scripts" list
-//		files.add("scripts/US01.txt");
-//		files.add("scripts/US02.txt");
-//		files.add("scripts/US03.txt");
-//		files.add("scripts/US04.txt");
-//		files.add("scripts/US05.txt");
-//		files.add("scripts/US06.txt");
-//		files.add("scripts/US07.txt");
-//		files.add("scripts/US08.txt");
+
+		files.add("scripts/US01.txt");
+		files.add("scripts/US02.txt");
+		files.add("scripts/US03.txt");
+		files.add("scripts/US04.txt");
+		files.add("scripts/US05.txt");
+		files.add("scripts/US06.txt");
+		files.add("scripts/US07.txt");
+		files.add("scripts/US08.txt");
 		files.add("scripts/US09.txt");
-		// Instantiate the Monopoly Game façade
+//		files.add("scripts/US10.txt");
+//		files.add("scripts/US11.txt");
+		files.add("scripts/US12.txt");
+
 		SistemaFacade monopolyGameFacade = getInstance();
-		// Instantiate EasyAccept façade
-		EasyAcceptFacade eaFacade = new EasyAcceptFacade(monopolyGameFacade,
-				files);
-		// Execute the tests
+
+		EasyAcceptFacade eaFacade = new EasyAcceptFacade(monopolyGameFacade, files);
+
 		eaFacade.executeTests();
-		// Print the tests execution results
+
 		System.out.println(eaFacade.getCompleteResults());
 	}
 

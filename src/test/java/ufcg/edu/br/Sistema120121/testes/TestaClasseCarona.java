@@ -12,16 +12,12 @@ import ufcg.edu.br.Sistema120121.logica.*;
 public class TestaClasseCarona {
 	
 	private Carona carona1;
-	private Carona carona2;
-	private Carona carona3;
 	private User motorista1;
-	private User motorista2;
 	
 	@Before
 	public void setup() throws Exception{
 		motorista1 = new User("pherivelton", "1234567", "Pablo", "Rua Lalaa", "lol@lol.com","88888888");
-		carona1 = new Carona("Joao Pessoa", "Campina Grande", new Hora("19:00"), new Data("01/05/2012"), 2, motorista1);
-		carona2 = new Carona("Joao Pessoa", "Campina Grande", new Hora("13:00"), new Data("02/05/2012"), 2, motorista1);
+		carona1 = new Carona("Joao Pessoa", "Campina Grande", new Hora("19:00"), new Data("01/05/2014"), 2, motorista1);
 	}
 	
 	@Test
@@ -37,23 +33,23 @@ public class TestaClasseCarona {
 		assertEquals("Campina Grande", carona1.getOrigem());
 		try{
 			carona1.setOrigem("");
-			fail("Origem Inv�lida");
+			fail("Origem Inválida");
 		}catch (CaronaException e){}
 		
 		try{
 			carona1.setOrigem("1234");
-			fail("Origem Inv�lida");
+			fail("Origem Inválida");
 		}catch (CaronaException e){}
 		
 		try{
-			carona1.setOrigem("Jo�o Pessoa123");
-			fail("Origem Inv�lida");
+			carona1.setOrigem("João Pessoa123");
+			fail("Origem Inválida");
 		}catch (CaronaException e){}
 	}
 	
 	@Test
 	public void testaGetDestino() throws CaronaException{
 		assertEquals("Campina Grande", carona1.getDestino());
-		assertFalse("eh pra dar erro", carona1.getOrigem().equals("Caj�"));
+		assertFalse("eh pra dar erro", carona1.getOrigem().equals("Cajá"));
 	}
 }

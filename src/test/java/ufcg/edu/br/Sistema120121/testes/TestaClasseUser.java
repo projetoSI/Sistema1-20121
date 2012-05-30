@@ -223,23 +223,19 @@ public class TestaClasseUser {
 		try {
 			assertEquals("Cajá",carona2.getPontoDeEncontro().getSugestaoAtual());
 			user1.sugerirPontoDeEncontro(carona2, "Cajá");
-//			fail("Ponto de Encontro Inválido");
 		} catch (PontoDeEncontroException e) {
-			e.printStackTrace();
 		}
 		
 		try {
 			user1.sugerirPontoDeEncontro(carona2, null);
 			fail("Ponto de Encontro Inválido");;
 		} catch (PontoDeEncontroException e) {
-			e.printStackTrace();
 		}
 		
 		try {
 			user1.sugerirPontoDeEncontro(carona2, "");
 			fail("Ponto de Encontro Inválido");;
 		} catch (PontoDeEncontroException e) {
-			e.printStackTrace();
 		}
 	}
 	

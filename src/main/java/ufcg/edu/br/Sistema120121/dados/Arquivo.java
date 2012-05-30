@@ -72,7 +72,7 @@ public class Arquivo {
 	 * @throws IOException
 	 */
 	public void zeraArquivos() throws IOException {
-		this.geraArquivo("arquivoUser.xml",new LinkedList<User>());
+		this.geraArquivo("dados/arquivoUser.xml",new LinkedList<User>());
 		this.geraArquivo("arquivoCarona.xml",new LinkedList<Carona>());
 	}
 	

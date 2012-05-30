@@ -8,7 +8,7 @@
     <hora>
       <Hora>12:00</Hora>
     </hora>
-    <qntVagas>2</qntVagas>
+    <qntVagas>0</qntVagas>
     <motorista>
       <login>mark</login>
       <endereco>Palo Alto, California</endereco>
@@ -16,8 +16,8 @@
       <telefone>112121212</telefone>
       <nome>Mark Zuckerberg</nome>
       <senha>m@rk</senha>
-      <caronasSeguras>1</caronasSeguras>
-      <caronasNaoFuncionaram>1</caronasNaoFuncionaram>
+      <caronasSeguras>0</caronasSeguras>
+      <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
       <faltas>0</faltas>
       <presenca>0</presenca>
       <listaDeAmigos class="linked-list"/>
@@ -38,10 +38,10 @@
       <entry>
         <ufcg.edu.br.Sistema120121.logica.User>
           <login>bill</login>
-          <endereco>Medina, Washington</endereco>
-          <email>billzin@gmail.com</email>
+          <endereco>Hollywood, California</endereco>
+          <email>bill@gmail.com</email>
           <telefone>112121212</telefone>
-          <nome>William Henry Gates III</nome>
+          <nome>Bill Clinton</nome>
           <senha>bilz@o</senha>
           <caronasSeguras>0</caronasSeguras>
           <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
@@ -52,7 +52,7 @@
           <solicitacoes class="linked-list"/>
           <ID>
             <login>bill</login>
-            <email>billzin@gmail.com</email>
+            <email>bill@gmail.com</email>
             <sessao>true</sessao>
           </ID>
         </ufcg.edu.br.Sistema120121.logica.User>
@@ -72,19 +72,14 @@
     <hora>
       <Hora>16:00</Hora>
     </hora>
-    <qntVagas>1</qntVagas>
+    <qntVagas>2</qntVagas>
     <motorista reference="../../ufcg.edu.br.Sistema120121.logica.Carona/motorista"/>
     <ID>
       <loginMotorista>mark</loginMotorista>
       <horaCarona reference="../../hora"/>
       <dataCarona reference="../../data"/>
     </ID>
-    <caroneiros>
-      <entry>
-        <ufcg.edu.br.Sistema120121.logica.User reference="../../../../ufcg.edu.br.Sistema120121.logica.Carona/caroneiros/entry/ufcg.edu.br.Sistema120121.logica.User"/>
-        <ufcg.edu.br.Sistema120121.logica.Carona_-Situacao>AGUARDANDO</ufcg.edu.br.Sistema120121.logica.Carona_-Situacao>
-      </entry>
-    </caroneiros>
+    <caroneiros/>
     <pontoDeEncontro>
       <blackList class="linked-list"/>
     </pontoDeEncontro>

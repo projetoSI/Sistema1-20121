@@ -6,8 +6,8 @@
     <telefone>112121212</telefone>
     <nome>Mark Zuckerberg</nome>
     <senha>m@rk</senha>
-    <caronasSeguras>1</caronasSeguras>
-    <caronasNaoFuncionaram>1</caronasNaoFuncionaram>
+    <caronasSeguras>0</caronasSeguras>
+    <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
     <faltas>0</faltas>
     <presenca>0</presenca>
     <listaDeAmigos class="linked-list"/>
@@ -21,10 +21,10 @@
   </ufcg.edu.br.Sistema120121.logica.User>
   <ufcg.edu.br.Sistema120121.logica.User>
     <login>bill</login>
-    <endereco>Medina, Washington</endereco>
-    <email>billzin@gmail.com</email>
+    <endereco>Hollywood, California</endereco>
+    <email>bill@gmail.com</email>
     <telefone>112121212</telefone>
-    <nome>William Henry Gates III</nome>
+    <nome>Bill Clinton</nome>
     <senha>bilz@o</senha>
     <caronasSeguras>0</caronasSeguras>
     <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
@@ -35,27 +35,7 @@
     <solicitacoes class="linked-list"/>
     <ID>
       <login>bill</login>
-      <email>billzin@gmail.com</email>
-      <sessao>true</sessao>
-    </ID>
-  </ufcg.edu.br.Sistema120121.logica.User>
-  <ufcg.edu.br.Sistema120121.logica.User>
-    <login>vader</login>
-    <endereco>Death Star I</endereco>
-    <email>darthvader@empire.com</email>
-    <telefone>112121212</telefone>
-    <nome>Anakin Skywalker</nome>
-    <senha>d4rth</senha>
-    <caronasSeguras>0</caronasSeguras>
-    <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
-    <faltas>0</faltas>
-    <presenca>0</presenca>
-    <listaDeAmigos class="linked-list"/>
-    <caronasOferecidas class="linked-list"/>
-    <solicitacoes class="linked-list"/>
-    <ID>
-      <login>vader</login>
-      <email>darthvader@empire.com</email>
+      <email>bill@gmail.com</email>
       <sessao>true</sessao>
     </ID>
   </ufcg.edu.br.Sistema120121.logica.User>

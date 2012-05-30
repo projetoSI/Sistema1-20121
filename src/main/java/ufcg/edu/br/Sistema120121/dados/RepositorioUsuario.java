@@ -124,4 +124,8 @@ public class RepositorioUsuario {
 	public  void fechaSessaoUser(String login) {
 		sessaoUserAux(login, false);
 	}
+	
+	public void zeraRepositorioUsuarios(){
+		usersCadastrados = new LinkedList<User>();
+	}
 }
