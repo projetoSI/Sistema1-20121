@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.016" errors="0" skipped="0" tests="5" name="ufcg.edu.br.Sistema120121.testes.TestaClasseIdentificadorCarona">
+<testsuite failures="0" time="0.017" errors="0" skipped="0" tests="5" name="ufcg.edu.br.Sistema120121.testes.TestaClasseIdentificadorCarona">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries"/>
@@ -22,7 +22,7 @@
     <property name="basedir" value="/Users/jonhnanthan/git/Sistema1-20121"/>
     <property name="java.endorsed.dirs" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/endorsed"/>
     <property name="os.arch" value="x86_64"/>
-    <property name="surefire.real.class.path" value="/Users/jonhnanthan/git/Sistema1-20121/target/surefire/surefirebooter2003721990877433537.jar"/>
+    <property name="surefire.real.class.path" value="/Users/jonhnanthan/git/Sistema1-20121/target/surefire/surefirebooter7268620189406047324.jar"/>
     <property name="java.io.tmpdir" value="/var/folders/k5/mbyzvtkn4237gwx5v_tdkljh0000gn/T/"/>
     <property name="line.separator" value="
 "/>
@@ -46,7 +46,7 @@
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"/>
-    <property name="sun.java.command" value="/Users/jonhnanthan/git/Sistema1-20121/target/surefire/surefirebooter2003721990877433537.jar /Users/jonhnanthan/git/Sistema1-20121/target/surefire/surefire7651005236814797116tmp /Users/jonhnanthan/git/Sistema1-20121/target/surefire/surefire6101170706396995320tmp"/>
+    <property name="sun.java.command" value="/Users/jonhnanthan/git/Sistema1-20121/target/surefire/surefirebooter7268620189406047324.jar /Users/jonhnanthan/git/Sistema1-20121/target/surefire/surefire3070423936352386030tmp /Users/jonhnanthan/git/Sistema1-20121/target/surefire/surefire2842097413719891178tmp"/>
     <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="pt"/>
     <property name="awt.toolkit" value="apple.awt.CToolkit"/>
@@ -65,7 +65,7 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.002" classname="ufcg.edu.br.Sistema120121.testes.TestaClasseIdentificadorCarona" name="testaGetLoginMotorista"/>
+  <testcase time="0.004" classname="ufcg.edu.br.Sistema120121.testes.TestaClasseIdentificadorCarona" name="testaGetLoginMotorista"/>
   <testcase time="0.002" classname="ufcg.edu.br.Sistema120121.testes.TestaClasseIdentificadorCarona" name="testaGetHoraCarona"/>
   <testcase time="0.002" classname="ufcg.edu.br.Sistema120121.testes.TestaClasseIdentificadorCarona" name="testaGetDataCarona"/>
   <testcase time="0.002" classname="ufcg.edu.br.Sistema120121.testes.TestaClasseIdentificadorCarona" name="testaEquals"/>
