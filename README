@@ -8,4 +8,4 @@ Grupo: Jonhnanthan Victor, Carlos Victor, Luís Henrique, Rafael Ribeiro e Pablo
 
 1) mvn install:install-file -Dfile=easyaccept.jar -DgroupId=ufcg.edu.br -DartifactId=easyaccept -Dversion=1.0.0 -Dpackaging=jar -DgeneratePom=true
 
-2) mvn install:install-file -Dfile=easyaccept.jar -DgroupId=ufcg.edu.br -DartifactId=mail -Dversion=1.4.5 -Dpackaging=jar -DgeneratePom=true
+2) mvn install:install-file -Dfile=mail.jar -DgroupId=ufcg.edu.br -DartifactId=mail -Dversion=1.4.5 -Dpackaging=jar -DgeneratePom=true
