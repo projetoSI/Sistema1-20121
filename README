@@ -2,8 +2,10 @@ Projeto final de Sistemas da Informação
 Universidade Federal de Campina Grande - 2012.1
 Grupo: Jonhnanthan Victor, Carlos Victor, Luís Henrique, Rafael Ribeiro e Pablo Herivelton
 
-Este projeto depende da ferramenta Maven(http://maven.apache.org/) e do EasyAccept(http://easyaccept.sourceforge.net/)
-Para adicionar as dependencias necessárias do maven basta abrir o terminal na pasta raiz do projeto e digitar esses dois comandos:
+- Este projeto depende da ferramenta Maven(http://maven.apache.org/) e do EasyAccept(http://easyaccept.sourceforge.net/)
 
-mvn install:install-file -Dfile=easyaccept.jar -DgroupId=ufcg.edu.br -DartifactId=easyaccept -Dversion=1.0.0 -Dpackaging=jar -DgeneratePom=true
-mvn install:install-file -Dfile=easyaccept.jar -DgroupId=ufcg.edu.br -DartifactId=mail -Dversion=1.4.5 -Dpackaging=jar -DgeneratePom=true
+- Para adicionar as dependencias necessárias do maven basta abrir o terminal na pasta raiz do projeto e digitar esses dois comandos:
+
+1) mvn install:install-file -Dfile=easyaccept.jar -DgroupId=ufcg.edu.br -DartifactId=easyaccept -Dversion=1.0.0 -Dpackaging=jar -DgeneratePom=true
+
+2) mvn install:install-file -Dfile=easyaccept.jar -DgroupId=ufcg.edu.br -DartifactId=mail -Dversion=1.4.5 -Dpackaging=jar -DgeneratePom=true
