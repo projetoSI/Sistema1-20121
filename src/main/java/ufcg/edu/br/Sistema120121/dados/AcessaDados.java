@@ -58,8 +58,8 @@ public class AcessaDados {
 	 * 		O motorista da carona.
 	 * @throws CaronaException 
 	 */
-	public void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws CaronaException{
-		dadosCaronas.addCarona(origem, destino, hora, data, qntVagas, motorista);
+	public void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista,boolean ehMunicipal) throws CaronaException{
+		dadosCaronas.addCarona(origem, destino, hora, data, qntVagas, motorista,ehMunicipal);
 	}
 	
 	/**
@@ -107,6 +107,9 @@ public class AcessaDados {
 
 	}
 	
+	public List<Carona> localizarCaronaMunicipal(String cidade, String origem, String destino) throws CaronaException{
+		return dadosCaronas.getCaronasMunicipais(cidade, origem, destino);
+	}
 	public List<Carona> getCaronasDoCaroneiro(User caroneiro){
 		return dadosCaronas.recuperaVagaCaronaUser(caroneiro);
 	}
@@ -184,5 +187,21 @@ public class AcessaDados {
 		dadosCaronas.zeraRepositorioCaronas();
 		dadosUser.zeraRepositorioUsuarios();
 		dadosSolicitacao.zeraRepositorioSolicitacoes();
+	}
+
+	public void addCarona(String origem, String destino, String cidade,
+			Hora hora, Data data, int qntVagas, User motorista,
+			boolean ehMunicipal) throws Exception {
+		dadosCaronas.addCarona(origem, destino,cidade, hora, data, qntVagas, motorista, ehMunicipal);
+		
+	}
+
+	public List<Carona> localizarCaronaMunicipal(String cidade) throws CaronaException {
+		return dadosCaronas.getCaronasMunicipais(cidade);
+	}
+
+	public void addInteresse() {
+		// TODO Auto-generated method stub
+		
 	}
 }

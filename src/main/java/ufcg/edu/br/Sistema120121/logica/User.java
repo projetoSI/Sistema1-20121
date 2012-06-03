@@ -23,6 +23,7 @@ public class User {
 	private int faltas, presenca;
 	private List<User> listaDeAmigos = new LinkedList<User>();
 	private List<Carona> caronasOferecidas = new LinkedList<Carona>();
+	private List<String> mensagensDePerfil = new LinkedList<String>();
 	private List<Solicitacao> solicitacoes;
 	private IdentificadorSessaoUser ID;
 
@@ -588,6 +589,14 @@ public class User {
 	 */
 	public List<Carona> exibeHistoricoDeVagas() {
 		return AcessaDados.getInstance().getCaronasDoCaroneiro(this);
+	}
+	
+	public void receberMensagem(String msg){
+		mensagensDePerfil.add(msg);
+	}
+	
+	public String visualizarMensagens(){
+		return mensagensDePerfil.toString();
 	}
 
 }

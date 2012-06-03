@@ -1,81 +1,37 @@
 <linked-list>
   <ufcg.edu.br.Sistema120121.logica.Carona>
-    <origem>Campina Grande</origem>
+    <cidade>Campina Grande</cidade>
     <destino>João Pessoa</destino>
     <data>
-      <data>02/06/2012</data>
+      <data>23/06/2012</data>
     </data>
     <hora>
-      <Hora>12:00</Hora>
+      <Hora>16:00</Hora>
     </hora>
-    <qntVagas>0</qntVagas>
+    <qntVagas>3</qntVagas>
     <motorista>
-      <login>mark</login>
-      <endereco>Palo Alto, California</endereco>
-      <email>mark@facebook.com</email>
+      <login>caba</login>
+      <endereco>Rua 21 de maio, Campina Grande</endereco>
+      <email>marcioSarvai@gmail.com</email>
       <telefone>112121212</telefone>
-      <nome>Mark Zuckerberg</nome>
-      <senha>m@rk</senha>
+      <nome>Marcio Sarvai</nome>
+      <senha>Marcin</senha>
       <caronasSeguras>0</caronasSeguras>
       <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
       <faltas>0</faltas>
       <presenca>0</presenca>
       <listaDeAmigos class="linked-list"/>
       <caronasOferecidas class="linked-list"/>
+      <mensagensDePerfil class="linked-list"/>
       <solicitacoes class="linked-list"/>
       <ID>
-        <login>mark</login>
-        <email>mark@facebook.com</email>
+        <login>caba</login>
+        <email>marcioSarvai@gmail.com</email>
         <sessao>true</sessao>
       </ID>
     </motorista>
     <ID>
-      <loginMotorista>mark</loginMotorista>
-      <horaCarona reference="../../hora"/>
-      <dataCarona reference="../../data"/>
-    </ID>
-    <caroneiros>
-      <entry>
-        <ufcg.edu.br.Sistema120121.logica.User>
-          <login>bill</login>
-          <endereco>Hollywood, California</endereco>
-          <email>bill@gmail.com</email>
-          <telefone>112121212</telefone>
-          <nome>Bill Clinton</nome>
-          <senha>bilz@o</senha>
-          <caronasSeguras>0</caronasSeguras>
-          <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
-          <faltas>0</faltas>
-          <presenca>0</presenca>
-          <listaDeAmigos class="linked-list"/>
-          <caronasOferecidas class="linked-list"/>
-          <solicitacoes class="linked-list"/>
-          <ID>
-            <login>bill</login>
-            <email>bill@gmail.com</email>
-            <sessao>true</sessao>
-          </ID>
-        </ufcg.edu.br.Sistema120121.logica.User>
-        <ufcg.edu.br.Sistema120121.logica.Carona_-Situacao>AGUARDANDO</ufcg.edu.br.Sistema120121.logica.Carona_-Situacao>
-      </entry>
-    </caroneiros>
-    <pontoDeEncontro>
-      <blackList class="linked-list"/>
-    </pontoDeEncontro>
-  </ufcg.edu.br.Sistema120121.logica.Carona>
-  <ufcg.edu.br.Sistema120121.logica.Carona>
-    <origem>Campina Grande</origem>
-    <destino>João Pessoa</destino>
-    <data>
-      <data>04/06/2012</data>
-    </data>
-    <hora>
-      <Hora>16:00</Hora>
-    </hora>
-    <qntVagas>2</qntVagas>
-    <motorista reference="../../ufcg.edu.br.Sistema120121.logica.Carona/motorista"/>
-    <ID>
-      <loginMotorista>mark</loginMotorista>
+      <loginMotorista>caba</loginMotorista>
       <horaCarona reference="../../hora"/>
       <dataCarona reference="../../data"/>
     </ID>
@@ -83,5 +39,70 @@
     <pontoDeEncontro>
       <blackList class="linked-list"/>
     </pontoDeEncontro>
+    <ehMunicipal>false</ehMunicipal>
+  </ufcg.edu.br.Sistema120121.logica.Carona>
+  <ufcg.edu.br.Sistema120121.logica.Carona>
+    <cidade>João Pessoa</cidade>
+    <destino>Campina Grande</destino>
+    <data>
+      <data>25/06/2012</data>
+    </data>
+    <hora>
+      <Hora>14:00</Hora>
+    </hora>
+    <qntVagas>4</qntVagas>
+    <motorista>
+      <login>jucaPeroba</login>
+      <endereco>Rua 13 de maio, Caruaru</endereco>
+      <email>jucaPeroba@gmail.com</email>
+      <telefone>112121212</telefone>
+      <nome>Juca Peroba</nome>
+      <senha>juqinha</senha>
+      <caronasSeguras>0</caronasSeguras>
+      <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
+      <faltas>0</faltas>
+      <presenca>0</presenca>
+      <listaDeAmigos class="linked-list"/>
+      <caronasOferecidas class="linked-list"/>
+      <mensagensDePerfil class="linked-list"/>
+      <solicitacoes class="linked-list"/>
+      <ID>
+        <login>jucaPeroba</login>
+        <email>jucaPeroba@gmail.com</email>
+        <sessao>true</sessao>
+      </ID>
+    </motorista>
+    <ID>
+      <loginMotorista>jucaPeroba</loginMotorista>
+      <horaCarona reference="../../hora"/>
+      <dataCarona reference="../../data"/>
+    </ID>
+    <caroneiros/>
+    <pontoDeEncontro>
+      <blackList class="linked-list"/>
+    </pontoDeEncontro>
+    <ehMunicipal>false</ehMunicipal>
+  </ufcg.edu.br.Sistema120121.logica.Carona>
+  <ufcg.edu.br.Sistema120121.logica.Carona>
+    <cidade>João Pessoa</cidade>
+    <destino>Campina Grande</destino>
+    <data>
+      <data>25/06/2012</data>
+    </data>
+    <hora>
+      <Hora>15:00</Hora>
+    </hora>
+    <qntVagas>1</qntVagas>
+    <motorista reference="../../ufcg.edu.br.Sistema120121.logica.Carona[2]/motorista"/>
+    <ID>
+      <loginMotorista>jucaPeroba</loginMotorista>
+      <horaCarona reference="../../hora"/>
+      <dataCarona reference="../../data"/>
+    </ID>
+    <caroneiros/>
+    <pontoDeEncontro>
+      <blackList class="linked-list"/>
+    </pontoDeEncontro>
+    <ehMunicipal>false</ehMunicipal>
   </ufcg.edu.br.Sistema120121.logica.Carona>
 </linked-list>

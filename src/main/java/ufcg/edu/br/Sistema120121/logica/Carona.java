@@ -11,6 +11,7 @@ import java.util.Map;
  */
 public class Carona {
 
+	private String cidade;
 	private String origem;
 	private String destino;
 	private Data data;
@@ -20,6 +21,7 @@ public class Carona {
 	private IdentificadorCarona ID;
 	private Map<User, Situacao> caroneiros;
 	private PontoDeEncontro pontoDeEncontro;
+	private boolean ehMunicipal;
 
 	public enum Situacao {
 		FALTOU, NAO_FALTOU, AGUARDANDO
@@ -46,7 +48,7 @@ public class Carona {
 	 * 
 	 */
 	public Carona(String origem, String destino, Hora hora, Data data,
-			int qntVagas, User motorista) throws CaronaException {
+			int qntVagas, User motorista,boolean ehMunicipal) throws CaronaException {
 		setOrigem(origem);
 		setDestino(destino);
 		setHora(hora);
@@ -56,6 +58,7 @@ public class Carona {
 		this.ID = new IdentificadorCarona(motorista.getLogin(), data, hora);
 		caroneiros = new HashMap<User, Situacao>();
 		pontoDeEncontro = new PontoDeEncontro();
+		this.ehMunicipal = ehMunicipal;
 	}
 
 	/**
@@ -68,18 +71,18 @@ public class Carona {
 	}
 
 	/**
-	 * Retorna a origem da carona.
+	 * Retorna a cidade da carona.
 	 * 
-	 * @return A origem da carona.
+	 * @return A cidade da carona.
 	 */
 	public String getOrigem() {
-		return origem;
+		return cidade;
 	}
 
 	/**
-	 * Altera a origem da carona.
+	 * Altera a cidade da carona.
 	 * 
-	 * @param origem
+	 * @param cidade
 	 *            O novo local de partida.
 	 * @throws CaronaException
 	 *             Caso o novo local esteja em um formato incorreto.
@@ -88,7 +91,7 @@ public class Carona {
 
 		if (!(origem == null) && (origem.matches("[A-Za-zÇ-ú\\s]*+"))
 				&& (!(origem.isEmpty())))
-			this.origem = origem;
+			this.cidade = origem;
 		else
 			throw new CaronaException("Origem inválida");
 	}
@@ -340,6 +343,14 @@ public class Carona {
 			caroneiros.put(caroneiro, situacao);
 		}
 			
+	}
+
+	/**
+	 * Informa se a carona é/não uma carona municipal,utilizando
+	 * "true" caso seja e "false" caso não seja.
+	 */
+	public boolean isMunicipal() {
+		return ehMunicipal;
 	}
 
 }

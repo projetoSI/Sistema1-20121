@@ -2,6 +2,8 @@ package ufcg.edu.br.Sistema120121.logica;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+
 import ufcg.edu.br.Sistema120121.dados.*;
 
 
@@ -65,11 +67,17 @@ public class Sistema {
 	 * 		A quantidade de vagas de carona.
 	 * @param motorista
 	 * 		O motorista da carona.
+	 * @param ehMunicipal 
 	 * @throws CaronaException 
 	 */
-	public void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista) throws CaronaException {
-		controlaDados.addCarona(origem, destino, hora, data, qntVagas, motorista);
+	public void addCarona(String origem,String destino,Hora hora,Data data,int qntVagas,User motorista, boolean ehMunicipal) throws CaronaException {
+		controlaDados.addCarona(origem, destino, hora, data, qntVagas, motorista,ehMunicipal);
 	}
+	
+	public void addCarona(String origem,String destino,String cidade,Hora hora,Data data,int qntVagas,User motorista, boolean ehMunicipal) throws Exception {
+		controlaDados.addCarona(origem, destino,cidade, hora, data, qntVagas, motorista,ehMunicipal);
+	}
+	
 	
 	/**
 	 * Retorna a lista de usuarios cadastrados no sistema.
@@ -136,6 +144,12 @@ public class Sistema {
 		return controlaDados.localizarCarona(origem, destino);
 	}
 	
+	public List<Carona> getCaronasMunicipais(String cidade, String origem, String destino) throws CaronaException {
+		return controlaDados.localizarCaronaMunicipal(cidade, origem, destino);
+	}
+		
+	
+	
 	public Carona getCaronaID(String id) throws CaronaException {
 		return controlaDados.getCaronaID(id);
 		
@@ -179,6 +193,16 @@ public class Sistema {
 
 	public List<Solicitacao> getSolicitacoesAceitas() {
 		return controlaDados.getSolicitacoesAceitas();
+	}
+
+
+	public List<Carona> getCaronasMunicipais(String cidade) throws CaronaException {
+		return controlaDados.localizarCaronaMunicipal(cidade);
+	}
+
+
+	public void addInteresse() {
+		controlaDados.addInteresse();
 	}
 
 }

@@ -73,7 +73,66 @@ public class SistemaFacade {
 	public void encerrarSistema() throws IOException {
 		sistema.guardarDados();
 	}
+	
+	public String localizarCaronaMunicipal(String sessao,String cidade, String origem, String destino)	throws Exception {
+		String result = "";
 
+		if (cidade == null || cidade.isEmpty() || !cidade.matches("[A-Za-zÇ-ú\\s]*+")) 
+			throw new CaronaException("Cidade inexistente");
+		
+		if (cidade.matches("[A-Za-zÇ-ú\\s]*+")  &&  origem.matches("[A-Za-zÇ-ú\\s]*+") && destino.matches("[A-Za-zÇ-ú\\s]*+")) {
+			if (sistema.getCaronasMunicipais(cidade,origem,destino).size() == 0) {
+				result = "{}";
+			} else {
+				result = "{";
+
+				for (Carona carona : sistema.getCaronasMunicipais(cidade,origem, destino)) {
+					if (result.equals("{")) {
+						result += carona.getID().toString();
+					} else {
+						result += "," + carona.getID().toString();
+					}
+				}
+				result += "}";
+			}
+		} else {
+			
+			if (!origem.matches("[A-Za-zÇ-ú\\s]*+"))
+				throw new Exception("Origem inválida");
+			if (!destino.matches("[A-Za-zÇ-ú\\s]*+"))
+				throw new Exception("Destino inválido");
+		}
+
+		return result;
+
+	}
+	public String localizarCaronaMunicipal(String sessao,String cidade) throws CaronaException{
+		
+		if (cidade == null || cidade.isEmpty() || !cidade.matches("[A-Za-zÇ-ú\\s]*+")) 
+			throw new CaronaException("Cidade inexistente");
+		String result;
+		if (sistema.getCaronasMunicipais(cidade).size() == 0) {
+			result = "{}";
+		} else {
+			result = "{";
+
+			for (Carona carona : sistema.getCaronasMunicipais(cidade)) {
+				if (result.equals("{")) {
+					result += carona.getID().toString();
+				} else {
+					result += "," + carona.getID().toString();
+				}
+			}
+			result += "}";
+		}
+		
+		
+		
+		
+		return result;
+	}
+	
+	
 	public String localizarCarona(String sessao, String origem, String destino)	throws Exception {
 		String result = "";
 
@@ -101,9 +160,8 @@ public class SistemaFacade {
 
 		return result;
 	}
-
-	public IdentificadorCarona cadastrarCarona(String sessao, String origem, String destino, String data, String hora, String vagas) throws Exception {
-
+	
+	private void isSessaoValida(String sessao) throws Exception {
 		if (sessao == null || sessao.isEmpty())
 			throw new Exception("Sessão inválida");
 
@@ -118,30 +176,52 @@ public class SistemaFacade {
 		if (!temSessao)
 			throw new Exception("Sessão inexistente");
 
+		mudaUserAtual(sessao);
+	}
+	
+	private void atualizaMapa(Carona c) {
+		if (refCaronasUsers.containsKey(user.getID().toString())) {
+			refCaronasUsers.get(user.getID().toString()).add(c.getID().toString());
+		} else {
+			List<String> aux = new LinkedList<String>();
+			aux.add(c.getID().toString());
+			refCaronasUsers.put(user.getID().toString(), aux);
+		}
+	}
+
+	public IdentificadorCarona cadastrarCarona(String sessao, String origem, String destino, String data, String hora, String vagas) throws Exception {
 		try {
 			Integer.parseInt(vagas);
 		} catch (Exception e) {
 			throw new Exception("Vaga inválida");
 		}
-
-		mudaUserAtual(sessao);
-
 		Hora horaAux = new Hora(hora);
 		Data dataAux = new Data(data);
-		sistema.addCarona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), user);
-		carona = new Carona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), user);
-
-		if (refCaronasUsers.containsKey(user.getID().toString())) {
-			refCaronasUsers.get(user.getID().toString()).add(carona.getID().toString());
-		} else {
-			List<String> aux = new LinkedList<String>();
-			aux.add(carona.getID().toString());
-			refCaronasUsers.put(user.getID().toString(), aux);
-		}
-
-		return carona.getID();
+		Carona c = new Carona(origem, destino,horaAux, dataAux, Integer.parseInt(vagas), user,false);
+		isSessaoValida(sessao);
+		sistema.addCarona(c.getOrigem(),c.getDestino(), c.getHora(), c.getData(), c.getQntVagas(), c.getMotorista(),c.isMunicipal());
+		atualizaMapa(c);
+		return c.getID();
 	}
-
+	
+	
+	public IdentificadorCarona cadastrarCaronaMunicipal(String sessao, String origem, String destino,String cidade, String data, String hora, String vagas) throws Exception {
+		try {
+			Integer.parseInt(vagas);
+		} catch (Exception e) {
+			throw new Exception("Vaga inválida");
+		}
+		Hora horaAux = new Hora(hora);
+		Data dataAux = new Data(data);
+		Carona c = new CaronaMunicipal(origem, destino,cidade, horaAux, dataAux, Integer.parseInt(vagas), user,true);
+		isSessaoValida(sessao);
+		sistema.addCarona(c.getOrigem(),c.getDestino(), ((CaronaMunicipal) c).getCidade(), c.getHora(), c.getData(), c.getQntVagas(), c.getMotorista(),c.isMunicipal());
+		atualizaMapa(c);
+		return c.getID();
+		
+		
+	}
+	
 	private void mudaUserAtual(String sessao) {
 		for (User aux : sistema.getUsuariosCadastrados()) {
 			if (aux.getID().toString().equals(sessao)) {
@@ -172,8 +252,10 @@ public class SistemaFacade {
 			result = carona.getData().getData();
 		else if (atributo.equals("vagas"))
 			result = "" + carona.getQntVagas();
+		else if (atributo.equals("ehMunicipal"))
+			result = "" + carona.isMunicipal();
 		else
-			throw new Exception("Atributo inexistente");
+		    throw new Exception("Atributo inexistente");
 
 		return result;
 	}
@@ -448,6 +530,48 @@ public class SistemaFacade {
 			throw new Exception("Opção inválida.");
 	}
 	
+	
+	
+	public String cadastrarInteresse(String sessao,String origem,String destino, String data,String horaInicial,String horaFinal) throws Exception {
+//		Aqui verifica se a data e hora passada sao validas...
+		
+		if (origem == null || !origem.matches("[A-Za-zÇ-ú\\s]*+"))
+			throw new Exception("Origem inválida");
+		if (destino == null || !destino.matches("[A-Za-zÇ-ú\\s]*+"))
+			throw new Exception("Destino inválido");
+		
+		
+		
+		if(horaInicial.isEmpty())
+			horaInicial = "00:00";
+		if(horaFinal.isEmpty())
+			horaFinal = "23:59";
+		if(data != null && data.isEmpty()){
+		 //data = DATA ATUAL
+		data = "30/06/2012";//so para testes
+		}else if (data == null){
+			throw new Exception("Data inválida");
+		}
+		
+		
+		Hora horaInicio = new Hora(horaInicial);
+		Hora horaFim = new Hora(horaFinal);
+		Data dataAux = new Data(data);
+		Interesse interesse = new Interesse(user,origem,destino,data,horaInicial,horaFinal);
+		sistema.addInteresse();
+		return interesse.getID();
+	}
+	
+	
+	public String verificaMensagensPerfil(String sessao) {
+		return user.visualizarMensagens();
+	}
+	
+	
+	
+	
+	
+	
 	public static void main(String[] args) throws Exception {
 
 		List<String> files = new ArrayList<String>();
@@ -461,12 +585,12 @@ public class SistemaFacade {
 		files.add("scripts/US07.txt");
 		files.add("scripts/US08.txt");
 		files.add("scripts/US09.txt");
-//		files.add("scripts/US10.txt");
-//		files.add("scripts/US11.txt");
-		files.add("scripts/US12.txt");
+		files.add("scripts/US10.txt");
+		files.add("scripts/US11.txt");
+//		files.add("scripts/US12.txt");
 
 		SistemaFacade monopolyGameFacade = getInstance();
-
+		
 		EasyAcceptFacade eaFacade = new EasyAcceptFacade(monopolyGameFacade, files);
 
 		eaFacade.executeTests();
