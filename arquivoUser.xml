@@ -1,11 +1,11 @@
 <linked-list>
   <ufcg.edu.br.Sistema120121.logica.User>
-    <login>zezyt0</login>
-    <endereco>Rua belarmina pereira 452, João Pessoa</endereco>
-    <email>zezyto@gmail.com</email>
+    <login>mark</login>
+    <endereco>Palo Alto, California</endereco>
+    <email>mark@facebook.com</email>
     <telefone>112121212</telefone>
-    <nome>Jose de zito</nome>
-    <senha>z3z1t0</senha>
+    <nome>Mark Zuckerberg</nome>
+    <senha>m@rk</senha>
     <caronasSeguras>0</caronasSeguras>
     <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
     <faltas>0</faltas>
@@ -15,18 +15,18 @@
     <mensagensDePerfil class="linked-list"/>
     <solicitacoes class="linked-list"/>
     <ID>
-      <login>zezyt0</login>
-      <email>zezyto@gmail.com</email>
+      <login>mark</login>
+      <email>mark@facebook.com</email>
       <sessao>true</sessao>
     </ID>
   </ufcg.edu.br.Sistema120121.logica.User>
   <ufcg.edu.br.Sistema120121.logica.User>
-    <login>manelito</login>
-    <endereco>Rua adamastor pitaco 24, João Pessoa</endereco>
-    <email>manel@yahoo.com.br</email>
+    <login>bill</login>
+    <endereco>Hollywood, California</endereco>
+    <email>bill@gmail.com</email>
     <telefone>112121212</telefone>
-    <nome>Manel da Silva</nome>
-    <senha>w4n3l1t0</senha>
+    <nome>William Henry Gates III</nome>
+    <senha>bilz@o</senha>
     <caronasSeguras>0</caronasSeguras>
     <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
     <faltas>0</faltas>
@@ -36,71 +36,8 @@
     <mensagensDePerfil class="linked-list"/>
     <solicitacoes class="linked-list"/>
     <ID>
-      <login>manelito</login>
-      <email>manel@yahoo.com.br</email>
-      <sessao>true</sessao>
-    </ID>
-  </ufcg.edu.br.Sistema120121.logica.User>
-  <ufcg.edu.br.Sistema120121.logica.User>
-    <login>jucaPeroba</login>
-    <endereco>Rua 13 de maio, Caruaru</endereco>
-    <email>jucaPeroba@gmail.com</email>
-    <telefone>112121212</telefone>
-    <nome>Juca Peroba</nome>
-    <senha>juqinha</senha>
-    <caronasSeguras>0</caronasSeguras>
-    <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
-    <faltas>0</faltas>
-    <presenca>0</presenca>
-    <listaDeAmigos class="linked-list"/>
-    <caronasOferecidas class="linked-list"/>
-    <mensagensDePerfil class="linked-list"/>
-    <solicitacoes class="linked-list"/>
-    <ID>
-      <login>jucaPeroba</login>
-      <email>jucaPeroba@gmail.com</email>
-      <sessao>true</sessao>
-    </ID>
-  </ufcg.edu.br.Sistema120121.logica.User>
-  <ufcg.edu.br.Sistema120121.logica.User>
-    <login>mariano0ab</login>
-    <endereco>Rua 27 de maio, Campina Grande</endereco>
-    <email>marianoAdvogado@gmail.com</email>
-    <telefone>112121212</telefone>
-    <nome>Mariano Silva</nome>
-    <senha>mariozinho</senha>
-    <caronasSeguras>0</caronasSeguras>
-    <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
-    <faltas>0</faltas>
-    <presenca>0</presenca>
-    <listaDeAmigos class="linked-list"/>
-    <caronasOferecidas class="linked-list"/>
-    <mensagensDePerfil class="linked-list"/>
-    <solicitacoes class="linked-list"/>
-    <ID>
-      <login>mariano0ab</login>
-      <email>marianoAdvogado@gmail.com</email>
-      <sessao>true</sessao>
-    </ID>
-  </ufcg.edu.br.Sistema120121.logica.User>
-  <ufcg.edu.br.Sistema120121.logica.User>
-    <login>caba</login>
-    <endereco>Rua 21 de maio, Campina Grande</endereco>
-    <email>marcioSarvai@gmail.com</email>
-    <telefone>112121212</telefone>
-    <nome>Marcio Sarvai</nome>
-    <senha>Marcin</senha>
-    <caronasSeguras>0</caronasSeguras>
-    <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
-    <faltas>0</faltas>
-    <presenca>0</presenca>
-    <listaDeAmigos class="linked-list"/>
-    <caronasOferecidas class="linked-list"/>
-    <mensagensDePerfil class="linked-list"/>
-    <solicitacoes class="linked-list"/>
-    <ID>
-      <login>caba</login>
-      <email>marcioSarvai@gmail.com</email>
+      <login>bill</login>
+      <email>bill@gmail.com</email>
       <sessao>true</sessao>
     </ID>
   </ufcg.edu.br.Sistema120121.logica.User>

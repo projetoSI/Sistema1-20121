@@ -8,7 +8,8 @@ zerarSistema
 
 #Criar usuário.
 criarUsuario login="mark" senha="m@rk" nome="Mark Zuckerberg" endereco="Palo Alto, California" email="mark@facebook.com"
-criarUsuario login="bill" senha="bilz@o" nome="Bill Clinton" endereco="Hollywood, California" email="bill@gmail.com"
+criarUsuario login="bill" senha="bilz@o" nome="William Henry Gates III" endereco="Hollywood, California" email="bill@gmail.com"
+
 #Iniciar sessão.
 sessaoMark=abrirSessao login="mark" senha="m@rk"
 
@@ -21,7 +22,7 @@ sessaoBill=abrirSessao login="bill" senha="bilz@o"
 
 #Requisitar vaga na carona.
 solicitacao1ID=solicitarVaga idSessao=${sessaoBill} idCarona=${carona4ID}
-expect "Campina Grande" getAtributoSolicitacao idSolicitacao={solicitacao1ID} atributo="origem"
+expect "Campina Grande" getAtributoSolicitacao idSolicitacao=${solicitacao1ID} atributo="origem"
 expect "João Pessoa" getAtributoSolicitacao idSolicitacao=${solicitacao1ID} atributo="destino"
 expect "Mark Zuckerberg" getAtributoSolicitacao idSolicitacao=${solicitacao1ID} atributo="Dono da carona"
 expect "William Henry Gates III" getAtributoSolicitacao idSolicitacao=${solicitacao1ID} atributo="Dono da solicitacao"
@@ -32,7 +33,7 @@ expect true enviarEmail idSessao=${sessaoMark} destino="bill@gmail.com" message=
 
 #Aceitar requisição
 aceitarSolicitacao idSessao=${sessaoMark} idSolicitacao=${solicitacao1ID}
-expect 2 getAtributoCarona idCarona=${carona4ID} atributo="vagas"
+expect 0 getAtributoCarona idCarona=${carona4ID} atributo="vagas"
 
 #Enviar email
 expect true enviarEmail idSessao=${sessaoMark} destino="bill@gmail.com" message="A carona foi confirmada"
@@ -40,7 +41,7 @@ expect true enviarEmail idSessao=${sessaoMark} destino="bill@gmail.com" message=
 
 #Requisitar vaga na carona.
 solicitacao2ID=solicitarVaga idSessao=${sessaoBill} idCarona=${carona4ID}
-expect "Campina Grande" getAtributoSolicitacao idSolicitacao={solicitacao2ID} atributo="origem"
+expect "Campina Grande" getAtributoSolicitacao idSolicitacao=${solicitacao2ID} atributo="origem"
 expect "João Pessoa" getAtributoSolicitacao idSolicitacao=${solicitacao2ID} atributo="destino"
 expect "Mark Zuckerberg" getAtributoSolicitacao idSolicitacao=${solicitacao2ID} atributo="Dono da carona"
 expect "William Henry Gates III" getAtributoSolicitacao idSolicitacao=${solicitacao2ID} atributo="Dono da solicitacao"
@@ -50,7 +51,7 @@ expect true enviarEmail idSessao=${sessaoMark} destino="bill@gmail.com" message=
 
 #Rejeitar requisição
 rejeitarSolicitacao idSessao=${sessaoBill} idSolicitacao=${solicitacao2ID}
-expect 0 getAtributoCarona idCarona=${carona5ID} atributo="vagas"
+expect 2 getAtributoCarona idCarona=${carona5ID} atributo="vagas"
 
 #Enviar email
 expect true enviarEmail idSessao=${sessaoMark} destino="bill@gmail.com" message="A carona foi rejeitada por falta de vaga"
