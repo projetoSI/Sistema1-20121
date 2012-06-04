@@ -204,4 +204,9 @@ public class AcessaDados {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public boolean enviarEmail(String nome, String emailDestino, String mensagem) {
+		EmailSender email = new EmailSender();
+		return email.enviaEmail(nome, emailDestino, mensagem);
+	}
 }

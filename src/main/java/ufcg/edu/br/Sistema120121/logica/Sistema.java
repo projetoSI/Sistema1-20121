@@ -205,4 +205,9 @@ public class Sistema {
 		controlaDados.addInteresse();
 	}
 
+
+	public boolean enviarEmail(String nome, String emailDestino, String mensagem) {
+		return controlaDados.enviarEmail(nome, emailDestino, mensagem);
+	}
+
 }

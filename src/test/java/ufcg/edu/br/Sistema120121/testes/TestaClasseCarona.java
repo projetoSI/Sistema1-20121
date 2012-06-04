@@ -17,7 +17,7 @@ public class TestaClasseCarona {
 	@Before
 	public void setup() throws Exception{
 		motorista1 = new User("pherivelton", "1234567", "Pablo", "Rua Lalaa", "lol@lol.com","88888888");
-		carona1 = new Carona("Joao Pessoa", "Campina Grande", new Hora("19:00"), new Data("01/05/2014"), 2, motorista1);
+		carona1 = new Carona("Joao Pessoa", "Campina Grande", new Hora("19:00"), new Data("01/05/2014"), 2, motorista1, false);
 	}
 	
 	@Test

@@ -17,7 +17,7 @@ public class TestaClasseSolicitacao {
 	public void setup() throws Exception{
 		motorista = new User("pherivelton", "123456", "Pablo","Rua lalala", "pherivelton@gmail.com","88888888");
 		caroneiro = new User("rafael", "panda", "Rafael Ribeiro", "Rua perto da UFCG", "rafael@gmail.com", "12345678");
-		carona = new Carona("Joao Pessoa", "Campina Grande", new Hora("19:00"), new Data("29/09/2012"), 2, motorista);
+		carona = new Carona("Joao Pessoa", "Campina Grande", new Hora("19:00"), new Data("29/09/2012"), 2, motorista, false);
 		solicitacao = new Solicitacao(carona, caroneiro, "Caja");
 	}
 	

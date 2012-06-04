@@ -14,27 +14,30 @@ import javax.mail.internet.MimeMessage;
 public class EmailSender {
 
 	// Método que envia o email
-	public static void enviaEmail(String remetente, String destinatario, String assunto, String mensagem) {
+	public boolean enviaEmail(String user, String destinatario, String mensagem) {
 
 		Session session = Session.getDefaultInstance(getPropriedades(), getAuthenticator());
 
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(remetente)); // Seta o remetente
+			message.setFrom(new InternetAddress("notification@sistema120121.com")); // Seta o remetente
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinatario)); // Define o destinatário
-			message.setSubject(assunto); // Define o assunto
-			message.setText(mensagem); // Mensagem do email
+			message.setSubject("Notification"); // Define o assunto
+			message.setText(user + "\n\n" + mensagem); // Mensagem do email
 
-			Transport.send(message); // Envia o email
+//			POR ENQUANTO, NAO ENVIA NENHUM EMAIL POIS O SERVIDOR PRORPIO NAO ESTA PRONTO
+//			Transport.send(message); // Envia o email
 
+			return true;
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
+		
 	}
 
 	// Método que retorna a autenticação de sua conta de email
-	public static Authenticator getAuthenticator() {
+	private Authenticator getAuthenticator() {
 
 		Authenticator autenticacao = new Authenticator() {
 
@@ -49,7 +52,7 @@ public class EmailSender {
 	}
 
 	// Método que retorna as propriedades de configuração do servidor de email
-	public static Properties getPropriedades() {
+	private Properties getPropriedades() {
 
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com"); // SMTP do seu servidor de email

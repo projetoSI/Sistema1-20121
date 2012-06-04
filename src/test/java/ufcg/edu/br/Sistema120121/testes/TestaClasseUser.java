@@ -27,8 +27,8 @@ public class TestaClasseUser {
 		user2 = new User("pherivelton", "123456", "Pablo","Rua lalala", "pherivelton@gmail.com","88888888");
 		user3 = new User("pherivelton2", "123456", "PabloHerivelton","Rua dos Olivedos, 182", "pherivelton2@hotmail.com.br","8888888888");
 		user4 = new User("rafael", "panda", "Rafael Ribeiro", "Rua perto da UFCG", "rafael@gmail.com", "12345678");
-		carona1 = new Carona("Campina Grande", "João Pessoa", new Hora("23:00"), new Data("23/05/2013"), 3, user1);
-		carona2 = new Carona("Campina Grande", "Jacumã", new Hora("17:00"), new Data("27/05/2013"), 3, user4);
+		carona1 = new Carona("Campina Grande", "João Pessoa", new Hora("23:00"), new Data("23/05/2013"), 3, user1, false);
+		carona2 = new Carona("Campina Grande", "Jacumã", new Hora("17:00"), new Data("27/05/2013"), 3, user4, false);
 	}
 	
 	@Test
