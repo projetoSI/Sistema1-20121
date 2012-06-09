@@ -1,4 +1,3 @@
-#Wed May 30 17:32:59 BRT 2012
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/java/ufcg/edu/br/Sistema120121/logica/Carona.java=UTF-8
@@ -26,6 +25,5 @@ encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TestaClasseIdentificado
 encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TestaClasseSolicitacao.java=UTF-8
 encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TestaClasseUser.java=UTF-8
 encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TestaPontoDeEncontro.java=UTF-8
-encoding//src/test/java/ufcg/edu/br/Sistema120121/testes/TesteEasy.java=UTF-8
 encoding/<project>=UTF-8
 encoding/pom.xml=UTF-8
