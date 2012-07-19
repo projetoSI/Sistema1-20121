@@ -533,37 +533,31 @@ public class SistemaFacade {
 	
 	
 	public String cadastrarInteresse(String sessao,String origem,String destino, String data,String horaInicial,String horaFinal) throws Exception {
-//		Aqui verifica se a data e hora passada sao validas...
-		
 		if (origem == null || !origem.matches("[A-Za-zÇ-ú\\s]*+"))
 			throw new Exception("Origem inválida");
 		if (destino == null || !destino.matches("[A-Za-zÇ-ú\\s]*+"))
 			throw new Exception("Destino inválido");
 		
-		
-		
-		if(horaInicial.isEmpty())
-			horaInicial = "00:00";
-		if(horaFinal.isEmpty())
-			horaFinal = "23:59";
-		if(data != null && data.isEmpty()){
-		 //data = DATA ATUAL
-		data = "30/06/2012";//so para testes
-		}else if (data == null){
-			throw new Exception("Data inválida");
+		if (data == null || !data.isEmpty()){
+			// Se a data for nula a criação do objeto retorna o erro correto
+			Data d = new Data(data); // verifica se a data é válida criando o objeto
 		}
 		
-//		
-//		Hora horaInicio = new Hora(horaInicial);
-//		Hora horaFim = new Hora(horaFinal);
-//		Data dataAux = new Data(data);
-		Interesse interesse = new Interesse(user,origem,destino,data,horaInicial,horaFinal);
+		if (!horaFinal.isEmpty()){
+			Hora h = new Hora(horaFinal); // verifica se a hora passada é válida
+		}
+		
+		if (!horaInicial.isEmpty()){
+			Hora h = new Hora(horaInicial);
+		}
+
+		Interesse interesse = new Interesse(user, origem, destino, data, horaInicial, horaFinal);
 		sistema.addInteresse();
 		return interesse.getID();
 	}
 	
 	
-	public String verificaMensagensPerfil(String sessao) {
+	public String verificarMensagensPerfil(String sessao) {
 		return user.visualizarMensagens();
 	}
 	
