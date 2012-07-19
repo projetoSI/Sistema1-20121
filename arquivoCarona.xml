@@ -3,7 +3,7 @@
     <cidade>Campina Grande</cidade>
     <destino>João Pessoa</destino>
     <data>
-      <data>02/06/2012</data>
+      <data>02/06/2013</data>
     </data>
     <hora>
       <Hora>12:00</Hora>
@@ -42,7 +42,7 @@
           <endereco>Hollywood, California</endereco>
           <email>bill@gmail.com</email>
           <telefone>112121212</telefone>
-          <nome>William Henry Gates III</nome>
+          <nome>Bill Clinton</nome>
           <senha>bilz@o</senha>
           <caronasSeguras>0</caronasSeguras>
           <caronasNaoFuncionaram>0</caronasNaoFuncionaram>
@@ -70,7 +70,7 @@
     <cidade>Campina Grande</cidade>
     <destino>João Pessoa</destino>
     <data>
-      <data>04/06/2012</data>
+      <data>04/06/2013</data>
     </data>
     <hora>
       <Hora>16:00</Hora>

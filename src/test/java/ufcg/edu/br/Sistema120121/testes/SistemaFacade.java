@@ -13,7 +13,7 @@ import ufcg.edu.br.Sistema120121.logica.Carona.Situacao;
 public class SistemaFacade {
 
 	private User user;
-	private Carona carona;
+//	private Carona carona;
 	private static Sistema sistema = Sistema.getInstance();
 	private static SistemaFacade facade = new SistemaFacade();
 	private static Map<String, List<String>> refCaronasUsers = new TreeMap<String, List<String>>();
@@ -125,10 +125,7 @@ public class SistemaFacade {
 			}
 			result += "}";
 		}
-		
-		
-		
-		
+
 		return result;
 	}
 	
@@ -190,36 +187,39 @@ public class SistemaFacade {
 	}
 
 	public IdentificadorCarona cadastrarCarona(String sessao, String origem, String destino, String data, String hora, String vagas) throws Exception {
-		try {
-			Integer.parseInt(vagas);
-		} catch (Exception e) {
-			throw new Exception("Vaga inválida");
-		}
-		Hora horaAux = new Hora(hora);
-		Data dataAux = new Data(data);
-		Carona c = new Carona(origem, destino,horaAux, dataAux, Integer.parseInt(vagas), user,false);
-		isSessaoValida(sessao);
-		sistema.addCarona(c.getOrigem(),c.getDestino(), c.getHora(), c.getData(), c.getQntVagas(), c.getMotorista(),c.isMunicipal());
-		atualizaMapa(c);
-		return c.getID();
+		return cadastraCaronaAux(sessao, origem, destino, "", data, hora, vagas, false);
 	}
 	
 	
 	public IdentificadorCarona cadastrarCaronaMunicipal(String sessao, String origem, String destino,String cidade, String data, String hora, String vagas) throws Exception {
+		return cadastraCaronaAux(sessao, origem, destino, cidade, data, hora, vagas, true);
+	}
+	
+	private IdentificadorCarona cadastraCaronaAux(String sessao, String origem, String destino,String cidade, String data, String hora, String vagas, boolean ehMunicipal) throws Exception {
 		try {
 			Integer.parseInt(vagas);
 		} catch (Exception e) {
 			throw new Exception("Vaga inválida");
 		}
+
+		if (hora.length() < 5)
+			hora = "0" + hora;
+		
 		Hora horaAux = new Hora(hora);
 		Data dataAux = new Data(data);
-		Carona c = new CaronaMunicipal(origem, destino,cidade, horaAux, dataAux, Integer.parseInt(vagas), user,true);
-		isSessaoValida(sessao);
-		sistema.addCarona(c.getOrigem(),c.getDestino(), ((CaronaMunicipal) c).getCidade(), c.getHora(), c.getData(), c.getQntVagas(), c.getMotorista(),c.isMunicipal());
+		Carona c = null;
+		
+		if (!ehMunicipal) {
+			c = new Carona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), user, ehMunicipal);
+			isSessaoValida(sessao);
+			sistema.addCarona(c.getOrigem(), c.getDestino(), c.getHora(), c.getData(), c.getQntVagas(), c.getMotorista(), c.isMunicipal());
+		} else {
+			c = new CaronaMunicipal(origem, destino, cidade, horaAux, dataAux, Integer.parseInt(vagas), user, ehMunicipal);
+			isSessaoValida(sessao);
+			sistema.addCarona(c.getOrigem(), c.getDestino(), ((CaronaMunicipal) c).getCidade(), c.getHora(), c.getData(), c.getQntVagas(), c.getMotorista(), c.isMunicipal());
+		}
 		atualizaMapa(c);
 		return c.getID();
-		
-		
 	}
 	
 	private void mudaUserAtual(String sessao) {
@@ -486,7 +486,7 @@ public class SistemaFacade {
 				result = sistema.getCaronaID(idAux).getPontoDeEncontro().getSugestaoAtual();
 		}
 
-		return result;
+		return "[" + result + "]";
 	}
 
 	public String getPontosEncontro(String idSessao, String idCarona) throws Exception {
@@ -553,10 +553,10 @@ public class SistemaFacade {
 			throw new Exception("Data inválida");
 		}
 		
-		
-		Hora horaInicio = new Hora(horaInicial);
-		Hora horaFim = new Hora(horaFinal);
-		Data dataAux = new Data(data);
+//		
+//		Hora horaInicio = new Hora(horaInicial);
+//		Hora horaFim = new Hora(horaFinal);
+//		Data dataAux = new Data(data);
 		Interesse interesse = new Interesse(user,origem,destino,data,horaInicial,horaFinal);
 		sistema.addInteresse();
 		return interesse.getID();
@@ -579,18 +579,18 @@ public class SistemaFacade {
 
 		List<String> files = new ArrayList<String>();
 
-//		files.add("scripts/US01.txt");
-//		files.add("scripts/US02.txt");
-//		files.add("scripts/US03.txt");
-//		files.add("scripts/US04.txt");
-//		files.add("scripts/US05.txt");
-//		files.add("scripts/US06.txt");
-//		files.add("scripts/US07.txt");
-//		files.add("scripts/US08.txt");
-//		files.add("scripts/US09.txt");
-////		files.add("scripts/US10.txt");
-////		files.add("scripts/US11.txt");
-//		files.add("scripts/US12.txt");
+		files.add("scripts/US01.txt");
+		files.add("scripts/US02.txt");
+		files.add("scripts/US03.txt");
+		files.add("scripts/US04.txt");
+		files.add("scripts/US05.txt");
+		files.add("scripts/US06.txt");
+		files.add("scripts/US07.txt");
+		files.add("scripts/US08.txt");
+		files.add("scripts/US09.txt");
+		files.add("scripts/US10.txt");
+		files.add("scripts/US11.txt");
+		files.add("scripts/US12.txt");
 
 		SistemaFacade monopolyGameFacade = getInstance();
 		
