@@ -12,7 +12,6 @@ import java.util.Map;
 public class Carona {
 
 	private String cidade;
-	private String origem;
 	private String destino;
 	private Data data;
 	private Hora hora;

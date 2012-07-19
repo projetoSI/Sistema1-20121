@@ -201,13 +201,12 @@ public class SistemaFacade {
 		} catch (Exception e) {
 			throw new Exception("Vaga inválida");
 		}
-
-		if (hora.length() < 5)
-			hora = "0" + hora;
 		
 		Hora horaAux = new Hora(hora);
 		Data dataAux = new Data(data);
 		Carona c = null;
+		
+		mudaUserAtual(sessao);
 		
 		if (!ehMunicipal) {
 			c = new Carona(origem, destino, horaAux, dataAux, Integer.parseInt(vagas), user, ehMunicipal);
@@ -219,9 +218,16 @@ public class SistemaFacade {
 			sistema.addCarona(c.getOrigem(), c.getDestino(), ((CaronaMunicipal) c).getCidade(), c.getHora(), c.getData(), c.getQntVagas(), c.getMotorista(), c.isMunicipal());
 		}
 		atualizaMapa(c);
+		
+		verificaInteresse(c);
+		
 		return c.getID();
 	}
 	
+	private void verificaInteresse(Carona c) {
+		sistema.verificaInteresses(c);
+	}
+
 	private void mudaUserAtual(String sessao) {
 		for (User aux : sistema.getUsuariosCadastrados()) {
 			if (aux.getID().toString().equals(sessao)) {
@@ -551,13 +557,16 @@ public class SistemaFacade {
 			Hora h = new Hora(horaInicial);
 		}
 
+		mudaUserAtual(sessao);
+		
 		Interesse interesse = new Interesse(user, origem, destino, data, horaInicial, horaFinal);
-		sistema.addInteresse();
+		sistema.addInteresse(user, origem, destino, data, horaInicial, horaFinal);
 		return interesse.getID();
 	}
 	
 	
 	public String verificarMensagensPerfil(String sessao) {
+		mudaUserAtual(sessao);
 		return user.visualizarMensagens();
 	}
 	

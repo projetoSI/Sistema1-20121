@@ -10,7 +10,8 @@ public class AcessaDados {
 	private static AcessaDados instance = new AcessaDados();
 	private RepositorioCaronas dadosCaronas = new RepositorioCaronas() ;
 	private RepositorioUsuario dadosUser = new RepositorioUsuario();
-	private RepositorioSolicitacoes  dadosSolicitacao = new RepositorioSolicitacoes();
+	private RepositorioSolicitacoes dadosSolicitacao = new RepositorioSolicitacoes();
+	private RepositorioInteresses dadosInteresses = new RepositorioInteresses();
 	private Arquivo arquivo = Arquivo.getInstance();
 	private final String arquivoUser = "arquivoUser.xml", arquivoCarona = "arquivoCarona.xml"; 
 
@@ -187,6 +188,7 @@ public class AcessaDados {
 		dadosCaronas.zeraRepositorioCaronas();
 		dadosUser.zeraRepositorioUsuarios();
 		dadosSolicitacao.zeraRepositorioSolicitacoes();
+		dadosInteresses.zeraRepositorioInteresses();
 	}
 
 	public void addCarona(String origem, String destino, String cidade,
@@ -200,13 +202,16 @@ public class AcessaDados {
 		return dadosCaronas.getCaronasMunicipais(cidade);
 	}
 
-	public void addInteresse() {
-		// TODO Auto-generated method stub
-		
+	public void addInteresse(User user, String origem, String destino, String data, String horaInicial, String horaFinal) {
+		dadosInteresses.addInteresse(user, origem, destino, data, horaInicial, horaFinal);
 	}
 
 	public boolean enviarEmail(String nome, String emailDestino, String mensagem) {
 		EmailSender email = new EmailSender();
 		return email.enviaEmail(nome, emailDestino, mensagem);
+	}
+
+	public void verificaInteresses(Carona c) {
+		dadosInteresses.verificaInteresse(c);
 	}
 }

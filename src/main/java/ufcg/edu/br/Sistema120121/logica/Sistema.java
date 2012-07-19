@@ -2,7 +2,6 @@ package ufcg.edu.br.Sistema120121.logica;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import ufcg.edu.br.Sistema120121.dados.*;
 
@@ -201,13 +200,18 @@ public class Sistema {
 	}
 
 
-	public void addInteresse() {
-		controlaDados.addInteresse();
+	public void addInteresse(User user, String origem, String destino, String data, String horaInicial, String horaFinal) {
+		controlaDados.addInteresse(user, origem, destino, data, horaInicial, horaFinal);
 	}
 
 
 	public boolean enviarEmail(String nome, String emailDestino, String mensagem) {
 		return controlaDados.enviarEmail(nome, emailDestino, mensagem);
+	}
+
+
+	public void verificaInteresses(Carona c) {
+		controlaDados.verificaInteresses(c);
 	}
 
 }
